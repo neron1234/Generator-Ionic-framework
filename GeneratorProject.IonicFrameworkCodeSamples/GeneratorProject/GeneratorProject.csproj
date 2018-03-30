@@ -1,0 +1,301 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!--/-:cnd -->
+  <PropertyGroup>
+    <TargetFramework>net461</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove="Platforms\Frontend\Ionic\API\Templates\src\services\data.service.ts" />
+    <None Remove="Platforms\Frontend\Ionic\Common\Templates\.editorconfig" />
+    <None Remove="Platforms\Frontend\Ionic\Common\Templates\.gitignore" />
+    <None Remove="Platforms\Frontend\Ionic\Common\Templates\src\app\main.ts" />
+    <None Remove="Platforms\Frontend\Ionic\Common\Templates\src\assets\icon\favicon.ico" />
+    <None Remove="Platforms\Frontend\Ionic\Common\Templates\src\assets\imgs\logo.png" />
+    <None Remove="Platforms\Frontend\Ionic\Common\Templates\tsconfig.json" />
+    <None Remove="Platforms\Frontend\Ionic\Common\Templates\tslint.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Platforms\Frontend\Ionic\API\Templates\src\services\data.service.ts">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Platforms\Frontend\Ionic\Common\Templates\.editorconfig">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Platforms\Frontend\Ionic\Common\Templates\.gitignore">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Platforms\Frontend\Ionic\Common\Templates\src\app\main.ts">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Platforms\Frontend\Ionic\Common\Templates\src\assets\icon\favicon.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Platforms\Frontend\Ionic\Common\Templates\src\assets\imgs\logo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Platforms\Frontend\Ionic\Common\Templates\tsconfig.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Platforms\Frontend\Ionic\Common\Templates\tslint.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Mobioos.Scaffold" Version="0.9.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="mscorlib" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Platforms\Frontend\Ionic\API\Templates\ApiTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ApiTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Platforms\Frontend\Ionic\Base\Templates\Include.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Include.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Platforms\Frontend\Ionic\Common\Templates\Config.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Config.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Platforms\Frontend\Ionic\Common\Templates\IonicConfig.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>IonicConfig.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Platforms\Frontend\Ionic\Common\Templates\Package.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Package.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Platforms\Frontend\Ionic\Common\Templates\src\app\AppBaseClass.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>AppBaseClass.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Platforms\Frontend\Ionic\Common\Templates\src\app\AppComponent.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>AppComponent.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Platforms\Frontend\Ionic\Common\Templates\src\app\AppModule.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>AppModule.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Platforms\Frontend\Ionic\Common\Templates\src\app\AppView.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>AppView.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Platforms\Frontend\Ionic\Common\Templates\src\Index.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Index.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Platforms\Frontend\Ionic\Common\Templates\src\Manifest.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Manifest.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Platforms\Frontend\Ionic\Common\Templates\src\theme\Variables.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Variables.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>DataModelTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Platforms\Frontend\Ionic\DataModel\Templates\EnumTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>EnumTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Platforms\Frontend\Ionic\Language\Templates\JsonTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>JsonTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Platforms\Frontend\Ionic\Language\Templates\LanguageComponentTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>LanguageComponentTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Platforms\Frontend\Ionic\Language\Templates\LanguageModuleTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>LanguageModuleTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Platforms\Frontend\Ionic\Language\Templates\LanguageStyleTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>LanguageStyleTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Platforms\Frontend\Ionic\Language\Templates\LanguageViewTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>LanguageViewTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>LayoutComponentTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Platforms\Frontend\Ionic\Layout\Templates\LayoutModuleTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>LayoutModuleTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Platforms\Frontend\Ionic\Layout\Templates\LayoutStyleTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>LayoutStyleTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Platforms\Frontend\Ionic\Layout\Templates\LayoutViewTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>LayoutViewTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Platforms\Frontend\Ionic\ViewModel\Templates\ViewModelTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ViewModelTemplate.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt">
+      <CustomToolNamespace>GeneratorProject.Platforms.Frontend.Ionic</CustomToolNamespace>
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>ApiTemplate.cs</LastGenOutput>
+    </None>
+    <None Update="Platforms\Frontend\Ionic\Base\Templates\Include.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>Include.cs</LastGenOutput>
+      <CustomToolNamespace>GeneratorProject.Platforms.Frontend.Ionic</CustomToolNamespace>
+    </None>
+    <None Update="Platforms\Frontend\Ionic\Common\Templates\Config.tt">
+      <CustomToolNamespace>GeneratorProject.Platforms.Frontend.Ionic</CustomToolNamespace>
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>Config.cs</LastGenOutput>
+    </None>
+    <None Update="Platforms\Frontend\Ionic\Common\Templates\IonicConfig.tt">
+      <CustomToolNamespace>GeneratorProject.Platforms.Frontend.Ionic</CustomToolNamespace>
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>IonicConfig.cs</LastGenOutput>
+    </None>
+    <None Update="Platforms\Frontend\Ionic\Common\Templates\Package.tt">
+      <CustomToolNamespace>GeneratorProject.Platforms.Frontend.Ionic</CustomToolNamespace>
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>Package.cs</LastGenOutput>
+    </None>
+    <None Update="Platforms\Frontend\Ionic\Common\Templates\src\app\AppBaseClass.tt">
+      <CustomToolNamespace>GeneratorProject.Platforms.Frontend.Ionic</CustomToolNamespace>
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>AppBaseClass.cs</LastGenOutput>
+    </None>
+    <None Update="Platforms\Frontend\Ionic\Common\Templates\src\app\AppComponent.tt">
+      <CustomToolNamespace>GeneratorProject.Platforms.Frontend.Ionic</CustomToolNamespace>
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>AppComponent.cs</LastGenOutput>
+    </None>
+    <None Update="Platforms\Frontend\Ionic\Common\Templates\src\app\AppModule.tt">
+      <CustomToolNamespace>GeneratorProject.Platforms.Frontend.Ionic</CustomToolNamespace>
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>AppModule.cs</LastGenOutput>
+    </None>
+    <None Update="Platforms\Frontend\Ionic\Common\Templates\src\app\AppView.tt">
+      <CustomToolNamespace>GeneratorProject.Platforms.Frontend.Ionic</CustomToolNamespace>
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>AppView.cs</LastGenOutput>
+    </None>
+    <None Update="Platforms\Frontend\Ionic\Common\Templates\src\Index.tt">
+      <CustomToolNamespace>GeneratorProject.Platforms.Frontend.Ionic</CustomToolNamespace>
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>Index.cs</LastGenOutput>
+    </None>
+    <None Update="Platforms\Frontend\Ionic\Common\Templates\src\Manifest.tt">
+      <CustomToolNamespace>GeneratorProject.Platforms.Frontend.Ionic</CustomToolNamespace>
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>Manifest.cs</LastGenOutput>
+    </None>
+    <None Update="Platforms\Frontend\Ionic\Common\Templates\src\theme\Variables.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>Variables.cs</LastGenOutput>
+      <CustomToolNamespace>GeneratorProject.Platforms.Frontend.Ionic</CustomToolNamespace>
+    </None>
+    <None Update="Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt">
+      <CustomToolNamespace>GeneratorProject.Platforms.Frontend.Ionic</CustomToolNamespace>
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>DataModelTemplate.cs</LastGenOutput>
+    </None>
+    <None Update="Platforms\Frontend\Ionic\DataModel\Templates\EnumTemplate.tt">
+      <CustomToolNamespace>GeneratorProject.Platforms.Frontend.Ionic</CustomToolNamespace>
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>EnumTemplate.cs</LastGenOutput>
+    </None>
+    <None Update="Platforms\Frontend\Ionic\Language\Templates\JsonTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>JsonTemplate.cs</LastGenOutput>
+      <CustomToolNamespace>GeneratorProject.Platforms.Frontend.Ionic</CustomToolNamespace>
+    </None>
+    <None Update="Platforms\Frontend\Ionic\Language\Templates\LanguageComponentTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>LanguageComponentTemplate.cs</LastGenOutput>
+      <CustomToolNamespace>GeneratorProject.Platforms.Frontend.Ionic</CustomToolNamespace>
+    </None>
+    <None Update="Platforms\Frontend\Ionic\Language\Templates\LanguageModuleTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>LanguageModuleTemplate.cs</LastGenOutput>
+      <CustomToolNamespace>GeneratorProject.Platforms.Frontend.Ionic</CustomToolNamespace>
+    </None>
+    <None Update="Platforms\Frontend\Ionic\Language\Templates\LanguageStyleTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>LanguageStyleTemplate.cs</LastGenOutput>
+      <CustomToolNamespace>GeneratorProject.Platforms.Frontend.Ionic</CustomToolNamespace>
+    </None>
+    <None Update="Platforms\Frontend\Ionic\Language\Templates\LanguageViewTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>LanguageViewTemplate.cs</LastGenOutput>
+      <CustomToolNamespace>GeneratorProject.Platforms.Frontend.Ionic</CustomToolNamespace>
+    </None>
+    <None Update="Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt">
+      <CustomToolNamespace>GeneratorProject.Platforms.Frontend.Ionic</CustomToolNamespace>
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>LayoutComponentTemplate.cs</LastGenOutput>
+    </None>
+    <None Update="Platforms\Frontend\Ionic\Layout\Templates\LayoutModuleTemplate.tt">
+      <CustomToolNamespace>GeneratorProject.Platforms.Frontend.Ionic</CustomToolNamespace>
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>LayoutModuleTemplate.cs</LastGenOutput>
+    </None>
+    <None Update="Platforms\Frontend\Ionic\Layout\Templates\LayoutStyleTemplate.tt">
+      <CustomToolNamespace>GeneratorProject.Platforms.Frontend.Ionic</CustomToolNamespace>
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>LayoutStyleTemplate.cs</LastGenOutput>
+    </None>
+    <None Update="Platforms\Frontend\Ionic\Layout\Templates\LayoutViewTemplate.tt">
+      <CustomToolNamespace>GeneratorProject.Platforms.Frontend.Ionic</CustomToolNamespace>
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>LayoutViewTemplate.cs</LastGenOutput>
+    </None>
+    <None Update="Platforms\Frontend\Ionic\ViewModel\Templates\ViewModelTemplate.tt">
+      <CustomToolNamespace>GeneratorProject.Platforms.Frontend.Ionic</CustomToolNamespace>
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>ViewModelTemplate.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+
+</Project>

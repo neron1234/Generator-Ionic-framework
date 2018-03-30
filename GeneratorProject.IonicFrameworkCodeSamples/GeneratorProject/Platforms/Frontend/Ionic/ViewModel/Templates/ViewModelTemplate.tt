@@ -1,0 +1,236 @@
+<#@ include file="..\..\Base\Templates\Include.tt" #>
+<#@ import namespace="Mobioos.Foundation.Jade.Extensions" #>
+/*
+ * You should add your licence here, here is an example :
+ *
+ * SonarQube, open source software quality management tool.
+ * Copyright (C) 2008-2013 SonarSource
+ * mailto:contact AT sonarsource DOT com
+ *
+ * SonarQube is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 3 of the License, or (at your option) any later version.
+ *
+ * SonarQube is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program; if not, write to the Free Software Foundation,
+ * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ */
+<#
+    if (_dataModel != null && _dataModel.Id != null)
+    {
+        List<string> alreadyImported = new List<string>();
+        if (_constructorParametersObj.AsEnumerable() != null)
+        {
+            foreach (PropertyInfo property in _constructorParametersObj.AsEnumerable())
+            {
+                if (property.Target != null && property.Type != null && !alreadyImported.AsEnumerable().Contains(property.Type))
+                {
+                    alreadyImported.Add(property.Type);
+                    if (property.Target.IsEnum)
+                    {
+#>
+import { <#= PascalCase(property.Type) #>Enum } from '../models/<#= CamelCase(property.Type) #>Enum';
+<#
+                    }
+                    else
+                    {
+#>
+import { <#= PascalCase(property.Type) #>Model } from '../models/<#= CamelCase(property.Type) #>Model';
+<#
+                    }
+                }
+            }
+        }
+
+        if (_dataModel.References.AsEnumerable() != null)
+        {
+            foreach (ReferenceInfo reference in _dataModel.References.AsEnumerable())
+            {
+                if (reference.Target != null && reference.Type != null && !alreadyImported.AsEnumerable().Contains(reference.Type))
+                {
+                    alreadyImported.Add(reference.Type);
+                    if (reference.Target.IsEnum)
+                    {
+#>
+import { <#= PascalCase(reference.Type) #>Enum } from '../models/<#= CamelCase(reference.Type) #>Enum';
+<#
+                    }
+                    else
+                    {
+#>
+import { <#= PascalCase(reference.Type) #>Model } from '../models/<#= CamelCase(reference.Type) #>Model';
+<#
+                    }
+                }
+            }
+        }
+#>
+/**
+ * class: <#= PascalCase(_dataModel.Id) #>
+ * You should add a description of your entity here.
+ * This viewModel is a reference used in Concerns or
+ * in APIs' parameters or return types.
+ * This model is generated from ViewModel domain.
+ */
+export class <#= PascalCase(_dataModel.Id) #> {
+<#
+        if (_dataModel.Properties.AsEnumerable() != null)
+        {
+            foreach (PropertyInfo property in _dataModel.Properties.AsEnumerable())
+            {
+                if (property.Id != null && property.TypeScriptType() != null && property.IsCollection)
+                {
+#>
+  /**
+   * property.
+   * isCollection.
+   */
+  public <#= CamelCase(property.Id) #>: <#= property.TypeScriptType() #>[];
+<#
+                }
+                else if (property.Id != null && property.TypeScriptType() != null)
+                {
+#>
+  /**
+   * property.
+   */
+  public <#= CamelCase(property.Id) #>: <#= property.TypeScriptType() #>;
+<#
+                }
+            }
+        }
+
+        if (_dataModel.References.AsEnumerable() != null)
+        {
+            foreach (ReferenceInfo reference in _dataModel.References.AsEnumerable())
+            {
+                if (reference.Id != null && reference.Target != null && reference.Target.IsEnum)
+                {
+#>
+  /**
+   * reference.
+   * isEnum.
+   */
+  public <#= CamelCase(reference.Id) #>: <#= PascalCase(reference.TypeScriptType()) #>Enum;
+<#
+                }
+                else if (reference.Id != null && reference.TypeScriptType() != null && reference.IsCollection)
+                {
+#>
+  /**
+   * reference.
+   * isCollection.
+   */
+  public <#= CamelCase(reference.Id) #>: <#= PascalCase(reference.TypeScriptType()) #>Model[];
+<#
+                }
+                else if (reference.Id != null && reference.TypeScriptType() != null)
+                {
+#>
+  /**
+   * reference.
+   */
+  public <#= CamelCase(reference.Id) #>: <#= PascalCase(reference.TypeScriptType()) #>Model;
+<#
+                }
+            }
+        }
+#>
+  constructor(
+<#
+            if (_constructorParametersObj.AsEnumerable() != null && _constructorParametersObj.AsEnumerable().Count() > 0)
+            {
+                int lastIndex = _constructorParametersObj.AsEnumerable().Count() - 1;
+                int index = 0;
+                Dictionary<string, int> countConstructor = new Dictionary<string, int>();
+                foreach (PropertyInfo property in _constructorParametersObj.AsEnumerable())
+                {
+                    if (property.Id != null && property.TypeScriptType() != null)
+                    {
+                        string propertyIsModel = IsModel(property);
+                        if (!countConstructor.ContainsKey(property.Id))
+                            countConstructor.Add(property.Id, 1);
+                        else
+                            countConstructor[property.Id] = countConstructor[property.Id] + 1;
+                        string type =  property.TypeScriptType();
+                        if (!propertyIsModel.Equals(""))
+                        {
+                            type = PascalCase(type);
+                        }
+                        if (property.IsCollection && index == lastIndex)
+                        {
+#>
+    <#= CamelCase(property.Id) + countConstructor[property.Id] #>: <#= type + propertyIsModel #>[]
+<#
+                        }
+                        else if (index == lastIndex)
+                        {
+#>
+    <#= CamelCase(property.Id) + countConstructor[property.Id] #>: <#= type + propertyIsModel #>
+<#
+                        }
+                        else if (property.IsCollection)
+                        {
+#>
+    <#= CamelCase(property.Id) + countConstructor[property.Id] #>: <#= type + propertyIsModel #>[],
+<#
+                        }
+                        else
+                        {
+#>
+    <#= CamelCase(property.Id) + countConstructor[property.Id] #>: <#= type + propertyIsModel #>,
+<#
+                        }
+                    }
+                    index++;
+                }
+            }
+#>
+  ) {
+<#
+            Dictionary<string, int> countObj = new Dictionary<string, int>();
+            if (_dataModel.Properties.AsEnumerable() != null)
+            {
+                foreach (PropertyInfo property in _dataModel.Properties.AsEnumerable())
+                {
+                    if (property.Id != null)
+                    {
+                        if (!countObj.ContainsKey(property.Id))
+                            countObj.Add(property.Id, 1);
+                        else
+                            countObj[property.Id] = countObj[property.Id] + 1;
+#>
+    this.<#= CamelCase(property.Id) #> = <#= CamelCase(property.Id) + countObj[property.Id] #>;
+<#
+                    }
+                }
+            }
+
+            if (_dataModel.References.AsEnumerable() != null)
+            {
+                foreach (ReferenceInfo reference in _dataModel.References.AsEnumerable())
+                {
+                    if (reference.Id != null)
+                    {
+                        if (!countObj.ContainsKey(reference.Id))
+                            countObj.Add(reference.Id, 1);
+                        else
+                            countObj[reference.Id] = countObj[reference.Id] + 1;
+#>
+    this.<#= CamelCase(reference.Id) #> = <#= CamelCase(reference.Id) + countObj[reference.Id] #>;
+<#
+                    }
+                }
+            }
+#>
+  }
+}
+<#
+    }
+#>

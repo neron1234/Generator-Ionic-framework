@@ -1,0 +1,119 @@
+<#@ include file="..\..\Base\Templates\Include.tt" #>
+/*
+ * You should add your licence here, here is an example :
+ *
+ * SonarQube, open source software quality management tool.
+ * Copyright (C) 2008-2013 SonarSource
+ * mailto:contact AT sonarsource DOT com
+ *
+ * SonarQube is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 3 of the License, or (at your option) any later version.
+ *
+ * SonarQube is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program; if not, write to the Free Software Foundation,
+ * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ */
+<#
+    if (_concernId != null && _layout != null && _layout.Id != null)
+    {
+        string layout = PascalCase(_concernId) + PascalCase(_layout.Id);
+        string layoutToLower = CamelCase(_concernId) + "-" + CamelCase(_layout.Id);
+#>
+import { NgModule } from '@angular/core';
+import { IonicPageModule } from 'ionic-angular';
+
+import { <#= layout #> } from './<#= layoutToLower #>';
+<#
+        if (_languages.AsEnumerable() != null && _languages.AsEnumerable().Count() > 0)
+        {
+#>
+import { TranslateModule } from '@ngx-translate/core';
+<#
+        }
+
+        if (_apiDomainServices.AsEnumerable() != null && _apiDomainServices.AsEnumerable().Count() > 0)
+        {
+            foreach (string service in _apiDomainServices.AsEnumerable())
+            {
+#>
+import { <#= PascalCase(service) #> } from '../../../services/<#= CamelCase(service) #>.service';
+<#
+            }
+        }
+#>
+
+/**
+ * class: <#= layout #>PageModule.
+<#
+        if (_layout.Description != null)
+        {
+#>
+ * <#= _layout.Description #>.
+ * This is the module of the current layout.
+ * This module is generated from Concerns domain.
+ */
+<#
+        }
+        else
+        {
+#>
+ * You should add a description of your
+ * layout's module here.
+ * This is the module of the current layout.
+ * This module is generated from Concerns domain.
+ */
+<#
+        }
+#>
+@NgModule({
+  declarations: [
+    <#= layout #>
+  ],
+  imports: [
+<#
+        if (_languages.AsEnumerable() != null && _languages.AsEnumerable().Count() > 0)
+        {
+#>
+    TranslateModule.forChild(),
+<#
+        }
+#>
+    IonicPageModule.forChild(<#= layout #>)
+  ],
+  providers: [
+<#
+        if (_apiDomainServices.AsEnumerable() != null && _apiDomainServices.AsEnumerable().Count() > 0)
+        {
+            int lastIndex = _apiDomainServices.AsEnumerable().Count() - 1;
+            int index = 0;
+            foreach (string service in _apiDomainServices.AsEnumerable())
+            {
+                if (index == lastIndex)
+                {
+#>
+    <#= PascalCase(service) #>
+<#
+                }
+                else
+                {
+#>
+    <#= PascalCase(service) #>,
+<#
+                }
+                index++;
+            }
+        }
+#>
+  ]
+})
+export class <#= layout #>PageModule {}
+<#
+    }
+#>

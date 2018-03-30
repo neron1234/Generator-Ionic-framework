@@ -1,0 +1,67 @@
+﻿<#@ include file="..\..\Base\Templates\Include.tt" #>
+/*
+ * You should add your licence here, here is an example :
+ *
+ * SonarQube, open source software quality management tool.
+ * Copyright (C) 2008-2013 SonarSource
+ * mailto:contact AT sonarsource DOT com
+ *
+ * SonarQube is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 3 of the License, or (at your option) any later version.
+ *
+ * SonarQube is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program; if not, write to the Free Software Foundation,
+ * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ */
+<#
+    if (_entity != null && _entity.Id != null)
+    {
+#>
+/**
+ * class: <#= PascalCase(_entity.Id) #>Enum.
+ * You should add a description of your enumeration here.
+ * That enumeration is a reference used in viewModels or
+ * in models.
+ * That enumeration is generated from DataModel domain.
+ */
+export enum <#= PascalCase(_entity.Id) #>Enum {
+<#
+        if (_entity.Values.AsEnumerable() != null)
+        {
+            int index = 0;
+            int indexLast = _entity.Values.AsEnumerable().Count() - 1;
+            foreach (ValueInfo value in _entity.Values.AsEnumerable())
+            {
+                if (value.Id != null && index == indexLast)
+                {
+#>
+  /**
+   * Change the index by a string to fit string enums.
+   */
+  <#= CamelCase(value.Id).ToUpper() #> = <#= index #>
+<#
+                }
+                else if (value.Id != null)
+                {
+#>
+  /**
+   * Change the index by a string to fit string enums.
+   */
+  <#= CamelCase(value.Id).ToUpper() #> = <#= index #>,
+<#
+                }
+                index++;
+            }
+        }
+#>
+}
+<#
+    }
+#>

@@ -1,0 +1,334 @@
+<#@ include file="..\..\Base\Templates\Include.tt" #>
+<#@ import namespace="Mobioos.Foundation.Jade.Extensions" #>
+/*
+ * You should add your licence here, here is an example :
+ *
+ * SonarQube, open source software quality management tool.
+ * Copyright (C) 2008-2013 SonarSource
+ * mailto:contact AT sonarsource DOT com
+ *
+ * SonarQube is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 3 of the License, or (at your option) any later version.
+ *
+ * SonarQube is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program; if not, write to the Free Software Foundation,
+ * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ */
+<#
+    if (_concernId != null && _layout != null && _layout.Id != null)
+    {
+        string layout = PascalCase(_concernId) + PascalCase(_layout.Id);
+        string layoutToLower = CamelCase(_concernId) + "-" + CamelCase(_layout.Id);
+        string layoutPathToLower = CamelCase(_concernId) + "/" + CamelCase(_layout.Id);
+#>
+import { Component } from '@angular/core';
+import { IonicPage, NavController<# if (_menu.AsEnumerable() != null && _menu.AsEnumerable().Count() > 0) { #>, Events<# } #> } from 'ionic-angular';
+<#
+        if (_viewModels.AsEnumerable() != null && _viewModels.AsEnumerable().Count() > 0)
+        {
+            foreach (string viewModel in _viewModels.AsEnumerable())
+            {
+#>
+import { <#= PascalCase(viewModel) #> } from '../../../viewModels/<#= CamelCase(viewModel) #>';
+<#
+            }
+        }
+
+        if (_apiDomainServices.AsEnumerable() != null && _apiDomainServices.AsEnumerable().Count() > 0)
+        {
+#>
+import { Observable } from 'rxjs';
+<#
+            foreach (string service in _apiDomainServices.AsEnumerable())
+            {
+#>
+import { <#= PascalCase(service) #> } from '../../../services/<#= CamelCase(service) #>.service';
+<#
+            }
+        }
+
+        if (_languages.AsEnumerable() != null && _languages.AsEnumerable().Count() > 0)
+        {
+#>
+import { LanguagePage } from '../../language/language';
+<#
+        }
+#>
+
+/**
+ * class: <#= layout #>.
+<#
+        if (_layout.Description != null)
+        {
+#>
+ * <#= _layout.Description #>.
+ * This is the component of that layout.
+ * This component is generated from Concerns domain.
+<#
+        }
+        else
+        {
+#>
+ * You should add a description of your
+ * layout's component here.
+ * This is the component of the current layout.
+ * This component is generated from Concerns domain.
+<#
+        }
+#>
+ */
+@IonicPage({
+  name: '<#= layoutToLower #>',
+  segment: '<#= layoutPathToLower #>'
+})
+@Component({
+  selector: '<#= layoutToLower #>',
+  templateUrl: '<#= layoutToLower #>.html'
+})
+export class <#= layout #> {
+<#
+        if (_menu.AsEnumerable() != null && _menu.AsEnumerable().Count() > 0)
+        {
+#>
+  public _menu;
+<#
+        }
+#>
+  constructor(
+<#
+        if (_menu.AsEnumerable() != null && _menu.AsEnumerable().Count() > 0)
+        {
+#>
+    public _events: Events,
+<#
+        }
+
+        if (_apiDomainServices.AsEnumerable() != null && _apiDomainServices.AsEnumerable().Count() > 0)
+        {
+            foreach (string service in _apiDomainServices.AsEnumerable())
+            {
+#>
+    public _<#= CamelCase(service) #>: <#= PascalCase(service) #>,
+<#
+            }
+        }
+#>
+    public _nav: NavController
+  ) {
+<#
+        if (_menu.AsEnumerable() != null && _menu.AsEnumerable().Count() > 0)
+        {
+#>
+    this._menu = [
+<#
+            string last = _menu.Keys.Last();
+            foreach(KeyValuePair<string, string> m in _menu.AsEnumerable())
+            {
+                if (m.Key.Equals(last))
+                {
+#>
+      { name: '<#= m.Value #>', component: '<#= m.Key #>' }
+<#
+                }
+                else
+                {
+#>
+      { name: '<#= m.Value #>', component: '<#= m.Key #>' },
+<#
+                }
+            }
+#>
+    ];
+<#
+        }
+#>
+  }
+
+<#
+        if (_layout.Actions.AsEnumerable() != null)
+        {
+            foreach (ActionInfo action in _layout.Actions.AsEnumerable())
+            {
+                switch (action.Type.ToLower())
+                {
+                    case "navigation":
+                        if (action.Target != null)
+                        {
+                            string[] actionTargetSplitted = action.Target.Split('.');
+                            string targetedConcern = CamelCase(actionTargetSplitted[0]);
+                            string targetedLayout = CamelCase(actionTargetSplitted[1]);
+#>
+  /**
+   * method: on<#= PascalCase(action.Id) #>
+   * That method is a navigation method.
+   */
+  public on<#= PascalCase(action.Id) #>() {
+    this._nav.setRoot('<#= targetedConcern + "-" + targetedLayout #>');
+  }
+
+<#
+                        }
+                        break;
+                    case "method":
+#>
+  /**
+   * method: on<#= PascalCase(action.Id) #>
+   * That method is a blank method.
+   */
+  public on<#= PascalCase(action.Id) #>() {
+    // TO DO
+  }
+
+<#
+                        break;
+                    case "dataget": case "datalist": case "datacreate": case "dataupdate": case "datadelete":
+                        if (action.Api != null && _api != null)
+                        {
+                            string[] actionSplitted = action.Api.Split('.');
+                            string apiService = actionSplitted[0];
+                            string apiAction = actionSplitted[1];
+
+                            foreach (ApiInfo api in _api.AsEnumerable())
+                            {
+                                if (api.Id.ToLower().Equals(apiService.ToLower()) && api.Actions.AsEnumerable() != null)
+                                {
+                                    foreach (ApiActionInfo apiA in api.Actions.AsEnumerable())
+                                    {
+                                        if (apiA.Id.ToLower().Equals(apiAction.ToLower()))
+                                        {
+#>
+  /**
+   * method: on<#= PascalCase(action.Id) #>
+   * You should add a description of your method here.
+<#
+                                            if (apiA.Parameters.AsEnumerable() != null && apiA.Parameters.AsEnumerable().Count() > 0)
+                                            {
+                                                foreach (ApiParameterInfo apiParameter in apiA.Parameters.AsEnumerable())
+                                                {
+                                                    if (apiParameter.Id != null)
+                                                    {
+                                                        string parameterIsModel = IsModel(apiParameter.TypeScriptType());
+                                                        string type = apiParameter.TypeScriptType();
+                                                        if (!parameterIsModel.Equals(""))
+                                                        {
+                                                            type = PascalCase(type);
+                                                        }
+#>
+   * @param <#= CamelCase(apiParameter.Id) #> `<#= type + parameterIsModel #>`.
+<#
+                                                    }
+                                                }
+                                            }
+#>
+   * @returns A `Subscription<any>`.
+   */
+  public on<#= PascalCase(action.Id) #>(
+<#
+                                            if (apiA.Parameters.AsEnumerable() != null && apiA.Parameters.AsEnumerable().Count() > 0)
+                                            {
+                                                ApiParameterInfo last = apiA.Parameters.AsEnumerable().Last();
+                                                foreach (ApiParameterInfo apiParameter in apiA.Parameters.AsEnumerable())
+                                                {
+                                                    if (apiParameter.Id != null)
+                                                    {
+                                                        string parameterIsModel = IsModel(apiParameter.TypeScriptType());
+                                                        string type = apiParameter.TypeScriptType();
+                                                        if (!parameterIsModel.Equals(""))
+                                                        {
+                                                            type = PascalCase(type);
+                                                        }
+                                                        if (apiParameter.Equals(last))
+                                                        {
+#>
+    <#= CamelCase(apiParameter.Id) #>: <#= type + parameterIsModel #>
+<#
+                                                        }
+                                                        else
+                                                        {
+#>
+    <#= CamelCase(apiParameter.Id) #>: <#= type + parameterIsModel #>,
+<#
+                                                        }
+                                                    }
+                                                }
+                                            }
+#>
+  ) {
+    return this._<#= CamelCase(api.Id) #>.<#= CamelCase(apiA.Id) #>(
+<#
+                                            if (apiA.Parameters.AsEnumerable() != null && apiA.Parameters.AsEnumerable().Count() > 0)
+                                            {
+                                                ApiParameterInfo last = apiA.Parameters.AsEnumerable().Last();
+                                                foreach (ApiParameterInfo apiParameter in apiA.Parameters.AsEnumerable())
+                                                {
+                                                    if (apiParameter.Id != null && apiParameter.Equals(last))
+                                                    {
+#>
+      <#= CamelCase(apiParameter.Id) #>
+<#
+                                                    }
+                                                    else if (apiParameter.Id != null)
+                                                    {
+#>
+      <#= CamelCase(apiParameter.Id) #>,
+<#
+                                                    }
+                                                }
+                                            }
+
+#>
+    ).subscribe();
+  }
+
+<#
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        break;
+                }
+            }
+        }
+
+        if (_languages.AsEnumerable() != null && _languages.AsEnumerable().Count() > 0)
+        {
+#>
+  /**
+   * method: onLanguage.
+   * That method enables to quit the language
+   * page with an html button.
+   */
+  public onLanguage() {
+    this._nav.push(LanguagePage);
+  }
+
+<#
+        }
+
+        if (_menu.AsEnumerable() != null && _menu.AsEnumerable().Count() > 0)
+        {
+#>
+  /**
+   * method: ionViewWillEnter.
+   * Base event from Ionic to trigger
+   * global menu loading associated with
+   * each layout's specific menu.
+   */
+  public ionViewWillEnter() {
+    this._events.publish('menu', this._menu);
+  }
+<#
+        }
+#>
+}
+<#
+    }
+#>

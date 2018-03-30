@@ -1,0 +1,2 @@
+<#@ template language="C#" inherits="TemplateBase" #>
+<#@ import namespace="Mobioos.Scaffold.TextTemplating" #>

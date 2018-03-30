@@ -1,0 +1,152 @@
+<#@ template language="C#" inherits="AppBaseClass" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="Mobioos.Foundation.Jade.Models" #>
+/*
+ * You should add your licence here, here is an example :
+ *
+ * SonarQube, open source software quality management tool.
+ * Copyright (C) 2008-2013 SonarSource
+ * mailto:contact AT sonarsource DOT com
+ *
+ * SonarQube is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 3 of the License, or (at your option) any later version.
+ *
+ * SonarQube is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program; if not, write to the Free Software Foundation,
+ * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ */
+<#
+    SmartAppInfo smartApp = (SmartAppInfo)Model;
+    if (smartApp != null && smartApp.Id != null)
+    {
+#>
+import { NgModule, ErrorHandler } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
+import { StatusBar } from '@ionic-native/status-bar';
+import { SplashScreen } from '@ionic-native/splash-screen';
+import { CommonModule } from '@angular/common';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { <#= smartApp.Id #> } from './app.component';
+<#
+      if (smartApp.Api.AsEnumerable() != null)
+      {
+#>
+import { DataService } from '../services/data.service';
+<#
+      }
+
+      if (smartApp.Concerns.AsEnumerable() != null && _rootLayout != null && _rootLayout.Id != null && _rootConcern != null && _rootConcern.Id != null)
+      {
+        string concern = PascalCase(_rootConcern.Id);
+        string layout = PascalCase(_rootLayout.Id);
+        string layoutModule = concern + layout;
+        string layoutModuleToLower = CamelCase(concern) + "-" + CamelCase(layout);
+#>
+import { <#= layoutModule #>PageModule } from '../pages/<#= CamelCase(concern) #>/<#= CamelCase(layout) #>/<#= layoutModuleToLower #>.module';
+<#
+      }
+#>
+
+<#
+      if (_languages.AsEnumerable() != null && _languages.AsEnumerable().Count() > 0)
+      {
+#>
+import { LanguagePageModule } from '../pages/language/language.module';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+
+export function createTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
+<#
+      }
+#>
+
+/**
+ * class: AppModule.
+<#
+      if (smartApp.Description != null)
+      {
+#>
+ * <#= smartApp.Description #>.
+ * This is the main module of the application.
+ * This module is generated from multiple domains.
+<#
+      }
+      else
+      {
+#>
+ * This is the main module of the application.
+ * This module is generated from multiple domains.
+<#
+      }
+#>
+ */
+@NgModule({
+  declarations: [
+    <#= PascalCase(smartApp.Id) #>
+  ],
+  imports: [
+    BrowserModule,
+    CommonModule,
+    HttpClientModule,
+<#
+      if (smartApp.Concerns.AsEnumerable() != null && _rootLayout != null && _rootLayout.Id != null && _rootConcern != null && _rootConcern.Id != null)
+      {
+        string concern = PascalCase(_rootConcern.Id);
+        string layout = PascalCase(_rootLayout.Id);
+        string layoutModule = concern + layout;
+#>
+    <#= layoutModule #>PageModule,
+<#
+      }
+      
+      if (_languages.AsEnumerable() != null && _languages.AsEnumerable().Count() > 0)
+      {
+#>
+    LanguagePageModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: (createTranslateLoader),
+        deps: [HttpClient]
+      }
+    }),
+<#
+      }
+#>
+    IonicModule.forRoot(<#= PascalCase(smartApp.Id) #>)
+  ],
+  bootstrap: [IonicApp],
+  entryComponents: [
+    <#= PascalCase(smartApp.Id) #>
+  ],
+  providers: [
+<#
+      if (smartApp.Api.AsEnumerable() != null)
+      {
+#>
+    DataService,
+<#
+      }
+#>
+    StatusBar,
+    SplashScreen,
+    { provide: ErrorHandler, useClass: IonicErrorHandler }
+  ]
+})
+export class AppModule {}
+<#
+    }
+#>
