@@ -7,6 +7,8 @@ Generators are built with **T4 Text Templating**, and in particular, with [prepr
 In order to get in easier, we made a full explanation of how the Ionic framework generator implements Angular components code generation :
 
 - [Example - Angular components](https://github.com/Mobioos/Ionic-framework/wiki/Example-Angular-Components)
-- [Layout](https://github.com/Mobioos/Ionic-framework/wiki/Layout)
 - [Imports](https://github.com/Mobioos/Ionic-framework/wiki/Imports)
+- [Layout](https://github.com/Mobioos/Ionic-framework/wiki/Layout)
 - [Menus](https://github.com/Mobioos/Ionic-framework/wiki/Menus)
+
+---
