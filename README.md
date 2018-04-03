@@ -11,7 +11,7 @@ Generators are built with **T4 Text Templating**, and in particular, with [prepr
 
 In order to see and download Mobioos NuGet packages, you will need to add a new source of packages in your NuGet package manager under Visual Studio. Under **Options** see **NuGet Package Manager**, go to **Package Sources** and add a new source like it.
 
-[[/docs/images/Mobioos_packages_source.jpg|alt=octocat]]
+[[https://github.com/Mobioos/Ionic-framework/blob/master/docs/images/Mobioos_packages_source.jpg|alt=octocat]]
 
 ## Getting started
 
