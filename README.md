@@ -4,7 +4,7 @@ Generators are built with **T4 Text Templating**, and in particular, with [prepr
 
 ## Getting started
 
-You should take a look at the[Mobioos.Scaffold's generators](https://github.com/Mobioos/Common-Scaffold) repository before getting started.
+You should take a look at the [Mobioos.Scaffold's generators](https://github.com/Mobioos/Common-Scaffold) repository before getting started.
 In order to get in easier, we made a full explanation of how the Ionic framework generator implements Angular components code generation :
 
 - [Example - Angular components](https://github.com/Mobioos/Ionic-framework/wiki/Example-Angular-Components)
