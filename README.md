@@ -9,6 +9,10 @@ Generators are built with **T4 Text Templating**, and in particular, with [prepr
 - **Visual studio 2017** ([Community Edition](https://www.visualstudio.com/fr/downloads/) is enough)
 - **Mobioos.Scaffold's generators** documentation (see: [Mobioos.Scaffold's generators documentation](https://github.com/Mobioos/Common-Scaffold))
 
+In order to see and download Mobioos NuGet packages, you will need to add a new source of packages in your NuGet package manager under Visual Studio. Under **Options** see **NuGet Package Manager**, go to **Package Sources** and add a new source like it.
+
+[[/docs/images/Mobioos_packages_source.jpg|alt=octocat]]
+
 ## Getting started
 
 In order to get in easier, we made a full explanation of how the Ionic framework generator implements Angular components code generation :

@@ -13,7 +13,7 @@ namespace GeneratorProject.Tests.Generators.Frontend.Ionic
         [Fact]
         public async Task Transform_ALL()
         {
-            var basePath = Path.Combine(Path.GetTempPath(), _context.Context.Manifest.Id);
+            var basePath = Path.Combine(Path.GetTempPath(), _context.DynamicContext.Manifest.Id);
             CommonActivity commonActivity = new CommonActivity("CommonActivity", basePath);
             await commonActivity.Initializing(_context);
             await commonActivity.Writing();

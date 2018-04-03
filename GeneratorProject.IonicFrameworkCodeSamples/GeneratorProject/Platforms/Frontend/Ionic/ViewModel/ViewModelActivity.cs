@@ -58,10 +58,10 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
         [Task(Order = 2)]
         public async override Task Writing()
         {
-            if (null == Context.Context.Manifest)
-                throw new ArgumentNullException(nameof(Context.Context.Manifest));
+            if (null == Context.DynamicContext.Manifest)
+                throw new ArgumentNullException(nameof(Context.DynamicContext.Manifest));
 
-            SmartAppInfo smartApp = Context.Context.Manifest;
+            SmartAppInfo smartApp = Context.DynamicContext.Manifest;
             TransformViewModels(smartApp);
             await base.Writing();
         }

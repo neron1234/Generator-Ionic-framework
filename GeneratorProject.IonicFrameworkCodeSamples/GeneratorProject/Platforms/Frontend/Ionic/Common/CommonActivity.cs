@@ -34,7 +34,7 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
         [Task(Order = 1)]
         public async override Task Initializing(IActivityContext activityContext)
         {
-            _currentDirectoryPath = activityContext.Context.GeneratorPath;
+            _currentDirectoryPath = activityContext.DynamicContext.GeneratorPath;
             _commonTemplates = "Platforms\\Frontend\\Ionic\\Common\\Templates";
             _commonTemplatesDirectoryPath = Path.Combine(_currentDirectoryPath, _commonTemplates);
             
@@ -83,7 +83,7 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
                 }
             }
 
-            Context.Context.Theme = theme;
+            Context.DynamicContext.Theme = theme;
             base.ActivityPrompt_Completed(questions);
         }
 
@@ -93,11 +93,11 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
         [Task(Order = 3)]
         public async override Task Writing()
         {
-            if (null == Context.Context.Manifest)
-                throw new ArgumentNullException(nameof(Context.Context.Manifest));
+            if (null == Context.DynamicContext.Manifest)
+                throw new ArgumentNullException(nameof(Context.DynamicContext.Manifest));
 
-            SmartAppInfo smartApp = Context.Context.Manifest;
-            string theme = Context.Context.Theme;
+            SmartAppInfo smartApp = Context.DynamicContext.Manifest;
+            string theme = Context.DynamicContext.Theme;
             TransformCommon(smartApp, _commonTemplatesDirectoryPath);
             TransformSimpleTheme(theme);
             await base.Writing();

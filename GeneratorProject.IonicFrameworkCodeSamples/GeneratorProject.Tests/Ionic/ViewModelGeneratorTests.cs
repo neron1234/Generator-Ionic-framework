@@ -13,7 +13,7 @@ namespace GeneratorProject.Tests.Generators.Frontend.Ionic
         [Fact]
         public async Task Transform_ViewModels()
         {
-            var basePath = Path.Combine(Path.GetTempPath(), _context.Context.Manifest.Id);
+            var basePath = Path.Combine(Path.GetTempPath(), _context.DynamicContext.Manifest.Id);
             ViewModelActivity activity = new ViewModelActivity("ViewModelActivity", basePath);
             await activity.Initializing(_context);
             await activity.Writing();

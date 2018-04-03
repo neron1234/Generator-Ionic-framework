@@ -34,7 +34,7 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
         [Task(Order = 1)]
         public async override Task Initializing(IActivityContext activityContext)
         {
-            _currentDirectoryPath = activityContext.Context.GeneratorPath;
+            _currentDirectoryPath = activityContext.DynamicContext.GeneratorPath;
             _apiTemplates = "Platforms\\Frontend\\Ionic\\API\\Templates";
             _apiTemplatesDirectoryPath = Path.Combine(_currentDirectoryPath, _apiTemplates);
             await base.Initializing(activityContext);
@@ -66,10 +66,10 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
         [Task(Order = 2)]
         public async override Task Writing()
         {
-            if (null == Context.Context.Manifest)
-                throw new ArgumentNullException(nameof(Context.Context.Manifest));
+            if (null == Context.DynamicContext.Manifest)
+                throw new ArgumentNullException(nameof(Context.DynamicContext.Manifest));
 
-            SmartAppInfo smartApp = Context.Context.Manifest;
+            SmartAppInfo smartApp = Context.DynamicContext.Manifest;
             TransformApi(smartApp, _apiTemplatesDirectoryPath);
             await base.Writing();
         }
