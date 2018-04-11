@@ -7,7 +7,7 @@
 //     the code is regenerated.
 // </auto-generated>
 // ------------------------------------------------------------------------------
-namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
+namespace GeneratorProject.Platforms.Frontend.Ionic
 {
     using System.Linq;
     using System.Text;
@@ -22,7 +22,7 @@ namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
+    #line 1 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "15.0.0.0")]
     public partial class DataModelTemplate : TemplateBase
     {
@@ -56,7 +56,7 @@ namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
  */
 ");
             
-            #line 24 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
+            #line 24 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
 
     if (_entity != null)
     {
@@ -68,21 +68,21 @@ namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
             #line hidden
             this.Write("import { ");
             
-            #line 30 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
+            #line 30 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.PascalCase(_entity.Extends)));
             
             #line default
             #line hidden
             this.Write("Model } from \'./");
             
-            #line 30 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
+            #line 30 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.CamelCase(_entity.Extends)));
             
             #line default
             #line hidden
             this.Write("Model\';\r\n");
             
-            #line 31 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
+            #line 31 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
 
         }
 
@@ -102,21 +102,21 @@ namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
             #line hidden
             this.Write("import { ");
             
-            #line 45 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
+            #line 45 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.PascalCase(property.Type)));
             
             #line default
             #line hidden
             this.Write("Enum } from \'./");
             
-            #line 45 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
+            #line 45 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.CamelCase(property.Type)));
             
             #line default
             #line hidden
             this.Write("Enum\';\r\n");
             
-            #line 46 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
+            #line 46 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
 
                     }
                     else
@@ -127,21 +127,21 @@ namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
             #line hidden
             this.Write("import { ");
             
-            #line 51 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
+            #line 51 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.PascalCase(property.Type)));
             
             #line default
             #line hidden
             this.Write("Model } from \'./");
             
-            #line 51 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
+            #line 51 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.CamelCase(property.Type)));
             
             #line default
             #line hidden
             this.Write("Model\';\r\n");
             
-            #line 52 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
+            #line 52 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
 
                     }
                 }
@@ -163,21 +163,21 @@ namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
             #line hidden
             this.Write("import { ");
             
-            #line 68 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
+            #line 68 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.PascalCase(reference.Type)));
             
             #line default
             #line hidden
             this.Write("Enum } from \'./");
             
-            #line 68 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
+            #line 68 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.CamelCase(reference.Type)));
             
             #line default
             #line hidden
             this.Write("Enum\';\r\n");
             
-            #line 69 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
+            #line 69 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
 
                     }
                     else
@@ -188,21 +188,21 @@ namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
             #line hidden
             this.Write("import { ");
             
-            #line 74 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
+            #line 74 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.PascalCase(reference.Type)));
             
             #line default
             #line hidden
             this.Write("Model } from \'./");
             
-            #line 74 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
+            #line 74 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.CamelCase(reference.Type)));
             
             #line default
             #line hidden
             this.Write("Model\';\r\n");
             
-            #line 75 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
+            #line 75 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
 
                     }
                 }
@@ -217,7 +217,7 @@ namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
             #line hidden
             this.Write("/**\r\n * class: ");
             
-            #line 85 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
+            #line 85 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.PascalCase(_entity.Id)));
             
             #line default
@@ -226,49 +226,49 @@ namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
                     "ence used in viewModels or\r\n * in another referenced model.\r\n * This model is ge" +
                     "nerated from DataModel domain.\r\n */\r\nexport ");
             
-            #line 91 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
+            #line 91 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
  if (_entity.IsAbstract) {
             
             #line default
             #line hidden
             this.Write("abstract ");
             
-            #line 91 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
+            #line 91 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
 }
             
             #line default
             #line hidden
             this.Write("class ");
             
-            #line 91 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
+            #line 91 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.PascalCase(_entity.Id)));
             
             #line default
             #line hidden
             this.Write("Model");
             
-            #line 91 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
+            #line 91 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
  if (_entity.Extends != null) {
             
             #line default
             #line hidden
             this.Write(" extends ");
             
-            #line 91 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
+            #line 91 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.PascalCase(_entity.Extends)));
             
             #line default
             #line hidden
             this.Write("Model");
             
-            #line 91 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
+            #line 91 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
 }
             
             #line default
             #line hidden
             this.Write(" {\r\n");
             
-            #line 92 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
+            #line 92 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
  
             if (_entity.Properties.AsEnumerable() != null)
             {
@@ -282,21 +282,21 @@ namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
             #line hidden
             this.Write("  /**\r\n   * property.\r\n   * isCollection.\r\n   */\r\n  public ");
             
-            #line 104 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
+            #line 104 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.CamelCase(property.Id)));
             
             #line default
             #line hidden
             this.Write(": ");
             
-            #line 104 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
+            #line 104 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(property.TypeScriptType()));
             
             #line default
             #line hidden
             this.Write("[];\r\n");
             
-            #line 105 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
+            #line 105 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
 
                     }
                     else if (property.Id != null && property.TypeScriptType() != null)
@@ -307,21 +307,21 @@ namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
             #line hidden
             this.Write("  /**\r\n   * property.\r\n   */\r\n  public ");
             
-            #line 113 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
+            #line 113 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.CamelCase(property.Id)));
             
             #line default
             #line hidden
             this.Write(": ");
             
-            #line 113 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
+            #line 113 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(property.TypeScriptType()));
             
             #line default
             #line hidden
             this.Write(";\r\n");
             
-            #line 114 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
+            #line 114 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
 
                     }
                 }
@@ -339,21 +339,21 @@ namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
             #line hidden
             this.Write("  /**\r\n   * reference.\r\n   * isEnum.\r\n   */\r\n  public ");
             
-            #line 130 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
+            #line 130 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.CamelCase(reference.Id)));
             
             #line default
             #line hidden
             this.Write(": ");
             
-            #line 130 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
+            #line 130 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.PascalCase(reference.TypeScriptType())));
             
             #line default
             #line hidden
             this.Write("Enum;\r\n");
             
-            #line 131 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
+            #line 131 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
 
                     }
                     else if (reference.Id != null && reference.TypeScriptType() != null && reference.IsCollection)
@@ -364,21 +364,21 @@ namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
             #line hidden
             this.Write("  /**\r\n   * reference.\r\n   * isCollection.\r\n   */\r\n  public ");
             
-            #line 140 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
+            #line 140 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.CamelCase(reference.Id)));
             
             #line default
             #line hidden
             this.Write(": ");
             
-            #line 140 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
+            #line 140 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.PascalCase(reference.TypeScriptType())));
             
             #line default
             #line hidden
             this.Write("Model[];\r\n");
             
-            #line 141 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
+            #line 141 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
 
                     }
                     else if (reference.Id != null && reference.TypeScriptType() != null)
@@ -389,21 +389,21 @@ namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
             #line hidden
             this.Write("  /**\r\n   * reference.\r\n   */\r\n  public ");
             
-            #line 149 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
+            #line 149 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.CamelCase(reference.Id)));
             
             #line default
             #line hidden
             this.Write(": ");
             
-            #line 149 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
+            #line 149 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.PascalCase(reference.TypeScriptType())));
             
             #line default
             #line hidden
             this.Write("Model;\r\n");
             
-            #line 150 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
+            #line 150 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
 
                     }
                 }
@@ -414,7 +414,7 @@ namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
             #line hidden
             this.Write("  constructor(\r\n");
             
-            #line 156 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
+            #line 156 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
 
             if (_constructorParametersObj.AsEnumerable() != null && _constructorParametersObj.AsEnumerable().Count() > 0)
             {
@@ -443,21 +443,21 @@ namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
             #line hidden
             this.Write("    ");
             
-            #line 179 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
+            #line 179 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.CamelCase(property.Id) + countConstructor[property.Id]));
             
             #line default
             #line hidden
             this.Write(": ");
             
-            #line 179 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
+            #line 179 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(type + propertyIsModel));
             
             #line default
             #line hidden
             this.Write("[]\r\n");
             
-            #line 180 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
+            #line 180 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
 
                         }
                         else if (index == lastIndex)
@@ -468,21 +468,21 @@ namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
             #line hidden
             this.Write("    ");
             
-            #line 185 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
+            #line 185 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.CamelCase(property.Id) + countConstructor[property.Id]));
             
             #line default
             #line hidden
             this.Write(": ");
             
-            #line 185 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
+            #line 185 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(type + propertyIsModel));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 186 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
+            #line 186 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
 
                         }
                         else if (property.IsCollection)
@@ -493,21 +493,21 @@ namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
             #line hidden
             this.Write("    ");
             
-            #line 191 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
+            #line 191 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.CamelCase(property.Id) + countConstructor[property.Id]));
             
             #line default
             #line hidden
             this.Write(": ");
             
-            #line 191 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
+            #line 191 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(type + propertyIsModel));
             
             #line default
             #line hidden
             this.Write("[],\r\n");
             
-            #line 192 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
+            #line 192 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
 
                         }
                         else
@@ -518,21 +518,21 @@ namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
             #line hidden
             this.Write("    ");
             
-            #line 197 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
+            #line 197 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.CamelCase(property.Id) + countConstructor[property.Id]));
             
             #line default
             #line hidden
             this.Write(": ");
             
-            #line 197 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
+            #line 197 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(type + propertyIsModel));
             
             #line default
             #line hidden
             this.Write(",\r\n");
             
-            #line 198 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
+            #line 198 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
 
                         }
                     }
@@ -545,7 +545,7 @@ namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
             #line hidden
             this.Write("  ) {\r\n");
             
-            #line 206 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
+            #line 206 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
 
             Dictionary<string, int> countObj = new Dictionary<string, int>();
             if (_superPropertiesObj.AsEnumerable() != null && _superPropertiesObj.AsEnumerable().Count() > 0)
@@ -556,7 +556,7 @@ namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
             #line hidden
             this.Write("    super(\r\n");
             
-            #line 212 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
+            #line 212 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
 
                 int lastIndex = _superPropertiesObj.AsEnumerable().Count() - 1;
                 int index = 0;
@@ -577,14 +577,14 @@ namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
             #line hidden
             this.Write("      ");
             
-            #line 227 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
+            #line 227 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.CamelCase(property.Id) + countObj[property.Id]));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 228 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
+            #line 228 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
 
                         }
                         else
@@ -595,14 +595,14 @@ namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
             #line hidden
             this.Write("      ");
             
-            #line 233 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
+            #line 233 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.CamelCase(property.Id) + countObj[property.Id]));
             
             #line default
             #line hidden
             this.Write(",\r\n");
             
-            #line 234 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
+            #line 234 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
 
                         }
                     }
@@ -614,7 +614,7 @@ namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
             #line hidden
             this.Write("    );\r\n");
             
-            #line 241 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
+            #line 241 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
 
             }
 
@@ -634,21 +634,21 @@ namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
             #line hidden
             this.Write("    this.");
             
-            #line 255 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
+            #line 255 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.CamelCase(property.Id)));
             
             #line default
             #line hidden
             this.Write(" = ");
             
-            #line 255 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
+            #line 255 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.CamelCase(property.Id) + countObj[property.Id]));
             
             #line default
             #line hidden
             this.Write(";\r\n");
             
-            #line 256 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
+            #line 256 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
 
                     }
                 }
@@ -670,21 +670,21 @@ namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
             #line hidden
             this.Write("    this.");
             
-            #line 272 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
+            #line 272 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.CamelCase(reference.Id)));
             
             #line default
             #line hidden
             this.Write(" = ");
             
-            #line 272 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
+            #line 272 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.CamelCase(reference.Id) + countObj[reference.Id]));
             
             #line default
             #line hidden
             this.Write(";\r\n");
             
-            #line 273 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
+            #line 273 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
 
                     }
                 }
@@ -695,7 +695,7 @@ namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
             #line hidden
             this.Write("  }\r\n}\r\n");
             
-            #line 280 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
+            #line 280 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\DataModel\Templates\DataModelTemplate.tt"
 
         }
     }

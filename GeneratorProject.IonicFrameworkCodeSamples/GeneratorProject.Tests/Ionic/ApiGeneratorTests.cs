@@ -1,10 +1,10 @@
-﻿using Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic;
+﻿using GeneratorProject.Platforms.Frontend.Ionic;
 using System;
 using System.IO;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace Mobioos.Scaffold.CoreTests.Generators.Frontend.Ionic
+namespace GeneratorProject.Tests.Frontend.Ionic
 {
     public class ApiGeneratorTests : BaseGeneratorTests, IDisposable
     {

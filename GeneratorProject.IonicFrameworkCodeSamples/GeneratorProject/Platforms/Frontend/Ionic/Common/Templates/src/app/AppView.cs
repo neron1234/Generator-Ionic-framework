@@ -7,7 +7,7 @@
 //     the code is regenerated.
 // </auto-generated>
 // ------------------------------------------------------------------------------
-namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
+namespace GeneratorProject.Platforms.Frontend.Ionic
 {
     using System.Linq;
     using System.Text;
@@ -20,7 +20,7 @@ namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Common\Templates\src\app\AppView.tt"
+    #line 1 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppView.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "15.0.0.0")]
     public partial class AppView : AppBaseClass
     {
@@ -30,7 +30,6 @@ namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
         /// </summary>
         public override string TransformText()
         {
-            this.Write("\n");
             this.Write(@"<!--
   You should add your licence here, here is an example :
 
@@ -54,7 +53,7 @@ namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
 -->
 ");
             
-            #line 28 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Common\Templates\src\app\AppView.tt"
+            #line 29 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppView.tt"
 
     SmartAppInfo smartApp = (SmartAppInfo)Model;
     if (smartApp != null && smartApp.Concerns.AsEnumerable() != null)
@@ -69,7 +68,7 @@ namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
                     "on-list>\r\n      <ion-item menuClose text-center>\r\n        <ion-icon name=\"ios-ar" +
                     "row-back\" float-left></ion-icon>\r\n");
             
-            #line 40 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Common\Templates\src\app\AppView.tt"
+            #line 41 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppView.tt"
  
         if (smartApp.Languages.AsEnumerable() != null && smartApp.Languages.AsEnumerable().Count() > 0)
         {
@@ -79,7 +78,7 @@ namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
             #line hidden
             this.Write("          {{ \"closeMenu\" | translate }}\r\n");
             
-            #line 45 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Common\Templates\src\app\AppView.tt"
+            #line 46 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppView.tt"
 
         }
         else
@@ -90,7 +89,7 @@ namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
             #line hidden
             this.Write("          CloseMenu\r\n");
             
-            #line 51 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Common\Templates\src\app\AppView.tt"
+            #line 52 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppView.tt"
 
         }
 
@@ -101,7 +100,7 @@ namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
                     "let m of _menu\" (click)=\"selected(m.component.toLowerCase())\">{{ m.name }}</a>\r\n" +
                     "      </ion-item-group>\r\n    </ion-list>\r\n  </ion-content>\r\n</ion-menu>\r\n");
             
-            #line 61 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Common\Templates\src\app\AppView.tt"
+            #line 62 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppView.tt"
 
       }
 
@@ -110,7 +109,7 @@ namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
             #line hidden
             this.Write("<ion-nav #nav></ion-nav>\r\n");
             
-            #line 65 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Common\Templates\src\app\AppView.tt"
+            #line 66 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppView.tt"
 
     }
     else if (smartApp != null && smartApp.Title != null)
@@ -121,7 +120,7 @@ namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
             #line hidden
             this.Write("<ion-header>\r\n  <ion-navbar>\r\n    <ion-title>\r\n");
             
-            #line 73 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Common\Templates\src\app\AppView.tt"
+            #line 74 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppView.tt"
 
       if (smartApp.Languages.AsEnumerable() != null && smartApp.Languages.AsEnumerable().Count() > 0)
       {
@@ -131,7 +130,7 @@ namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
             #line hidden
             this.Write("      {{ \"applicationTitle\" | translate }}\r\n");
             
-            #line 78 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Common\Templates\src\app\AppView.tt"
+            #line 79 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppView.tt"
 
       }
       else
@@ -142,14 +141,14 @@ namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
             #line hidden
             this.Write("      ");
             
-            #line 83 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Common\Templates\src\app\AppView.tt"
+            #line 84 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppView.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.PascalCase(smartApp.Title)));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 84 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Common\Templates\src\app\AppView.tt"
+            #line 85 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppView.tt"
 
       }
 
@@ -158,7 +157,7 @@ namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
             #line hidden
             this.Write("    </ion-title>\r\n  </ion-navbar>\r\n</ion-header>\r\n<ion-content padding>\r\n  <p>\r\n");
             
-            #line 92 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Common\Templates\src\app\AppView.tt"
+            #line 93 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppView.tt"
 
       if (smartApp.Languages.AsEnumerable() != null && smartApp.Languages.AsEnumerable().Count() > 0)
       {
@@ -168,7 +167,7 @@ namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
             #line hidden
             this.Write("    Welcome to {{ \"applicationTitle\" | translate }} application !\r\n");
             
-            #line 97 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Common\Templates\src\app\AppView.tt"
+            #line 98 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppView.tt"
 
       }
       else
@@ -179,14 +178,14 @@ namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
             #line hidden
             this.Write("    Welcome to ");
             
-            #line 102 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Common\Templates\src\app\AppView.tt"
+            #line 103 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppView.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.PascalCase(smartApp.Title)));
             
             #line default
             #line hidden
             this.Write(" application !\r\n");
             
-            #line 103 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Common\Templates\src\app\AppView.tt"
+            #line 104 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppView.tt"
 
       }
 
@@ -195,7 +194,7 @@ namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
             #line hidden
             this.Write("  </p>\r\n</ion-content>\r\n");
             
-            #line 108 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Common\Templates\src\app\AppView.tt"
+            #line 109 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppView.tt"
 
      }
 

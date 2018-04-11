@@ -10,7 +10,7 @@ using Mobioos.Scaffold.Core.Runtime.Attributes;
 using Mobioos.Foundation.Prompts.Interfaces;
 using Mobioos.Scaffold.Generators.Helpers;
 
-namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
+namespace GeneratorProject.Platforms.Frontend.Ionic
 {
     [Activity(Order = 4)]
     public class LanguageActivity : GeneratorActivity

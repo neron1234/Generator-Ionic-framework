@@ -1,4 +1,4 @@
-﻿namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
+﻿namespace GeneratorProject.Platforms.Frontend.Ionic
 {
     public partial class LanguageModuleTemplate
     {

@@ -5,7 +5,7 @@ using System.Dynamic;
 using System.IO;
 using Mobioos.Foundation.Jade.Models;
 
-namespace Mobioos.Scaffold.CoreTests.Generators.Frontend.Ionic
+namespace GeneratorProject.Tests.Frontend.Ionic
 {
     public class BaseGeneratorTests
     {

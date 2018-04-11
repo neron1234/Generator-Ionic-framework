@@ -1,7 +1,7 @@
 ﻿using Mobioos.Scaffold.Core.Runtime.Attributes;
 using Mobioos.Foundation.Jade.Models;
 
-namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
+namespace GeneratorProject.Platforms.Frontend.Ionic
 {
     [Generator(ActivityName = Constants.CommonActivityName, Order = 6)]
     public partial class AppModule : AppBaseClass

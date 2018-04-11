@@ -7,7 +7,7 @@
 //     the code is regenerated.
 // </auto-generated>
 // ------------------------------------------------------------------------------
-namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
+namespace GeneratorProject.Platforms.Frontend.Ionic
 {
     using System.Linq;
     using System.Text;
@@ -21,7 +21,7 @@ namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Language\Templates\LanguageViewTemplate.tt"
+    #line 1 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Language\Templates\LanguageViewTemplate.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "15.0.0.0")]
     public partial class LanguageViewTemplate : TemplateBase
     {
@@ -57,7 +57,7 @@ namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
   <ion-navbar>
 ");
             
-            #line 25 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Language\Templates\LanguageViewTemplate.tt"
+            #line 25 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Language\Templates\LanguageViewTemplate.tt"
 
     if (_isMenu)
     {
@@ -68,7 +68,7 @@ namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
             this.Write("    <button ion-button icon-only menuToggle>\r\n      <ion-icon name=\"menu\"></ion-i" +
                     "con>\r\n    </button>\r\n");
             
-            #line 32 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Language\Templates\LanguageViewTemplate.tt"
+            #line 32 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Language\Templates\LanguageViewTemplate.tt"
 
     }
 
@@ -91,7 +91,7 @@ namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
   <ion-item-group>
 ");
             
-            #line 49 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Language\Templates\LanguageViewTemplate.tt"
+            #line 49 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Language\Templates\LanguageViewTemplate.tt"
 
     if (_languages.AsEnumerable() != null && _languages.AsEnumerable().Count() > 0)
     {
@@ -105,21 +105,21 @@ namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
             #line hidden
             this.Write("    <ion-item (click)=\"changeLanguage(\'");
             
-            #line 57 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Language\Templates\LanguageViewTemplate.tt"
+            #line 57 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Language\Templates\LanguageViewTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.PascalCase(language.Id)));
             
             #line default
             #line hidden
             this.Write("\')\">");
             
-            #line 57 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Language\Templates\LanguageViewTemplate.tt"
+            #line 57 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Language\Templates\LanguageViewTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.PascalCase(language.Id)));
             
             #line default
             #line hidden
             this.Write("</ion-item>\r\n");
             
-            #line 58 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Language\Templates\LanguageViewTemplate.tt"
+            #line 58 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Language\Templates\LanguageViewTemplate.tt"
 
             }
         }

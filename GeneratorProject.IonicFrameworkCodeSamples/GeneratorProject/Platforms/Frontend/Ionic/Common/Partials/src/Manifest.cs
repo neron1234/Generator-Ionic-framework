@@ -2,7 +2,7 @@
 using Mobioos.Foundation.Jade.Models;
 using Mobioos.Scaffold.TextTemplating;
 
-namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
+namespace GeneratorProject.Platforms.Frontend.Ionic
 {
     [Generator(ActivityName = Constants.CommonActivityName, Order = 4)]
     public partial class Manifest : TemplateBase

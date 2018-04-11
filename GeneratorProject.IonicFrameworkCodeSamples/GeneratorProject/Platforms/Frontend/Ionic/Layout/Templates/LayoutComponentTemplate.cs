@@ -7,7 +7,7 @@
 //     the code is regenerated.
 // </auto-generated>
 // ------------------------------------------------------------------------------
-namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
+namespace GeneratorProject.Platforms.Frontend.Ionic
 {
     using System.Linq;
     using System.Text;
@@ -22,7 +22,7 @@ namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
+    #line 1 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "15.0.0.0")]
     public partial class LayoutComponentTemplate : TemplateBase
     {
@@ -56,7 +56,7 @@ namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
  */
 ");
             
-            #line 24 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
+            #line 24 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
 
     if (_concernId != null && _layout != null && _layout.Id != null)
     {
@@ -69,21 +69,21 @@ namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
             #line hidden
             this.Write("import { Component } from \'@angular/core\';\r\nimport { IonicPage, NavController");
             
-            #line 32 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
+            #line 32 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
  if (_menu.AsEnumerable() != null && _menu.AsEnumerable().Count() > 0) { 
             
             #line default
             #line hidden
             this.Write(", Events");
             
-            #line 32 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
+            #line 32 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
  } 
             
             #line default
             #line hidden
             this.Write(" } from \'ionic-angular\';\r\n");
             
-            #line 33 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
+            #line 33 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
 
         if (_viewModels.AsEnumerable() != null && _viewModels.AsEnumerable().Count() > 0)
         {
@@ -95,21 +95,21 @@ namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
             #line hidden
             this.Write("import { ");
             
-            #line 39 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
+            #line 39 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.PascalCase(viewModel)));
             
             #line default
             #line hidden
             this.Write(" } from \'../../../viewModels/");
             
-            #line 39 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
+            #line 39 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.CamelCase(viewModel)));
             
             #line default
             #line hidden
             this.Write("\';\r\n");
             
-            #line 40 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
+            #line 40 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
 
             }
         }
@@ -122,7 +122,7 @@ namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
             #line hidden
             this.Write("import { Observable } from \'rxjs\';\r\n");
             
-            #line 48 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
+            #line 48 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
 
             foreach (string service in _apiDomainServices.AsEnumerable())
             {
@@ -132,21 +132,21 @@ namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
             #line hidden
             this.Write("import { ");
             
-            #line 52 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
+            #line 52 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.PascalCase(service)));
             
             #line default
             #line hidden
             this.Write(" } from \'../../../services/");
             
-            #line 52 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
+            #line 52 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.CamelCase(service)));
             
             #line default
             #line hidden
             this.Write(".service\';\r\n");
             
-            #line 53 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
+            #line 53 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
 
             }
         }
@@ -159,7 +159,7 @@ namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
             #line hidden
             this.Write("import { LanguagePage } from \'../../language/language\';\r\n");
             
-            #line 61 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
+            #line 61 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
 
         }
 
@@ -168,14 +168,14 @@ namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
             #line hidden
             this.Write("\r\n/**\r\n * class: ");
             
-            #line 66 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
+            #line 66 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(layout));
             
             #line default
             #line hidden
             this.Write(".\r\n");
             
-            #line 67 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
+            #line 67 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
 
         if (_layout.Description != null)
         {
@@ -185,7 +185,7 @@ namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
             #line hidden
             this.Write(" * ");
             
-            #line 71 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
+            #line 71 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_layout.Description));
             
             #line default
@@ -193,7 +193,7 @@ namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
             this.Write(".\r\n * This is the component of that layout.\r\n * This component is generated from " +
                     "Concerns domain.\r\n");
             
-            #line 74 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
+            #line 74 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
 
         }
         else
@@ -206,7 +206,7 @@ namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
                     "the component of the current layout.\r\n * This component is generated from Concer" +
                     "ns domain.\r\n");
             
-            #line 83 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
+            #line 83 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
 
         }
 
@@ -215,42 +215,42 @@ namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
             #line hidden
             this.Write(" */\r\n@IonicPage({\r\n  name: \'");
             
-            #line 88 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
+            #line 88 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(layoutToLower));
             
             #line default
             #line hidden
             this.Write("\',\r\n  segment: \'");
             
-            #line 89 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
+            #line 89 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(layoutPathToLower));
             
             #line default
             #line hidden
             this.Write("\'\r\n})\r\n@Component({\r\n  selector: \'");
             
-            #line 92 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
+            #line 92 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(layoutToLower));
             
             #line default
             #line hidden
             this.Write("\',\r\n  templateUrl: \'");
             
-            #line 93 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
+            #line 93 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(layoutToLower));
             
             #line default
             #line hidden
             this.Write(".html\'\r\n})\r\nexport class ");
             
-            #line 95 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
+            #line 95 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(layout));
             
             #line default
             #line hidden
             this.Write(" {\r\n");
             
-            #line 96 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
+            #line 96 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
 
         if (_menu.AsEnumerable() != null && _menu.AsEnumerable().Count() > 0)
         {
@@ -260,7 +260,7 @@ namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
             #line hidden
             this.Write("  public _menu;\r\n");
             
-            #line 101 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
+            #line 101 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
 
         }
 
@@ -269,7 +269,7 @@ namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
             #line hidden
             this.Write("  constructor(\r\n");
             
-            #line 105 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
+            #line 105 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
 
         if (_menu.AsEnumerable() != null && _menu.AsEnumerable().Count() > 0)
         {
@@ -279,7 +279,7 @@ namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
             #line hidden
             this.Write("    public _events: Events,\r\n");
             
-            #line 110 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
+            #line 110 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
 
         }
 
@@ -293,21 +293,21 @@ namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
             #line hidden
             this.Write("    public _");
             
-            #line 118 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
+            #line 118 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.CamelCase(service)));
             
             #line default
             #line hidden
             this.Write(": ");
             
-            #line 118 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
+            #line 118 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.PascalCase(service)));
             
             #line default
             #line hidden
             this.Write(",\r\n");
             
-            #line 119 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
+            #line 119 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
 
             }
         }
@@ -317,7 +317,7 @@ namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
             #line hidden
             this.Write("    public _nav: NavController\r\n  ) {\r\n");
             
-            #line 125 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
+            #line 125 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
 
         if (_menu.AsEnumerable() != null && _menu.AsEnumerable().Count() > 0)
         {
@@ -327,7 +327,7 @@ namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
             #line hidden
             this.Write("    this._menu = [\r\n");
             
-            #line 130 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
+            #line 130 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
 
             string last = _menu.Keys.Last();
             foreach(KeyValuePair<string, string> m in _menu.AsEnumerable())
@@ -340,21 +340,21 @@ namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
             #line hidden
             this.Write("      { name: \'");
             
-            #line 137 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
+            #line 137 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(m.Value));
             
             #line default
             #line hidden
             this.Write("\', component: \'");
             
-            #line 137 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
+            #line 137 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(m.Key));
             
             #line default
             #line hidden
             this.Write("\' }\r\n");
             
-            #line 138 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
+            #line 138 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
 
                 }
                 else
@@ -365,21 +365,21 @@ namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
             #line hidden
             this.Write("      { name: \'");
             
-            #line 143 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
+            #line 143 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(m.Value));
             
             #line default
             #line hidden
             this.Write("\', component: \'");
             
-            #line 143 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
+            #line 143 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(m.Key));
             
             #line default
             #line hidden
             this.Write("\' },\r\n");
             
-            #line 144 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
+            #line 144 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
 
                 }
             }
@@ -389,7 +389,7 @@ namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
             #line hidden
             this.Write("    ];\r\n");
             
-            #line 149 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
+            #line 149 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
 
         }
 
@@ -398,7 +398,7 @@ namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
             #line hidden
             this.Write("  }\r\n\r\n");
             
-            #line 154 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
+            #line 154 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
 
         if (_layout.Actions.AsEnumerable() != null)
         {
@@ -421,28 +421,28 @@ namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
             #line hidden
             this.Write("  /**\r\n   * method: on");
             
-            #line 172 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
+            #line 172 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.PascalCase(action.Id)));
             
             #line default
             #line hidden
             this.Write("\r\n   * That method is a navigation method.\r\n   */\r\n  public on");
             
-            #line 175 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
+            #line 175 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.PascalCase(action.Id)));
             
             #line default
             #line hidden
             this.Write("() {\r\n    this._nav.setRoot(\'");
             
-            #line 176 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
+            #line 176 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(targetedConcern + "-" + targetedLayout));
             
             #line default
             #line hidden
             this.Write("\');\r\n  }\r\n\r\n");
             
-            #line 179 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
+            #line 179 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
 
                             }
                             else
@@ -453,28 +453,28 @@ namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
             #line hidden
             this.Write("  /**\r\n   * method: on");
             
-            #line 185 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
+            #line 185 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.PascalCase(action.Id)));
             
             #line default
             #line hidden
             this.Write("\r\n   * That method is a navigation method.\r\n   */\r\n  public on");
             
-            #line 188 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
+            #line 188 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.PascalCase(action.Id)));
             
             #line default
             #line hidden
             this.Write("() {\r\n    this._nav.push(\'");
             
-            #line 189 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
+            #line 189 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(targetedConcern + "-" + targetedLayout));
             
             #line default
             #line hidden
             this.Write("\');\r\n  }\r\n\r\n");
             
-            #line 192 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
+            #line 192 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
 
                             }
                         }
@@ -486,21 +486,21 @@ namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
             #line hidden
             this.Write("  /**\r\n   * method: on");
             
-            #line 199 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
+            #line 199 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.PascalCase(action.Id)));
             
             #line default
             #line hidden
             this.Write("\r\n   * That method is a blank method.\r\n   */\r\n  public on");
             
-            #line 202 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
+            #line 202 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.PascalCase(action.Id)));
             
             #line default
             #line hidden
             this.Write("() {\r\n    // TO DO\r\n  }\r\n\r\n");
             
-            #line 206 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
+            #line 206 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
 
                         break;
                     case "dataget": case "datalist": case "datacreate": case "dataupdate": case "datadelete":
@@ -524,14 +524,14 @@ namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
             #line hidden
             this.Write("  /**\r\n   * method: on");
             
-            #line 225 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
+            #line 225 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.PascalCase(action.Id)));
             
             #line default
             #line hidden
             this.Write("\r\n   * You should add a description of your method here.\r\n");
             
-            #line 227 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
+            #line 227 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
 
                                             if (apiA.Parameters.AsEnumerable() != null && apiA.Parameters.AsEnumerable().Count() > 0)
                                             {
@@ -551,21 +551,21 @@ namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
             #line hidden
             this.Write("   * @param ");
             
-            #line 241 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
+            #line 241 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.CamelCase(apiParameter.Id)));
             
             #line default
             #line hidden
             this.Write(" `");
             
-            #line 241 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
+            #line 241 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(type + parameterIsModel));
             
             #line default
             #line hidden
             this.Write("`.\r\n");
             
-            #line 242 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
+            #line 242 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
 
                                                     }
                                                 }
@@ -576,14 +576,14 @@ namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
             #line hidden
             this.Write("   * @returns A `Subscription<any>`.\r\n   */\r\n  public on");
             
-            #line 249 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
+            #line 249 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.PascalCase(action.Id)));
             
             #line default
             #line hidden
             this.Write("(\r\n");
             
-            #line 250 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
+            #line 250 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
 
                                             if (apiA.Parameters.AsEnumerable() != null && apiA.Parameters.AsEnumerable().Count() > 0)
                                             {
@@ -606,21 +606,21 @@ namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
             #line hidden
             this.Write("    ");
             
-            #line 267 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
+            #line 267 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.CamelCase(apiParameter.Id)));
             
             #line default
             #line hidden
             this.Write(": ");
             
-            #line 267 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
+            #line 267 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(type + parameterIsModel));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 268 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
+            #line 268 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
 
                                                         }
                                                         else
@@ -631,21 +631,21 @@ namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
             #line hidden
             this.Write("    ");
             
-            #line 273 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
+            #line 273 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.CamelCase(apiParameter.Id)));
             
             #line default
             #line hidden
             this.Write(": ");
             
-            #line 273 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
+            #line 273 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(type + parameterIsModel));
             
             #line default
             #line hidden
             this.Write(",\r\n");
             
-            #line 274 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
+            #line 274 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
 
                                                         }
                                                     }
@@ -657,21 +657,21 @@ namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
             #line hidden
             this.Write("  ) {\r\n    return this._");
             
-            #line 281 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
+            #line 281 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.CamelCase(api.Id)));
             
             #line default
             #line hidden
             this.Write(".");
             
-            #line 281 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
+            #line 281 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.CamelCase(apiA.Id)));
             
             #line default
             #line hidden
             this.Write("(\r\n");
             
-            #line 282 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
+            #line 282 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
 
                                             if (apiA.Parameters.AsEnumerable() != null && apiA.Parameters.AsEnumerable().Count() > 0)
                                             {
@@ -686,14 +686,14 @@ namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
             #line hidden
             this.Write("      ");
             
-            #line 291 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
+            #line 291 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.CamelCase(apiParameter.Id)));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 292 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
+            #line 292 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
 
                                                     }
                                                     else if (apiParameter.Id != null)
@@ -704,14 +704,14 @@ namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
             #line hidden
             this.Write("      ");
             
-            #line 297 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
+            #line 297 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.CamelCase(apiParameter.Id)));
             
             #line default
             #line hidden
             this.Write(",\r\n");
             
-            #line 298 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
+            #line 298 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
 
                                                     }
                                                 }
@@ -723,7 +723,7 @@ namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
             #line hidden
             this.Write("    ).subscribe();\r\n  }\r\n\r\n");
             
-            #line 307 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
+            #line 307 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
 
                                         }
                                     }
@@ -745,7 +745,7 @@ namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
                     "  * page with an html button.\r\n   */\r\n  public onLanguage() {\r\n    this._nav.pus" +
                     "h(LanguagePage);\r\n  }\r\n\r\n");
             
-            #line 330 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
+            #line 330 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
 
         }
 
@@ -760,7 +760,7 @@ namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
                     "\n  public ionViewWillEnter() {\r\n    this._events.publish(\'menu\', this._menu);\r\n " +
                     " }\r\n");
             
-            #line 345 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
+            #line 345 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
 
         }
 
@@ -769,7 +769,7 @@ namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
             #line hidden
             this.Write("}\r\n");
             
-            #line 349 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
+            #line 349 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
 
     }
 

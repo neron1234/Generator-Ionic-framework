@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Mobioos.Scaffold.Generators.Helpers;
 
-namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
+namespace GeneratorProject.Platforms.Frontend.Ionic
 {
     [Generator(ActivityName = Constants.CommonActivityName, Order = 8)]
     public partial class AppView : AppBaseClass
