@@ -10,7 +10,7 @@ using Mobioos.Foundation.Prompts.Interfaces;
 using System.Collections.Generic;
 using Mobioos.Foundation.Prompts;
 
-namespace GeneratorProject.Platforms.Frontend.Ionic
+namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
 {
     [Activity(Order = 1)]
     public class CommonActivity : GeneratorActivity

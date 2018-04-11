@@ -2,9 +2,9 @@
 using Mobioos.Foundation.Jade.Extensions;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.RegularExpressions;
+using Mobioos.Scaffold.Generators.Helpers;
 
-namespace GeneratorProject.Platforms.Frontend.Ionic
+namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
 {
     public partial class ApiTemplate
     {
@@ -31,14 +31,14 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
                     {
                         foreach (ApiParameterInfo apiParameter in action.Parameters.AsEnumerable())
                         {
-                            bool parameterIsModel = IsModelBool(PascalCase(apiParameter.TypeScriptType()));
-                            if (parameterIsModel && !viewModels.AsEnumerable().Contains(PascalCase(apiParameter.TypeScriptType())))
-                                viewModels.Add(PascalCase(apiParameter.TypeScriptType()));
+                            bool parameterIsModel = IsModelBool(TextConverter.PascalCase(apiParameter.TypeScriptType()));
+                            if (parameterIsModel && !viewModels.AsEnumerable().Contains(TextConverter.PascalCase(apiParameter.TypeScriptType())))
+                                viewModels.Add(TextConverter.PascalCase(apiParameter.TypeScriptType()));
                         }
                     }
                     
-                    if (action.ReturnType != null && action.ReturnType.Id != null && !viewModels.AsEnumerable().Contains(PascalCase(action.ReturnType.Id)))
-                        viewModels.Add(PascalCase(action.ReturnType.Id));
+                    if (action.ReturnType != null && action.ReturnType.Id != null && !viewModels.AsEnumerable().Contains(TextConverter.PascalCase(action.ReturnType.Id)))
+                        viewModels.Add(TextConverter.PascalCase(action.ReturnType.Id));
                 }
             }
             return viewModels;
@@ -76,74 +76,6 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
                 case "number": break;
                 case "boolean": break;
                 default: result = true; break;
-            }
-            return result;
-        }
-
-        /// <summary>
-        /// Convert a string to PascalCase.
-        /// </summary>
-        /// <param name="word">A word to convert.</param>
-        public static string PascalCase(string word)
-        {
-            string result = "";
-            word = word.Trim();
-            if (word.Length > 0)
-            {
-                char[] separators = new char[] {
-                    ' ',
-                    '-',
-                    '_',
-                    '/'
-                };
-                string[] splittedString = word.Split(separators);
-
-                splittedString[0] = Regex.Replace(splittedString[0], "(?<!^)([A-Z][a-z]|(?<=[a-z])[A-Z])", " $1", RegexOptions.Compiled).Trim();
-                splittedString[0] = splittedString[0].Replace(" ", string.Empty);
-                splittedString[0] = splittedString[0].Substring(0, 1).ToUpper() + splittedString[0].Substring(1);
-                result += splittedString[0];
-
-                for (int i = 1; i < splittedString.Count(); i++)
-                {
-                    splittedString[i] = Regex.Replace(splittedString[i], "(?<!^)([A-Z][a-z]|(?<=[a-z])[A-Z])", " $1", RegexOptions.Compiled).Trim();
-                    splittedString[i] = splittedString[i].Replace(" ", string.Empty);
-                    splittedString[i] = splittedString[i].Substring(0, 1).ToUpper() + splittedString[i].Substring(1);
-                    result += splittedString[i];
-                }
-            }
-            return result;
-        }
-
-        /// <summary>
-        /// Convert a string to CamelCase.
-        /// </summary>
-        /// <param name="word">A word to convert.</param>
-        public static string CamelCase(string word)
-        {
-            string result = "";
-            word = word.Trim();
-            if (word.Length > 0)
-            {
-                char[] separators = new char[] {
-                    ' ',
-                    '-',
-                    '_',
-                    '/'
-                };
-                string[] splittedString = word.Split(separators);
-
-                splittedString[0] = Regex.Replace(splittedString[0], "(?<!^)([A-Z][a-z]|(?<=[a-z])[A-Z])", " $1", RegexOptions.Compiled).Trim();
-                splittedString[0] = splittedString[0].Replace(" ", string.Empty);
-                splittedString[0] = splittedString[0].Substring(0, 1).ToLower() + splittedString[0].Substring(1);
-                result += splittedString[0];
-
-                for (int i = 1; i < splittedString.Count(); i++)
-                {
-                    splittedString[i] = Regex.Replace(splittedString[i], "(?<!^)([A-Z][a-z]|(?<=[a-z])[A-Z])", " $1", RegexOptions.Compiled).Trim();
-                    splittedString[i] = splittedString[i].Replace(" ", string.Empty);
-                    splittedString[i] = splittedString[i].Substring(0, 1).ToUpper() + splittedString[i].Substring(1);
-                    result += splittedString[i];
-                }
             }
             return result;
         }

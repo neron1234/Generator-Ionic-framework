@@ -1,6 +1,4 @@
-﻿using Mobioos.Foundation.Jade.Models;
-
-namespace GeneratorProject.Platforms.Frontend.Ionic
+﻿namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
 {
     public partial class LanguageModuleTemplate
     {

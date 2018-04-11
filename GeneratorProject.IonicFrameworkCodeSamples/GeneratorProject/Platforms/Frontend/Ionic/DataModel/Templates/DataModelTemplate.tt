@@ -27,7 +27,7 @@
         if (_entity.Extends != null)
         {
 #>
-import { <#= PascalCase(_entity.Extends) #>Model } from './<#= CamelCase(_entity.Extends) #>Model';
+import { <#= TextConverter.PascalCase(_entity.Extends) #>Model } from './<#= TextConverter.CamelCase(_entity.Extends) #>Model';
 <#
         }
 
@@ -42,13 +42,13 @@ import { <#= PascalCase(_entity.Extends) #>Model } from './<#= CamelCase(_entity
                     if (property.Target.IsEnum)
                     {
 #>
-import { <#= PascalCase(property.Type) #>Enum } from './<#= CamelCase(property.Type) #>Enum';
+import { <#= TextConverter.PascalCase(property.Type) #>Enum } from './<#= TextConverter.CamelCase(property.Type) #>Enum';
 <#
                     }
                     else
                     {
 #>
-import { <#= PascalCase(property.Type) #>Model } from './<#= CamelCase(property.Type) #>Model';
+import { <#= TextConverter.PascalCase(property.Type) #>Model } from './<#= TextConverter.CamelCase(property.Type) #>Model';
 <#
                     }
                 }
@@ -65,13 +65,13 @@ import { <#= PascalCase(property.Type) #>Model } from './<#= CamelCase(property.
                     if (reference.Target.IsEnum)
                     {
 #>
-import { <#= PascalCase(reference.Type) #>Enum } from './<#= CamelCase(reference.Type) #>Enum';
+import { <#= TextConverter.PascalCase(reference.Type) #>Enum } from './<#= TextConverter.CamelCase(reference.Type) #>Enum';
 <#
                     }
                     else
                     {
 #>
-import { <#= PascalCase(reference.Type) #>Model } from './<#= CamelCase(reference.Type) #>Model';
+import { <#= TextConverter.PascalCase(reference.Type) #>Model } from './<#= TextConverter.CamelCase(reference.Type) #>Model';
 <#
                     }
                 }
@@ -82,13 +82,13 @@ import { <#= PascalCase(reference.Type) #>Model } from './<#= CamelCase(referenc
         {
 #>
 /**
- * class: <#= PascalCase(_entity.Id) #>.
+ * class: <#= TextConverter.PascalCase(_entity.Id) #>.
  * You should add a description of your entity here.
  * This model is a reference used in viewModels or
  * in another referenced model.
  * This model is generated from DataModel domain.
  */
-export <# if (_entity.IsAbstract) {#>abstract <#}#>class <#= PascalCase(_entity.Id) #>Model<# if (_entity.Extends != null) {#> extends <#= PascalCase(_entity.Extends) #>Model<#}#> {
+export <# if (_entity.IsAbstract) {#>abstract <#}#>class <#= TextConverter.PascalCase(_entity.Id) #>Model<# if (_entity.Extends != null) {#> extends <#= TextConverter.PascalCase(_entity.Extends) #>Model<#}#> {
 <# 
             if (_entity.Properties.AsEnumerable() != null)
             {
@@ -101,7 +101,7 @@ export <# if (_entity.IsAbstract) {#>abstract <#}#>class <#= PascalCase(_entity.
    * property.
    * isCollection.
    */
-  public <#= CamelCase(property.Id) #>: <#= property.TypeScriptType() #>[];
+  public <#= TextConverter.CamelCase(property.Id) #>: <#= property.TypeScriptType() #>[];
 <#
                     }
                     else if (property.Id != null && property.TypeScriptType() != null)
@@ -110,7 +110,7 @@ export <# if (_entity.IsAbstract) {#>abstract <#}#>class <#= PascalCase(_entity.
   /**
    * property.
    */
-  public <#= CamelCase(property.Id) #>: <#= property.TypeScriptType() #>;
+  public <#= TextConverter.CamelCase(property.Id) #>: <#= property.TypeScriptType() #>;
 <#
                     }
                 }
@@ -127,7 +127,7 @@ export <# if (_entity.IsAbstract) {#>abstract <#}#>class <#= PascalCase(_entity.
    * reference.
    * isEnum.
    */
-  public <#= CamelCase(reference.Id) #>: <#= PascalCase(reference.TypeScriptType()) #>Enum;
+  public <#= TextConverter.CamelCase(reference.Id) #>: <#= TextConverter.PascalCase(reference.TypeScriptType()) #>Enum;
 <#
                     }
                     else if (reference.Id != null && reference.TypeScriptType() != null && reference.IsCollection)
@@ -137,7 +137,7 @@ export <# if (_entity.IsAbstract) {#>abstract <#}#>class <#= PascalCase(_entity.
    * reference.
    * isCollection.
    */
-  public <#= CamelCase(reference.Id) #>: <#= PascalCase(reference.TypeScriptType()) #>Model[];
+  public <#= TextConverter.CamelCase(reference.Id) #>: <#= TextConverter.PascalCase(reference.TypeScriptType()) #>Model[];
 <#
                     }
                     else if (reference.Id != null && reference.TypeScriptType() != null)
@@ -146,7 +146,7 @@ export <# if (_entity.IsAbstract) {#>abstract <#}#>class <#= PascalCase(_entity.
   /**
    * reference.
    */
-  public <#= CamelCase(reference.Id) #>: <#= PascalCase(reference.TypeScriptType()) #>Model;
+  public <#= TextConverter.CamelCase(reference.Id) #>: <#= TextConverter.PascalCase(reference.TypeScriptType()) #>Model;
 <#
                     }
                 }
@@ -171,30 +171,30 @@ export <# if (_entity.IsAbstract) {#>abstract <#}#>class <#= PascalCase(_entity.
                         string type =  property.TypeScriptType();
                         if (!propertyIsModel.Equals(""))
                         {
-                            type = PascalCase(type);
+                            type = TextConverter.PascalCase(type);
                         }
                         if (property.IsCollection && index == lastIndex)
                         {
 #>
-    <#= CamelCase(property.Id) + countConstructor[property.Id] #>: <#= type + propertyIsModel #>[]
+    <#= TextConverter.CamelCase(property.Id) + countConstructor[property.Id] #>: <#= type + propertyIsModel #>[]
 <#
                         }
                         else if (index == lastIndex)
                         {
 #>
-    <#= CamelCase(property.Id) + countConstructor[property.Id] #>: <#= type + propertyIsModel #>
+    <#= TextConverter.CamelCase(property.Id) + countConstructor[property.Id] #>: <#= type + propertyIsModel #>
 <#
                         }
                         else if (property.IsCollection)
                         {
 #>
-    <#= CamelCase(property.Id) + countConstructor[property.Id] #>: <#= type + propertyIsModel #>[],
+    <#= TextConverter.CamelCase(property.Id) + countConstructor[property.Id] #>: <#= type + propertyIsModel #>[],
 <#
                         }
                         else
                         {
 #>
-    <#= CamelCase(property.Id) + countConstructor[property.Id] #>: <#= type + propertyIsModel #>,
+    <#= TextConverter.CamelCase(property.Id) + countConstructor[property.Id] #>: <#= type + propertyIsModel #>,
 <#
                         }
                     }
@@ -224,13 +224,13 @@ export <# if (_entity.IsAbstract) {#>abstract <#}#>class <#= PascalCase(_entity.
                         if (index == lastIndex)
                         {
 #>
-      <#= CamelCase(property.Id) + countObj[property.Id] #>
+      <#= TextConverter.CamelCase(property.Id) + countObj[property.Id] #>
 <#
                         }
                         else
                         {
 #>
-      <#= CamelCase(property.Id) + countObj[property.Id] #>,
+      <#= TextConverter.CamelCase(property.Id) + countObj[property.Id] #>,
 <#
                         }
                     }
@@ -252,7 +252,7 @@ export <# if (_entity.IsAbstract) {#>abstract <#}#>class <#= PascalCase(_entity.
                         else
                             countObj[property.Id] = countObj[property.Id] + 1;
 #>
-    this.<#= CamelCase(property.Id) #> = <#= CamelCase(property.Id) + countObj[property.Id] #>;
+    this.<#= TextConverter.CamelCase(property.Id) #> = <#= TextConverter.CamelCase(property.Id) + countObj[property.Id] #>;
 <#
                     }
                 }
@@ -269,7 +269,7 @@ export <# if (_entity.IsAbstract) {#>abstract <#}#>class <#= PascalCase(_entity.
                         else
                             countObj[reference.Id] = countObj[reference.Id] + 1;
 #>
-    this.<#= CamelCase(reference.Id) #> = <#= CamelCase(reference.Id) + countObj[reference.Id] #>;
+    this.<#= TextConverter.CamelCase(reference.Id) #> = <#= TextConverter.CamelCase(reference.Id) + countObj[reference.Id] #>;
 <#
                     }
                 }

@@ -8,9 +8,9 @@ using System.Collections.Generic;
 using System.Linq;
 using Mobioos.Scaffold.Core.Runtime.Attributes;
 using Mobioos.Foundation.Prompts.Interfaces;
-using System.Text.RegularExpressions;
+using Mobioos.Scaffold.Generators.Helpers;
 
-namespace GeneratorProject.Platforms.Frontend.Ionic
+namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
 {
     [Activity(Order = 5)]
     public class DataModelActivity : GeneratorActivity
@@ -158,7 +158,7 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
                 {
                     EnumTemplate enumTemplate = new EnumTemplate(entity);
                     string enumDirectoryPath = Path.Combine(enumTemplate.OutputPath);
-                    string enumFilename = CamelCase(entity.Id) + "Enum.ts";
+                    string enumFilename = TextConverter.CamelCase(entity.Id) + "Enum.ts";
                     fileToWritePath = Path.Combine(BasePath, enumDirectoryPath, enumFilename);
                     textToWrite = enumTemplate.TransformText();
                 }
@@ -166,47 +166,13 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
                 {
                     DataModelTemplate dataModelTemplate = new DataModelTemplate(entity);
                     string dataModelDirectoryPath = Path.Combine(dataModelTemplate.OutputPath);
-                    string dataModelFilename = CamelCase(entity.Id) + "Model.ts";
+                    string dataModelFilename = TextConverter.CamelCase(entity.Id) + "Model.ts";
                     fileToWritePath = Path.Combine(BasePath, dataModelDirectoryPath, dataModelFilename);
                     textToWrite = dataModelTemplate.TransformText();
                 }
 
                 WriteFile(fileToWritePath, textToWrite);
             }
-        }
-
-        /// <summary>
-        /// Convert a string to CamelCase.
-        /// </summary>
-        /// <param name="word">A word to convert.</param>
-        public static string CamelCase(string word)
-        {
-            string result = "";
-            word = word.Trim();
-            if (word.Length > 0)
-            {
-                char[] separators = new char[] {
-                    ' ',
-                    '-',
-                    '_',
-                    '/'
-                };
-                string[] splittedString = word.Split(separators);
-
-                splittedString[0] = Regex.Replace(splittedString[0], "(?<!^)([A-Z][a-z]|(?<=[a-z])[A-Z])", " $1", RegexOptions.Compiled).Trim();
-                splittedString[0] = splittedString[0].Replace(" ", string.Empty);
-                splittedString[0] = splittedString[0].Substring(0, 1).ToLower() + splittedString[0].Substring(1);
-                result += splittedString[0];
-
-                for (int i = 1; i < splittedString.Count(); i++)
-                {
-                    splittedString[i] = Regex.Replace(splittedString[i], "(?<!^)([A-Z][a-z]|(?<=[a-z])[A-Z])", " $1", RegexOptions.Compiled).Trim();
-                    splittedString[i] = splittedString[i].Replace(" ", string.Empty);
-                    splittedString[i] = splittedString[i].Substring(0, 1).ToUpper() + splittedString[i].Substring(1);
-                    result += splittedString[i];
-                }
-            }
-            return result;
         }
 
         #endregion

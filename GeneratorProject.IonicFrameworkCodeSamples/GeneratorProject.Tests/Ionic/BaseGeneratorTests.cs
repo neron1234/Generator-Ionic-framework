@@ -5,7 +5,7 @@ using System.Dynamic;
 using System.IO;
 using Mobioos.Foundation.Jade.Models;
 
-namespace GeneratorProject.Tests.Generators.Frontend.Ionic
+namespace Mobioos.Scaffold.CoreTests.Generators.Frontend.Ionic
 {
     public class BaseGeneratorTests
     {
@@ -21,7 +21,6 @@ namespace GeneratorProject.Tests.Generators.Frontend.Ionic
             _context.DynamicContext.Theme = "light";
             _context.DynamicContext.ViewModelSuffix = "ViewModel";
             _context.DynamicContext.ApiSuffix = "Service";
-
             TransformSuffixes();
         }
 
@@ -49,48 +48,6 @@ namespace GeneratorProject.Tests.Generators.Frontend.Ionic
                             (_context.DynamicContext.Manifest as SmartAppInfo).Api[i].Actions[j].Parameters[k].Type += _context.DynamicContext.ViewModelSuffix;
                             (_context.DynamicContext.Manifest as SmartAppInfo).Api[i].Actions[j].Parameters[k].DataModel.Id += _context.DynamicContext.ViewModelSuffix;
                         }
-                    }
-                }
-            }
-        }
-
-        public void GetApis()
-        {
-            if ((_context.DynamicContext.Manifest as SmartAppInfo).Api != null)
-            {
-                for (int i = 0; i < (_context.DynamicContext.Manifest as SmartAppInfo).Api.Count; i++)
-                {
-                    (_context.DynamicContext.Manifest as SmartAppInfo).Api[i].Id += _context.DynamicContext.ApiSuffix;
-
-                    GetApisActions(i);
-                }
-            }
-        }
-
-        public void GetApisActions(int indexApi)
-        {
-            if ((_context.DynamicContext.Manifest as SmartAppInfo).Api[indexApi].Actions != null)
-            {
-                for (int i = 0; i < (_context.DynamicContext.Manifest as SmartAppInfo).Api[indexApi].Actions.Count; i++)
-                {
-                    if ((_context.DynamicContext.Manifest as SmartAppInfo).Api[indexApi].Actions[i].ReturnType != null)
-                        (_context.DynamicContext.Manifest as SmartAppInfo).Api[indexApi].Actions[i].ReturnType.Id += _context.DynamicContext.ViewModelSuffix;
-
-                    GetApisActionsParameters(indexApi, i);
-                }
-            }
-        }
-        
-        public void GetApisActionsParameters(int indexApi, int indexAction)
-        {
-            if ((_context.DynamicContext.Manifest as SmartAppInfo).Api[indexApi].Actions[indexAction].Parameters != null)
-            {
-                for (int i = 0; i < (_context.DynamicContext.Manifest as SmartAppInfo).Api[indexApi].Actions[indexAction].Parameters.Count; i++)
-                {
-                    if ((_context.DynamicContext.Manifest as SmartAppInfo).Api[indexApi].Actions[indexAction].Parameters[i].DataModel != null)
-                    {
-                        (_context.DynamicContext.Manifest as SmartAppInfo).Api[indexApi].Actions[indexAction].Parameters[i].Type += _context.DynamicContext.ViewModelSuffix;
-                        (_context.DynamicContext.Manifest as SmartAppInfo).Api[indexApi].Actions[indexAction].Parameters[i].DataModel.Id += _context.DynamicContext.ViewModelSuffix;
                     }
                 }
             }

@@ -4,6 +4,7 @@
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="Mobioos.Foundation.Jade.Models" #>
+<#@ import namespace="Mobioos.Scaffold.Generators.Helpers" #>
 /*
  * You should add your licence here, here is an example :
  *
@@ -39,12 +40,12 @@ import { Title } from '@angular/platform-browser';
 <#
       if (smartApp.Concerns.AsEnumerable() != null && _rootLayout != null && _rootLayout.Id != null && _rootConcern != null && _rootConcern.Id != null)
       {
-        string concern = PascalCase(_rootConcern.Id);
-        string layout = PascalCase(_rootLayout.Id);
+        string concern = TextConverter.PascalCase(_rootConcern.Id);
+        string layout = TextConverter.PascalCase(_rootLayout.Id);
         string layoutComponent = concern + layout;
-        string layoutComponentToLower = CamelCase(concern) + "-" + CamelCase(layout);
+        string layoutComponentToLower = TextConverter.CamelCase(concern) + "-" + TextConverter.CamelCase(layout);
 #>
-import { <#= layoutComponent #> } from '../pages/<#= CamelCase(concern) #>/<#= CamelCase(layout) #>/<#= layoutComponentToLower #>';
+import { <#= layoutComponent #> } from '../pages/<#= TextConverter.CamelCase(concern) #>/<#= TextConverter.CamelCase(layout) #>/<#= layoutComponentToLower #>';
 <#
       }
 #>
@@ -58,7 +59,7 @@ import { TranslateService } from '@ngx-translate/core';
       }
 #>
 /**
- * class: <#= PascalCase(smartApp.Id) #>.
+ * class: <#= TextConverter.PascalCase(smartApp.Id) #>.
 <#
       if (smartApp.Description != null)
       {
@@ -80,7 +81,7 @@ import { TranslateService } from '@ngx-translate/core';
 @Component({
   templateUrl: 'app.html'
 })
-export class <#= PascalCase(smartApp.Id) #> {
+export class <#= TextConverter.PascalCase(smartApp.Id) #> {
 <#
       if (smartApp.Concerns.AsEnumerable() != null)
       {
@@ -123,8 +124,8 @@ export class <#= PascalCase(smartApp.Id) #> {
 <#
       if (smartApp.Concerns.AsEnumerable() != null && _rootLayout != null && _rootLayout.Id != null && _rootConcern != null && _rootConcern.Id != null)
       {
-        string concern = PascalCase(_rootConcern.Id);
-        string layout = PascalCase(_rootLayout.Id);
+        string concern = TextConverter.PascalCase(_rootConcern.Id);
+        string layout = TextConverter.PascalCase(_rootLayout.Id);
         string layoutComponent = concern + layout;
 #>
       this._nav.setRoot(<#= layoutComponent #>);
@@ -140,8 +141,8 @@ export class <#= PascalCase(smartApp.Id) #> {
       if (smartApp.Languages.AsEnumerable() != null && smartApp.Languages.AsEnumerable().Count() > 0)
       {
 #>
-      this._translateService.setDefaultLang('<#= PascalCase(smartApp.Languages[0].Id) #>');
-      this._translateService.use('<#= PascalCase(smartApp.Languages[0].Id) #>');
+      this._translateService.setDefaultLang('<#= TextConverter.PascalCase(smartApp.Languages[0].Id) #>');
+      this._translateService.use('<#= TextConverter.PascalCase(smartApp.Languages[0].Id) #>');
       this._translateService.get('applicationTitle').subscribe(name => {
         this._title.setTitle(name);
       });

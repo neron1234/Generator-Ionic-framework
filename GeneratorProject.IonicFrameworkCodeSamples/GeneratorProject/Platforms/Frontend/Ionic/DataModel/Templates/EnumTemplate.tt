@@ -25,13 +25,13 @@
     {
 #>
 /**
- * class: <#= PascalCase(_entity.Id) #>Enum.
+ * class: <#= TextConverter.PascalCase(_entity.Id) #>Enum.
  * You should add a description of your enumeration here.
  * That enumeration is a reference used in viewModels or
  * in models.
  * That enumeration is generated from DataModel domain.
  */
-export enum <#= PascalCase(_entity.Id) #>Enum {
+export enum <#= TextConverter.PascalCase(_entity.Id) #>Enum {
 <#
         if (_entity.Values.AsEnumerable() != null)
         {
@@ -45,7 +45,7 @@ export enum <#= PascalCase(_entity.Id) #>Enum {
   /**
    * Change the index by a string to fit string enums.
    */
-  <#= CamelCase(value.Id).ToUpper() #> = <#= index #>
+  <#= TextConverter.CamelCase(value.Id).ToUpper() #> = <#= index #>
 <#
                 }
                 else if (value.Id != null)
@@ -54,7 +54,7 @@ export enum <#= PascalCase(_entity.Id) #>Enum {
   /**
    * Change the index by a string to fit string enums.
    */
-  <#= CamelCase(value.Id).ToUpper() #> = <#= index #>,
+  <#= TextConverter.CamelCase(value.Id).ToUpper() #> = <#= index #>,
 <#
                 }
                 index++;

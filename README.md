@@ -9,7 +9,7 @@ Generators are built with **T4 Text Templating**, and in particular, with [prepr
 - **Visual studio 2017** ([Community Edition](https://www.visualstudio.com/fr/downloads/) is enough)
 - **Mobioos.Scaffold's generators** documentation (see: [Mobioos.Scaffold's generators documentation](https://github.com/Mobioos/Common-Scaffold))
 
-In order to see and download Mobioos NuGet packages, you will need to add a new source of packages in your NuGet package manager under Visual Studio. Under **Tools -> Options** see **NuGet Package Manager**, go to **Package Sources** and add a new source like it.
+In order to see and download Mobioos NuGet packages, you will need to add a new source of packages in your NuGet package manager under Visual Studio. Under **Options** see **NuGet Package Manager**, go to **Package Sources** and add a new source like it.
 
 ![alt text](https://github.com/Mobioos/Ionic-framework/raw/master/docs/images/Mobioos_packages_source.jpg "Mobioos packages source")
 

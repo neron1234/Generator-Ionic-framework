@@ -40,7 +40,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Mobioos.Scaffold" Version="0.9.1" />
+    <PackageReference Include="Mobioos.Scaffold" Version="0.9.3" />
   </ItemGroup>
 
   <ItemGroup>

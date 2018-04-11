@@ -2,9 +2,9 @@
 using Mobioos.Foundation.Jade.Extensions;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.RegularExpressions;
+using Mobioos.Scaffold.Generators.Helpers;
 
-namespace GeneratorProject.Platforms.Frontend.Ionic
+namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
 {
     public partial class LayoutComponentTemplate
     {
@@ -37,8 +37,8 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
             Dictionary<string, string> menu = new Dictionary<string, string>();
             if (concern != null && concern.Id != null && concern.Layouts.AsEnumerable() != null)
                 foreach (LayoutInfo layout in concern.Layouts.AsEnumerable())
-                    if (layout.IsVisibleInMenu && layout.Id != null && layout.Title != null && !menu.ContainsKey(CamelCase(concern.Id) + "-" + CamelCase(layout.Id)))
-                        menu.Add(CamelCase(concern.Id) + "-" + CamelCase(layout.Id), layout.Title);
+                    if (layout.IsVisibleInMenu && layout.Id != null && layout.Title != null && !menu.ContainsKey(TextConverter.CamelCase(concern.Id) + "-" + TextConverter.CamelCase(layout.Id)))
+                        menu.Add(TextConverter.CamelCase(concern.Id) + "-" + TextConverter.CamelCase(layout.Id), layout.Title);
             return menu;
         }
 
@@ -54,9 +54,6 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
 
             if (layout != null && layout.Actions.AsEnumerable() != null)
                 getApiViewModels(apis, layout.Actions);
-
-            //if (layout != null && layout.DataModel != null && layout.DataModel.Id != null && !_viewModels.AsEnumerable().Contains(PascalCase(layout.DataModel.Id)))
-            //    _viewModels.Add(PascalCase(layout.DataModel.Id));
         }
 
         /// <summary>
@@ -79,8 +76,8 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
                         foreach (ApiInfo api in apis.AsEnumerable())
                         {
                             if (api.Id.ToLower().Equals(apiService.ToLower()))
-                                if (!result.AsEnumerable().Contains(PascalCase(apiService)))
-                                    result.Add(PascalCase(apiService));
+                                if (!result.AsEnumerable().Contains(TextConverter.PascalCase(apiService)))
+                                    result.Add(TextConverter.PascalCase(apiService));
                         }
                     }
             return result;
@@ -121,11 +118,11 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
                     if (apiAction.Id.ToLower().Equals(layoutAction.ToLower()) && apiAction.Parameters.AsEnumerable() != null)
                     {
                         foreach (ApiParameterInfo apiActionParameter in apiAction.Parameters.AsEnumerable())
-                            if (IsModelBool(apiActionParameter.TypeScriptType()) && !_viewModels.AsEnumerable().Contains(PascalCase(apiActionParameter.TypeScriptType())))
-                                _viewModels.Add(PascalCase(apiActionParameter.TypeScriptType()));
+                            if (IsModelBool(apiActionParameter.TypeScriptType()) && !_viewModels.AsEnumerable().Contains(TextConverter.PascalCase(apiActionParameter.TypeScriptType())))
+                                _viewModels.Add(TextConverter.PascalCase(apiActionParameter.TypeScriptType()));
 
-                        if (apiAction.ReturnType != null && apiAction.ReturnType.Id != null && !_viewModels.AsEnumerable().Contains(PascalCase(apiAction.ReturnType.Id)))
-                            _viewModels.Add(PascalCase(apiAction.ReturnType.Id));
+                        if (apiAction.ReturnType != null && apiAction.ReturnType.Id != null && !_viewModels.AsEnumerable().Contains(TextConverter.PascalCase(apiAction.ReturnType.Id)))
+                            _viewModels.Add(TextConverter.PascalCase(apiAction.ReturnType.Id));
                     }
         }
 
@@ -180,74 +177,6 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
                 case "dataupdate":
                 case "datadelete":
                     result = true; break;
-            }
-            return result;
-        }
-
-        /// <summary>
-        /// Convert a string to PascalCase.
-        /// </summary>
-        /// <param name="word">A word to convert.</param>
-        public static string PascalCase(string word)
-        {
-            string result = "";
-            word = word.Trim();
-            if (word.Length > 0)
-            {
-                char[] separators = new char[] {
-                    ' ',
-                    '-',
-                    '_',
-                    '/'
-                };
-                string[] splittedString = word.Split(separators);
-
-                splittedString[0] = Regex.Replace(splittedString[0], "(?<!^)([A-Z][a-z]|(?<=[a-z])[A-Z])", " $1", RegexOptions.Compiled).Trim();
-                splittedString[0] = splittedString[0].Replace(" ", string.Empty);
-                splittedString[0] = splittedString[0].Substring(0, 1).ToUpper() + splittedString[0].Substring(1);
-                result += splittedString[0];
-
-                for (int i = 1; i < splittedString.Count(); i++)
-                {
-                    splittedString[i] = Regex.Replace(splittedString[i], "(?<!^)([A-Z][a-z]|(?<=[a-z])[A-Z])", " $1", RegexOptions.Compiled).Trim();
-                    splittedString[i] = splittedString[i].Replace(" ", string.Empty);
-                    splittedString[i] = splittedString[i].Substring(0, 1).ToUpper() + splittedString[i].Substring(1);
-                    result += splittedString[i];
-                }
-            }
-            return result;
-        }
-
-        /// <summary>
-        /// Convert a string to CamelCase.
-        /// </summary>
-        /// <param name="word">A word to convert.</param>
-        public static string CamelCase(string word)
-        {
-            string result = "";
-            word = word.Trim();
-            if (word.Length > 0)
-            {
-                char[] separators = new char[] {
-                    ' ',
-                    '-',
-                    '_',
-                    '/'
-                };
-                string[] splittedString = word.Split(separators);
-
-                splittedString[0] = Regex.Replace(splittedString[0], "(?<!^)([A-Z][a-z]|(?<=[a-z])[A-Z])", " $1", RegexOptions.Compiled).Trim();
-                splittedString[0] = splittedString[0].Replace(" ", string.Empty);
-                splittedString[0] = splittedString[0].Substring(0, 1).ToLower() + splittedString[0].Substring(1);
-                result += splittedString[0];
-
-                for (int i = 1; i < splittedString.Count(); i++)
-                {
-                    splittedString[i] = Regex.Replace(splittedString[i], "(?<!^)([A-Z][a-z]|(?<=[a-z])[A-Z])", " $1", RegexOptions.Compiled).Trim();
-                    splittedString[i] = splittedString[i].Replace(" ", string.Empty);
-                    splittedString[i] = splittedString[i].Substring(0, 1).ToUpper() + splittedString[i].Substring(1);
-                    result += splittedString[i];
-                }
             }
             return result;
         }

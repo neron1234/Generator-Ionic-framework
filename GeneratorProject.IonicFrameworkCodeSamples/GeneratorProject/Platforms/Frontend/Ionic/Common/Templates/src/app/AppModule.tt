@@ -4,6 +4,7 @@
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="Mobioos.Foundation.Jade.Models" #>
+<#@ import namespace="Mobioos.Scaffold.Generators.Helpers" #>
 /*
  * You should add your licence here, here is an example :
  *
@@ -48,12 +49,12 @@ import { DataService } from '../services/data.service';
 
       if (smartApp.Concerns.AsEnumerable() != null && _rootLayout != null && _rootLayout.Id != null && _rootConcern != null && _rootConcern.Id != null)
       {
-        string concern = PascalCase(_rootConcern.Id);
-        string layout = PascalCase(_rootLayout.Id);
+        string concern = TextConverter.PascalCase(_rootConcern.Id);
+        string layout = TextConverter.PascalCase(_rootLayout.Id);
         string layoutModule = concern + layout;
-        string layoutModuleToLower = CamelCase(concern) + "-" + CamelCase(layout);
+        string layoutModuleToLower = TextConverter.CamelCase(concern) + "-" + TextConverter.CamelCase(layout);
 #>
-import { <#= layoutModule #>PageModule } from '../pages/<#= CamelCase(concern) #>/<#= CamelCase(layout) #>/<#= layoutModuleToLower #>.module';
+import { <#= layoutModule #>PageModule } from '../pages/<#= TextConverter.CamelCase(concern) #>/<#= TextConverter.CamelCase(layout) #>/<#= layoutModuleToLower #>.module';
 <#
       }
 #>
@@ -95,7 +96,7 @@ export function createTranslateLoader(http: HttpClient) {
  */
 @NgModule({
   declarations: [
-    <#= PascalCase(smartApp.Id) #>
+    <#= TextConverter.PascalCase(smartApp.Id) #>
   ],
   imports: [
     BrowserModule,
@@ -104,8 +105,8 @@ export function createTranslateLoader(http: HttpClient) {
 <#
       if (smartApp.Concerns.AsEnumerable() != null && _rootLayout != null && _rootLayout.Id != null && _rootConcern != null && _rootConcern.Id != null)
       {
-        string concern = PascalCase(_rootConcern.Id);
-        string layout = PascalCase(_rootLayout.Id);
+        string concern = TextConverter.PascalCase(_rootConcern.Id);
+        string layout = TextConverter.PascalCase(_rootLayout.Id);
         string layoutModule = concern + layout;
 #>
     <#= layoutModule #>PageModule,
@@ -126,11 +127,11 @@ export function createTranslateLoader(http: HttpClient) {
 <#
       }
 #>
-    IonicModule.forRoot(<#= PascalCase(smartApp.Id) #>)
+    IonicModule.forRoot(<#= TextConverter.PascalCase(smartApp.Id) #>)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    <#= PascalCase(smartApp.Id) #>
+    <#= TextConverter.PascalCase(smartApp.Id) #>
   ],
   providers: [
 <#

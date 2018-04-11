@@ -7,7 +7,7 @@
 //     le code est régénéré.
 // </auto-generated>
 // ------------------------------------------------------------------------------
-namespace GeneratorProject.Platforms.Frontend.Ionic
+namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
 {
     using System.Linq;
     using System.Text;
@@ -20,7 +20,7 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\Users\PC\Documents\Gits\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\Package.tt"
+    #line 1 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Common\Templates\Package.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "15.0.0.0")]
     public partial class Package : TemplateBase
     {
@@ -32,7 +32,7 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
         {
             this.Write("\r\n");
             
-            #line 2 "C:\Users\PC\Documents\Gits\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\Package.tt"
+            #line 2 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Common\Templates\Package.tt"
 
     SmartAppInfo smartApp = (SmartAppInfo)Model;
     if (smartApp != null && smartApp.Title != null && smartApp.Version != null)
@@ -43,28 +43,28 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
             #line hidden
             this.Write("{\r\n  \"name\": \"");
             
-            #line 8 "C:\Users\PC\Documents\Gits\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\Package.tt"
+            #line 8 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Common\Templates\Package.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(smartApp.Id));
             
             #line default
             #line hidden
             this.Write("\",\r\n  \"displayName\": \"");
             
-            #line 9 "C:\Users\PC\Documents\Gits\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\Package.tt"
+            #line 9 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Common\Templates\Package.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(smartApp.Title));
             
             #line default
             #line hidden
             this.Write("\",\r\n  \"version\": \"");
             
-            #line 10 "C:\Users\PC\Documents\Gits\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\Package.tt"
+            #line 10 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Common\Templates\Package.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_version));
             
             #line default
             #line hidden
             this.Write("\",\r\n  \"private\": \"true\",\r\n");
             
-            #line 12 "C:\Users\PC\Documents\Gits\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\Package.tt"
+            #line 12 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Common\Templates\Package.tt"
 
       if (smartApp.Description != null)
       {
@@ -74,14 +74,14 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
             #line hidden
             this.Write("  \"description\": \"");
             
-            #line 16 "C:\Users\PC\Documents\Gits\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\Package.tt"
+            #line 16 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Common\Templates\Package.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(smartApp.Description));
             
             #line default
             #line hidden
             this.Write("\",\r\n");
             
-            #line 17 "C:\Users\PC\Documents\Gits\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\Package.tt"
+            #line 17 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Common\Templates\Package.tt"
 
       }
 
@@ -123,7 +123,7 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
 }
 ");
             
-            #line 53 "C:\Users\PC\Documents\Gits\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\Package.tt"
+            #line 53 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Common\Templates\Package.tt"
 
     }
 

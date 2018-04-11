@@ -4,4 +4,5 @@
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="Mobioos.Scaffold.TextTemplating" #>
+<#@ import namespace="Mobioos.Scaffold.Generators.Helpers" #>
 <#@ import namespace="Mobioos.Foundation.Jade.Models" #>

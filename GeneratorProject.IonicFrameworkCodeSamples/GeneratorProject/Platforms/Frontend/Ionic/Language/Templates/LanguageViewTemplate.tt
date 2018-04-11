@@ -54,7 +54,7 @@
             if (language != null && language.Id != null)
             {
 #>
-    <ion-item (click)="changeLanguage('<#= PascalCase(language.Id) #>')"><#= PascalCase(language.Id) #></ion-item>
+    <ion-item (click)="changeLanguage('<#= TextConverter.PascalCase(language.Id) #>')"><#= TextConverter.PascalCase(language.Id) #></ion-item>
 <#
             }
         }

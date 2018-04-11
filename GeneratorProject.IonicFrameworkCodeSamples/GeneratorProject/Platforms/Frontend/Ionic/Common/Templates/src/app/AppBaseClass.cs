@@ -7,7 +7,7 @@
 //     le code est régénéré.
 // </auto-generated>
 // ------------------------------------------------------------------------------
-namespace GeneratorProject.Platforms.Frontend.Ionic
+namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
 {
     using Mobioos.Scaffold.TextTemplating;
     using System;
@@ -16,7 +16,7 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\Users\PC\Documents\Gits\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppBaseClass.tt"
+    #line 1 "C:\Users\PC\Documents\Gits\Scaffold-v3\src\Generators\Mobioos.Scaffold.Generators\Platforms\Frontend\Ionic\Common\Templates\src\app\AppBaseClass.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "15.0.0.0")]
     public partial class AppBaseClass : TemplateBase
     {

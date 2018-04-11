@@ -23,8 +23,8 @@
 <#
     if (_concernId != null && _layout != null && _layout.Id != null)
     {
-        string layout = PascalCase(_concernId) + PascalCase(_layout.Id);
-        string layoutToLower = CamelCase(_concernId) + "-" + CamelCase(_layout.Id);
+        string layout = TextConverter.PascalCase(_concernId) + TextConverter.PascalCase(_layout.Id);
+        string layoutToLower = TextConverter.CamelCase(_concernId) + "-" + TextConverter.CamelCase(_layout.Id);
 #>
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
@@ -43,7 +43,7 @@ import { TranslateModule } from '@ngx-translate/core';
             foreach (string service in _apiDomainServices.AsEnumerable())
             {
 #>
-import { <#= PascalCase(service) #> } from '../../../services/<#= CamelCase(service) #>.service';
+import { <#= TextConverter.PascalCase(service) #> } from '../../../services/<#= TextConverter.CamelCase(service) #>.service';
 <#
             }
         }
@@ -98,13 +98,13 @@ import { <#= PascalCase(service) #> } from '../../../services/<#= CamelCase(serv
                 if (index == lastIndex)
                 {
 #>
-    <#= PascalCase(service) #>
+    <#= TextConverter.PascalCase(service) #>
 <#
                 }
                 else
                 {
 #>
-    <#= PascalCase(service) #>,
+    <#= TextConverter.PascalCase(service) #>,
 <#
                 }
                 index++;

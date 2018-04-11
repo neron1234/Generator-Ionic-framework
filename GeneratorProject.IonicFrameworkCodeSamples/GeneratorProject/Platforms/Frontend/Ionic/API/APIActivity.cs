@@ -8,9 +8,9 @@ using System.Linq;
 using Mobioos.Scaffold.Core.Runtime.Attributes;
 using System.Collections.Generic;
 using Mobioos.Foundation.Prompts.Interfaces;
-using System.Text.RegularExpressions;
+using Mobioos.Scaffold.Generators.Helpers;
 
-namespace GeneratorProject.Platforms.Frontend.Ionic
+namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
 {
     [Activity(Order = 6)]
     public class ApiActivity : GeneratorActivity
@@ -91,7 +91,7 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
                     ApiTemplate apiTemplate = new ApiTemplate(api);
 
                     string apiDirectoryPath = apiTemplate.OutputPath;
-                    string apiFilename = CamelCase(api.Id) + ".service.ts";
+                    string apiFilename = TextConverter.CamelCase(api.Id) + ".service.ts";
 
                     string fileToWritePath = Path.Combine(BasePath, apiDirectoryPath, apiFilename);
                     string textToWrite = apiTemplate.TransformText();
@@ -100,40 +100,6 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
                 }
                 CopyDirectory(apiTemplatesDirectoryPath, BasePath);
             }
-        }
-
-        /// <summary>
-        /// Convert a string to CamelCase.
-        /// </summary>
-        /// <param name="word">A word to convert.</param>
-        public static string CamelCase(string word)
-        {
-            string result = "";
-            word = word.Trim();
-            if (word.Length > 0)
-            {
-                char[] separators = new char[] {
-                    ' ',
-                    '-',
-                    '_',
-                    '/'
-                };
-                string[] splittedString = word.Split(separators);
-
-                splittedString[0] = Regex.Replace(splittedString[0], "(?<!^)([A-Z][a-z]|(?<=[a-z])[A-Z])", " $1", RegexOptions.Compiled).Trim();
-                splittedString[0] = splittedString[0].Replace(" ", string.Empty);
-                splittedString[0] = splittedString[0].Substring(0, 1).ToLower() + splittedString[0].Substring(1);
-                result += splittedString[0];
-
-                for (int i = 1; i < splittedString.Count(); i++)
-                {
-                    splittedString[i] = Regex.Replace(splittedString[i], "(?<!^)([A-Z][a-z]|(?<=[a-z])[A-Z])", " $1", RegexOptions.Compiled).Trim();
-                    splittedString[i] = splittedString[i].Replace(" ", string.Empty);
-                    splittedString[i] = splittedString[i].Substring(0, 1).ToUpper() + splittedString[i].Substring(1);
-                    result += splittedString[i];
-                }
-            }
-            return result;
         }
 
         #endregion

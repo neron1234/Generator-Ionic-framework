@@ -4,6 +4,7 @@
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="Mobioos.Foundation.Jade.Models" #>
+<#@ import namespace="Mobioos.Scaffold.Generators.Helpers" #>
 <!--
   You should add your licence here, here is an example :
 
@@ -80,7 +81,7 @@
       else
       {
 #>
-      <#= PascalCase(smartApp.Title) #>
+      <#= TextConverter.PascalCase(smartApp.Title) #>
 <#
       }
 #>
@@ -99,7 +100,7 @@
       else
       {
 #>
-    Welcome to <#= PascalCase(smartApp.Title) #> application !
+    Welcome to <#= TextConverter.PascalCase(smartApp.Title) #> application !
 <#
       }
 #>

@@ -8,9 +8,9 @@ using System.Linq;
 using Mobioos.Scaffold.Core.Runtime.Attributes;
 using Mobioos.Foundation.Prompts.Interfaces;
 using System.Collections.Generic;
-using System.Text.RegularExpressions;
+using Mobioos.Scaffold.Generators.Helpers;
 
-namespace GeneratorProject.Platforms.Frontend.Ionic
+namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
 {
     [Activity(Order = 3)]
     public class LayoutActivity : GeneratorActivity
@@ -86,11 +86,9 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
                         {
                             if (layout != null)
                             {
-                                // smartApp.Languages can be null
                                 TransformLayoutModule(concern.Id, layout, smartApp.Languages, smartApp.Api);
                                 TransformLayoutComponent(concern, layout, smartApp.Languages, smartApp.Api);
                                 TransformLayoutView(smartApp.Title, concern, layout, smartApp.Languages);
-                                // TransformLayoutStyle(concern.Id, layout);
                             }
                         }
                     }
@@ -114,8 +112,8 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
             {
                 LayoutModuleTemplate layoutModuleTemplate = new LayoutModuleTemplate(concernId, layout, languages, api);
 
-                string layoutModuleDirectoryPath = Path.Combine(layoutModuleTemplate.OutputPath, CamelCase(concernId), CamelCase(layout.Id));
-                string layoutModuleFilename = CamelCase(concernId) + "-" + CamelCase(layout.Id) + ".module.ts";
+                string layoutModuleDirectoryPath = Path.Combine(layoutModuleTemplate.OutputPath, TextConverter.CamelCase(concernId), TextConverter.CamelCase(layout.Id));
+                string layoutModuleFilename = TextConverter.CamelCase(concernId) + "-" + TextConverter.CamelCase(layout.Id) + ".module.ts";
 
                 string fileToWritePath = Path.Combine(BasePath, layoutModuleDirectoryPath, layoutModuleFilename);
                 string textToWrite = layoutModuleTemplate.TransformText();
@@ -140,8 +138,8 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
             {
                 LayoutComponentTemplate layoutComponentTemplate = new LayoutComponentTemplate(concern, layout, languages, api);
 
-                string layoutComponentDirectoryPath = Path.Combine(layoutComponentTemplate.OutputPath, CamelCase(concern.Id), CamelCase(layout.Id));
-                string layoutComponentFilename = CamelCase(concern.Id) + "-" + CamelCase(layout.Id) + ".ts";
+                string layoutComponentDirectoryPath = Path.Combine(layoutComponentTemplate.OutputPath, TextConverter.CamelCase(concern.Id), TextConverter.CamelCase(layout.Id));
+                string layoutComponentFilename = TextConverter.CamelCase(concern.Id) + "-" + TextConverter.CamelCase(layout.Id) + ".ts";
 
                 string fileToWritePath = Path.Combine(BasePath, layoutComponentDirectoryPath, layoutComponentFilename);
                 string textToWrite = layoutComponentTemplate.TransformText();
@@ -166,8 +164,8 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
             {
                 LayoutViewTemplate layoutViewTemplate = new LayoutViewTemplate(smartAppTitle, concern, layout, languages);
 
-                string layoutViewDirectoryPath = Path.Combine(layoutViewTemplate.OutputPath, CamelCase(concern.Id), CamelCase(layout.Id));
-                string layoutViewFilename = CamelCase(concern.Id) + "-" + CamelCase(layout.Id) + ".html";
+                string layoutViewDirectoryPath = Path.Combine(layoutViewTemplate.OutputPath, TextConverter.CamelCase(concern.Id), TextConverter.CamelCase(layout.Id));
+                string layoutViewFilename = TextConverter.CamelCase(concern.Id) + "-" + TextConverter.CamelCase(layout.Id) + ".html";
 
                 string fileToWritePath = Path.Combine(BasePath, layoutViewDirectoryPath, layoutViewFilename);
                 string textToWrite = layoutViewTemplate.TransformText();
@@ -189,48 +187,14 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
             {
                 LayoutStyleTemplate layoutStyleTemplate = new LayoutStyleTemplate(concernId, layout);
 
-                string layoutStyleDirectoryPath = Path.Combine(layoutStyleTemplate.OutputPath, CamelCase(concernId), CamelCase(layout.Id));
-                string layoutStyleFilename = CamelCase(concernId) + "-" + CamelCase(layout.Id) + ".scss";
+                string layoutStyleDirectoryPath = Path.Combine(layoutStyleTemplate.OutputPath, TextConverter.CamelCase(concernId), TextConverter.CamelCase(layout.Id));
+                string layoutStyleFilename = TextConverter.CamelCase(concernId) + "-" + TextConverter.CamelCase(layout.Id) + ".scss";
 
                 string fileToWritePath = Path.Combine(BasePath, layoutStyleDirectoryPath, layoutStyleFilename);
                 string textToWrite = layoutStyleTemplate.TransformText();
 
                 WriteFile(fileToWritePath, textToWrite);
             }
-        }
-
-        /// <summary>
-        /// Convert a string to CamelCase.
-        /// </summary>
-        /// <param name="word">A word to convert.</param>
-        public static string CamelCase(string word)
-        {
-            string result = "";
-            word = word.Trim();
-            if (word.Length > 0)
-            {
-                char[] separators = new char[] {
-                    ' ',
-                    '-',
-                    '_',
-                    '/'
-                };
-                string[] splittedString = word.Split(separators);
-
-                splittedString[0] = Regex.Replace(splittedString[0], "(?<!^)([A-Z][a-z]|(?<=[a-z])[A-Z])", " $1", RegexOptions.Compiled).Trim();
-                splittedString[0] = splittedString[0].Replace(" ", string.Empty);
-                splittedString[0] = splittedString[0].Substring(0, 1).ToLower() + splittedString[0].Substring(1);
-                result += splittedString[0];
-
-                for (int i = 1; i < splittedString.Count(); i++)
-                {
-                    splittedString[i] = Regex.Replace(splittedString[i], "(?<!^)([A-Z][a-z]|(?<=[a-z])[A-Z])", " $1", RegexOptions.Compiled).Trim();
-                    splittedString[i] = splittedString[i].Replace(" ", string.Empty);
-                    splittedString[i] = splittedString[i].Substring(0, 1).ToUpper() + splittedString[i].Substring(1);
-                    result += splittedString[i];
-                }
-            }
-            return result;
         }
 
         #endregion

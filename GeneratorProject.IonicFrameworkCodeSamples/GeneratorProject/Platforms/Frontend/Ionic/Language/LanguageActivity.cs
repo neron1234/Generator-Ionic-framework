@@ -8,9 +8,9 @@ using System.Collections.Generic;
 using System.Linq;
 using Mobioos.Scaffold.Core.Runtime.Attributes;
 using Mobioos.Foundation.Prompts.Interfaces;
-using System.Text.RegularExpressions;
+using Mobioos.Scaffold.Generators.Helpers;
 
-namespace GeneratorProject.Platforms.Frontend.Ionic
+namespace Mobioos.Scaffold.Generators.Platforms.Frontend.Ionic
 {
     [Activity(Order = 4)]
     public class LanguageActivity : GeneratorActivity
@@ -81,7 +81,6 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
                 TransformJsonTemplate(smartApp);
                 TransformLanguageComponentTemplate();
                 TransformLanguageModuleTemplate();
-                // TransformLanguageStyleTemplate();
                 TransformLanguageViewTemplate(smartApp);
             }
         }
@@ -99,7 +98,7 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
                 {
                     JsonTemplate jsonTemplate = new JsonTemplate(smartApp, languageInfo.Id);
                     string jsonDirectoryPath = Path.Combine(jsonTemplate.OutputPath);
-                    string enJsonFile = PascalCase(languageInfo.Id) + ".json";
+                    string enJsonFile = TextConverter.PascalCase(languageInfo.Id) + ".json";
 
                     string fileToWritePath = Path.Combine(BasePath, jsonDirectoryPath, enJsonFile);
                     string textToWrite = jsonTemplate.TransformText();
@@ -159,7 +158,6 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
         /// <param name="smartApp">A SmartApp manifeste.</param>
         public void TransformLanguageViewTemplate(SmartAppInfo smartApp)
         {
-            // smartApp.Concerns can be null
             if (smartApp != null && smartApp.Languages.AsEnumerable() != null && smartApp.Languages.AsEnumerable().Count() > 0)
             {
                 LanguageViewTemplate languageViewTemplate = new LanguageViewTemplate(smartApp.Concerns, smartApp.Languages);
@@ -169,40 +167,6 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
 
                 WriteFile(fileToWritePath, textToWrite);
             }
-        }
-
-        /// <summary>
-        /// Convert a string to PascalCase.
-        /// </summary>
-        /// <param name="word">A word to convert.</param>
-        public static string PascalCase(string word)
-        {
-            string result = "";
-            word = word.Trim();
-            if (word.Length > 0)
-            {
-                char[] separators = new char[] {
-                    ' ',
-                    '-',
-                    '_',
-                    '/'
-                };
-                string[] splittedString = word.Split(separators);
-
-                splittedString[0] = Regex.Replace(splittedString[0], "(?<!^)([A-Z][a-z]|(?<=[a-z])[A-Z])", " $1", RegexOptions.Compiled).Trim();
-                splittedString[0] = splittedString[0].Replace(" ", string.Empty);
-                splittedString[0] = splittedString[0].Substring(0, 1).ToUpper() + splittedString[0].Substring(1);
-                result += splittedString[0];
-
-                for (int i = 1; i < splittedString.Count(); i++)
-                {
-                    splittedString[i] = Regex.Replace(splittedString[i], "(?<!^)([A-Z][a-z]|(?<=[a-z])[A-Z])", " $1", RegexOptions.Compiled).Trim();
-                    splittedString[i] = splittedString[i].Replace(" ", string.Empty);
-                    splittedString[i] = splittedString[i].Substring(0, 1).ToUpper() + splittedString[i].Substring(1);
-                    result += splittedString[i];
-                }
-            }
-            return result;
         }
 
         #endregion

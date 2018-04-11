@@ -24,9 +24,9 @@
 <#
     if (_concernId != null && _layout != null && _layout.Id != null)
     {
-        string layout = PascalCase(_concernId) + PascalCase(_layout.Id);
-        string layoutToLower = CamelCase(_concernId) + "-" + CamelCase(_layout.Id);
-        string layoutPathToLower = CamelCase(_concernId) + "/" + CamelCase(_layout.Id);
+        string layout = TextConverter.PascalCase(_concernId) + TextConverter.PascalCase(_layout.Id);
+        string layoutToLower = TextConverter.CamelCase(_concernId) + "-" + TextConverter.CamelCase(_layout.Id);
+        string layoutPathToLower = TextConverter.CamelCase(_concernId) + "/" + TextConverter.CamelCase(_layout.Id);
 #>
 import { Component } from '@angular/core';
 import { IonicPage, NavController<# if (_menu.AsEnumerable() != null && _menu.AsEnumerable().Count() > 0) { #>, Events<# } #> } from 'ionic-angular';
@@ -36,7 +36,7 @@ import { IonicPage, NavController<# if (_menu.AsEnumerable() != null && _menu.As
             foreach (string viewModel in _viewModels.AsEnumerable())
             {
 #>
-import { <#= PascalCase(viewModel) #> } from '../../../viewModels/<#= CamelCase(viewModel) #>';
+import { <#= TextConverter.PascalCase(viewModel) #> } from '../../../viewModels/<#= TextConverter.CamelCase(viewModel) #>';
 <#
             }
         }
@@ -49,7 +49,7 @@ import { Observable } from 'rxjs';
             foreach (string service in _apiDomainServices.AsEnumerable())
             {
 #>
-import { <#= PascalCase(service) #> } from '../../../services/<#= CamelCase(service) #>.service';
+import { <#= TextConverter.PascalCase(service) #> } from '../../../services/<#= TextConverter.CamelCase(service) #>.service';
 <#
             }
         }
@@ -115,7 +115,7 @@ export class <#= layout #> {
             foreach (string service in _apiDomainServices.AsEnumerable())
             {
 #>
-    public _<#= CamelCase(service) #>: <#= PascalCase(service) #>,
+    public _<#= TextConverter.CamelCase(service) #>: <#= TextConverter.PascalCase(service) #>,
 <#
             }
         }
@@ -162,27 +162,44 @@ export class <#= layout #> {
                         if (action.Target != null)
                         {
                             string[] actionTargetSplitted = action.Target.Split('.');
-                            string targetedConcern = CamelCase(actionTargetSplitted[0]);
-                            string targetedLayout = CamelCase(actionTargetSplitted[1]);
+                            string targetedConcern = TextConverter.CamelCase(actionTargetSplitted[0]);
+                            string targetedLayout = TextConverter.CamelCase(actionTargetSplitted[1]);
+
+                            if (_layout.IsVisibleInMenu)
+                            {
 #>
   /**
-   * method: on<#= PascalCase(action.Id) #>
+   * method: on<#= TextConverter.PascalCase(action.Id) #>
    * That method is a navigation method.
    */
-  public on<#= PascalCase(action.Id) #>() {
+  public on<#= TextConverter.PascalCase(action.Id) #>() {
     this._nav.setRoot('<#= targetedConcern + "-" + targetedLayout #>');
   }
 
 <#
+                            }
+                            else
+                            {
+#>
+  /**
+   * method: on<#= TextConverter.PascalCase(action.Id) #>
+   * That method is a navigation method.
+   */
+  public on<#= TextConverter.PascalCase(action.Id) #>() {
+    this._nav.push('<#= targetedConcern + "-" + targetedLayout #>');
+  }
+
+<#
+                            }
                         }
                         break;
                     case "method":
 #>
   /**
-   * method: on<#= PascalCase(action.Id) #>
+   * method: on<#= TextConverter.PascalCase(action.Id) #>
    * That method is a blank method.
    */
-  public on<#= PascalCase(action.Id) #>() {
+  public on<#= TextConverter.PascalCase(action.Id) #>() {
     // TO DO
   }
 
@@ -205,7 +222,7 @@ export class <#= layout #> {
                                         {
 #>
   /**
-   * method: on<#= PascalCase(action.Id) #>
+   * method: on<#= TextConverter.PascalCase(action.Id) #>
    * You should add a description of your method here.
 <#
                                             if (apiA.Parameters.AsEnumerable() != null && apiA.Parameters.AsEnumerable().Count() > 0)
@@ -218,10 +235,10 @@ export class <#= layout #> {
                                                         string type = apiParameter.TypeScriptType();
                                                         if (!parameterIsModel.Equals(""))
                                                         {
-                                                            type = PascalCase(type);
+                                                            type = TextConverter.PascalCase(type);
                                                         }
 #>
-   * @param <#= CamelCase(apiParameter.Id) #> `<#= type + parameterIsModel #>`.
+   * @param <#= TextConverter.CamelCase(apiParameter.Id) #> `<#= type + parameterIsModel #>`.
 <#
                                                     }
                                                 }
@@ -229,7 +246,7 @@ export class <#= layout #> {
 #>
    * @returns A `Subscription<any>`.
    */
-  public on<#= PascalCase(action.Id) #>(
+  public on<#= TextConverter.PascalCase(action.Id) #>(
 <#
                                             if (apiA.Parameters.AsEnumerable() != null && apiA.Parameters.AsEnumerable().Count() > 0)
                                             {
@@ -242,18 +259,18 @@ export class <#= layout #> {
                                                         string type = apiParameter.TypeScriptType();
                                                         if (!parameterIsModel.Equals(""))
                                                         {
-                                                            type = PascalCase(type);
+                                                            type = TextConverter.PascalCase(type);
                                                         }
                                                         if (apiParameter.Equals(last))
                                                         {
 #>
-    <#= CamelCase(apiParameter.Id) #>: <#= type + parameterIsModel #>
+    <#= TextConverter.CamelCase(apiParameter.Id) #>: <#= type + parameterIsModel #>
 <#
                                                         }
                                                         else
                                                         {
 #>
-    <#= CamelCase(apiParameter.Id) #>: <#= type + parameterIsModel #>,
+    <#= TextConverter.CamelCase(apiParameter.Id) #>: <#= type + parameterIsModel #>,
 <#
                                                         }
                                                     }
@@ -261,7 +278,7 @@ export class <#= layout #> {
                                             }
 #>
   ) {
-    return this._<#= CamelCase(api.Id) #>.<#= CamelCase(apiA.Id) #>(
+    return this._<#= TextConverter.CamelCase(api.Id) #>.<#= TextConverter.CamelCase(apiA.Id) #>(
 <#
                                             if (apiA.Parameters.AsEnumerable() != null && apiA.Parameters.AsEnumerable().Count() > 0)
                                             {
@@ -271,13 +288,13 @@ export class <#= layout #> {
                                                     if (apiParameter.Id != null && apiParameter.Equals(last))
                                                     {
 #>
-      <#= CamelCase(apiParameter.Id) #>
+      <#= TextConverter.CamelCase(apiParameter.Id) #>
 <#
                                                     }
                                                     else if (apiParameter.Id != null)
                                                     {
 #>
-      <#= CamelCase(apiParameter.Id) #>,
+      <#= TextConverter.CamelCase(apiParameter.Id) #>,
 <#
                                                     }
                                                 }

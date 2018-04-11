@@ -30,7 +30,7 @@ import { Observable } from 'rxjs';
         foreach(string viewModel in _viewModels.AsEnumerable())
         {
 #>
-import { <#= PascalCase(viewModel) #> } from '../viewModels/<#= CamelCase(viewModel) #>';
+import { <#= TextConverter.PascalCase(viewModel) #> } from '../viewModels/<#= TextConverter.CamelCase(viewModel) #>';
 <#
         }
     }
@@ -43,7 +43,7 @@ import { DataService } from './data.service';
     {
 #>
 /**
- * class: <#= PascalCase(_api.Id) #>.
+ * class: <#= TextConverter.PascalCase(_api.Id) #>.
 <#
         if (_api.Description != null)
         {
@@ -62,7 +62,7 @@ import { DataService } from './data.service';
 #>
  */
 @Injectable()
-export class <#= PascalCase(_api.Id) #> {
+export class <#= TextConverter.PascalCase(_api.Id) #> {
 <#
         if (_api.Actions.AsEnumerable() != null)
         {
@@ -71,7 +71,7 @@ export class <#= PascalCase(_api.Id) #> {
                 if (action.Id != null && action.Url != null)
                 {
 #>
-  public _<#= CamelCase(action.Id) #>Api = '<#= action.Url #>';
+  public _<#= TextConverter.CamelCase(action.Id) #>Api = '<#= action.Url #>';
 <#
                 }
             }
@@ -87,7 +87,7 @@ export class <#= PascalCase(_api.Id) #> {
                 {
 #>
     /**
-     * method: <#= CamelCase(action.Id) #>.
+     * method: <#= TextConverter.CamelCase(action.Id) #>.
      * You should add a description of your method here.
      * That method should be used to connect with generated
      * backend API. You should add business logic inside.
@@ -102,10 +102,10 @@ export class <#= PascalCase(_api.Id) #> {
                                 string type = apiParameter.TypeScriptType();
                                 if (!parameterIsModel.Equals(""))
                                 {
-                                    type = PascalCase(type);
+                                    type = TextConverter.PascalCase(type);
                                 }
 #>
-     * @param <#= CamelCase(apiParameter.Id) #>Param `<#= type + parameterIsModel #>`.
+     * @param <#= TextConverter.CamelCase(apiParameter.Id) #>Param `<#= type + parameterIsModel #>`.
 <#
                             }
                         }
@@ -113,12 +113,12 @@ export class <#= PascalCase(_api.Id) #> {
                     if (action.ReturnType != null && action.ReturnType.Id != null)
                     {
 #>
-     * @returns `<#= PascalCase(action.ReturnType.Id) #>>`.
+     * @returns `<#= TextConverter.PascalCase(action.ReturnType.Id) #>>`.
 <#
                     }
 #>
      */
-    public <#= CamelCase(action.Id) #>(
+    public <#= TextConverter.CamelCase(action.Id) #>(
 <#
                     if (action.Parameters.AsEnumerable() != null && action.Parameters.AsEnumerable().Count() > 0)
                     {
@@ -131,18 +131,18 @@ export class <#= PascalCase(_api.Id) #> {
                                 string type = apiParameter.TypeScriptType();
                                 if (!parameterIsModel.Equals(""))
                                 {
-                                    type = PascalCase(type);
+                                    type = TextConverter.PascalCase(type);
                                 }
                                 if (apiParameter.Equals(last))
                                 {
 #>
-        <#= CamelCase(apiParameter.Id) #>Param: <#= type + parameterIsModel #>
+        <#= TextConverter.CamelCase(apiParameter.Id) #>Param: <#= type + parameterIsModel #>
 <#
                                 }
                                 else
                                 {
 #>
-        <#= CamelCase(apiParameter.Id) #>Param: <#= type + parameterIsModel #>,
+        <#= TextConverter.CamelCase(apiParameter.Id) #>Param: <#= type + parameterIsModel #>,
 <#
                                 }
                             }
@@ -152,7 +152,7 @@ export class <#= PascalCase(_api.Id) #> {
                     if (action.ReturnType != null && action.ReturnType.Id != null)
                     {
 #>
-    ): Observable<<#= PascalCase(action.ReturnType.Id) #>> {
+    ): Observable<<#= TextConverter.PascalCase(action.ReturnType.Id) #>> {
 <#
                     }
                     else
@@ -171,7 +171,7 @@ export class <#= PascalCase(_api.Id) #> {
                             if (action.Parameters.AsEnumerable() != null && action.Parameters.AsEnumerable().Count() > 0)
                             {
 #>
-          `${this._<#= CamelCase(action.Id) #>Api}`,
+          `${this._<#= TextConverter.CamelCase(action.Id) #>Api}`,
           {
 <#
                                 ApiParameterInfo last = action.Parameters.AsEnumerable().Last();
@@ -182,13 +182,13 @@ export class <#= PascalCase(_api.Id) #> {
                                         if (apiParameter.Equals(last))
                                         {
 #>
-              <#= CamelCase(apiParameter.Id) #>: JSON.stringify(<#= CamelCase(apiParameter.Id) #>Param)
+              <#= TextConverter.CamelCase(apiParameter.Id) #>: JSON.stringify(<#= TextConverter.CamelCase(apiParameter.Id) #>Param)
 <#
                                         }
                                         else
                                         {
 #>
-              <#= CamelCase(apiParameter.Id) #>: JSON.stringify(<#= CamelCase(apiParameter.Id) #>Param),
+              <#= TextConverter.CamelCase(apiParameter.Id) #>: JSON.stringify(<#= TextConverter.CamelCase(apiParameter.Id) #>Param),
 <#
                                         }
                                     }
@@ -200,7 +200,7 @@ export class <#= PascalCase(_api.Id) #> {
                             else
                             {
 #>
-          `${this._<#= CamelCase(action.Id) #>Api}`,
+          `${this._<#= TextConverter.CamelCase(action.Id) #>Api}`,
           {});
 <#
                             }
@@ -213,7 +213,7 @@ export class <#= PascalCase(_api.Id) #> {
                             if (action.Parameters.AsEnumerable() != null && action.Parameters.AsEnumerable().Count() > 0)
                             {
 #>
-          `${this._<#= CamelCase(action.Id) #>Api}`,
+          `${this._<#= TextConverter.CamelCase(action.Id) #>Api}`,
           {
 <#
                                 ApiParameterInfo last = action.Parameters.AsEnumerable().Last();
@@ -224,13 +224,13 @@ export class <#= PascalCase(_api.Id) #> {
                                         if (apiParameter.Equals(last))
                                         {
 #>
-              <#= CamelCase(apiParameter.Id) #>: <#= CamelCase(apiParameter.Id) #>Param
+              <#= TextConverter.CamelCase(apiParameter.Id) #>: <#= TextConverter.CamelCase(apiParameter.Id) #>Param
 <#
                                         }
                                         else
                                         {
 #>
-              <#= CamelCase(apiParameter.Id) #>: <#= CamelCase(apiParameter.Id) #>Param,
+              <#= TextConverter.CamelCase(apiParameter.Id) #>: <#= TextConverter.CamelCase(apiParameter.Id) #>Param,
 <#
                                         }
                                     }
@@ -243,7 +243,7 @@ export class <#= PascalCase(_api.Id) #> {
                             else
                             {
 #>
-          `${this._<#= CamelCase(action.Id) #>Api}`,
+          `${this._<#= TextConverter.CamelCase(action.Id) #>Api}`,
           {},
           {});
 <#
@@ -257,7 +257,7 @@ export class <#= PascalCase(_api.Id) #> {
                             if (action.Parameters.AsEnumerable() != null && action.Parameters.AsEnumerable().Count() > 0)
                             {
 #>
-          `${this._<#= CamelCase(action.Id) #>Api}`,
+          `${this._<#= TextConverter.CamelCase(action.Id) #>Api}`,
           {
 <#
                                 ApiParameterInfo last = action.Parameters.AsEnumerable().Last();
@@ -268,13 +268,13 @@ export class <#= PascalCase(_api.Id) #> {
                                         if (apiParameter.Equals(last))
                                         {
 #>
-              <#= CamelCase(apiParameter.Id) #>: <#= CamelCase(apiParameter.Id) #>Param
+              <#= TextConverter.CamelCase(apiParameter.Id) #>: <#= TextConverter.CamelCase(apiParameter.Id) #>Param
 <#
                                         }
                                         else
                                         {
 #>
-              <#= CamelCase(apiParameter.Id) #>: <#= CamelCase(apiParameter.Id) #>Param,
+              <#= TextConverter.CamelCase(apiParameter.Id) #>: <#= TextConverter.CamelCase(apiParameter.Id) #>Param,
 <#
                                         }
                                     }
@@ -287,7 +287,7 @@ export class <#= PascalCase(_api.Id) #> {
                             else
                             {
 #>
-            `${this._<#= CamelCase(action.Id) #>Api}`,
+            `${this._<#= TextConverter.CamelCase(action.Id) #>Api}`,
             {},
             {});
 <#
@@ -301,7 +301,7 @@ export class <#= PascalCase(_api.Id) #> {
                             if (action.Parameters.AsEnumerable() != null && action.Parameters.AsEnumerable().Count() > 0)
                             {
 #>
-            `${this._<#= CamelCase(action.Id) #>Api}`,
+            `${this._<#= TextConverter.CamelCase(action.Id) #>Api}`,
             {
 <#
                                 ApiParameterInfo last = action.Parameters.AsEnumerable().Last();
@@ -312,13 +312,13 @@ export class <#= PascalCase(_api.Id) #> {
                                         if (apiParameter.Equals(last))
                                         {
 #>
-               <#= CamelCase(apiParameter.Id) #>: JSON.stringify(<#= CamelCase(apiParameter.Id) #>Param)
+               <#= TextConverter.CamelCase(apiParameter.Id) #>: JSON.stringify(<#= TextConverter.CamelCase(apiParameter.Id) #>Param)
 <#	
                                         }
                                         else
                                         {
 #>
-               <#= CamelCase(apiParameter.Id) #>: JSON.stringify(<#= CamelCase(apiParameter.Id) #>Param),
+               <#= TextConverter.CamelCase(apiParameter.Id) #>: JSON.stringify(<#= TextConverter.CamelCase(apiParameter.Id) #>Param),
 <#
                                         }
                                     }
@@ -330,7 +330,7 @@ export class <#= PascalCase(_api.Id) #> {
                             else
                             {
 #>
-            `${this._<#= CamelCase(action.Id) #>Api}`,
+            `${this._<#= TextConverter.CamelCase(action.Id) #>Api}`,
             {});
 <#
                             }
