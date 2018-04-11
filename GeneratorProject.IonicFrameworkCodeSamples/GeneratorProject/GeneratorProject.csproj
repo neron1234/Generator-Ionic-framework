@@ -255,6 +255,7 @@
     </None>
     <None Update="Platforms\Frontend\Ionic\DataModel\Templates\EnumTemplate.tt">
       <ClassNamespace>GeneratorProject.Platforms.Frontend.Ionic</ClassNamespace>
+      <CustomToolNamespace>GeneratorProject.Platforms.Frontend.Ionic</CustomToolNamespace>
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>EnumTemplate.cs</LastGenOutput>
     </None>
