@@ -21,7 +21,7 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\Package.tt"
+    #line 1 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\Package.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "15.0.0.0")]
     public partial class Package : TemplateBase
     {
@@ -33,7 +33,7 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
         {
             this.Write("\r\n");
             
-            #line 2 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\Package.tt"
+            #line 2 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\Package.tt"
 
     SmartAppInfo smartApp = (SmartAppInfo)Model;
     if (smartApp != null && smartApp.Title != null && smartApp.Version != null)
@@ -44,28 +44,28 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
             #line hidden
             this.Write("{\r\n  \"name\": \"");
             
-            #line 8 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\Package.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(smartApp.Id));
+            #line 8 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\Package.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(smartApp.Id.ToLower()));
             
             #line default
             #line hidden
             this.Write("\",\r\n  \"displayName\": \"");
             
-            #line 9 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\Package.tt"
+            #line 9 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\Package.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(smartApp.Title));
             
             #line default
             #line hidden
             this.Write("\",\r\n  \"version\": \"");
             
-            #line 10 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\Package.tt"
+            #line 10 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\Package.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_version));
             
             #line default
             #line hidden
-            this.Write("\",\r\n  \"private\": \"true\",\r\n");
+            this.Write("\",\r\n  \"private\": true,\r\n");
             
-            #line 12 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\Package.tt"
+            #line 12 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\Package.tt"
 
       if (smartApp.Description != null)
       {
@@ -75,56 +75,44 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
             #line hidden
             this.Write("  \"description\": \"");
             
-            #line 16 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\Package.tt"
+            #line 16 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\Package.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(smartApp.Description));
             
             #line default
             #line hidden
             this.Write("\",\r\n");
             
-            #line 17 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\Package.tt"
+            #line 17 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\Package.tt"
 
       }
 
             
             #line default
             #line hidden
-            this.Write(@"  ""dependencies"": {
-    ""@angular/common"": ""5.2.4"",
-    ""@angular/compiler"": ""5.2.4"",
-    ""@angular/compiler-cli"": ""5.2.4"",
-    ""@angular/core"": ""5.2.4"",
-    ""@angular/forms"": ""5.2.4"",
-    ""@angular/http"": ""5.2.4"",
-    ""@angular/platform-browser"": ""5.2.4"",
-    ""@angular/platform-browser-dynamic"": ""5.2.4"",
-    ""@ionic-native/core"": ""4.5.3"",
-    ""@ionic-native/splash-screen"": ""4.5.3"",
-    ""@ionic-native/status-bar"": ""4.5.3"",
-    ""@ngx-translate/core"": ""9.1.1"",
-    ""@ngx-translate/http-loader"": ""2.0.0"",
-    ""ionic-angular"": ""3.9.2"",
-    ""ionicons"": ""3.0.0"",
-    ""rxjs"": ""5.5.6"",
-    ""sw-toolbox"": ""3.6.0"",
-    ""zone.js"": ""0.8.20""
-  },
-  ""devDependencies"": {
-    ""@ionic/app-scripts"": ""3.1.8"",
-    ""@angular/tsc-wrapped"": ""4.4.6"",
-    ""typescript"": ""2.7.1""
-  },
-  ""scripts"": {
-    ""clean"": ""ionic-app-scripts clean"",
-    ""build"": ""ionic-app-scripts build"",
-    ""lint"": ""ionic-app-scripts lint"",
-    ""ionic:build"": ""ionic-app-scripts build"",
-    ""ionic:serve"": ""ionic-app-scripts serve""
-  }
-}
-");
+            this.Write("  \"dependencies\": {\r\n    \"@angular/common\": \"^5.2.9\",\n    \"@angular/compiler\": \"^" +
+                    "5.2.9\",\n    \"@angular/compiler-cli\": \"^5.2.9\",\n    \"@angular/core\": \"^5.2.9\",\n  " +
+                    "  \"@angular/forms\": \"^5.2.9\",\n    \"@angular/http\": \"^5.2.9\",\n    \"@angular/platf" +
+                    "orm-browser\": \"^5.2.9\",\n    \"@angular/platform-browser-dynamic\": \"^5.2.9\",\n    \"" +
+                    "@ionic-native/core\": \"^4.6.0\",\n    \"@ionic-native/splash-screen\": \"^4.6.0\",\n    " +
+                    "\"@ionic-native/status-bar\": \"^4.6.0\",\n    \"@ngx-translate/core\": \"^9.1.1\",\n    \"" +
+                    "@ngx-translate/http-loader\": \"^2.0.1\",\n    \"ionic-angular\": \"^3.9.2\",\n    \"ionic" +
+                    "ons\": \"^3.0.0\",\n    \"rxjs\": \"^5.5.7\",\n    \"sw-toolbox\": \"^3.6.0\",\n    \"zone.js\":" +
+                    " \"^0.8.26\"\r\n  },\r\n  \"devDependencies\": {\r\n    \"@angular/cli\": \"^1.6.0\",\n    \"@io" +
+                    "nic/app-scripts\": \"3.1.4\",\n    \"@types/jasmine\": \"^2.8.6\",\n    \"@types/node\": \"^" +
+                    "9.6.4\",\n    \"angular2-template-loader\": \"^0.6.2\",\n    \"html-loader\": \"^0.5.1\",\n " +
+                    "   \"jasmine\": \"^2.5.3\",\n    \"karma\": \"^2.0.0\",\n    \"karma-chrome-launcher\": \"^2." +
+                    "2.0\",\n    \"karma-jasmine\": \"^1.1.1\",\n    \"karma-jasmine-html-reporter\": \"^0.2.2\"" +
+                    ",\n    \"karma-mocha-reporter\": \"^2.2.5\",\n    \"karma-sourcemap-loader\": \"^0.3.7\",\n" +
+                    "    \"karma-webpack\": \"^2.0.3\",\n    \"null-loader\": \"^0.1.1\",\n    \"ts-loader\": \"^3" +
+                    ".0.3\",\n    \"ts-node\": \"^5.0.1\",\n    \"tslint\": \"^5.9.1\",\n    \"tslint-eslint-rules" +
+                    "\": \"^5.1.0\",\n    \"typescript\": \"^2.4.2\"\r\n  },\r\n  \"scripts\": {\r\n    \"clean\": \"ion" +
+                    "ic-app-scripts clean\",\n    \"build\": \"ionic-app-scripts build\",\n    \"ionic:build\"" +
+                    ": \"ionic-app-scripts build\",\n    \"ionic:serve\": \"ionic-app-scripts serve\",\n    \"" +
+                    "test\": \"karma start ./test-config/karma.conf.js\",\n    \"test-ci\": \"karma start ./" +
+                    "test-config/karma.conf.js --single-run\",\n    \"test-coverage\": \"karma start ./tes" +
+                    "t-config/karma.conf.js --coverage\"\r\n  }\r\n}\r\n");
             
-            #line 53 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\Package.tt"
+            #line 30 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\Package.tt"
 
     }
 

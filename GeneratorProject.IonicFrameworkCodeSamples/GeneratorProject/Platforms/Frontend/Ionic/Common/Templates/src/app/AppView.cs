@@ -20,7 +20,7 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppView.tt"
+    #line 1 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppView.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "15.0.0.0")]
     public partial class AppView : AppBaseClass
     {
@@ -53,7 +53,7 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
 -->
 ");
             
-            #line 29 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppView.tt"
+            #line 29 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppView.tt"
 
     SmartAppInfo smartApp = (SmartAppInfo)Model;
     if (smartApp != null && smartApp.Concerns.AsEnumerable() != null)
@@ -68,7 +68,7 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
                     "on-list>\r\n      <ion-item menuClose text-center>\r\n        <ion-icon name=\"ios-ar" +
                     "row-back\" float-left></ion-icon>\r\n");
             
-            #line 41 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppView.tt"
+            #line 41 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppView.tt"
  
         if (smartApp.Languages.AsEnumerable() != null && smartApp.Languages.AsEnumerable().Count() > 0)
         {
@@ -78,7 +78,7 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
             #line hidden
             this.Write("          {{ \"closeMenu\" | translate }}\r\n");
             
-            #line 46 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppView.tt"
+            #line 46 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppView.tt"
 
         }
         else
@@ -89,7 +89,7 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
             #line hidden
             this.Write("          CloseMenu\r\n");
             
-            #line 52 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppView.tt"
+            #line 52 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppView.tt"
 
         }
 
@@ -100,7 +100,7 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
                     "let m of _menu\" (click)=\"selected(m.component.toLowerCase())\">{{ m.name }}</a>\r\n" +
                     "      </ion-item-group>\r\n    </ion-list>\r\n  </ion-content>\r\n</ion-menu>\r\n");
             
-            #line 62 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppView.tt"
+            #line 62 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppView.tt"
 
       }
 
@@ -109,7 +109,7 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
             #line hidden
             this.Write("<ion-nav #nav></ion-nav>\r\n");
             
-            #line 66 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppView.tt"
+            #line 66 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppView.tt"
 
     }
     else if (smartApp != null && smartApp.Title != null)
@@ -120,7 +120,7 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
             #line hidden
             this.Write("<ion-header>\r\n  <ion-navbar>\r\n    <ion-title>\r\n");
             
-            #line 74 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppView.tt"
+            #line 74 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppView.tt"
 
       if (smartApp.Languages.AsEnumerable() != null && smartApp.Languages.AsEnumerable().Count() > 0)
       {
@@ -130,7 +130,7 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
             #line hidden
             this.Write("      {{ \"applicationTitle\" | translate }}\r\n");
             
-            #line 79 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppView.tt"
+            #line 79 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppView.tt"
 
       }
       else
@@ -141,14 +141,14 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
             #line hidden
             this.Write("      ");
             
-            #line 84 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppView.tt"
+            #line 84 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppView.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.PascalCase(smartApp.Title)));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 85 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppView.tt"
+            #line 85 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppView.tt"
 
       }
 
@@ -157,7 +157,7 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
             #line hidden
             this.Write("    </ion-title>\r\n  </ion-navbar>\r\n</ion-header>\r\n<ion-content padding>\r\n  <p>\r\n");
             
-            #line 93 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppView.tt"
+            #line 93 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppView.tt"
 
       if (smartApp.Languages.AsEnumerable() != null && smartApp.Languages.AsEnumerable().Count() > 0)
       {
@@ -167,7 +167,7 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
             #line hidden
             this.Write("    Welcome to {{ \"applicationTitle\" | translate }} application !\r\n");
             
-            #line 98 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppView.tt"
+            #line 98 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppView.tt"
 
       }
       else
@@ -178,14 +178,14 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
             #line hidden
             this.Write("    Welcome to ");
             
-            #line 103 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppView.tt"
+            #line 103 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppView.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.PascalCase(smartApp.Title)));
             
             #line default
             #line hidden
             this.Write(" application !\r\n");
             
-            #line 104 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppView.tt"
+            #line 104 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppView.tt"
 
       }
 
@@ -194,7 +194,7 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
             #line hidden
             this.Write("  </p>\r\n</ion-content>\r\n");
             
-            #line 109 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppView.tt"
+            #line 109 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppView.tt"
 
      }
 

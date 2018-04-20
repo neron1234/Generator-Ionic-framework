@@ -21,7 +21,7 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\theme\Variables.tt"
+    #line 1 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\theme\Variables.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "15.0.0.0")]
     public partial class Variables : TemplateBase
     {
@@ -56,7 +56,7 @@ $app-direction: ltr;
 
 ");
             
-            #line 24 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\theme\Variables.tt"
+            #line 24 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\theme\Variables.tt"
 
     switch (_theme)
     {
@@ -67,7 +67,7 @@ $app-direction: ltr;
             #line hidden
             this.Write("@import \'ionic.theme.dark\';\r\n");
             
-            #line 30 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\theme\Variables.tt"
+            #line 30 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\theme\Variables.tt"
 
         break;
       case "light":
@@ -77,7 +77,7 @@ $app-direction: ltr;
             #line hidden
             this.Write("@import \'ionic.theme.default\';\r\n");
             
-            #line 35 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\theme\Variables.tt"
+            #line 35 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\theme\Variables.tt"
 
         break;
         default:
@@ -87,7 +87,7 @@ $app-direction: ltr;
             #line hidden
             this.Write("@import \'ionic.theme.default\';\r\n");
             
-            #line 40 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\theme\Variables.tt"
+            #line 40 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\theme\Variables.tt"
 
         break;
     }

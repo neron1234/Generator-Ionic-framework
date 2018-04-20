@@ -20,7 +20,7 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppModule.tt"
+    #line 1 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppModule.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "15.0.0.0")]
     public partial class AppModule : AppBaseClass
     {
@@ -53,7 +53,7 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
  */
 ");
             
-            #line 29 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppModule.tt"
+            #line 29 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppModule.tt"
 
     SmartAppInfo smartApp = (SmartAppInfo)Model;
     if (smartApp != null && smartApp.Id != null)
@@ -71,14 +71,14 @@ import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ");
             
-            #line 41 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppModule.tt"
+            #line 41 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppModule.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(smartApp.Id));
             
             #line default
             #line hidden
             this.Write(" } from \'./app.component\';\r\n");
             
-            #line 42 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppModule.tt"
+            #line 42 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppModule.tt"
 
       if (smartApp.Api.AsEnumerable() != null)
       {
@@ -88,7 +88,7 @@ import { ");
             #line hidden
             this.Write("import { DataService } from \'../services/data.service\';\r\n");
             
-            #line 47 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppModule.tt"
+            #line 47 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppModule.tt"
 
       }
 
@@ -104,35 +104,35 @@ import { ");
             #line hidden
             this.Write("import { ");
             
-            #line 57 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppModule.tt"
+            #line 57 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppModule.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(layoutModule));
             
             #line default
             #line hidden
             this.Write("PageModule } from \'../pages/");
             
-            #line 57 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppModule.tt"
+            #line 57 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppModule.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.CamelCase(concern)));
             
             #line default
             #line hidden
             this.Write("/");
             
-            #line 57 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppModule.tt"
+            #line 57 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppModule.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.CamelCase(layout)));
             
             #line default
             #line hidden
             this.Write("/");
             
-            #line 57 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppModule.tt"
+            #line 57 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppModule.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(layoutModuleToLower));
             
             #line default
             #line hidden
             this.Write(".module\';\r\n");
             
-            #line 58 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppModule.tt"
+            #line 58 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppModule.tt"
 
       }
 
@@ -141,7 +141,7 @@ import { ");
             #line hidden
             this.Write("\r\n");
             
-            #line 62 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppModule.tt"
+            #line 62 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppModule.tt"
 
       if (_languages.AsEnumerable() != null && _languages.AsEnumerable().Count() > 0)
       {
@@ -158,7 +158,7 @@ export function createTranslateLoader(http: HttpClient) {
 }
 ");
             
-            #line 73 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppModule.tt"
+            #line 73 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppModule.tt"
 
       }
 
@@ -167,7 +167,7 @@ export function createTranslateLoader(http: HttpClient) {
             #line hidden
             this.Write("\r\n/**\r\n * class: AppModule.\r\n");
             
-            #line 79 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppModule.tt"
+            #line 79 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppModule.tt"
 
       if (smartApp.Description != null)
       {
@@ -177,7 +177,7 @@ export function createTranslateLoader(http: HttpClient) {
             #line hidden
             this.Write(" * ");
             
-            #line 83 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppModule.tt"
+            #line 83 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppModule.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(smartApp.Description));
             
             #line default
@@ -185,7 +185,7 @@ export function createTranslateLoader(http: HttpClient) {
             this.Write(".\r\n * This is the main module of the application.\r\n * This module is generated fr" +
                     "om multiple domains.\r\n");
             
-            #line 86 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppModule.tt"
+            #line 86 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppModule.tt"
 
       }
       else
@@ -197,7 +197,7 @@ export function createTranslateLoader(http: HttpClient) {
             this.Write(" * This is the main module of the application.\r\n * This module is generated from " +
                     "multiple domains.\r\n");
             
-            #line 93 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppModule.tt"
+            #line 93 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppModule.tt"
 
       }
 
@@ -206,7 +206,7 @@ export function createTranslateLoader(http: HttpClient) {
             #line hidden
             this.Write(" */\r\n@NgModule({\r\n  declarations: [\r\n    ");
             
-            #line 99 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppModule.tt"
+            #line 99 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppModule.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.PascalCase(smartApp.Id)));
             
             #line default
@@ -214,7 +214,7 @@ export function createTranslateLoader(http: HttpClient) {
             this.Write("\r\n  ],\r\n  imports: [\r\n    BrowserModule,\r\n    CommonModule,\r\n    HttpClientModule" +
                     ",\r\n");
             
-            #line 105 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppModule.tt"
+            #line 105 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppModule.tt"
 
       if (smartApp.Concerns.AsEnumerable() != null && _rootLayout != null && _rootLayout.Id != null && _rootConcern != null && _rootConcern.Id != null)
       {
@@ -227,14 +227,14 @@ export function createTranslateLoader(http: HttpClient) {
             #line hidden
             this.Write("    ");
             
-            #line 112 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppModule.tt"
+            #line 112 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppModule.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(layoutModule));
             
             #line default
             #line hidden
             this.Write("PageModule,\r\n");
             
-            #line 113 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppModule.tt"
+            #line 113 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppModule.tt"
 
       }
       
@@ -248,7 +248,7 @@ export function createTranslateLoader(http: HttpClient) {
                     "provide: TranslateLoader,\r\n        useFactory: (createTranslateLoader),\r\n       " +
                     " deps: [HttpClient]\r\n      }\r\n    }),\r\n");
             
-            #line 127 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppModule.tt"
+            #line 127 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppModule.tt"
 
       }
 
@@ -257,21 +257,21 @@ export function createTranslateLoader(http: HttpClient) {
             #line hidden
             this.Write("    IonicModule.forRoot(");
             
-            #line 130 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppModule.tt"
+            #line 130 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppModule.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.PascalCase(smartApp.Id)));
             
             #line default
             #line hidden
             this.Write(")\r\n  ],\r\n  bootstrap: [IonicApp],\r\n  entryComponents: [\r\n    ");
             
-            #line 134 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppModule.tt"
+            #line 134 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppModule.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.PascalCase(smartApp.Id)));
             
             #line default
             #line hidden
             this.Write("\r\n  ],\r\n  providers: [\r\n");
             
-            #line 137 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppModule.tt"
+            #line 137 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppModule.tt"
 
       if (smartApp.Api.AsEnumerable() != null)
       {
@@ -281,7 +281,7 @@ export function createTranslateLoader(http: HttpClient) {
             #line hidden
             this.Write("    DataService,\r\n");
             
-            #line 142 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppModule.tt"
+            #line 142 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppModule.tt"
 
       }
 
@@ -291,7 +291,7 @@ export function createTranslateLoader(http: HttpClient) {
             this.Write("    StatusBar,\r\n    SplashScreen,\r\n    { provide: ErrorHandler, useClass: IonicEr" +
                     "rorHandler }\r\n  ]\r\n})\r\nexport class AppModule {}\r\n");
             
-            #line 151 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppModule.tt"
+            #line 151 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppModule.tt"
 
     }
 

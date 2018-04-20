@@ -2,6 +2,7 @@
   <!--/-:cnd -->
   <PropertyGroup>
     <TargetFramework>net461</TargetFramework>
+    <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Platforms\Frontend\Ionic\API\Templates\src\services\data.service.ts" />
@@ -12,6 +13,17 @@
     <None Remove="Platforms\Frontend\Ionic\Common\Templates\src\assets\imgs\logo.png" />
     <None Remove="Platforms\Frontend\Ionic\Common\Templates\tsconfig.json" />
     <None Remove="Platforms\Frontend\Ionic\Common\Templates\tslint.json" />
+    <None Remove="Platforms\Frontend\Ionic\UnitTests\Templates\src\services\data.service.spec.ts" />
+    <None Remove="Platforms\Frontend\Ionic\UnitTests\Templates\test-config\karma-test-shim.js" />
+    <None Remove="Platforms\Frontend\Ionic\UnitTests\Templates\test-config\karma.conf.js" />
+    <None Remove="Platforms\Frontend\Ionic\UnitTests\Templates\test-config\mocks\dataServiceMock.ts" />
+    <None Remove="Platforms\Frontend\Ionic\UnitTests\Templates\test-config\mocks\navMock.ts" />
+    <None Remove="Platforms\Frontend\Ionic\UnitTests\Templates\test-config\mocks\platformMock.ts" />
+    <None Remove="Platforms\Frontend\Ionic\UnitTests\Templates\test-config\mocks\splashScreenMock.ts" />
+    <None Remove="Platforms\Frontend\Ionic\UnitTests\Templates\test-config\mocks\statusBarMock.ts" />
+    <None Remove="Platforms\Frontend\Ionic\UnitTests\Templates\test-config\mocks\titleMock.ts" />
+    <None Remove="Platforms\Frontend\Ionic\UnitTests\Templates\test-config\mocks\translateServiceMock.ts" />
+    <None Remove="Platforms\Frontend\Ionic\UnitTests\Templates\test-config\webpack.test.js" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Platforms\Frontend\Ionic\API\Templates\src\services\data.service.ts">
@@ -37,6 +49,39 @@
     </Content>
     <Content Include="Platforms\Frontend\Ionic\Common\Templates\tslint.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Platforms\Frontend\Ionic\UnitTests\Templates\src\services\data.service.spec.ts">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Platforms\Frontend\Ionic\UnitTests\Templates\test-config\karma-test-shim.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Platforms\Frontend\Ionic\UnitTests\Templates\test-config\karma.conf.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Platforms\Frontend\Ionic\UnitTests\Templates\test-config\mocks\dataServiceMock.ts">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Platforms\Frontend\Ionic\UnitTests\Templates\test-config\mocks\navMock.ts">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Platforms\Frontend\Ionic\UnitTests\Templates\test-config\mocks\platformMock.ts">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Platforms\Frontend\Ionic\UnitTests\Templates\test-config\mocks\splashScreenMock.ts">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Platforms\Frontend\Ionic\UnitTests\Templates\test-config\mocks\statusBarMock.ts">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Platforms\Frontend\Ionic\UnitTests\Templates\test-config\mocks\titleMock.ts">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Platforms\Frontend\Ionic\UnitTests\Templates\test-config\mocks\translateServiceMock.ts">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Platforms\Frontend\Ionic\UnitTests\Templates\test-config\webpack.test.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>
@@ -166,6 +211,31 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>LayoutViewTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Platforms\Frontend\Ionic\UnitTests\Templates\LanguagePageSpecTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>LanguagePageSpecTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Platforms\Frontend\Ionic\UnitTests\Templates\MocksTemplate.cs">
+      <DependentUpon>MocksTemplate.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="Platforms\Frontend\Ionic\UnitTests\Templates\ServiceSpecTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ServiceSpecTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>AppComponentSpecTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Platforms\Frontend\Ionic\UnitTests\Templates\ComponentSpecTemplate.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>ComponentSpecTemplate.tt</DependentUpon>
     </Compile>
     <Compile Update="Platforms\Frontend\Ionic\ViewModel\Templates\ViewModelTemplate.cs">
       <DesignTime>True</DesignTime>
@@ -312,6 +382,36 @@
       <CustomToolNamespace>GeneratorProject.Platforms.Frontend.Ionic</CustomToolNamespace>
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>LayoutViewTemplate.cs</LastGenOutput>
+    </None>
+    <None Update="Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt">
+      <CustomToolNamespace>GeneratorProject.Platforms.Frontend.Ionic</CustomToolNamespace>
+      <LastGenOutput>AppComponentSpecTemplate.cs</LastGenOutput>
+      <ClassNamespace>GeneratorProject.Platforms.Frontend.Ionic</ClassNamespace>
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+    </None>
+    <None Update="Platforms\Frontend\Ionic\UnitTests\Templates\ComponentSpecTemplate.tt">
+      <CustomToolNamespace>GeneratorProject.Platforms.Frontend.Ionic</CustomToolNamespace>
+      <LastGenOutput>ComponentSpecTemplate.cs</LastGenOutput>
+      <ClassNamespace>GeneratorProject.Platforms.Frontend.Ionic</ClassNamespace>
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+    </None>
+    <None Update="Platforms\Frontend\Ionic\UnitTests\Templates\LanguagePageSpecTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>LanguagePageSpecTemplate.cs</LastGenOutput>
+      <CustomToolNamespace>GeneratorProject.Platforms.Frontend.Ionic</CustomToolNamespace>
+      <ClassNamespace>GeneratorProject.Platforms.Frontend.Ionic</ClassNamespace>
+    </None>
+    <None Update="Platforms\Frontend\Ionic\UnitTests\Templates\ServiceSpecTemplate.tt">
+      <CustomToolNamespace>GeneratorProject.Platforms.Frontend.Ionic</CustomToolNamespace>
+      <LastGenOutput>ServiceSpecTemplate.cs</LastGenOutput>
+      <ClassNamespace>GeneratorProject.Platforms.Frontend.Ionic</ClassNamespace>
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+    </None>
+    <None Update="Platforms\Frontend\Ionic\UnitTests\Templates\MocksTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>MocksTemplate.cs</LastGenOutput>
+      <ClassNamespace>GeneratorProject.Platforms.Frontend.Ionic</ClassNamespace>
+      <CustomToolNamespace>GeneratorProject.Platforms.Frontend.Ionic</CustomToolNamespace>
     </None>
     <None Update="Platforms\Frontend\Ionic\ViewModel\Templates\ViewModelTemplate.tt">
       <ClassNamespace>GeneratorProject.Platforms.Frontend.Ionic</ClassNamespace>

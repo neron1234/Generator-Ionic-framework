@@ -21,7 +21,7 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\Manifest.tt"
+    #line 1 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\Manifest.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "15.0.0.0")]
     public partial class Manifest : TemplateBase
     {
@@ -55,7 +55,7 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
  */
 ");
             
-            #line 23 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\Manifest.tt"
+            #line 23 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\Manifest.tt"
 
     SmartAppInfo smartApp = (SmartAppInfo)Model;
     if (smartApp != null && smartApp.Title != null)
@@ -66,14 +66,14 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
             #line hidden
             this.Write("{\r\n  \"name\": \"");
             
-            #line 29 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\Manifest.tt"
+            #line 29 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\Manifest.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(smartApp.Title));
             
             #line default
             #line hidden
             this.Write("\",\r\n");
             
-            #line 30 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\Manifest.tt"
+            #line 30 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\Manifest.tt"
 
       if (smartApp.SmallTitle != null)
       {
@@ -83,14 +83,14 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
             #line hidden
             this.Write("  \"short_name\": \"");
             
-            #line 34 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\Manifest.tt"
+            #line 34 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\Manifest.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(smartApp.SmallTitle));
             
             #line default
             #line hidden
             this.Write("\",\r\n");
             
-            #line 35 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\Manifest.tt"
+            #line 35 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\Manifest.tt"
 
       }
 
@@ -99,7 +99,7 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
             #line hidden
             this.Write("  \"start_url\": \"index.html\",\r\n  \"display\": \"standalone\"\r\n}\r\n");
             
-            #line 41 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\Manifest.tt"
+            #line 41 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\Manifest.tt"
 
     }
 

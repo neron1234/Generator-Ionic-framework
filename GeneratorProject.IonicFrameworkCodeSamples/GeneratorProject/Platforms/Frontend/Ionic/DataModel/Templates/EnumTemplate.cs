@@ -21,7 +21,7 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\DataModel\Templates\EnumTemplate.tt"
+    #line 1 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\DataModel\Templates\EnumTemplate.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "15.0.0.0")]
     public partial class EnumTemplate : TemplateBase
     {
@@ -55,7 +55,7 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
  */
 ");
             
-            #line 23 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\DataModel\Templates\EnumTemplate.tt"
+            #line 23 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\DataModel\Templates\EnumTemplate.tt"
 
     if (_entity != null && _entity.Id != null)
     {
@@ -65,7 +65,7 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
             #line hidden
             this.Write("/**\r\n * class: ");
             
-            #line 28 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\DataModel\Templates\EnumTemplate.tt"
+            #line 28 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\DataModel\Templates\EnumTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.PascalCase(_entity.Id)));
             
             #line default
@@ -74,14 +74,14 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
                     "tion is a reference used in viewModels or\r\n * in models.\r\n * That enumeration is" +
                     " generated from DataModel domain.\r\n */\r\nexport enum ");
             
-            #line 34 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\DataModel\Templates\EnumTemplate.tt"
+            #line 34 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\DataModel\Templates\EnumTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.PascalCase(_entity.Id)));
             
             #line default
             #line hidden
             this.Write("Enum {\r\n");
             
-            #line 35 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\DataModel\Templates\EnumTemplate.tt"
+            #line 35 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\DataModel\Templates\EnumTemplate.tt"
 
         if (_entity.Values.AsEnumerable() != null)
         {
@@ -97,21 +97,21 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
             #line hidden
             this.Write("  /**\r\n   * Change the index by a string to fit string enums.\r\n   */\r\n  ");
             
-            #line 48 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\DataModel\Templates\EnumTemplate.tt"
+            #line 48 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\DataModel\Templates\EnumTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.CamelCase(value.Id).ToUpper()));
             
             #line default
             #line hidden
             this.Write(" = ");
             
-            #line 48 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\DataModel\Templates\EnumTemplate.tt"
+            #line 48 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\DataModel\Templates\EnumTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(index));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 49 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\DataModel\Templates\EnumTemplate.tt"
+            #line 49 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\DataModel\Templates\EnumTemplate.tt"
 
                 }
                 else if (value.Id != null)
@@ -122,21 +122,21 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
             #line hidden
             this.Write("  /**\r\n   * Change the index by a string to fit string enums.\r\n   */\r\n  ");
             
-            #line 57 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\DataModel\Templates\EnumTemplate.tt"
+            #line 57 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\DataModel\Templates\EnumTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.CamelCase(value.Id).ToUpper()));
             
             #line default
             #line hidden
             this.Write(" = ");
             
-            #line 57 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\DataModel\Templates\EnumTemplate.tt"
+            #line 57 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\DataModel\Templates\EnumTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(index));
             
             #line default
             #line hidden
             this.Write(",\r\n");
             
-            #line 58 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\DataModel\Templates\EnumTemplate.tt"
+            #line 58 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\DataModel\Templates\EnumTemplate.tt"
 
                 }
                 index++;
@@ -148,7 +148,7 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
             #line hidden
             this.Write("}\r\n");
             
-            #line 65 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\DataModel\Templates\EnumTemplate.tt"
+            #line 65 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\DataModel\Templates\EnumTemplate.tt"
 
     }
 

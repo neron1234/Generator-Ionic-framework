@@ -164,22 +164,6 @@ export class <#= layout #> {
                             string[] actionTargetSplitted = action.Target.Split('.');
                             string targetedConcern = TextConverter.CamelCase(actionTargetSplitted[0]);
                             string targetedLayout = TextConverter.CamelCase(actionTargetSplitted[1]);
-
-                            if (_layout.IsVisibleInMenu)
-                            {
-#>
-  /**
-   * method: on<#= TextConverter.PascalCase(action.Id) #>
-   * That method is a navigation method.
-   */
-  public on<#= TextConverter.PascalCase(action.Id) #>() {
-    this._nav.setRoot('<#= targetedConcern + "-" + targetedLayout #>');
-  }
-
-<#
-                            }
-                            else
-                            {
 #>
   /**
    * method: on<#= TextConverter.PascalCase(action.Id) #>
@@ -190,7 +174,6 @@ export class <#= layout #> {
   }
 
 <#
-                            }
                         }
                         break;
                     case "method":
@@ -224,6 +207,7 @@ export class <#= layout #> {
   /**
    * method: on<#= TextConverter.PascalCase(action.Id) #>
    * You should add a description of your method here.
+   * that method is an Api service call method.
 <#
                                             if (apiA.Parameters.AsEnumerable() != null && apiA.Parameters.AsEnumerable().Count() > 0)
                                             {
@@ -231,14 +215,9 @@ export class <#= layout #> {
                                                 {
                                                     if (apiParameter.Id != null)
                                                     {
-                                                        string parameterIsModel = IsModel(apiParameter.TypeScriptType());
                                                         string type = apiParameter.TypeScriptType();
-                                                        if (!parameterIsModel.Equals(""))
-                                                        {
-                                                            type = TextConverter.PascalCase(type);
-                                                        }
 #>
-   * @param <#= TextConverter.CamelCase(apiParameter.Id) #> `<#= type + parameterIsModel #>`.
+   * @param <#= TextConverter.CamelCase(apiParameter.Id) #> `<#= type #>`.
 <#
                                                     }
                                                 }
@@ -255,22 +234,17 @@ export class <#= layout #> {
                                                 {
                                                     if (apiParameter.Id != null)
                                                     {
-                                                        string parameterIsModel = IsModel(apiParameter.TypeScriptType());
                                                         string type = apiParameter.TypeScriptType();
-                                                        if (!parameterIsModel.Equals(""))
-                                                        {
-                                                            type = TextConverter.PascalCase(type);
-                                                        }
                                                         if (apiParameter.Equals(last))
                                                         {
 #>
-    <#= TextConverter.CamelCase(apiParameter.Id) #>: <#= type + parameterIsModel #>
+    <#= TextConverter.CamelCase(apiParameter.Id) #>: <#= type #>
 <#
                                                         }
                                                         else
                                                         {
 #>
-    <#= TextConverter.CamelCase(apiParameter.Id) #>: <#= type + parameterIsModel #>,
+    <#= TextConverter.CamelCase(apiParameter.Id) #>: <#= type #>,
 <#
                                                         }
                                                     }
@@ -320,8 +294,8 @@ export class <#= layout #> {
 #>
   /**
    * method: onLanguage.
-   * That method enables to quit the language
-   * page with an html button.
+   * That method enables to enter language
+   * page with a button.
    */
   public onLanguage() {
     this._nav.push(LanguagePage);
@@ -335,7 +309,7 @@ export class <#= layout #> {
 #>
   /**
    * method: ionViewWillEnter.
-   * Base event from Ionic to trigger
+   * Base Ionic event which triggers
    * global menu loading associated with
    * each layout's specific menu.
    */

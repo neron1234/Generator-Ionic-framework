@@ -115,7 +115,7 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
         /// Generating typescript models containing the
         /// definition of the viewmodel for the current layout.
         /// </summary>
-        /// <param name="layout">A layout.</param>
+        /// <param name="dataModel">A dataModel.</param>
         private void TransformViewModel(EntityInfo dataModel)
         {
             if (dataModel != null && dataModel.Id != null)

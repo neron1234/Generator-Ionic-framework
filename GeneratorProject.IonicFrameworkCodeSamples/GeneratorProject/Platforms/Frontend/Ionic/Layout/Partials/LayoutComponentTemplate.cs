@@ -88,7 +88,6 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
         /// </summary>
         /// <param name="apis">A list of api.</param>
         /// <param name="layoutActions">A list of layout actions.</param>
-        /// <returns></returns>
         public void getApiViewModels(ApiList apis, ActionList layoutActions)
         {
             if (layoutActions.AsEnumerable() != null)
@@ -124,24 +123,6 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
                         if (apiAction.ReturnType != null && apiAction.ReturnType.Id != null && !_viewModels.AsEnumerable().Contains(TextConverter.PascalCase(apiAction.ReturnType.Id)))
                             _viewModels.Add(TextConverter.PascalCase(apiAction.ReturnType.Id));
                     }
-        }
-
-        /// <summary>
-        /// Check if the type given is a model or a primitive type. Return a string.
-        /// </summary>
-        /// <param name="type">A type.</param>
-        public string IsModel(string type)
-        {
-            string result = "";
-            switch (type.ToLower())
-            {
-                case "date": break;
-                case "string": break;
-                case "number": break;
-                case "boolean": break;
-                default: result = ""; break;
-            }
-            return result;
         }
 
         /// <summary>

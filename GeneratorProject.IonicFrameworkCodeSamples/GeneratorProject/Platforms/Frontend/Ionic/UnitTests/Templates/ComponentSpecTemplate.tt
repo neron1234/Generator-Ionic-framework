@@ -1,0 +1,356 @@
+<#@ include file="..\..\Base\Templates\Include.tt" #>
+<#@ import namespace="Mobioos.Foundation.Jade.Extensions" #>
+<#
+    if (_smartAppId != null && _concernId != null && _layout != null && _layout.Id != null)
+    {
+        string smartAppId = TextConverter.PascalCase(_smartAppId);
+        string layout = TextConverter.PascalCase(_concernId) + TextConverter.PascalCase(_layout.Id);
+        string layoutToLower = TextConverter.CamelCase(_concernId) + "-" + TextConverter.CamelCase(_layout.Id);
+#>
+import { IonicModule, NavController, Platform } from 'ionic-angular';
+import { NavMock } from '../../../../test-config/mocks/navMock';
+import { PlatformMock } from '../../../../test-config/mocks/platformMock';
+import { SplashScreen } from '@ionic-native/splash-screen';
+import { SplashScreenMock } from '../../../../test-config/mocks/splashScreenMock';
+import { StatusBar } from '@ionic-native/status-bar';
+import { StatusBarMock } from '../../../../test-config/mocks/statusBarMock';
+import { Title } from '@angular/platform-browser';
+import { TitleMock } from '../../../../test-config/mocks/titleMock';
+import { async, ComponentFixture, fakeAsync, flushMicrotasks, TestBed } from '@angular/core/testing';
+<#
+        bool isLanguages = false;
+        if (_languages.AsEnumerable() != null && _languages.AsEnumerable().Count() > 0)
+        {
+            isLanguages = true;
+        }
+
+        if (isLanguages)
+        {
+#>
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateServiceMock } from '../../../../test-config/mocks/translateServiceMock';
+import { LanguagePageModule } from '../../language/language.module';
+import { LanguagePage } from '../../language/language';
+<#
+        }
+#>
+import { <#= smartAppId #> } from '../../../app/app.component';
+import { <#= layout #> } from "./<#= layoutToLower #>";
+<#
+        if (_viewModels.AsEnumerable() != null && _viewModels.AsEnumerable().Count() > 0)
+        {
+            foreach (string viewModel in _viewModels.AsEnumerable())
+            {
+#>
+import { <#= TextConverter.PascalCase(viewModel) #> } from '../../../viewModels/<#= TextConverter.CamelCase(viewModel) #>';
+<#
+            }
+        }
+
+        if (_apiDomainServices.AsEnumerable() != null && _apiDomainServices.AsEnumerable().Count() > 0)
+        {
+            foreach (string service in _apiDomainServices.AsEnumerable())
+            {
+#>
+import { <#= TextConverter.PascalCase(service) #> } from '../../../services/<#= TextConverter.CamelCase(service) #>.service';
+import { <#= TextConverter.PascalCase(service) #>Mock } from '../../../../test-config/mocks/<#= TextConverter.CamelCase(service) #>Mock';
+<#
+            }
+        }
+#>
+describe('<#= layout #> Component', () => {
+  let fixture: ComponentFixture<<#= layout #>>;
+  let component: <#= layout #>;
+  let spy: jasmine.Spy;
+
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      declarations: [
+        <#= smartAppId #>,
+        <#= layout #>
+      ],
+      imports: [
+<#
+        if (isLanguages)
+        {
+#>
+        LanguagePageModule,
+        TranslateModule.forChild(),
+<#
+        }
+#>
+        IonicModule.forRoot(<#= smartAppId #>)
+      ],
+      providers: [
+<#
+        if (_apiDomainServices.AsEnumerable() != null && _apiDomainServices.AsEnumerable().Count() > 0)
+        {
+            foreach (string service in _apiDomainServices.AsEnumerable())
+            {
+#>
+        { provide: <#= TextConverter.PascalCase(service) #>, useClass: <#= TextConverter.PascalCase(service) #>Mock },
+<#
+            }
+        }
+#>
+        { provide: Platform, useClass: PlatformMock },
+        { provide: StatusBar, useClass: StatusBarMock },
+        { provide: SplashScreen, useClass: SplashScreenMock },
+<#
+        if (isLanguages)
+        {
+#>
+        { provide: TranslateService, useClass: TranslateServiceMock },
+<#
+        }
+#>
+        { provide: NavController, useClass: NavMock },
+        { provide: Title, useClass: TitleMock },
+      ]
+    }).compileComponents();
+  }));
+
+  beforeEach(async() => {
+    fixture = TestBed.createComponent(<#= layout #>);
+    component = fixture.componentInstance;
+  });
+  
+  afterEach(() => {
+    fixture.destroy();
+    component = null;
+  });
+
+  it('<#= layout #> Component: should be created', fakeAsync(() => {
+    expect(component instanceof <#= layout #>).toBeTruthy();
+  }));
+
+<#
+        if (isLanguages)
+        {
+#>
+  it('<#= layout #> Component: should navigate to language page', fakeAsync(() => {
+    spy = spyOn(component, 'onLanguage').and.callThrough();
+    component.onLanguage();
+    flushMicrotasks();
+    expect(spy).toHaveBeenCalled();
+    spy = spyOn(component._nav, 'push').and.callThrough();
+    component.onLanguage();
+    flushMicrotasks();
+    expect(spy).toHaveBeenCalledWith(LanguagePage);
+    spy.calls.mostRecent().returnValue.then((result) => {
+      expect(result).toEqual('PUSH');
+    });
+  }));
+<#
+        }
+
+        if (_layout.Actions.AsEnumerable() != null)
+        {
+            foreach (ActionInfo action in _layout.Actions.AsEnumerable())
+            {
+                switch (action.Type.ToLower())
+                {
+                    case "navigation":
+                        if (action.Target != null)
+                        {
+                            string[] actionTargetSplitted = action.Target.Split('.');
+                            string targetedConcern = TextConverter.CamelCase(actionTargetSplitted[0]);
+                            string targetedLayout = TextConverter.CamelCase(actionTargetSplitted[1]);
+#>
+  it('<#= layout #> Component - on<#= TextConverter.PascalCase(action.Id) #>: should navigate to <#= targetedConcern + "-" + targetedLayout #> page', fakeAsync(() => {
+    spy = spyOn(component, 'on<#= TextConverter.PascalCase(action.Id) #>').and.callThrough();
+    component.on<#= TextConverter.PascalCase(action.Id) #>();
+    flushMicrotasks();
+    expect(spy).toHaveBeenCalled();
+    spy = spyOn(component._nav, 'push').and.callThrough();
+    component.on<#= TextConverter.PascalCase(action.Id) #>();
+    flushMicrotasks();
+    expect(spy).toHaveBeenCalledWith('<#= targetedConcern + "-" + targetedLayout #>');
+    spy.calls.mostRecent().returnValue.then((result) => {
+      expect(result).toEqual('PUSH');
+    });
+  }));
+
+<#
+                        }
+                        break;
+                    case "method":
+#>
+  it('<#= layout #> Component - on<#= TextConverter.PascalCase(action.Id) #>: should do nothing', fakeAsync(() => {
+    spy = spyOn(component, 'on<#= TextConverter.PascalCase(action.Id) #>').and.callThrough();
+    component.on<#= TextConverter.PascalCase(action.Id) #>();
+    flushMicrotasks();
+    expect(spy).toHaveBeenCalled();
+    var result = spy.calls.mostRecent().returnValue;
+    expect(result).toBeUndefined();
+  }));
+
+<#
+                        break;
+                    case "dataget": case "datalist": case "datacreate": case "dataupdate": case "datadelete":
+                        if (action.Api != null && _api != null)
+                        {
+                            string[] actionSplitted = action.Api.Split('.');
+                            string apiService = actionSplitted[0];
+                            string apiAction = actionSplitted[1];
+
+                            foreach (ApiInfo api in _api.AsEnumerable())
+                            {
+                                if (api.Id.ToLower().Equals(apiService.ToLower()) && api.Actions.AsEnumerable() != null)
+                                {
+                                    foreach (ApiActionInfo apiA in api.Actions.AsEnumerable())
+                                    {
+                                        if (apiA.Id.ToLower().Equals(apiAction.ToLower()))
+                                        {
+#>
+  it('<#= layout #> Component - on<#= TextConverter.PascalCase(action.Id) #>: should use <#= TextConverter.CamelCase(api.Id) #> service to <#= TextConverter.PascalCase(action.Id) #>', fakeAsync(() => {
+<#
+                                            if (apiA.Parameters.AsEnumerable() != null && apiA.Parameters.AsEnumerable().Count() > 0)
+                                            {
+                                                foreach (ApiParameterInfo apiParameter in apiA.Parameters.AsEnumerable())
+                                                {
+                                                    if (apiParameter.Id != null)
+                                                    {
+                                                        string type = apiParameter.TypeScriptType();
+                                                        string value = getValueFromType(type);
+#>
+    var <#= TextConverter.CamelCase(apiParameter.Id) #> = <#= value #>;
+<#
+                                                    }
+                                                }
+                                            }
+#>
+    spy = spyOn(component, 'on<#= TextConverter.PascalCase(action.Id) #>').and.callThrough();
+    component.on<#= TextConverter.PascalCase(action.Id) #>(
+<#
+                                            if (apiA.Parameters.AsEnumerable() != null && apiA.Parameters.AsEnumerable().Count() > 0)
+                                            {
+                                                ApiParameterInfo last = apiA.Parameters.AsEnumerable().Last();
+                                                foreach (ApiParameterInfo apiParameter in apiA.Parameters.AsEnumerable())
+                                                {
+                                                    if (apiParameter.Id != null)
+                                                    {
+                                                        string type = apiParameter.TypeScriptType();
+                                                        string value = getValueFromType(type);
+                                                        if (apiParameter.Equals(last))
+                                                        {
+#>
+    <#= TextConverter.CamelCase(apiParameter.Id) #>
+<#
+                                                        }
+                                                        else
+                                                        {
+#>
+    <#= TextConverter.CamelCase(apiParameter.Id) #>,
+<#
+                                                        }
+                                                    }
+                                                }
+                                            }
+#>
+    );
+    flushMicrotasks();
+    expect(spy).toHaveBeenCalledWith(
+<#
+                                            if (apiA.Parameters.AsEnumerable() != null && apiA.Parameters.AsEnumerable().Count() > 0)
+                                            {
+                                                ApiParameterInfo last = apiA.Parameters.AsEnumerable().Last();
+                                                foreach (ApiParameterInfo apiParameter in apiA.Parameters.AsEnumerable())
+                                                {
+                                                    if (apiParameter.Id != null)
+                                                    {
+                                                        string type = apiParameter.TypeScriptType();
+                                                        string value = getValueFromType(type);
+                                                        if (apiParameter.Equals(last))
+                                                        {
+#>
+    <#= TextConverter.CamelCase(apiParameter.Id) #>
+<#
+                                                        }
+                                                        else
+                                                        {
+#>
+    <#= TextConverter.CamelCase(apiParameter.Id) #>,
+<#
+                                                        }
+                                                    }
+                                                }
+                                            }
+#>
+    );
+    spy = spyOn(component._<#= TextConverter.CamelCase(api.Id) #>, '<#= TextConverter.CamelCase(apiA.Id) #>').and.callThrough();
+    component.on<#= TextConverter.PascalCase(action.Id) #>(
+<#
+                                            if (apiA.Parameters.AsEnumerable() != null && apiA.Parameters.AsEnumerable().Count() > 0)
+                                            {
+                                                ApiParameterInfo last = apiA.Parameters.AsEnumerable().Last();
+                                                foreach (ApiParameterInfo apiParameter in apiA.Parameters.AsEnumerable())
+                                                {
+                                                    if (apiParameter.Id != null)
+                                                    {
+                                                        string type = apiParameter.TypeScriptType();
+                                                        string value = getValueFromType(type);
+                                                        if (apiParameter.Equals(last))
+                                                        {
+#>
+    <#= TextConverter.CamelCase(apiParameter.Id) #>
+<#
+                                                        }
+                                                        else
+                                                        {
+#>
+    <#= TextConverter.CamelCase(apiParameter.Id) #>,
+<#
+                                                        }
+                                                    }
+                                                }
+                                            }
+#>
+    );
+    flushMicrotasks();
+    expect(spy).toHaveBeenCalledWith(
+<#
+                                            if (apiA.Parameters.AsEnumerable() != null && apiA.Parameters.AsEnumerable().Count() > 0)
+                                            {
+                                                ApiParameterInfo last = apiA.Parameters.AsEnumerable().Last();
+                                                foreach (ApiParameterInfo apiParameter in apiA.Parameters.AsEnumerable())
+                                                {
+                                                    if (apiParameter.Id != null)
+                                                    {
+                                                        string type = apiParameter.TypeScriptType();
+                                                        string value = getValueFromType(type);
+                                                        if (apiParameter.Equals(last))
+                                                        {
+#>
+    <#= TextConverter.CamelCase(apiParameter.Id) #>
+<#
+                                                        }
+                                                        else
+                                                        {
+#>
+    <#= TextConverter.CamelCase(apiParameter.Id) #>,
+<#
+                                                        }
+                                                    }
+                                                }
+                                            }
+#>
+    );
+    var result = spy.calls.mostRecent().returnValue;
+    expect(result).toBeDefined();
+  }));
+<#
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        break;
+                }
+            }
+        }
+#>
+});
+<#
+    }
+#>

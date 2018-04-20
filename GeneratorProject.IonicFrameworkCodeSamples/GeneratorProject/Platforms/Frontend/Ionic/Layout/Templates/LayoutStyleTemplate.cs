@@ -21,7 +21,7 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutStyleTemplate.tt"
+    #line 1 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutStyleTemplate.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "15.0.0.0")]
     public partial class LayoutStyleTemplate : TemplateBase
     {
@@ -53,7 +53,7 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
 // Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ");
             
-            #line 21 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutStyleTemplate.tt"
+            #line 21 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutStyleTemplate.tt"
 
     if (_concernId != null && _layout != null && _layout.Id != null)
     {
@@ -63,14 +63,14 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
             #line default
             #line hidden
             
-            #line 26 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutStyleTemplate.tt"
+            #line 26 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutStyleTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(layoutToLower));
             
             #line default
             #line hidden
             this.Write("\r\n{\r\n  // TO DO\r\n}\r\n");
             
-            #line 30 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutStyleTemplate.tt"
+            #line 30 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutStyleTemplate.tt"
 
     }
 

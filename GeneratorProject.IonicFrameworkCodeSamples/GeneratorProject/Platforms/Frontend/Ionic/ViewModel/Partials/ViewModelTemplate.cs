@@ -15,6 +15,10 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
             _constructorParametersObj = getReferences(dataModel);
         }
 
+        /// <summary>
+        /// Retrieve all references of an Entity.
+        /// </summary>
+        /// <param name="entity">Entity which need to be inspected.</param>
         public List<PropertyInfo> getReferences(EntityInfo entity)
         {
             List<PropertyInfo> result = new List<PropertyInfo>();
@@ -35,6 +39,10 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
             return result;
         }
 
+        /// <summary>
+        /// Check if the type given is a model or a primitive type. Return a string.
+        /// </summary>
+        /// <param name="property">A model property.</param>
         public string IsModel(PropertyInfo property)
         {
             string result = "";

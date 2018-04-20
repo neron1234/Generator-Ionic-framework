@@ -4,7 +4,7 @@ using System.IO;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace GeneratorProject.Tests.Frontend.Ionic
+namespace GeneratorProject.Tests.Ionic
 {
     public class IonicGeneratorTests : BaseGeneratorTests, IDisposable
     {
@@ -39,10 +39,15 @@ namespace GeneratorProject.Tests.Frontend.Ionic
             await viewModelActivity.Writing();
             Assert.NotNull(viewModelActivity);
 
-            LanguageActivity activity = new LanguageActivity("LanguageActivity", basePath);
-            await activity.Initializing(_context);
-            await activity.Writing();
-            Assert.NotNull(activity);
+            LanguageActivity languageActivity = new LanguageActivity("LanguageActivity", basePath);
+            await languageActivity.Initializing(_context);
+            await languageActivity.Writing();
+            Assert.NotNull(languageActivity);
+
+            UnitTestsActivity unitTestsActivity = new UnitTestsActivity("UnitTestsActivity", basePath);
+            await unitTestsActivity.Initializing(_context);
+            await unitTestsActivity.Writing();
+            Assert.NotNull(unitTestsActivity);
         }
 
         public void Dispose()

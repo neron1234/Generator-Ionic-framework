@@ -21,7 +21,7 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Language\Templates\JsonTemplate.tt"
+    #line 1 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Language\Templates\JsonTemplate.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "15.0.0.0")]
     public partial class JsonTemplate : TemplateBase
     {
@@ -33,7 +33,7 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
         {
             this.Write("\r\n{\r\n");
             
-            #line 3 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Language\Templates\JsonTemplate.tt"
+            #line 3 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Language\Templates\JsonTemplate.tt"
 
     if (_smartApp != null && _smartApp.Title != null && _smartApp.Concerns.AsEnumerable() != null && _language != null)
     { 
@@ -45,7 +45,7 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
             #line hidden
             this.Write("    \"closeMenu\": \"FermerMenu\",\r\n");
             
-            #line 10 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Language\Templates\JsonTemplate.tt"
+            #line 10 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Language\Templates\JsonTemplate.tt"
 
         }
         else
@@ -56,7 +56,7 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
             #line hidden
             this.Write("    \"closeMenu\": \"CloseMenu\",\r\n");
             
-            #line 16 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Language\Templates\JsonTemplate.tt"
+            #line 16 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Language\Templates\JsonTemplate.tt"
 
         }
 
@@ -70,14 +70,14 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
             #line hidden
             this.Write("\r\n    \"");
             
-            #line 25 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Language\Templates\JsonTemplate.tt"
+            #line 25 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Language\Templates\JsonTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.CamelCase(concern.Id)));
             
             #line default
             #line hidden
             this.Write("\": {\r\n");
             
-            #line 26 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Language\Templates\JsonTemplate.tt"
+            #line 26 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Language\Templates\JsonTemplate.tt"
 
                 foreach (LayoutInfo layout in concern.Layouts.AsEnumerable())
                 {
@@ -93,28 +93,28 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
             #line hidden
             this.Write("        \"");
             
-            #line 36 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Language\Templates\JsonTemplate.tt"
+            #line 36 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Language\Templates\JsonTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.CamelCase(layout.Id)));
             
             #line default
             #line hidden
             this.Write("Layout");
             
-            #line 36 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Language\Templates\JsonTemplate.tt"
+            #line 36 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Language\Templates\JsonTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.PascalCase(action.Id)));
             
             #line default
             #line hidden
             this.Write("Action\": \"");
             
-            #line 36 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Language\Templates\JsonTemplate.tt"
+            #line 36 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Language\Templates\JsonTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.PascalCase(action.Id)));
             
             #line default
             #line hidden
             this.Write("\",\r\n");
             
-            #line 37 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Language\Templates\JsonTemplate.tt"
+            #line 37 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Language\Templates\JsonTemplate.tt"
 
                             }
                         }
@@ -124,35 +124,35 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
             #line hidden
             this.Write("        \"");
             
-            #line 41 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Language\Templates\JsonTemplate.tt"
+            #line 41 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Language\Templates\JsonTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.CamelCase(layout.Id)));
             
             #line default
             #line hidden
             this.Write("LayoutTitle\": \"");
             
-            #line 41 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Language\Templates\JsonTemplate.tt"
+            #line 41 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Language\Templates\JsonTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.PascalCase(layout.Title)));
             
             #line default
             #line hidden
             this.Write("\",\r\n        \"");
             
-            #line 42 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Language\Templates\JsonTemplate.tt"
+            #line 42 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Language\Templates\JsonTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.CamelCase(layout.Id)));
             
             #line default
             #line hidden
             this.Write("LayoutDescription\": \"");
             
-            #line 42 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Language\Templates\JsonTemplate.tt"
+            #line 42 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Language\Templates\JsonTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.PascalCase(layout.Description)));
             
             #line default
             #line hidden
             this.Write("\",\r\n");
             
-            #line 43 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Language\Templates\JsonTemplate.tt"
+            #line 43 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Language\Templates\JsonTemplate.tt"
 
                     }
                 }
@@ -162,21 +162,21 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
             #line hidden
             this.Write("        \"");
             
-            #line 47 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Language\Templates\JsonTemplate.tt"
+            #line 47 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Language\Templates\JsonTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.CamelCase(concern.Id)));
             
             #line default
             #line hidden
             this.Write("ConcernTitle\": \"");
             
-            #line 47 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Language\Templates\JsonTemplate.tt"
+            #line 47 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Language\Templates\JsonTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.PascalCase(concern.Title)));
             
             #line default
             #line hidden
             this.Write("\"\r\n    },\r\n");
             
-            #line 49 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Language\Templates\JsonTemplate.tt"
+            #line 49 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Language\Templates\JsonTemplate.tt"
 
             }
         }
@@ -189,14 +189,14 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
             #line hidden
             this.Write("    \"applicationSmallTitle\": \"");
             
-            #line 56 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Language\Templates\JsonTemplate.tt"
+            #line 56 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Language\Templates\JsonTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.PascalCase(_smartApp.SmallTitle)));
             
             #line default
             #line hidden
             this.Write("\",\r\n");
             
-            #line 57 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Language\Templates\JsonTemplate.tt"
+            #line 57 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Language\Templates\JsonTemplate.tt"
 
         }
 
@@ -205,14 +205,14 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
             #line hidden
             this.Write("    \"applicationTitle\": \"");
             
-            #line 60 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Language\Templates\JsonTemplate.tt"
+            #line 60 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Language\Templates\JsonTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.PascalCase(_smartApp.Title)));
             
             #line default
             #line hidden
             this.Write("\"\r\n");
             
-            #line 61 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Language\Templates\JsonTemplate.tt"
+            #line 61 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Language\Templates\JsonTemplate.tt"
 
     }
 

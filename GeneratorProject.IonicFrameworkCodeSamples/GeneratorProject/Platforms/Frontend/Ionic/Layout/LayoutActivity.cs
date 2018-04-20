@@ -107,7 +107,6 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
         /// <param name="api">A lit of apis.</param>
         public void TransformLayoutModule(string concernId, LayoutInfo layout, LanguageList languages, ApiList api)
         {
-            // languages can be null
             if (concernId != null && layout != null && layout.Id != null && api != null)
             {
                 LayoutModuleTemplate layoutModuleTemplate = new LayoutModuleTemplate(concernId, layout, languages, api);
@@ -133,7 +132,6 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
         /// <param name="api">A list of apis.</param>
         public void TransformLayoutComponent(ConcernInfo concern, LayoutInfo layout, LanguageList languages, ApiList api)
         {
-            // languages can be null
             if (concern != null && concern.Id != null && layout != null && layout.Id != null && api != null)
             {
                 LayoutComponentTemplate layoutComponentTemplate = new LayoutComponentTemplate(concern, layout, languages, api);

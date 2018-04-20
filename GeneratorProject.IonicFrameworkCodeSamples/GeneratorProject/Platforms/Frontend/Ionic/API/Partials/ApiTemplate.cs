@@ -45,24 +45,6 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
         }
 
         /// <summary>
-        /// Check if the given type is a model or primitive type. Return a string
-        /// </summary>
-        /// <param name="type">A type.</param>
-        public string IsModel(string type)
-        {
-            string result = "";
-            switch (type.ToLower())
-            {
-                case "date": break;
-                case "string": break;
-                case "number": break;
-                case "boolean": break;
-                default: result = ""; break;
-            }
-            return result;
-        }
-
-        /// <summary>
         /// Check if the given type is a model or primitive type. Return a boolean.
         /// </summary>
         /// <param name="type">A type.</param>

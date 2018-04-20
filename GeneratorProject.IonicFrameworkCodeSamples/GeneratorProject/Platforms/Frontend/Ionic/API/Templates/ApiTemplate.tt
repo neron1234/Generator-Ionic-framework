@@ -98,14 +98,9 @@ export class <#= TextConverter.PascalCase(_api.Id) #> {
                         {
                             if (apiParameter.Id != null)
                             {
-                                string parameterIsModel = IsModel(apiParameter.TypeScriptType());
                                 string type = apiParameter.TypeScriptType();
-                                if (!parameterIsModel.Equals(""))
-                                {
-                                    type = TextConverter.PascalCase(type);
-                                }
 #>
-     * @param <#= TextConverter.CamelCase(apiParameter.Id) #>Param `<#= type + parameterIsModel #>`.
+     * @param <#= TextConverter.CamelCase(apiParameter.Id) #>Param `<#= type #>`.
 <#
                             }
                         }
@@ -127,22 +122,17 @@ export class <#= TextConverter.PascalCase(_api.Id) #> {
                         {
                             if (apiParameter.Id != null)
                             {
-                                string parameterIsModel = IsModel(apiParameter.TypeScriptType());
                                 string type = apiParameter.TypeScriptType();
-                                if (!parameterIsModel.Equals(""))
-                                {
-                                    type = TextConverter.PascalCase(type);
-                                }
                                 if (apiParameter.Equals(last))
                                 {
 #>
-        <#= TextConverter.CamelCase(apiParameter.Id) #>Param: <#= type + parameterIsModel #>
+        <#= TextConverter.CamelCase(apiParameter.Id) #>Param: <#= type #>
 <#
                                 }
                                 else
                                 {
 #>
-        <#= TextConverter.CamelCase(apiParameter.Id) #>Param: <#= type + parameterIsModel #>,
+        <#= TextConverter.CamelCase(apiParameter.Id) #>Param: <#= type #>,
 <#
                                 }
                             }

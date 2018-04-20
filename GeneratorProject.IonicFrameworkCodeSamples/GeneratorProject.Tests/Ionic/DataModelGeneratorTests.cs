@@ -4,7 +4,7 @@ using System.IO;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace GeneratorProject.Tests.Frontend.Ionic
+namespace GeneratorProject.Tests.Ionic
 {
     public class DataModelGeneratorTests : BaseGeneratorTests, IDisposable
     {

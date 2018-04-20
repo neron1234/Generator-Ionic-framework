@@ -82,6 +82,7 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
         /// Start function for the generation of all apis.
         /// </summary>
         /// <param name="smartApp">A SmartApp's manifeste.</param>
+        /// <param name="apiTemplatesDirectoryPath">Path to api activity templates.</param>
         private void TransformApi(SmartAppInfo smartApp, string apiTemplatesDirectoryPath)
         {
             if (smartApp != null && smartApp.Api.AsEnumerable() != null)
