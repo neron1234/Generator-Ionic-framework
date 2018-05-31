@@ -45,9 +45,6 @@ export class DataService {
      */
     get(uri: string, parameters: { [param: string]: string | string[] }) {
         return this.http.get(uri, {
-            headers: new HttpHeaders({
-                'Content-Type': 'application/json'
-            }),
             params: parameters
         })
         .catch(error => {
@@ -66,9 +63,6 @@ export class DataService {
      */
     post(uri: string, body, parameters: { [param: string]: string | string[] }) {
         return this.http.post(uri, body, {
-            headers: new HttpHeaders({
-                'Content-Type': 'application/json'
-            }),
             params: parameters
         })
         .catch(error => {
@@ -87,9 +81,6 @@ export class DataService {
      */
     put(uri: string, body, parameters: { [param: string]: string | string[] }) {
         return this.http.put(uri, body, {
-            headers: new HttpHeaders({
-                'Content-Type': 'application/json'
-            }),
             params: parameters
         })
         .catch(error => {
@@ -107,9 +98,6 @@ export class DataService {
      */
     delete(uri: string, parameters: { [param: string]: string | string[] }) {
         return this.http.delete(uri, {
-            headers: new HttpHeaders({
-                'Content-Type': 'application/json'
-            }),
             params: parameters
         })
         .catch(error => {

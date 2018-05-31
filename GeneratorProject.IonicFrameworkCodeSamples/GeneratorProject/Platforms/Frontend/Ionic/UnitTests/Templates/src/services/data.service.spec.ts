@@ -30,7 +30,6 @@ describe('DataService service', () => {
     });
     const req = httpTestingController.expectOne('/test');
     expect(req.request.method).toEqual('GET');
-    expect(req.request.headers.get('Content-Type')).toEqual('application/json');
     req.flush(testData);
   });
 
@@ -41,7 +40,6 @@ describe('DataService service', () => {
     });
     const req = httpTestingController.expectOne('/test');
     expect(req.request.method).toEqual('POST');
-    expect(req.request.headers.get('Content-Type')).toEqual('application/json');
     req.flush(testData);
   });
 
@@ -52,7 +50,6 @@ describe('DataService service', () => {
     });
     const req = httpTestingController.expectOne('/test');
     expect(req.request.method).toEqual('PUT');
-    expect(req.request.headers.get('Content-Type')).toEqual('application/json');
     req.flush(testData);
   });
 
@@ -63,7 +60,6 @@ describe('DataService service', () => {
     });
     const req = httpTestingController.expectOne('/test');
     expect(req.request.method).toEqual('DELETE');
-    expect(req.request.headers.get('Content-Type')).toEqual('application/json');
     req.flush(testData);
   });
 });

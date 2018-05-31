@@ -1,9 +1,9 @@
-<Project Sdk="Microsoft.NET.Sdk">
-  <!--/-:cnd -->
+﻿<Project>
   <PropertyGroup>
     <TargetFramework>net461</TargetFramework>
     <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
   </PropertyGroup>
+  <Import Project="Sdk.props" Sdk="Microsoft.NET.Sdk" />
   <ItemGroup>
     <None Remove="Platforms\Frontend\Ionic\API\Templates\src\services\data.service.ts" />
     <None Remove="Platforms\Frontend\Ionic\Common\Templates\.editorconfig" />
@@ -420,14 +420,5 @@
       <LastGenOutput>ViewModelTemplate.cs</LastGenOutput>
     </None>
   </ItemGroup>
-
-  <PropertyGroup>
-    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
-    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
-    <TransformOnBuild>true</TransformOnBuild>
-    <OverwriteReadOnlyOutputFiles>true</OverwriteReadOnlyOutputFiles>
-    <TransformOutOfDateOnly>false</TransformOutOfDateOnly>
-  </PropertyGroup>
   <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" />
-  <Import Project="$(VSToolsPath)\TextTemplating\Microsoft.TextTemplating.targets" />
 </Project>
