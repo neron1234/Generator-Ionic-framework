@@ -1,9 +1,7 @@
-﻿using Mobioos.Scaffold.Core.Runtime.Attributes;
-using Mobioos.Foundation.Jade.Models;
+﻿using Mobioos.Foundation.Jade.Models;
 
 namespace GeneratorProject.Platforms.Frontend.Ionic
 {
-    [Generator(ActivityName = Constants.CommonActivityName, Order = 6)]
     public partial class AppModule : AppBaseClass
     {
         private LanguageList _languages { get; set; }

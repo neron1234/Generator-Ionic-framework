@@ -14,7 +14,7 @@ namespace GeneratorProject.Tests.Ionic
         public async Task Transform_Apis()
         {
             var basePath = Path.Combine(Path.GetTempPath(), _context.DynamicContext.Manifest.Id);
-            ApiActivity activity = new ApiActivity("ApiActivity", basePath);
+            ApiWorkflow activity = new ApiWorkflow();
             await activity.Initializing(_context);
             await activity.Writing();
             Assert.NotNull(activity);

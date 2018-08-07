@@ -4,7 +4,7 @@
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="Mobioos.Foundation.Jade.Models" #>
-<#@ import namespace="Mobioos.Scaffold.Generators.Helpers" #>
+<#@ import namespace="Mobioos.Scaffold.BaseGenerators.Helpers" #>
 /*
  * You should add your licence here, here is an example :
  *

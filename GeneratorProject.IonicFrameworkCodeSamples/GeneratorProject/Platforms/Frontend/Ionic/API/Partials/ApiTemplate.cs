@@ -1,8 +1,8 @@
-﻿using Mobioos.Foundation.Jade.Models;
-using Mobioos.Foundation.Jade.Extensions;
+﻿using Mobioos.Foundation.Jade.Extensions;
+using Mobioos.Foundation.Jade.Models;
+using Mobioos.Scaffold.BaseGenerators.Helpers;
 using System.Collections.Generic;
 using System.Linq;
-using Mobioos.Scaffold.Generators.Helpers;
 
 namespace GeneratorProject.Platforms.Frontend.Ionic
 {

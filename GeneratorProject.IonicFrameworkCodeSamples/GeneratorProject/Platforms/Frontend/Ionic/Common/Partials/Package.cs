@@ -1,10 +1,8 @@
-﻿using Mobioos.Scaffold.Core.Runtime.Attributes;
-using Mobioos.Foundation.Jade.Models;
-using Mobioos.Scaffold.TextTemplating;
+﻿using Mobioos.Foundation.Jade.Models;
+using Mobioos.Scaffold.BaseGenerators.TextTemplating;
 
 namespace GeneratorProject.Platforms.Frontend.Ionic
 {
-    [Generator(ActivityName = Constants.CommonActivityName, Order = 1)]
     public partial class Package : TemplateBase
     {
         public string _version { get; set; }

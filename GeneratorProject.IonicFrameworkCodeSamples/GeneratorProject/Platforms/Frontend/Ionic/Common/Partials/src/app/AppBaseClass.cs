@@ -1,7 +1,7 @@
 ﻿using Mobioos.Foundation.Jade.Models;
+using Mobioos.Scaffold.BaseGenerators.TextTemplating;
 using System;
 using System.Linq;
-using Mobioos.Scaffold.TextTemplating;
 
 namespace GeneratorProject.Platforms.Frontend.Ionic
 {

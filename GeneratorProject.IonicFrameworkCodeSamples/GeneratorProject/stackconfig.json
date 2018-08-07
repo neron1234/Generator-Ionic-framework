@@ -1,0 +1,11 @@
+{
+  "platform": "frontend",
+  "name": "Ionic",
+  "version": "1.0.0",
+  "tags" : [
+    "ionic",
+    "frontend"
+  ],
+  "description": "An Ionic frontend generator",
+  "audiences": "public"
+}
