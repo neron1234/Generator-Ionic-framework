@@ -22,8 +22,8 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
         {
             var prompts = new Stack<Question>();
             var choices = new List<Choice>();
-            choices.Add(new Choice { Key = "light", Name = "light", Value = "Light theme" });
-            choices.Add(new Choice { Key = "dark", Name = "dark", Value = "Dark theme" });
+            choices.Add(new Choice { Key = "light", Name = "Light", Value = "light" });
+            choices.Add(new Choice { Key = "dark", Name = "Dark", Value = "dark" });
 
             prompts.Push(new ChoiceQuestion()
             {
