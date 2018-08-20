@@ -1,5 +1,5 @@
-﻿using Foundation.Prompt;
-using Mobioos.Foundation.Jade.Models;
+﻿using Mobioos.Foundation.Jade.Models;
+using Mobioos.Foundation.Prompt;
 using Mobioos.Scaffold.BaseInfrastructure.Contexts;
 using Mobioos.Scaffold.BaseInfrastructure.Services.GeneratorsServices;
 using System;

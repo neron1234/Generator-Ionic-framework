@@ -1,5 +1,5 @@
-﻿using Foundation.Prompt;
-using Foundation.Prompt.Infrastructure;
+﻿using Mobioos.Foundation.Prompt;
+using Mobioos.Foundation.Prompt.Infrastructure;
 using Mobioos.Scaffold.BaseInfrastructure.Services.GeneratorsServices;
 using System;
 using System.Collections.Generic;

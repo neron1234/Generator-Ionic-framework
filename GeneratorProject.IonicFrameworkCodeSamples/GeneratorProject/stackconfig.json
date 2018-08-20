@@ -7,5 +7,6 @@
     "frontend"
   ],
   "description": "An Ionic frontend generator",
+  "assemblyName": "GeneratorProject",
   "audiences": "public"
 }
