@@ -28,7 +28,10 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
                 throw new ArgumentNullException(nameof(_context.Manifest));
 
             SmartAppInfo smartApp = _context.Manifest;
-            TransformLayouts(smartApp);
+            if (_context.BasePath != null)
+            {
+                TransformLayouts(smartApp);
+            }
             return Task.FromResult(ExecutionResult.Next());
         }
 

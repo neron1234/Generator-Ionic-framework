@@ -29,7 +29,10 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
                 throw new ArgumentNullException(nameof(_context.Manifest));
 
             SmartAppInfo smartApp = _context.Manifest;
-            TransformViewModels(smartApp);
+            if (_context.BasePath != null)
+            {
+                TransformViewModels(smartApp);
+            }
             return Task.FromResult(ExecutionResult.Next());
         }
 

@@ -29,8 +29,11 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
 
             SmartAppInfo smartApp = _context.Manifest;
             var unitTestsTemplates = "Platforms\\Frontend\\Ionic\\UnitTests\\Templates";
-            var unitTestsTemplatesDirectoryPath = Path.Combine(_context.GeneratorPath, unitTestsTemplates);
-            TransformUnitTests(smartApp, unitTestsTemplatesDirectoryPath);
+            if (_context.BasePath != null && _context.GeneratorPath != null)
+            {
+                var unitTestsTemplatesDirectoryPath = Path.Combine(_context.GeneratorPath, unitTestsTemplates);
+                TransformUnitTests(smartApp, unitTestsTemplatesDirectoryPath);
+            }
             return Task.FromResult(ExecutionResult.Next());
         }
 

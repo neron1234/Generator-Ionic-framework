@@ -29,8 +29,11 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
 
             SmartAppInfo smartApp = _context.Manifest;
             var apiTemplates = "Platforms\\Frontend\\Ionic\\API\\Templates";
-            var apiTemplatesDirectoryPath = Path.Combine(_context.GeneratorPath, apiTemplates);
-            TransformApi(smartApp, apiTemplatesDirectoryPath);
+            if (_context.BasePath != null && _context.GeneratorPath != null)
+            {
+                var apiTemplatesDirectoryPath = Path.Combine(_context.GeneratorPath, apiTemplates);
+                TransformApi(smartApp, apiTemplatesDirectoryPath);
+            }
             return Task.FromResult(ExecutionResult.Next());
         }
 

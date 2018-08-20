@@ -29,12 +29,16 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
                 throw new ArgumentNullException(nameof(_context.Manifest));
 
             var commonTemplates = "Platforms\\Frontend\\Ionic\\Common\\Templates";
-            var commonTemplatesDirectoryPath = Path.Combine(_context.GeneratorPath, commonTemplates);
-            SmartAppInfo smartApp = _context.Manifest;
-            var themes = _context.DynamicContext.Themes as List<Answer>;
-            string theme = themes.FirstOrDefault().Value;
-            TransformCommon(smartApp, commonTemplatesDirectoryPath);
-            TransformSimpleTheme(theme);
+            if (_context.BasePath != null && _context.GeneratorPath != null)
+            {
+                var commonTemplatesDirectoryPath = Path.Combine(_context.GeneratorPath, commonTemplates);
+                SmartAppInfo smartApp = _context.Manifest;
+                var themes = ((IDictionary<string, object>)_context.DynamicContext).ContainsKey("Themes") ? _context.DynamicContext.Themes as List<Answer> : new List<Answer>();
+                string theme = (themes != null && themes.Count > 0) ? themes.FirstOrDefault().Value : "light";
+                TransformCommon(smartApp, commonTemplatesDirectoryPath);
+                TransformSimpleTheme(theme);
+            }
+
             return Task.FromResult(ExecutionResult.Next());
         }
 
