@@ -1,6 +1,8 @@
 ﻿using Mobioos.Foundation.Jade.Models;
+using Mobioos.Foundation.Prompt.Infrastructure;
 using Mobioos.Scaffold.BaseGenerators.Helpers;
 using Mobioos.Scaffold.BaseInfrastructure.Contexts;
+using Mobioos.Scaffold.BaseInfrastructure.Notifiers;
 using Mobioos.Scaffold.BaseInfrastructure.Services.GeneratorsServices;
 using System;
 using System.IO;
@@ -15,11 +17,13 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
     {
         private readonly ISessionContext _context;
         private readonly IWriting _writingService;
+        private readonly IWorkflowNotifier _workflowNotifier;
 
-        public ApiWritingStep(ISessionContext context, IWriting writingService)
+        public ApiWritingStep(ISessionContext context, IWriting writingService, IWorkflowNotifier workflowNotifier)
         {
             _context = context;
             _writingService = writingService;
+            _workflowNotifier = workflowNotifier;
         }
 
         public override Task<ExecutionResult> RunAsync(IStepExecutionContext context)
@@ -29,6 +33,7 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
 
             SmartAppInfo smartApp = _context.Manifest;
             var apiTemplates = "Platforms\\Frontend\\Ionic\\API\\Templates";
+            _workflowNotifier.Notify(nameof(ApiWritingStep), NotificationType.GeneralInfo, "Generating ionic apis");
             if (_context.BasePath != null && _context.GeneratorPath != null)
             {
                 var apiTemplatesDirectoryPath = Path.Combine(_context.GeneratorPath, apiTemplates);

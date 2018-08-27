@@ -85,7 +85,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Mobioos.Scaffold.BaseGenerators" Version="1.0.1" />
+    <PackageReference Include="Mobioos.Scaffold.BaseGenerators" Version="1.0.2" />
   </ItemGroup>
 
   <ItemGroup>

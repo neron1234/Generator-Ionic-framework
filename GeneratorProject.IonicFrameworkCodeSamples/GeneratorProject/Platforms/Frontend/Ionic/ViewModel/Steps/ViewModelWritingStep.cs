@@ -1,6 +1,8 @@
 ﻿using Mobioos.Foundation.Jade.Models;
+using Mobioos.Foundation.Prompt.Infrastructure;
 using Mobioos.Scaffold.BaseGenerators.Helpers;
 using Mobioos.Scaffold.BaseInfrastructure.Contexts;
+using Mobioos.Scaffold.BaseInfrastructure.Notifiers;
 using Mobioos.Scaffold.BaseInfrastructure.Services.GeneratorsServices;
 using System;
 using System.Collections.Generic;
@@ -16,11 +18,13 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
     {
         private readonly ISessionContext _context;
         private readonly IWriting _writingService;
+        private readonly IWorkflowNotifier _workflowNotifier;
 
-        public ViewModelWritingStep(ISessionContext context, IWriting writingService)
+        public ViewModelWritingStep(ISessionContext context, IWriting writingService, IWorkflowNotifier workflowNotifier)
         {
             _context = context;
             _writingService = writingService;
+            _workflowNotifier = workflowNotifier;
         }
 
         public override Task<ExecutionResult> RunAsync(IStepExecutionContext context)
@@ -29,6 +33,7 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
                 throw new ArgumentNullException(nameof(_context.Manifest));
 
             SmartAppInfo smartApp = _context.Manifest;
+            _workflowNotifier.Notify(nameof(ViewModelWritingStep), NotificationType.GeneralInfo, "Generating ionic viewmodels");
             if (_context.BasePath != null)
             {
                 TransformViewModels(smartApp);

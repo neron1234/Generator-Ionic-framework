@@ -1,5 +1,6 @@
 ﻿using Mobioos.Foundation.Prompt;
 using Mobioos.Foundation.Prompt.Infrastructure;
+using Mobioos.Scaffold.BaseInfrastructure.Attributes;
 using Mobioos.Scaffold.BaseInfrastructure.Services.GeneratorsServices;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ using WorkflowCore.Models;
 
 namespace GeneratorProject.Platforms.Frontend.Ionic
 {
+    [PromptingStep]
     public class CommonPromptingStep : StepBodyAsync
     {
         private readonly IPrompting _promptingService;
@@ -27,14 +29,13 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
 
             prompts.Push(new ChoiceQuestion()
             {
-                Id = Guid.NewGuid(),
                 Name = "Themes",
                 Message = "Select a theme",
                 Type = QuestionType.Choice,
                 Choices = choices
             });
 
-            await _promptingService.Prompts(prompts, nameof(CommonPromptingStep));
+            await _promptingService.Prompts(nameof(CommonPromptingStep), prompts, "Common questions related to ionic");
             return ExecutionResult.Next();
         }
     }
