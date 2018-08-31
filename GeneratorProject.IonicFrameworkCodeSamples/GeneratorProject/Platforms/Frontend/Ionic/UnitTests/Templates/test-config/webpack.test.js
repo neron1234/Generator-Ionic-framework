@@ -1,5 +1,6 @@
 var webpack = require('webpack');
 var path = require('path');
+var ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 module.exports = {
   devtool: 'inline-source-map',
@@ -12,7 +13,10 @@ module.exports = {
     rules: [{
       test: /\.ts$/,
       loaders: [{
-        loader: 'ts-loader'
+        loader: 'ts-loader',
+        options: {
+            transpileOnly: true
+        }
       }, 'angular2-template-loader']
     },
     {
@@ -31,7 +35,8 @@ module.exports = {
       /(ionic-angular)|(angular(\\|\/)core(\\|\/)@angular)/,
       root('../src/'),
       {}
-    )
+    ),
+    new ForkTsCheckerWebpackPlugin()
   ]
 };
 

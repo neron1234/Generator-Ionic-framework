@@ -50,9 +50,8 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
             #line default
             #line hidden
             this.Write("import { LanguagePageModule } from \'../pages/language/language.module\';\r\nimport {" +
-                    " TranslateModule, TranslateLoader, TranslateService } from \'@ngx-translate/core\'" +
-                    ";\r\nimport { TranslateServiceMock } from \'../../test-config/mocks/translateServic" +
-                    "eMock\';\r\n");
+                    " TranslateModule, TranslateService } from \'@ngx-translate/core\';\r\nimport { Trans" +
+                    "lateServiceMock } from \'../../test-config/mocks/translateServiceMock\';\r\n");
             
             #line 17 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
 
@@ -198,9 +197,9 @@ describe('");
             
             #line default
             #line hidden
-            this.Write("        LanguagePageModule,\r\n");
+            this.Write("        LanguagePageModule,\r\n        TranslateModule.forChild(),\r\n");
             
-            #line 61 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
+            #line 62 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
 
         }
 
@@ -208,7 +207,7 @@ describe('");
             #line default
             #line hidden
             
-            #line 64 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
+            #line 65 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
 
         if (_smartApp.Concerns.AsEnumerable() != null && _rootLayout != null && _rootLayout.Id != null && _rootConcern != null && _rootConcern.Id != null)
         {
@@ -222,14 +221,14 @@ describe('");
             #line hidden
             this.Write("        ");
             
-            #line 72 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
+            #line 73 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(layoutComponent));
             
             #line default
             #line hidden
             this.Write("PageModule,\r\n");
             
-            #line 73 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
+            #line 74 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
 
         }
 
@@ -238,7 +237,7 @@ describe('");
             #line hidden
             this.Write("        IonicModule.forRoot(");
             
-            #line 76 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
+            #line 77 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.PascalCase(_smartApp.Id)));
             
             #line default
@@ -247,7 +246,7 @@ describe('");
                     "ock },\r\n        { provide: StatusBar, useClass: StatusBarMock },\r\n        { prov" +
                     "ide: SplashScreen, useClass: SplashScreenMock },\r\n");
             
-            #line 82 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
+            #line 83 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
 
         if (isLanguages)
         {
@@ -257,7 +256,7 @@ describe('");
             #line hidden
             this.Write("        { provide: TranslateService, useClass: TranslateServiceMock },\r\n");
             
-            #line 87 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
+            #line 88 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
 
         }
 
@@ -268,7 +267,7 @@ describe('");
                     " useClass: TitleMock }\r\n      ]\r\n    }).compileComponents();\r\n  }));\r\n\r\n  before" +
                     "Each(async() => {\r\n    fixture = TestBed.createComponent(");
             
-            #line 97 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
+            #line 98 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.PascalCase(_smartApp.Id)));
             
             #line default
@@ -276,7 +275,7 @@ describe('");
             this.Write(");\r\n    component = fixture.componentInstance;\r\n  });\r\n  \r\n  afterEach(() => {\r\n " +
                     "   fixture.destroy();\r\n    component = null;\r\n  });\r\n\r\n  it(\'");
             
-            #line 106 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
+            #line 107 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.PascalCase(_smartApp.Id)));
             
             #line default
@@ -284,14 +283,14 @@ describe('");
             this.Write(" Component: platform should be ready\', fakeAsync(() => {\r\n    spy = spyOn(compone" +
                     "nt._platform, \'ready\').and.callThrough();\r\n    var app = new ");
             
-            #line 108 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
+            #line 109 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.PascalCase(_smartApp.Id)));
             
             #line default
             #line hidden
             this.Write("(\r\n");
             
-            #line 109 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
+            #line 110 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
 
         if (isLanguages)
         {
@@ -301,7 +300,19 @@ describe('");
             #line hidden
             this.Write("      component._translateService,\r\n");
             
-            #line 114 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
+            #line 115 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
+
+        }
+
+        if (_isMenu)
+        {
+
+            
+            #line default
+            #line hidden
+            this.Write("      component._events,\r\n");
+            
+            #line 122 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
 
         }
 
@@ -323,7 +334,7 @@ describe('");
 
   it('");
             
-            #line 130 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
+            #line 138 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.PascalCase(_smartApp.Id)));
             
             #line default
@@ -331,14 +342,14 @@ describe('");
             this.Write(" Component: should set default style statusBar\', fakeAsync(() => {\r\n    spy = spy" +
                     "On(component._statusBar, \'styleDefault\').and.callThrough();\r\n    var app = new ");
             
-            #line 132 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
+            #line 140 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.PascalCase(_smartApp.Id)));
             
             #line default
             #line hidden
             this.Write("(\r\n");
             
-            #line 133 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
+            #line 141 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
 
         if (isLanguages)
         {
@@ -348,7 +359,19 @@ describe('");
             #line hidden
             this.Write("      component._translateService,\r\n");
             
-            #line 138 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
+            #line 146 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
+
+        }
+
+        if (_isMenu)
+        {
+
+            
+            #line default
+            #line hidden
+            this.Write("      component._events,\r\n");
+            
+            #line 153 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
 
         }
 
@@ -369,7 +392,7 @@ describe('");
 
   it('");
             
-            #line 153 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
+            #line 168 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.PascalCase(_smartApp.Id)));
             
             #line default
@@ -377,14 +400,14 @@ describe('");
             this.Write(" Component: should hide splashscreen\', fakeAsync(() => {\r\n    spy = spyOn(compone" +
                     "nt._splashScreen, \'hide\').and.callThrough();\r\n    var app = new ");
             
-            #line 155 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
+            #line 170 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.PascalCase(_smartApp.Id)));
             
             #line default
             #line hidden
             this.Write("(\r\n");
             
-            #line 156 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
+            #line 171 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
 
         if (isLanguages)
         {
@@ -394,7 +417,19 @@ describe('");
             #line hidden
             this.Write("      component._translateService,\r\n");
             
-            #line 161 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
+            #line 176 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
+
+        }
+
+        if (_isMenu)
+        {
+
+            
+            #line default
+            #line hidden
+            this.Write("      component._events,\r\n");
+            
+            #line 183 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
 
         }
 
@@ -415,7 +450,7 @@ describe('");
 
   it('");
             
-            #line 176 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
+            #line 198 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.PascalCase(_smartApp.Id)));
             
             #line default
@@ -423,14 +458,14 @@ describe('");
             this.Write(" Component: should set navigation root page\', fakeAsync(() => {\r\n    spy = spyOn(" +
                     "component._nav, \'setRoot\').and.callThrough();\r\n    var app = new ");
             
-            #line 178 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
+            #line 200 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.PascalCase(_smartApp.Id)));
             
             #line default
             #line hidden
             this.Write("(\r\n");
             
-            #line 179 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
+            #line 201 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
 
         if (isLanguages)
         {
@@ -440,7 +475,19 @@ describe('");
             #line hidden
             this.Write("      component._translateService,\r\n");
             
-            #line 184 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
+            #line 206 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
+
+        }
+
+        if (_isMenu)
+        {
+
+            
+            #line default
+            #line hidden
+            this.Write("      component._events,\r\n");
+            
+            #line 213 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
 
         }
 
@@ -451,7 +498,7 @@ describe('");
                     "creen,\r\n      component._title\r\n    );\r\n    app._nav = component._nav;\r\n    flus" +
                     "hMicrotasks();\r\n    expect(spy).toHaveBeenCalledWith(\r\n");
             
-            #line 195 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
+            #line 224 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
 
         if (_smartApp.Concerns.AsEnumerable() != null && _rootLayout != null && _rootLayout.Id != null && _rootConcern != null && _rootConcern.Id != null)
         {
@@ -465,14 +512,14 @@ describe('");
             #line hidden
             this.Write("      ");
             
-            #line 203 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
+            #line 232 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(layoutComponent));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 204 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
+            #line 233 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
 
         }
 
@@ -482,7 +529,7 @@ describe('");
             this.Write("    );\r\n    spy.calls.mostRecent().returnValue.then((result) => {\r\n      expect(r" +
                     "esult).toBe(true);\r\n    });\r\n  }));\r\n\r\n  it(\'");
             
-            #line 213 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
+            #line 242 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.PascalCase(_smartApp.Id)));
             
             #line default
@@ -491,14 +538,43 @@ describe('");
                     "onent._translateService, \'setDefaultLang\').and.callThrough();\r\n    var app = new" +
                     " ");
             
-            #line 215 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
+            #line 244 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.PascalCase(_smartApp.Id)));
             
             #line default
             #line hidden
-            this.Write(@"(
-      component._translateService,
-      component._platform,
+            this.Write("(\r\n");
+            
+            #line 245 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
+
+        if (isLanguages)
+        {
+
+            
+            #line default
+            #line hidden
+            this.Write("      component._translateService,\r\n");
+            
+            #line 250 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
+
+        }
+
+        if (_isMenu)
+        {
+
+            
+            #line default
+            #line hidden
+            this.Write("      component._events,\r\n");
+            
+            #line 257 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
+
+        }
+
+            
+            #line default
+            #line hidden
+            this.Write(@"      component._platform,
       component._statusBar,
       component._splashScreen,
       component._title
@@ -512,7 +588,7 @@ describe('");
 
   it('");
             
-            #line 229 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
+            #line 272 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.PascalCase(_smartApp.Id)));
             
             #line default
@@ -520,14 +596,14 @@ describe('");
             this.Write(" Component: should use fr language\', fakeAsync(() => {\r\n    spy = spyOn(component" +
                     "._translateService, \'use\').and.callThrough();\r\n    var app = new ");
             
-            #line 231 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
+            #line 274 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.PascalCase(_smartApp.Id)));
             
             #line default
             #line hidden
             this.Write("(\r\n");
             
-            #line 232 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
+            #line 275 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
 
         if (isLanguages)
         {
@@ -537,7 +613,19 @@ describe('");
             #line hidden
             this.Write("      component._translateService,\r\n");
             
-            #line 237 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
+            #line 280 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
+
+        }
+
+        if (_isMenu)
+        {
+
+            
+            #line default
+            #line hidden
+            this.Write("      component._events,\r\n");
+            
+            #line 287 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
 
         }
 
@@ -559,7 +647,7 @@ describe('");
 
   it('");
             
-            #line 253 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
+            #line 303 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.PascalCase(_smartApp.Id)));
             
             #line default
@@ -568,14 +656,14 @@ describe('");
                     "y = spyOn(component._translateService, \'get\').and.callThrough();\r\n    var app = " +
                     "new ");
             
-            #line 255 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
+            #line 305 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.PascalCase(_smartApp.Id)));
             
             #line default
             #line hidden
             this.Write("(\r\n");
             
-            #line 256 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
+            #line 306 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
 
         if (isLanguages)
         {
@@ -585,7 +673,19 @@ describe('");
             #line hidden
             this.Write("      component._translateService,\r\n");
             
-            #line 261 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
+            #line 311 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
+
+        }
+
+        if (_isMenu)
+        {
+
+            
+            #line default
+            #line hidden
+            this.Write("      component._events,\r\n");
+            
+            #line 318 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
 
         }
 
@@ -607,7 +707,7 @@ describe('");
 
   it('");
             
-            #line 277 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
+            #line 334 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.PascalCase(_smartApp.Id)));
             
             #line default
@@ -615,14 +715,14 @@ describe('");
             this.Write(" Component: should set translated title\', fakeAsync(() => {\r\n    spy = spyOn(comp" +
                     "onent._title, \'setTitle\').and.callThrough();\r\n    var app = new ");
             
-            #line 279 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
+            #line 336 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.PascalCase(_smartApp.Id)));
             
             #line default
             #line hidden
             this.Write("(\r\n");
             
-            #line 280 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
+            #line 337 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
 
         if (isLanguages)
         {
@@ -632,7 +732,19 @@ describe('");
             #line hidden
             this.Write("      component._translateService,\r\n");
             
-            #line 285 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
+            #line 342 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
+
+        }
+
+        if (_isMenu)
+        {
+
+            
+            #line default
+            #line hidden
+            this.Write("      component._events,\r\n");
+            
+            #line 349 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
 
         }
 
@@ -653,7 +765,7 @@ describe('");
 
   it('");
             
-            #line 300 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
+            #line 364 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.PascalCase(_smartApp.Id)));
             
             #line default
@@ -661,14 +773,14 @@ describe('");
             this.Write(" Component: should be created\', fakeAsync(() => {\r\n    flushMicrotasks();\r\n    ex" +
                     "pect(component instanceof ");
             
-            #line 302 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
+            #line 366 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.PascalCase(_smartApp.Id)));
             
             #line default
             #line hidden
             this.Write(").toBeTruthy();\r\n  }));\r\n\r\n  it(\'");
             
-            #line 305 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
+            #line 369 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.PascalCase(_smartApp.Id)));
             
             #line default
@@ -689,7 +801,7 @@ describe('");
 });
 ");
             
-            #line 319 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
+            #line 383 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
 
     }
 
