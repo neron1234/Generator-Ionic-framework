@@ -54,7 +54,7 @@
 #>
       </ion-item>
       <ion-item-group>
-        <a ion-item menuClose *ngFor="let m of _menu" (click)="selected(m.component.toLowerCase())">{{ m.name }}</a>
+        <a ion-item menuClose *ngFor="let m of _menu" (click)="selected(m.component)">{{ m.name }}</a>
       </ion-item-group>
     </ion-list>
   </ion-content>
