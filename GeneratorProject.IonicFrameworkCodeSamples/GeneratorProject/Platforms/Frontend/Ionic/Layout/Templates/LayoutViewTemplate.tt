@@ -53,7 +53,7 @@
         else
         {
 #>
-        <#= TextConverter.PascalCase(_smartAppTitle) #>
+        <#= _smartAppTitle.ToPascalCase() #>
 <#
         }
 #>
@@ -86,20 +86,20 @@
                 {
 #>
     <ion-item>
-      <button ion-button (click)="on<#= TextConverter.PascalCase(action.Id) #>()">
+      <button ion-button (click)="on<#= action.Id.ToPascalCase() #>()">
 <#
                     if (_languages.AsEnumerable() != null && _languages.AsEnumerable().Count() > 0)
                     {
 #>
         <!-- Generic call to component's methods, should be used differenty -->
-        on{{ "<#= TextConverter.CamelCase(_concern.Id) #>.<#= TextConverter.CamelCase(_layout.Id) #>Layout<#= TextConverter.PascalCase(action.Id) #>Action" | translate }}
+        on{{ "<#= _concern.Id.ToCamelCase() #>.<#= _layout.Id.ToCamelCase() #>Layout<#= action.Id.ToPascalCase() #>Action" | translate }}
 <#  
                     }
                     else 
                     {
 #>
         <!-- Generic call to component's methods, should be used differenty -->
-        on<#= TextConverter.PascalCase(action.Id) #> 
+        on<#= action.Id.ToPascalCase() #> 
 <#
                     }
                 }

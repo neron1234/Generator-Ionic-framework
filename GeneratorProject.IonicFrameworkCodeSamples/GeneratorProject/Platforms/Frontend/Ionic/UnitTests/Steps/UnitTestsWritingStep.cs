@@ -1,6 +1,6 @@
-﻿using Mobioos.Foundation.Jade.Models;
+﻿using Common.Generator.Framework.Extensions;
+using Mobioos.Foundation.Jade.Models;
 using Mobioos.Foundation.Prompt.Infrastructure;
-using Mobioos.Scaffold.BaseGenerators.Helpers;
 using Mobioos.Scaffold.BaseInfrastructure.Contexts;
 using Mobioos.Scaffold.BaseInfrastructure.Notifiers;
 using Mobioos.Scaffold.BaseInfrastructure.Services.GeneratorsServices;
@@ -78,7 +78,7 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
                     MocksTemplate mocksTemplate = new MocksTemplate(api);
 
                     string mocksDirectoryPath = mocksTemplate.OutputPath;
-                    string mocksFilename = TextConverter.CamelCase(api.Id) + "Mock.ts";
+                    string mocksFilename = api.Id.ToCamelCase() + "Mock.ts";
 
                     string fileToWritePath = Path.Combine(_context.BasePath, mocksDirectoryPath, mocksFilename);
                     string textToWrite = mocksTemplate.TransformText();
@@ -101,7 +101,7 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
                     ServiceSpecTemplate servicesSpecsTemplate = new ServiceSpecTemplate(api);
 
                     string servicesSpecsDirectoryPath = servicesSpecsTemplate.OutputPath;
-                    string servicesSpecsFilename = TextConverter.CamelCase(api.Id) + ".spec.ts";
+                    string servicesSpecsFilename = api.Id.ToCamelCase() + ".spec.ts";
 
                     string fileToWritePath = Path.Combine(_context.BasePath, servicesSpecsDirectoryPath, servicesSpecsFilename);
                     string textToWrite = servicesSpecsTemplate.TransformText();
@@ -137,29 +137,27 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
         /// <param name="smartApp">A SmartApp's manifeste.</param>
         private void TransformComponentSpecs(SmartAppInfo smartApp)
         {
-            if (smartApp != null && smartApp.Concerns.AsEnumerable() != null && smartApp.Version != null)
+            var layouts = smartApp.GetLayouts();
+            foreach (LayoutInfo layout in layouts.AsEnumerable())
             {
-                foreach (ConcernInfo concern in smartApp.Concerns.AsEnumerable())
-                {
-                    if (concern != null && concern.Id != null && concern.Layouts.AsEnumerable() != null)
-                    {
-                        foreach (LayoutInfo layout in concern.Layouts.AsEnumerable())
-                        {
-                            if (layout != null)
-                            {
-                                ComponentSpecTemplate componentsSpecTemplate = new ComponentSpecTemplate(smartApp.Id, concern, layout, smartApp.Languages, smartApp.Api);
+                ComponentSpecTemplate componentsSpecTemplate = new ComponentSpecTemplate(
+                    smartApp.Id,
+                    (ConcernInfo)layout.Parent,
+                    layout,
+                    smartApp.Languages,
+                    smartApp.Api);
 
-                                string componentsSpecDirectoryPath = Path.Combine(componentsSpecTemplate.OutputPath, TextConverter.CamelCase(concern.Id), TextConverter.CamelCase(layout.Id));
-                                string componentsSpecFilename = TextConverter.CamelCase(concern.Id) + "-" + TextConverter.CamelCase(layout.Id) + ".spec.ts";
+                string componentsSpecDirectoryPath = Path.Combine(
+                    componentsSpecTemplate.OutputPath,
+                    ((ConcernInfo)layout.Parent).Id.ToCamelCase(),
+                    layout.Id.ToCamelCase());
 
-                                string fileToWritePath = Path.Combine(_context.BasePath, componentsSpecDirectoryPath, componentsSpecFilename);
-                                string textToWrite = componentsSpecTemplate.TransformText();
+                string componentsSpecFilename = ((ConcernInfo)layout.Parent).Id.ToCamelCase() + "-" + layout.Id.ToCamelCase() + ".spec.ts";
 
-                                _writingService.WriteFile(fileToWritePath, textToWrite);
-                            }
-                        }
-                    }
-                }
+                string fileToWritePath = Path.Combine(_context.BasePath, componentsSpecDirectoryPath, componentsSpecFilename);
+                string textToWrite = componentsSpecTemplate.TransformText();
+
+                _writingService.WriteFile(fileToWritePath, textToWrite);
             }
         }
 

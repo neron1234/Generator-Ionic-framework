@@ -1,5 +1,4 @@
 <#@ include file="..\..\Base\Templates\Include.tt" #>
-<#@ import namespace="Mobioos.Foundation.Jade.Extensions" #>
 import { Observable } from 'rxjs';
 <#
     if (_viewModels.AsEnumerable() != null)
@@ -7,7 +6,7 @@ import { Observable } from 'rxjs';
         foreach(string viewModel in _viewModels.AsEnumerable())
         {
 #>
-import { <#= TextConverter.PascalCase(viewModel) #> } from '../../src/viewModels/<#= TextConverter.CamelCase(viewModel) #>';
+import { <#= viewModel.ToPascalCase() #> } from '../../src/viewModels/<#= viewModel.ToCamelCase() #>';
 <#
         }
     }
@@ -15,7 +14,7 @@ import { <#= TextConverter.PascalCase(viewModel) #> } from '../../src/viewModels
     if (_api.Id != null)
     {
 #>
-export class <#= TextConverter.PascalCase(_api.Id) #>Mock {
+export class <#= _api.Id.ToPascalCase() #>Mock {
 <#
         if (_api.Actions.AsEnumerable() != null)
         {
@@ -24,7 +23,7 @@ export class <#= TextConverter.PascalCase(_api.Id) #>Mock {
                 if (action.Id != null && action.Url != null && action.Type != null)
                 {
 #>
-    public <#= TextConverter.CamelCase(action.Id) #>(
+    public <#= action.Id.ToCamelCase() #>(
 <#
                     if (action.Parameters.AsEnumerable() != null && action.Parameters.AsEnumerable().Count() > 0)
                     {
@@ -37,13 +36,13 @@ export class <#= TextConverter.PascalCase(_api.Id) #>Mock {
                                 if (apiParameter.Equals(last))
                                 {
 #>
-        <#= TextConverter.CamelCase(apiParameter.Id) #>Param: <#= type #>
+        <#= apiParameter.Id.ToCamelCase() #>Param: <#= type #>
 <#
                                 }
                                 else
                                 {
 #>
-        <#= TextConverter.CamelCase(apiParameter.Id) #>Param: <#= type #>,
+        <#= apiParameter.Id.ToCamelCase() #>Param: <#= type #>,
 <#
                                 }
                             }
@@ -53,7 +52,7 @@ export class <#= TextConverter.PascalCase(_api.Id) #>Mock {
                     if (action.ReturnType != null && action.ReturnType.Id != null)
                     {
 #>
-    ): Observable<<#= TextConverter.PascalCase(action.ReturnType.Id) #>> {
+    ): Observable<<#= action.ReturnType.Id.ToPascalCase() #>> {
       return Observable.of();
     }
 

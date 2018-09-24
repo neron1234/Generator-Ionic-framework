@@ -1,34 +1,34 @@
 <#@ include file="..\..\Base\Templates\Include.tt" #>
-<#@ import namespace="Mobioos.Foundation.Jade.Extensions" #>
+<#@ import namespace="Common.Generator.Framework.Extensions" #>
 import { Observable } from 'rxjs';
 import { fakeAsync, flushMicrotasks, TestBed } from '@angular/core/testing';
 import { DataServiceMock } from '../../test-config/mocks/dataServiceMock';
 import { DataService } from './data.service';
-import { <#= TextConverter.PascalCase(_api.Id) #> } from './<#= TextConverter.CamelCase(_api.Id) #>.service';
+import { <#= _api.Id.ToPascalCase() #> } from './<#= _api.Id.ToCamelCase() #>.service';
 <#
     if (_viewModels.AsEnumerable() != null)
     {
         foreach(string viewModel in _viewModels.AsEnumerable())
         {
 #>
-import { <#= TextConverter.PascalCase(viewModel) #> } from '../viewModels/<#= TextConverter.CamelCase(viewModel) #>';
+import { <#= viewModel.ToPascalCase() #> } from '../viewModels/<#= viewModel.ToCamelCase() #>';
 <#
         }
     }
 #>
 
-describe('<#= TextConverter.PascalCase(_api.Id) #> service', () => {
-  let <#= TextConverter.CamelCase(_api.Id) #>Spy: <#= TextConverter.PascalCase(_api.Id) #>;
+describe('<#= _api.Id.ToPascalCase() #> service', () => {
+  let <#= _api.Id.ToCamelCase() #>Spy: <#= _api.Id.ToPascalCase() #>;
   let spy: jasmine.Spy;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-        <#= TextConverter.PascalCase(_api.Id) #>,
+        <#= _api.Id.ToPascalCase() #>,
         { provide: DataService, useClass: DataServiceMock }
       ]
     });
-    <#= TextConverter.CamelCase(_api.Id) #>Spy = TestBed.get(<#= TextConverter.PascalCase(_api.Id) #>);
+    <#= _api.Id.ToCamelCase() #>Spy = TestBed.get(<#= _api.Id.ToPascalCase() #>);
   });
 <#
     if (_api != null && _api.Actions.AsEnumerable() != null)
@@ -38,10 +38,10 @@ describe('<#= TextConverter.PascalCase(_api.Id) #> service', () => {
             if (action.Id != null && action.Url != null && action.Type != null)
             {
 #>
-  it('<#= TextConverter.PascalCase(_api.Id) #> service: should <#= TextConverter.CamelCase(action.Id) #>', fakeAsync(() => {
-    const <#= TextConverter.CamelCase(action.Id) #>Api = '<#= action.Url #>';
-    spy = spyOn(<#= TextConverter.CamelCase(_api.Id) #>Spy, '<#= TextConverter.CamelCase(action.Id) #>').and.callThrough();
-    <#= TextConverter.CamelCase(_api.Id) #>Spy.<#= TextConverter.CamelCase(action.Id) #>(
+  it('<#= _api.Id.ToPascalCase() #> service: should <#= action.Id.ToCamelCase() #>', fakeAsync(() => {
+    const <#= action.Id.ToCamelCase() #>Api = '<#= action.Url #>';
+    spy = spyOn(<#= _api.Id.ToCamelCase() #>Spy, '<#= action.Id.ToCamelCase() #>').and.callThrough();
+    <#= _api.Id.ToCamelCase() #>Spy.<#= action.Id.ToCamelCase() #>(
 <#
                 if (action.Parameters.AsEnumerable() != null && action.Parameters.AsEnumerable().Count() > 0)
                 {
@@ -98,8 +98,8 @@ describe('<#= TextConverter.PascalCase(_api.Id) #> service', () => {
                 }
 #>
     );
-    spy = spyOn(<#= TextConverter.CamelCase(_api.Id) #>Spy._dataService, '<#= ConvertActionType(action.Type) #>').and.callThrough();
-    <#= TextConverter.CamelCase(_api.Id) #>Spy.<#= TextConverter.CamelCase(action.Id) #>(
+    spy = spyOn(<#= _api.Id.ToCamelCase() #>Spy._dataService, '<#= action.Type.TypeScriptActionType() #>').and.callThrough();
+    <#= _api.Id.ToCamelCase() #>Spy.<#= action.Id.ToCamelCase() #>(
 <#
                 if (action.Parameters.AsEnumerable() != null && action.Parameters.AsEnumerable().Count() > 0)
                 {
@@ -134,7 +134,7 @@ describe('<#= TextConverter.PascalCase(_api.Id) #> service', () => {
                     case "dataget": case "datalist": case "datadelete":
 #>
     expect(spy).toHaveBeenCalledWith(
-      `${<#= TextConverter.CamelCase(action.Id) #>Api}`,
+      `${<#= action.Id.ToCamelCase() #>Api}`,
       {
 <#
                         if (action.Parameters.AsEnumerable() != null && action.Parameters.AsEnumerable().Count() > 0)
@@ -149,13 +149,13 @@ describe('<#= TextConverter.PascalCase(_api.Id) #> service', () => {
                                     if (apiParameter.Equals(last))
                                     {
 #>
-      <#= TextConverter.CamelCase(apiParameter.Id) #>: JSON.stringify(<#= value #>)
+      <#= apiParameter.Id.ToCamelCase() #>: JSON.stringify(<#= value #>)
 <#
                                     }
                                     else
                                     {
 #>
-      <#= TextConverter.CamelCase(apiParameter.Id) #>: JSON.stringify(<#= value #>),
+      <#= apiParameter.Id.ToCamelCase() #>: JSON.stringify(<#= value #>),
 <#
                                     }
                                 }
@@ -169,7 +169,7 @@ describe('<#= TextConverter.PascalCase(_api.Id) #> service', () => {
                     default:
 #>
     expect(spy).toHaveBeenCalledWith(
-      `${<#= TextConverter.CamelCase(action.Id) #>Api}`,
+      `${<#= action.Id.ToCamelCase() #>Api}`,
       {
 <#
                         if (action.Parameters.AsEnumerable() != null && action.Parameters.AsEnumerable().Count() > 0)
@@ -184,13 +184,13 @@ describe('<#= TextConverter.PascalCase(_api.Id) #> service', () => {
                                     if (apiParameter.Equals(last))
                                     {
 #>
-      <#= TextConverter.CamelCase(apiParameter.Id) #>: <#= value #>
+      <#= apiParameter.Id.ToCamelCase() #>: <#= value #>
 <#
                                     }
                                     else
                                     {
 #>
-      <#= TextConverter.CamelCase(apiParameter.Id) #>: <#= value #>,
+      <#= apiParameter.Id.ToCamelCase() #>: <#= value #>,
 <#
                                     }
                                 }

@@ -1,7 +1,6 @@
-﻿using Mobioos.Foundation.Jade.Models;
-using Mobioos.Scaffold.BaseGenerators.Helpers;
+﻿using Common.Generator.Framework.Extensions;
+using Mobioos.Foundation.Jade.Models;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace GeneratorProject.Platforms.Frontend.Ionic
 {
@@ -18,21 +17,7 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
             _concern = concern;
             _layout = layout;
             _languages = languages;
-            _menu = getMenu(_concern);
-        }
-
-        /// <summary>
-        /// Retrieve the specific menu for each concern.
-        /// </summary>
-        /// <param name="concern">A concern.</param>
-        public Dictionary<string, string> getMenu(ConcernInfo concern)
-        {
-            Dictionary<string, string> menu = new Dictionary<string, string>();
-            if (concern != null && concern.Id != null && concern.Layouts.AsEnumerable() != null)
-                foreach (LayoutInfo layout in concern.Layouts.AsEnumerable())
-                    if (layout.IsVisibleInMenu && layout.Id != null && layout.Title != null && !menu.ContainsKey(TextConverter.CamelCase(concern.Id) + "-" + TextConverter.CamelCase(layout.Id)))
-                        menu.Add(TextConverter.CamelCase(concern.Id) + "-" + TextConverter.CamelCase(layout.Id), layout.Title);
-            return menu;
+            _menu = concern.GetMenu();
         }
 
         public override string OutputPath => "src\\pages";

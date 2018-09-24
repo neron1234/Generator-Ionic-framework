@@ -1,5 +1,4 @@
 ﻿<#@ include file="..\..\Base\Templates\Include.tt" #>
-<#@ import namespace="Mobioos.Foundation.Jade.Extensions" #>
 import { IonicModule, NavController, Platform } from 'ionic-angular';
 import { NavMock } from '../../../test-config/mocks/navMock';
 import { PlatformMock } from '../../../test-config/mocks/platformMock';

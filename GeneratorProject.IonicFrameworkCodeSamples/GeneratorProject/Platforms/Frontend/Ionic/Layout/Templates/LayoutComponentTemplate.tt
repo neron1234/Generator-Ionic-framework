@@ -1,5 +1,4 @@
 <#@ include file="..\..\Base\Templates\Include.tt" #>
-<#@ import namespace="Mobioos.Foundation.Jade.Extensions" #>
 /*
  * You should add your licence here, here is an example :
  *
@@ -24,9 +23,9 @@
 <#
     if (_concernId != null && _layout != null && _layout.Id != null)
     {
-        string layout = TextConverter.PascalCase(_concernId) + TextConverter.PascalCase(_layout.Id);
-        string layoutToLower = TextConverter.CamelCase(_concernId) + "-" + TextConverter.CamelCase(_layout.Id);
-        string layoutPathToLower = TextConverter.CamelCase(_concernId) + "/" + TextConverter.CamelCase(_layout.Id);
+        string layout = _concernId.ToPascalCase() + _layout.Id.ToPascalCase();
+        string layoutToLower = _concernId.ToCamelCase() + "-" + _layout.Id.ToCamelCase();
+        string layoutPathToLower = _concernId.ToCamelCase() + "/" + _layout.Id.ToCamelCase();
 #>
 import { Component } from '@angular/core';
 import { IonicPage, NavController<# if (_menu.AsEnumerable() != null && _menu.AsEnumerable().Count() > 0) { #>, Events<# } #> } from 'ionic-angular';
@@ -36,7 +35,7 @@ import { IonicPage, NavController<# if (_menu.AsEnumerable() != null && _menu.As
             foreach (string viewModel in _viewModels.AsEnumerable())
             {
 #>
-import { <#= TextConverter.PascalCase(viewModel) #> } from '../../../viewModels/<#= TextConverter.CamelCase(viewModel) #>';
+import { <#= viewModel.ToPascalCase() #> } from '../../../viewModels/<#= viewModel.ToCamelCase() #>';
 <#
             }
         }
@@ -49,7 +48,7 @@ import { Observable } from 'rxjs';
             foreach (string service in _apiDomainServices.AsEnumerable())
             {
 #>
-import { <#= TextConverter.PascalCase(service) #> } from '../../../services/<#= TextConverter.CamelCase(service) #>.service';
+import { <#= service.ToPascalCase() #> } from '../../../services/<#= service.ToCamelCase() #>.service';
 <#
             }
         }
@@ -115,7 +114,7 @@ export class <#= layout #> {
             foreach (string service in _apiDomainServices.AsEnumerable())
             {
 #>
-    public _<#= TextConverter.CamelCase(service) #>: <#= TextConverter.PascalCase(service) #>,
+    public _<#= service.ToCamelCase() #>: <#= service.ToPascalCase() #>,
 <#
             }
         }
@@ -159,30 +158,26 @@ export class <#= layout #> {
                 switch (action.Type.ToLower())
                 {
                     case "navigation":
-                        if (action.Target != null)
-                        {
-                            string[] actionTargetSplitted = action.Target.Split('.');
-                            string targetedConcern = TextConverter.CamelCase(actionTargetSplitted[0]);
-                            string targetedLayout = TextConverter.CamelCase(actionTargetSplitted[1]);
+                        string targetedConcern = action.GetTargetedConcern();
+                        string targetedLayout = action.GetTargetedLayout();
 #>
   /**
-   * method: on<#= TextConverter.PascalCase(action.Id) #>
+   * method: on<#= action.Id.ToPascalCase() #>
    * That method is a navigation method.
    */
-  public on<#= TextConverter.PascalCase(action.Id) #>() {
+  public on<#= action.Id.ToPascalCase() #>() {
     this._nav.push('<#= targetedConcern + "-" + targetedLayout #>');
   }
 
 <#
-                        }
                         break;
                     case "method":
 #>
   /**
-   * method: on<#= TextConverter.PascalCase(action.Id) #>
+   * method: on<#= action.Id.ToPascalCase() #>
    * That method is a blank method.
    */
-  public on<#= TextConverter.PascalCase(action.Id) #>() {
+  public on<#= action.Id.ToPascalCase() #>() {
     // TO DO
   }
 
@@ -205,7 +200,7 @@ export class <#= layout #> {
                                         {
 #>
   /**
-   * method: on<#= TextConverter.PascalCase(action.Id) #>
+   * method: on<#= action.Id.ToPascalCase() #>
    * You should add a description of your method here.
    * that method is an Api service call method.
 <#
@@ -217,7 +212,7 @@ export class <#= layout #> {
                                                     {
                                                         string type = apiParameter.TypeScriptType();
 #>
-   * @param <#= TextConverter.CamelCase(apiParameter.Id) #> `<#= type #>`.
+   * @param <#= apiParameter.Id.ToCamelCase() #> `<#= type #>`.
 <#
                                                     }
                                                 }
@@ -225,7 +220,7 @@ export class <#= layout #> {
 #>
    * @returns A `Subscription<any>`.
    */
-  public on<#= TextConverter.PascalCase(action.Id) #>(
+  public on<#= action.Id.ToPascalCase() #>(
 <#
                                             if (apiA.Parameters.AsEnumerable() != null && apiA.Parameters.AsEnumerable().Count() > 0)
                                             {
@@ -238,13 +233,13 @@ export class <#= layout #> {
                                                         if (apiParameter.Equals(last))
                                                         {
 #>
-    <#= TextConverter.CamelCase(apiParameter.Id) #>: <#= type #>
+    <#= apiParameter.Id.ToCamelCase() #>: <#= type #>
 <#
                                                         }
                                                         else
                                                         {
 #>
-    <#= TextConverter.CamelCase(apiParameter.Id) #>: <#= type #>,
+    <#= apiParameter.Id.ToCamelCase() #>: <#= type #>,
 <#
                                                         }
                                                     }
@@ -252,7 +247,7 @@ export class <#= layout #> {
                                             }
 #>
   ) {
-    return this._<#= TextConverter.CamelCase(api.Id) #>.<#= TextConverter.CamelCase(apiA.Id) #>(
+    return this._<#= api.Id.ToCamelCase() #>.<#= apiA.Id.ToCamelCase() #>(
 <#
                                             if (apiA.Parameters.AsEnumerable() != null && apiA.Parameters.AsEnumerable().Count() > 0)
                                             {
@@ -262,13 +257,13 @@ export class <#= layout #> {
                                                     if (apiParameter.Id != null && apiParameter.Equals(last))
                                                     {
 #>
-      <#= TextConverter.CamelCase(apiParameter.Id) #>
+      <#= apiParameter.Id.ToCamelCase() #>
 <#
                                                     }
                                                     else if (apiParameter.Id != null)
                                                     {
 #>
-      <#= TextConverter.CamelCase(apiParameter.Id) #>,
+      <#= apiParameter.Id.ToCamelCase() #>,
 <#
                                                     }
                                                 }

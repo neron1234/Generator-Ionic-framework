@@ -1,5 +1,4 @@
 <#@ include file="..\..\Base\Templates\Include.tt" #>
-<#@ import namespace="Mobioos.Foundation.Jade.Extensions" #>
 /*
  * You should add your licence here, here is an example :
  *
@@ -35,13 +34,13 @@
                     if (property.Target.IsEnum)
                     {
 #>
-import { <#= TextConverter.PascalCase(property.Type) #>Enum } from '../models/<#= TextConverter.CamelCase(property.Type) #>Enum';
+import { <#= property.Type.ToPascalCase() #>Enum } from '../models/<#= property.Type.ToCamelCase() #>Enum';
 <#
                     }
                     else
                     {
 #>
-import { <#= TextConverter.PascalCase(property.Type) #>Model } from '../models/<#= TextConverter.CamelCase(property.Type) #>Model';
+import { <#= property.Type.ToPascalCase() #>Model } from '../models/<#= property.Type.ToCamelCase() #>Model';
 <#
                     }
                 }
@@ -58,13 +57,13 @@ import { <#= TextConverter.PascalCase(property.Type) #>Model } from '../models/<
                     if (reference.Target.IsEnum)
                     {
 #>
-import { <#= TextConverter.PascalCase(reference.Type) #>Enum } from '../models/<#= TextConverter.CamelCase(reference.Type) #>Enum';
+import { <#= reference.Type.ToPascalCase() #>Enum } from '../models/<#= reference.Type.ToCamelCase() #>Enum';
 <#
                     }
                     else
                     {
 #>
-import { <#= TextConverter.PascalCase(reference.Type) #>Model } from '../models/<#= TextConverter.CamelCase(reference.Type) #>Model';
+import { <#= reference.Type.ToPascalCase() #>Model } from '../models/<#= reference.Type.ToCamelCase() #>Model';
 <#
                     }
                 }
@@ -72,13 +71,13 @@ import { <#= TextConverter.PascalCase(reference.Type) #>Model } from '../models/
         }
 #>
 /**
- * class: <#= TextConverter.PascalCase(_dataModel.Id) #>
+ * class: <#= _dataModel.Id.ToPascalCase() #>
  * You should add a description of your entity here.
  * This viewModel is a reference used in Concerns or
  * in APIs' parameters or return types.
  * This model is generated from ViewModel domain.
  */
-export class <#= TextConverter.PascalCase(_dataModel.Id) #> {
+export class <#= _dataModel.Id.ToPascalCase() #> {
 <#
         if (_dataModel.Properties.AsEnumerable() != null)
         {
@@ -91,7 +90,7 @@ export class <#= TextConverter.PascalCase(_dataModel.Id) #> {
    * property.
    * isCollection.
    */
-  public <#= TextConverter.CamelCase(property.Id) #>: <#= property.TypeScriptType() #>[];
+  public <#= property.Id.ToCamelCase() #>: <#= property.TypeScriptType() #>[];
 <#
                 }
                 else if (property.Id != null && property.TypeScriptType() != null)
@@ -100,7 +99,7 @@ export class <#= TextConverter.PascalCase(_dataModel.Id) #> {
   /**
    * property.
    */
-  public <#= TextConverter.CamelCase(property.Id) #>: <#= property.TypeScriptType() #>;
+  public <#= property.Id.ToCamelCase() #>: <#= property.TypeScriptType() #>;
 <#
                 }
             }
@@ -117,7 +116,7 @@ export class <#= TextConverter.PascalCase(_dataModel.Id) #> {
    * reference.
    * isEnum.
    */
-  public <#= TextConverter.CamelCase(reference.Id) #>: <#= TextConverter.PascalCase(reference.TypeScriptType()) #>Enum;
+  public <#= reference.Id.ToCamelCase() #>: <#= reference.TypeScriptType().ToPascalCase() #>Enum;
 <#
                 }
                 else if (reference.Id != null && reference.TypeScriptType() != null && reference.IsCollection)
@@ -127,7 +126,7 @@ export class <#= TextConverter.PascalCase(_dataModel.Id) #> {
    * reference.
    * isCollection.
    */
-  public <#= TextConverter.CamelCase(reference.Id) #>: <#= TextConverter.PascalCase(reference.TypeScriptType()) #>Model[];
+  public <#= reference.Id.ToCamelCase() #>: <#= reference.TypeScriptType().ToPascalCase() #>Model[];
 <#
                 }
                 else if (reference.Id != null && reference.TypeScriptType() != null)
@@ -136,7 +135,7 @@ export class <#= TextConverter.PascalCase(_dataModel.Id) #> {
   /**
    * reference.
    */
-  public <#= TextConverter.CamelCase(reference.Id) #>: <#= TextConverter.PascalCase(reference.TypeScriptType()) #>Model;
+  public <#= reference.Id.ToCamelCase() #>: <#= reference.TypeScriptType().ToPascalCase() #>Model;
 <#
                 }
             }
@@ -153,7 +152,7 @@ export class <#= TextConverter.PascalCase(_dataModel.Id) #> {
                 {
                     if (property.Id != null && property.TypeScriptType() != null)
                     {
-                        string propertyIsModel = IsModel(property);
+                        string propertyIsModel = IsModelOrEnum(property);
                         if (!countConstructor.ContainsKey(property.Id))
                             countConstructor.Add(property.Id, 1);
                         else
@@ -161,30 +160,30 @@ export class <#= TextConverter.PascalCase(_dataModel.Id) #> {
                         string type =  property.TypeScriptType();
                         if (!propertyIsModel.Equals(""))
                         {
-                            type = TextConverter.PascalCase(type);
+                            type = type.ToPascalCase();
                         }
                         if (property.IsCollection && index == lastIndex)
                         {
 #>
-    <#= TextConverter.CamelCase(property.Id) + countConstructor[property.Id] #>: <#= type + propertyIsModel #>[]
+    <#= property.Id.ToCamelCase() + countConstructor[property.Id] #>: <#= type + propertyIsModel #>[]
 <#
                         }
                         else if (index == lastIndex)
                         {
 #>
-    <#= TextConverter.CamelCase(property.Id) + countConstructor[property.Id] #>: <#= type + propertyIsModel #>
+    <#= property.Id.ToCamelCase() + countConstructor[property.Id] #>: <#= type + propertyIsModel #>
 <#
                         }
                         else if (property.IsCollection)
                         {
 #>
-    <#= TextConverter.CamelCase(property.Id) + countConstructor[property.Id] #>: <#= type + propertyIsModel #>[],
+    <#= property.Id.ToCamelCase() + countConstructor[property.Id] #>: <#= type + propertyIsModel #>[],
 <#
                         }
                         else
                         {
 #>
-    <#= TextConverter.CamelCase(property.Id) + countConstructor[property.Id] #>: <#= type + propertyIsModel #>,
+    <#= property.Id.ToCamelCase() + countConstructor[property.Id] #>: <#= type + propertyIsModel #>,
 <#
                         }
                     }
@@ -206,7 +205,7 @@ export class <#= TextConverter.PascalCase(_dataModel.Id) #> {
                         else
                             countObj[property.Id] = countObj[property.Id] + 1;
 #>
-    this.<#= TextConverter.CamelCase(property.Id) #> = <#= TextConverter.CamelCase(property.Id) + countObj[property.Id] #>;
+    this.<#= property.Id.ToCamelCase() #> = <#= property.Id.ToCamelCase() + countObj[property.Id] #>;
 <#
                     }
                 }
@@ -223,7 +222,7 @@ export class <#= TextConverter.PascalCase(_dataModel.Id) #> {
                         else
                             countObj[reference.Id] = countObj[reference.Id] + 1;
 #>
-    this.<#= TextConverter.CamelCase(reference.Id) #> = <#= TextConverter.CamelCase(reference.Id) + countObj[reference.Id] #>;
+    this.<#= reference.Id.ToCamelCase() #> = <#= reference.Id.ToCamelCase() + countObj[reference.Id] #>;
 <#
                     }
                 }

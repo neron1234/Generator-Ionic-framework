@@ -1,6 +1,6 @@
-﻿using Mobioos.Foundation.Jade.Models;
+﻿using Common.Generator.Framework.Extensions;
+using Mobioos.Foundation.Jade.Models;
 using Mobioos.Foundation.Prompt.Infrastructure;
-using Mobioos.Scaffold.BaseGenerators.Helpers;
 using Mobioos.Scaffold.BaseInfrastructure.Contexts;
 using Mobioos.Scaffold.BaseInfrastructure.Notifiers;
 using Mobioos.Scaffold.BaseInfrastructure.Services.GeneratorsServices;
@@ -48,23 +48,12 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
         /// <param name="smartApp">SmartApp manifeste.</param>
         private void TransformLayouts(SmartAppInfo smartApp)
         {
-            if (smartApp != null && smartApp.Concerns.AsEnumerable() != null && smartApp.Version != null)
+            var layouts = smartApp.GetLayouts();
+            foreach (LayoutInfo layout in layouts.AsEnumerable())
             {
-                foreach (ConcernInfo concern in smartApp.Concerns.AsEnumerable())
-                {
-                    if (concern != null && concern.Id != null && concern.Layouts.AsEnumerable() != null)
-                    {
-                        foreach (LayoutInfo layout in concern.Layouts.AsEnumerable())
-                        {
-                            if (layout != null)
-                            {
-                                TransformLayoutModule(concern.Id, layout, smartApp.Languages, smartApp.Api);
-                                TransformLayoutComponent(concern, layout, smartApp.Languages, smartApp.Api);
-                                TransformLayoutView(smartApp.Title, concern, layout, smartApp.Languages);
-                            }
-                        }
-                    }
-                }
+                TransformLayoutModule(((ConcernInfo)layout.Parent).Id, layout, smartApp.Languages, smartApp.Api);
+                TransformLayoutComponent((ConcernInfo)layout.Parent, layout, smartApp.Languages, smartApp.Api);
+                TransformLayoutView(smartApp.Title, (ConcernInfo)layout.Parent, layout, smartApp.Languages);
             }
         }
 
@@ -83,8 +72,12 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
             {
                 LayoutModuleTemplate layoutModuleTemplate = new LayoutModuleTemplate(concernId, layout, languages, api);
 
-                string layoutModuleDirectoryPath = Path.Combine(layoutModuleTemplate.OutputPath, TextConverter.CamelCase(concernId), TextConverter.CamelCase(layout.Id));
-                string layoutModuleFilename = TextConverter.CamelCase(concernId) + "-" + TextConverter.CamelCase(layout.Id) + ".module.ts";
+                string layoutModuleDirectoryPath = Path.Combine(
+                    layoutModuleTemplate.OutputPath,
+                    concernId.ToCamelCase(),
+                    layout.Id.ToCamelCase());
+
+                string layoutModuleFilename = concernId.ToCamelCase() + "-" + layout.Id.ToCamelCase() + ".module.ts";
 
                 string fileToWritePath = Path.Combine(_context.BasePath, layoutModuleDirectoryPath, layoutModuleFilename);
                 string textToWrite = layoutModuleTemplate.TransformText();
@@ -108,8 +101,12 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
             {
                 LayoutComponentTemplate layoutComponentTemplate = new LayoutComponentTemplate(concern, layout, languages, api);
 
-                string layoutComponentDirectoryPath = Path.Combine(layoutComponentTemplate.OutputPath, TextConverter.CamelCase(concern.Id), TextConverter.CamelCase(layout.Id));
-                string layoutComponentFilename = TextConverter.CamelCase(concern.Id) + "-" + TextConverter.CamelCase(layout.Id) + ".ts";
+                string layoutComponentDirectoryPath = Path.Combine(
+                    layoutComponentTemplate.OutputPath,
+                    concern.Id.ToCamelCase(),
+                    layout.Id.ToCamelCase());
+
+                string layoutComponentFilename = concern.Id.ToCamelCase() + "-" + layout.Id.ToCamelCase() + ".ts";
 
                 string fileToWritePath = Path.Combine(_context.BasePath, layoutComponentDirectoryPath, layoutComponentFilename);
                 string textToWrite = layoutComponentTemplate.TransformText();
@@ -134,8 +131,12 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
             {
                 LayoutViewTemplate layoutViewTemplate = new LayoutViewTemplate(smartAppTitle, concern, layout, languages);
 
-                string layoutViewDirectoryPath = Path.Combine(layoutViewTemplate.OutputPath, TextConverter.CamelCase(concern.Id), TextConverter.CamelCase(layout.Id));
-                string layoutViewFilename = TextConverter.CamelCase(concern.Id) + "-" + TextConverter.CamelCase(layout.Id) + ".html";
+                string layoutViewDirectoryPath = Path.Combine(
+                    layoutViewTemplate.OutputPath,
+                    concern.Id.ToCamelCase(),
+                    layout.Id.ToCamelCase());
+
+                string layoutViewFilename = concern.Id.ToCamelCase() + "-" + layout.Id.ToCamelCase() + ".html";
 
                 string fileToWritePath = Path.Combine(_context.BasePath, layoutViewDirectoryPath, layoutViewFilename);
                 string textToWrite = layoutViewTemplate.TransformText();
@@ -157,8 +158,12 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
             {
                 LayoutStyleTemplate layoutStyleTemplate = new LayoutStyleTemplate(concernId, layout);
 
-                string layoutStyleDirectoryPath = Path.Combine(layoutStyleTemplate.OutputPath, TextConverter.CamelCase(concernId), TextConverter.CamelCase(layout.Id));
-                string layoutStyleFilename = TextConverter.CamelCase(concernId) + "-" + TextConverter.CamelCase(layout.Id) + ".scss";
+                string layoutStyleDirectoryPath = Path.Combine(
+                    layoutStyleTemplate.OutputPath,
+                    concernId.ToCamelCase(),
+                    layout.Id.ToCamelCase());
+
+                string layoutStyleFilename = concernId.ToCamelCase() + "-" + layout.Id.ToCamelCase() + ".scss";
 
                 string fileToWritePath = Path.Combine(_context.BasePath, layoutStyleDirectoryPath, layoutStyleFilename);
                 string textToWrite = layoutStyleTemplate.TransformText();

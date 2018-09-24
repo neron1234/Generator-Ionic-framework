@@ -1,5 +1,4 @@
 <#@ include file="..\..\Base\Templates\Include.tt" #>
-<#@ import namespace="Mobioos.Foundation.Jade.Extensions" #>
 /*
  * You should add your licence here, here is an example :
  *
@@ -30,7 +29,7 @@ import { Observable } from 'rxjs';
         foreach(string viewModel in _viewModels.AsEnumerable())
         {
 #>
-import { <#= TextConverter.PascalCase(viewModel) #> } from '../viewModels/<#= TextConverter.CamelCase(viewModel) #>';
+import { <#= viewModel.ToPascalCase() #> } from '../viewModels/<#= viewModel.ToCamelCase() #>';
 <#
         }
     }
@@ -43,7 +42,7 @@ import { DataService } from './data.service';
     {
 #>
 /**
- * class: <#= TextConverter.PascalCase(_api.Id) #>.
+ * class: <#= _api.Id.ToPascalCase() #>.
 <#
         if (_api.Description != null)
         {
@@ -62,7 +61,7 @@ import { DataService } from './data.service';
 #>
  */
 @Injectable()
-export class <#= TextConverter.PascalCase(_api.Id) #> {
+export class <#= _api.Id.ToPascalCase() #> {
 <#
         if (_api.Actions.AsEnumerable() != null)
         {
@@ -71,7 +70,7 @@ export class <#= TextConverter.PascalCase(_api.Id) #> {
                 if (action.Id != null && action.Url != null)
                 {
 #>
-  public _<#= TextConverter.CamelCase(action.Id) #>Api = '<#= action.Url #>';
+  public _<#= action.Id.ToCamelCase() #>Api = '<#= action.Url #>';
 <#
                 }
             }
@@ -87,7 +86,7 @@ export class <#= TextConverter.PascalCase(_api.Id) #> {
                 {
 #>
     /**
-     * method: <#= TextConverter.CamelCase(action.Id) #>.
+     * method: <#= action.Id.ToCamelCase() #>.
      * You should add a description of your method here.
      * That method should be used to connect with generated
      * backend API. You should add business logic inside.
@@ -100,7 +99,7 @@ export class <#= TextConverter.PascalCase(_api.Id) #> {
                             {
                                 string type = apiParameter.TypeScriptType();
 #>
-     * @param <#= TextConverter.CamelCase(apiParameter.Id) #>Param `<#= type #>`.
+     * @param <#= apiParameter.Id.ToCamelCase() #>Param `<#= type #>`.
 <#
                             }
                         }
@@ -108,12 +107,12 @@ export class <#= TextConverter.PascalCase(_api.Id) #> {
                     if (action.ReturnType != null && action.ReturnType.Id != null)
                     {
 #>
-     * @returns `<#= TextConverter.PascalCase(action.ReturnType.Id) #>>`.
+     * @returns `<#= action.ReturnType.Id.ToPascalCase() #>>`.
 <#
                     }
 #>
      */
-    public <#= TextConverter.CamelCase(action.Id) #>(
+    public <#= action.Id.ToCamelCase() #>(
 <#
                     if (action.Parameters.AsEnumerable() != null && action.Parameters.AsEnumerable().Count() > 0)
                     {
@@ -126,13 +125,13 @@ export class <#= TextConverter.PascalCase(_api.Id) #> {
                                 if (apiParameter.Equals(last))
                                 {
 #>
-        <#= TextConverter.CamelCase(apiParameter.Id) #>Param: <#= type #>
+        <#= apiParameter.Id.ToCamelCase() #>Param: <#= type #>
 <#
                                 }
                                 else
                                 {
 #>
-        <#= TextConverter.CamelCase(apiParameter.Id) #>Param: <#= type #>,
+        <#= apiParameter.Id.ToCamelCase() #>Param: <#= type #>,
 <#
                                 }
                             }
@@ -142,7 +141,7 @@ export class <#= TextConverter.PascalCase(_api.Id) #> {
                     if (action.ReturnType != null && action.ReturnType.Id != null)
                     {
 #>
-    ): Observable<<#= TextConverter.PascalCase(action.ReturnType.Id) #>> {
+    ): Observable<<#= action.ReturnType.Id.ToPascalCase() #>> {
 <#
                     }
                     else
@@ -161,7 +160,7 @@ export class <#= TextConverter.PascalCase(_api.Id) #> {
                             if (action.Parameters.AsEnumerable() != null && action.Parameters.AsEnumerable().Count() > 0)
                             {
 #>
-          `${this._<#= TextConverter.CamelCase(action.Id) #>Api}`,
+          `${this._<#= action.Id.ToCamelCase() #>Api}`,
           {
 <#
                                 ApiParameterInfo last = action.Parameters.AsEnumerable().Last();
@@ -172,13 +171,13 @@ export class <#= TextConverter.PascalCase(_api.Id) #> {
                                         if (apiParameter.Equals(last))
                                         {
 #>
-              <#= TextConverter.CamelCase(apiParameter.Id) #>: JSON.stringify(<#= TextConverter.CamelCase(apiParameter.Id) #>Param)
+              <#= apiParameter.Id.ToCamelCase() #>: JSON.stringify(<#= apiParameter.Id.ToCamelCase() #>Param)
 <#
                                         }
                                         else
                                         {
 #>
-              <#= TextConverter.CamelCase(apiParameter.Id) #>: JSON.stringify(<#= TextConverter.CamelCase(apiParameter.Id) #>Param),
+              <#= apiParameter.Id.ToCamelCase() #>: JSON.stringify(<#= apiParameter.Id.ToCamelCase() #>Param),
 <#
                                         }
                                     }
@@ -190,7 +189,7 @@ export class <#= TextConverter.PascalCase(_api.Id) #> {
                             else
                             {
 #>
-          `${this._<#= TextConverter.CamelCase(action.Id) #>Api}`,
+          `${this._<#= action.Id.ToCamelCase() #>Api}`,
           {});
 <#
                             }
@@ -203,7 +202,7 @@ export class <#= TextConverter.PascalCase(_api.Id) #> {
                             if (action.Parameters.AsEnumerable() != null && action.Parameters.AsEnumerable().Count() > 0)
                             {
 #>
-          `${this._<#= TextConverter.CamelCase(action.Id) #>Api}`,
+          `${this._<#= action.Id.ToCamelCase() #>Api}`,
           {
 <#
                                 ApiParameterInfo last = action.Parameters.AsEnumerable().Last();
@@ -214,13 +213,13 @@ export class <#= TextConverter.PascalCase(_api.Id) #> {
                                         if (apiParameter.Equals(last))
                                         {
 #>
-              <#= TextConverter.CamelCase(apiParameter.Id) #>: <#= TextConverter.CamelCase(apiParameter.Id) #>Param
+              <#= apiParameter.Id.ToCamelCase() #>: <#= apiParameter.Id.ToCamelCase() #>Param
 <#
                                         }
                                         else
                                         {
 #>
-              <#= TextConverter.CamelCase(apiParameter.Id) #>: <#= TextConverter.CamelCase(apiParameter.Id) #>Param,
+              <#= apiParameter.Id.ToCamelCase() #>: <#= apiParameter.Id.ToCamelCase() #>Param,
 <#
                                         }
                                     }
@@ -233,7 +232,7 @@ export class <#= TextConverter.PascalCase(_api.Id) #> {
                             else
                             {
 #>
-          `${this._<#= TextConverter.CamelCase(action.Id) #>Api}`,
+          `${this._<#= action.Id.ToCamelCase() #>Api}`,
           {},
           {});
 <#
@@ -247,7 +246,7 @@ export class <#= TextConverter.PascalCase(_api.Id) #> {
                             if (action.Parameters.AsEnumerable() != null && action.Parameters.AsEnumerable().Count() > 0)
                             {
 #>
-          `${this._<#= TextConverter.CamelCase(action.Id) #>Api}`,
+          `${this._<#= action.Id.ToCamelCase() #>Api}`,
           {
 <#
                                 ApiParameterInfo last = action.Parameters.AsEnumerable().Last();
@@ -258,13 +257,13 @@ export class <#= TextConverter.PascalCase(_api.Id) #> {
                                         if (apiParameter.Equals(last))
                                         {
 #>
-              <#= TextConverter.CamelCase(apiParameter.Id) #>: <#= TextConverter.CamelCase(apiParameter.Id) #>Param
+              <#= apiParameter.Id.ToCamelCase() #>: <#= apiParameter.Id.ToCamelCase() #>Param
 <#
                                         }
                                         else
                                         {
 #>
-              <#= TextConverter.CamelCase(apiParameter.Id) #>: <#= TextConverter.CamelCase(apiParameter.Id) #>Param,
+              <#= apiParameter.Id.ToCamelCase() #>: <#= apiParameter.Id.ToCamelCase() #>Param,
 <#
                                         }
                                     }
@@ -277,7 +276,7 @@ export class <#= TextConverter.PascalCase(_api.Id) #> {
                             else
                             {
 #>
-            `${this._<#= TextConverter.CamelCase(action.Id) #>Api}`,
+            `${this._<#= action.Id.ToCamelCase() #>Api}`,
             {},
             {});
 <#
@@ -291,7 +290,7 @@ export class <#= TextConverter.PascalCase(_api.Id) #> {
                             if (action.Parameters.AsEnumerable() != null && action.Parameters.AsEnumerable().Count() > 0)
                             {
 #>
-            `${this._<#= TextConverter.CamelCase(action.Id) #>Api}`,
+            `${this._<#= action.Id.ToCamelCase() #>Api}`,
             {
 <#
                                 ApiParameterInfo last = action.Parameters.AsEnumerable().Last();
@@ -302,13 +301,13 @@ export class <#= TextConverter.PascalCase(_api.Id) #> {
                                         if (apiParameter.Equals(last))
                                         {
 #>
-               <#= TextConverter.CamelCase(apiParameter.Id) #>: JSON.stringify(<#= TextConverter.CamelCase(apiParameter.Id) #>Param)
+               <#= apiParameter.Id.ToCamelCase() #>: JSON.stringify(<#= apiParameter.Id.ToCamelCase() #>Param)
 <#	
                                         }
                                         else
                                         {
 #>
-               <#= TextConverter.CamelCase(apiParameter.Id) #>: JSON.stringify(<#= TextConverter.CamelCase(apiParameter.Id) #>Param),
+               <#= apiParameter.Id.ToCamelCase() #>: JSON.stringify(<#= apiParameter.Id.ToCamelCase() #>Param),
 <#
                                         }
                                     }
@@ -320,7 +319,7 @@ export class <#= TextConverter.PascalCase(_api.Id) #> {
                             else
                             {
 #>
-            `${this._<#= TextConverter.CamelCase(action.Id) #>Api}`,
+            `${this._<#= action.Id.ToCamelCase() #>Api}`,
             {});
 <#
                             }

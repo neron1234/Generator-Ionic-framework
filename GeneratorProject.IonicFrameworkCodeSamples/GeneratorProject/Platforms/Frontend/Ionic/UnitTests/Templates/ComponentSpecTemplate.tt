@@ -1,11 +1,10 @@
 <#@ include file="..\..\Base\Templates\Include.tt" #>
-<#@ import namespace="Mobioos.Foundation.Jade.Extensions" #>
 <#
     if (_smartAppId != null && _concernId != null && _layout != null && _layout.Id != null)
     {
-        string smartAppId = TextConverter.PascalCase(_smartAppId);
-        string layout = TextConverter.PascalCase(_concernId) + TextConverter.PascalCase(_layout.Id);
-        string layoutToLower = TextConverter.CamelCase(_concernId) + "-" + TextConverter.CamelCase(_layout.Id);
+        string smartAppId = _smartAppId.ToPascalCase();
+        string layout = _concernId.ToPascalCase() + _layout.Id.ToPascalCase();
+        string layoutToLower = _concernId.ToCamelCase() + "-" + _layout.Id.ToCamelCase();
 #>
 import { IonicModule, NavController, Platform } from 'ionic-angular';
 import { NavMock } from '../../../../test-config/mocks/navMock';
@@ -42,7 +41,7 @@ import { <#= layout #> } from "./<#= layoutToLower #>";
             foreach (string viewModel in _viewModels.AsEnumerable())
             {
 #>
-import { <#= TextConverter.PascalCase(viewModel) #> } from '../../../viewModels/<#= TextConverter.CamelCase(viewModel) #>';
+import { <#= viewModel.ToPascalCase() #> } from '../../../viewModels/<#= viewModel.ToCamelCase() #>';
 <#
             }
         }
@@ -52,8 +51,8 @@ import { <#= TextConverter.PascalCase(viewModel) #> } from '../../../viewModels/
             foreach (string service in _apiDomainServices.AsEnumerable())
             {
 #>
-import { <#= TextConverter.PascalCase(service) #> } from '../../../services/<#= TextConverter.CamelCase(service) #>.service';
-import { <#= TextConverter.PascalCase(service) #>Mock } from '../../../../test-config/mocks/<#= TextConverter.CamelCase(service) #>Mock';
+import { <#= service.ToPascalCase() #> } from '../../../services/<#= service.ToCamelCase() #>.service';
+import { <#= service.ToPascalCase() #>Mock } from '../../../../test-config/mocks/<#= service.ToCamelCase() #>Mock';
 <#
             }
         }
@@ -88,7 +87,7 @@ describe('<#= layout #> Component', () => {
             foreach (string service in _apiDomainServices.AsEnumerable())
             {
 #>
-        { provide: <#= TextConverter.PascalCase(service) #>, useClass: <#= TextConverter.PascalCase(service) #>Mock },
+        { provide: <#= service.ToPascalCase() #>, useClass: <#= service.ToPascalCase() #>Mock },
 <#
             }
         }
@@ -151,19 +150,16 @@ describe('<#= layout #> Component', () => {
                 switch (action.Type.ToLower())
                 {
                     case "navigation":
-                        if (action.Target != null)
-                        {
-                            string[] actionTargetSplitted = action.Target.Split('.');
-                            string targetedConcern = TextConverter.CamelCase(actionTargetSplitted[0]);
-                            string targetedLayout = TextConverter.CamelCase(actionTargetSplitted[1]);
+                        string targetedConcern = action.GetTargetedConcern();
+                        string targetedLayout = action.GetTargetedLayout();
 #>
-  it('<#= layout #> Component - on<#= TextConverter.PascalCase(action.Id) #>: should navigate to <#= targetedConcern + "-" + targetedLayout #> page', fakeAsync(() => {
-    spy = spyOn(component, 'on<#= TextConverter.PascalCase(action.Id) #>').and.callThrough();
-    component.on<#= TextConverter.PascalCase(action.Id) #>();
+  it('<#= layout #> Component - on<#= action.Id.ToPascalCase() #>: should navigate to <#= targetedConcern + "-" + targetedLayout #> page', fakeAsync(() => {
+    spy = spyOn(component, 'on<#= action.Id.ToPascalCase() #>').and.callThrough();
+    component.on<#= action.Id.ToPascalCase() #>();
     flushMicrotasks();
     expect(spy).toHaveBeenCalled();
     spy = spyOn(component._nav, 'push').and.callThrough();
-    component.on<#= TextConverter.PascalCase(action.Id) #>();
+    component.on<#= action.Id.ToPascalCase() #>();
     flushMicrotasks();
     expect(spy).toHaveBeenCalledWith('<#= targetedConcern + "-" + targetedLayout #>');
     spy.calls.mostRecent().returnValue.then((result) => {
@@ -172,13 +168,12 @@ describe('<#= layout #> Component', () => {
   }));
 
 <#
-                        }
                         break;
                     case "method":
 #>
-  it('<#= layout #> Component - on<#= TextConverter.PascalCase(action.Id) #>: should do nothing', fakeAsync(() => {
-    spy = spyOn(component, 'on<#= TextConverter.PascalCase(action.Id) #>').and.callThrough();
-    component.on<#= TextConverter.PascalCase(action.Id) #>();
+  it('<#= layout #> Component - on<#= action.Id.ToPascalCase() #>: should do nothing', fakeAsync(() => {
+    spy = spyOn(component, 'on<#= action.Id.ToPascalCase() #>').and.callThrough();
+    component.on<#= action.Id.ToPascalCase() #>();
     flushMicrotasks();
     expect(spy).toHaveBeenCalled();
     var result = spy.calls.mostRecent().returnValue;
@@ -203,7 +198,7 @@ describe('<#= layout #> Component', () => {
                                         if (apiA.Id.ToLower().Equals(apiAction.ToLower()))
                                         {
 #>
-  it('<#= layout #> Component - on<#= TextConverter.PascalCase(action.Id) #>: should use <#= TextConverter.CamelCase(api.Id) #> service to <#= TextConverter.PascalCase(action.Id) #>', fakeAsync(() => {
+  it('<#= layout #> Component - on<#= action.Id.ToPascalCase() #>: should use <#= api.Id.ToCamelCase() #> service to <#= action.Id.ToPascalCase() #>', fakeAsync(() => {
 <#
                                             if (apiA.Parameters.AsEnumerable() != null && apiA.Parameters.AsEnumerable().Count() > 0)
                                             {
@@ -214,14 +209,14 @@ describe('<#= layout #> Component', () => {
                                                         string type = apiParameter.TypeScriptType();
                                                         string value = getValueFromType(type);
 #>
-    var <#= TextConverter.CamelCase(apiParameter.Id) #> = <#= value #>;
+    var <#= apiParameter.Id.ToCamelCase() #> = <#= value #>;
 <#
                                                     }
                                                 }
                                             }
 #>
-    spy = spyOn(component, 'on<#= TextConverter.PascalCase(action.Id) #>').and.callThrough();
-    component.on<#= TextConverter.PascalCase(action.Id) #>(
+    spy = spyOn(component, 'on<#= action.Id.ToPascalCase() #>').and.callThrough();
+    component.on<#= action.Id.ToPascalCase() #>(
 <#
                                             if (apiA.Parameters.AsEnumerable() != null && apiA.Parameters.AsEnumerable().Count() > 0)
                                             {
@@ -235,71 +230,13 @@ describe('<#= layout #> Component', () => {
                                                         if (apiParameter.Equals(last))
                                                         {
 #>
-    <#= TextConverter.CamelCase(apiParameter.Id) #>
+    <#= apiParameter.Id.ToPascalCase() #>
 <#
                                                         }
                                                         else
                                                         {
 #>
-    <#= TextConverter.CamelCase(apiParameter.Id) #>,
-<#
-                                                        }
-                                                    }
-                                                }
-                                            }
-#>
-    );
-    flushMicrotasks();
-    expect(spy).toHaveBeenCalledWith(
-<#
-                                            if (apiA.Parameters.AsEnumerable() != null && apiA.Parameters.AsEnumerable().Count() > 0)
-                                            {
-                                                ApiParameterInfo last = apiA.Parameters.AsEnumerable().Last();
-                                                foreach (ApiParameterInfo apiParameter in apiA.Parameters.AsEnumerable())
-                                                {
-                                                    if (apiParameter.Id != null)
-                                                    {
-                                                        string type = apiParameter.TypeScriptType();
-                                                        string value = getValueFromType(type);
-                                                        if (apiParameter.Equals(last))
-                                                        {
-#>
-    <#= TextConverter.CamelCase(apiParameter.Id) #>
-<#
-                                                        }
-                                                        else
-                                                        {
-#>
-    <#= TextConverter.CamelCase(apiParameter.Id) #>,
-<#
-                                                        }
-                                                    }
-                                                }
-                                            }
-#>
-    );
-    spy = spyOn(component._<#= TextConverter.CamelCase(api.Id) #>, '<#= TextConverter.CamelCase(apiA.Id) #>').and.callThrough();
-    component.on<#= TextConverter.PascalCase(action.Id) #>(
-<#
-                                            if (apiA.Parameters.AsEnumerable() != null && apiA.Parameters.AsEnumerable().Count() > 0)
-                                            {
-                                                ApiParameterInfo last = apiA.Parameters.AsEnumerable().Last();
-                                                foreach (ApiParameterInfo apiParameter in apiA.Parameters.AsEnumerable())
-                                                {
-                                                    if (apiParameter.Id != null)
-                                                    {
-                                                        string type = apiParameter.TypeScriptType();
-                                                        string value = getValueFromType(type);
-                                                        if (apiParameter.Equals(last))
-                                                        {
-#>
-    <#= TextConverter.CamelCase(apiParameter.Id) #>
-<#
-                                                        }
-                                                        else
-                                                        {
-#>
-    <#= TextConverter.CamelCase(apiParameter.Id) #>,
+    <#= apiParameter.Id.ToCamelCase() #>,
 <#
                                                         }
                                                     }
@@ -322,13 +259,71 @@ describe('<#= layout #> Component', () => {
                                                         if (apiParameter.Equals(last))
                                                         {
 #>
-    <#= TextConverter.CamelCase(apiParameter.Id) #>
+    <#= apiParameter.Id.ToCamelCase() #>
 <#
                                                         }
                                                         else
                                                         {
 #>
-    <#= TextConverter.CamelCase(apiParameter.Id) #>,
+    <#= apiParameter.Id.ToCamelCase() #>,
+<#
+                                                        }
+                                                    }
+                                                }
+                                            }
+#>
+    );
+    spy = spyOn(component._<#= api.Id.ToCamelCase() #>, '<#= apiA.Id.ToCamelCase() #>').and.callThrough();
+    component.on<#= action.Id.ToPascalCase() #>(
+<#
+                                            if (apiA.Parameters.AsEnumerable() != null && apiA.Parameters.AsEnumerable().Count() > 0)
+                                            {
+                                                ApiParameterInfo last = apiA.Parameters.AsEnumerable().Last();
+                                                foreach (ApiParameterInfo apiParameter in apiA.Parameters.AsEnumerable())
+                                                {
+                                                    if (apiParameter.Id != null)
+                                                    {
+                                                        string type = apiParameter.TypeScriptType();
+                                                        string value = getValueFromType(type);
+                                                        if (apiParameter.Equals(last))
+                                                        {
+#>
+    <#= apiParameter.Id.ToCamelCase() #>
+<#
+                                                        }
+                                                        else
+                                                        {
+#>
+    <#= apiParameter.Id.ToCamelCase() #>,
+<#
+                                                        }
+                                                    }
+                                                }
+                                            }
+#>
+    );
+    flushMicrotasks();
+    expect(spy).toHaveBeenCalledWith(
+<#
+                                            if (apiA.Parameters.AsEnumerable() != null && apiA.Parameters.AsEnumerable().Count() > 0)
+                                            {
+                                                ApiParameterInfo last = apiA.Parameters.AsEnumerable().Last();
+                                                foreach (ApiParameterInfo apiParameter in apiA.Parameters.AsEnumerable())
+                                                {
+                                                    if (apiParameter.Id != null)
+                                                    {
+                                                        string type = apiParameter.TypeScriptType();
+                                                        string value = getValueFromType(type);
+                                                        if (apiParameter.Equals(last))
+                                                        {
+#>
+    <#= apiParameter.Id.ToCamelCase() #>
+<#
+                                                        }
+                                                        else
+                                                        {
+#>
+    <#= apiParameter.Id.ToCamelCase() #>,
 <#
                                                         }
                                                     }

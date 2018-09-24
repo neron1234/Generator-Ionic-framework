@@ -23,17 +23,17 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Title } from '@angular/platform-browser';
 
-import { <#= TextConverter.PascalCase(_smartApp.Id) #> } from './app.component';
+import { <#= _smartApp.Id.ToPascalCase() #> } from './app.component';
 <#
         if (_smartApp.Concerns.AsEnumerable() != null && _rootLayout != null && _rootLayout.Id != null && _rootConcern != null && _rootConcern.Id != null)
         {
-            string concern = TextConverter.PascalCase(_rootConcern.Id);
-            string layout = TextConverter.PascalCase(_rootLayout.Id);
+            string concern = _rootConcern.Id.ToPascalCase();
+            string layout = _rootLayout.Id.ToPascalCase();
             string layoutComponent = concern + layout;
-            string layoutComponentToLower = TextConverter.CamelCase(concern) + "-" + TextConverter.CamelCase(layout);
+            string layoutComponentToLower = concern.ToCamelCase() + "-" + layout.ToCamelCase();
 #>
-import { <#= layoutComponent #>PageModule } from '../pages/<#= TextConverter.CamelCase(concern) #>/<#= TextConverter.CamelCase(layout) #>/<#= layoutComponentToLower #>.module';
-import { <#= layoutComponent #> } from '../pages/<#= TextConverter.CamelCase(concern) #>/<#= TextConverter.CamelCase(layout) #>/<#= layoutComponentToLower #>';
+import { <#= layoutComponent #>PageModule } from '../pages/<#= concern.ToCamelCase() #>/<#= layout.ToCamelCase() #>/<#= layoutComponentToLower #>.module';
+import { <#= layoutComponent #> } from '../pages/<#= concern.ToCamelCase() #>/<#= layout.ToCamelCase() #>/<#= layoutComponentToLower #>';
 <#
         }
 #>
@@ -43,15 +43,15 @@ import { SplashScreenMock } from '../../test-config/mocks/splashScreenMock';
 import { NavMock } from '../../test-config/mocks/navMock';
 import { TitleMock } from '../../test-config/mocks/titleMock';
 
-describe('<#= TextConverter.PascalCase(_smartApp.Id) #> Component', () => {
-  let fixture: ComponentFixture<<#= TextConverter.PascalCase(_smartApp.Id) #>>;
-  let component: <#= TextConverter.PascalCase(_smartApp.Id) #>;
+describe('<#= _smartApp.Id.ToPascalCase() #> Component', () => {
+  let fixture: ComponentFixture<<#= _smartApp.Id.ToPascalCase() #>>;
+  let component: <#= _smartApp.Id.ToPascalCase() #>;
 
   let spy: jasmine.Spy;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [<#= TextConverter.PascalCase(_smartApp.Id) #>],
+      declarations: [<#= _smartApp.Id.ToPascalCase() #>],
       imports: [
 <#
         if (isLanguages)
@@ -65,16 +65,16 @@ describe('<#= TextConverter.PascalCase(_smartApp.Id) #> Component', () => {
 <#
         if (_smartApp.Concerns.AsEnumerable() != null && _rootLayout != null && _rootLayout.Id != null && _rootConcern != null && _rootConcern.Id != null)
         {
-            string concern = TextConverter.PascalCase(_rootConcern.Id);
-            string layout = TextConverter.PascalCase(_rootLayout.Id);
+            string concern = _rootConcern.Id.ToPascalCase();
+            string layout = _rootLayout.Id.ToPascalCase();
             string layoutComponent = concern + layout;
-            string layoutComponentToLower = TextConverter.CamelCase(concern) + "-" + TextConverter.CamelCase(layout);
+            string layoutComponentToLower = concern.ToCamelCase() + "-" + layout.ToCamelCase();
 #>
         <#= layoutComponent #>PageModule,
 <#
         }
 #>
-        IonicModule.forRoot(<#= TextConverter.PascalCase(_smartApp.Id) #>)
+        IonicModule.forRoot(<#= _smartApp.Id.ToPascalCase() #>)
       ],
       providers: [
         { provide: Platform, useClass: PlatformMock },
@@ -95,7 +95,7 @@ describe('<#= TextConverter.PascalCase(_smartApp.Id) #> Component', () => {
   }));
 
   beforeEach(async() => {
-    fixture = TestBed.createComponent(<#= TextConverter.PascalCase(_smartApp.Id) #>);
+    fixture = TestBed.createComponent(<#= _smartApp.Id.ToPascalCase() #>);
     component = fixture.componentInstance;
   });
   
@@ -104,9 +104,9 @@ describe('<#= TextConverter.PascalCase(_smartApp.Id) #> Component', () => {
     component = null;
   });
 
-  it('<#= TextConverter.PascalCase(_smartApp.Id) #> Component: platform should be ready', fakeAsync(() => {
+  it('<#= _smartApp.Id.ToPascalCase() #> Component: platform should be ready', fakeAsync(() => {
     spy = spyOn(component._platform, 'ready').and.callThrough();
-    var app = new <#= TextConverter.PascalCase(_smartApp.Id) #>(
+    var app = new <#= _smartApp.Id.ToPascalCase() #>(
 <#
         if (isLanguages)
         {
@@ -135,9 +135,9 @@ describe('<#= TextConverter.PascalCase(_smartApp.Id) #> Component', () => {
     });
   }));
 
-  it('<#= TextConverter.PascalCase(_smartApp.Id) #> Component: should set default style statusBar', fakeAsync(() => {
+  it('<#= _smartApp.Id.ToPascalCase() #> Component: should set default style statusBar', fakeAsync(() => {
     spy = spyOn(component._statusBar, 'styleDefault').and.callThrough();
-    var app = new <#= TextConverter.PascalCase(_smartApp.Id) #>(
+    var app = new <#= _smartApp.Id.ToPascalCase() #>(
 <#
         if (isLanguages)
         {
@@ -165,9 +165,9 @@ describe('<#= TextConverter.PascalCase(_smartApp.Id) #> Component', () => {
     expect(result).toBeUndefined();
   }));
 
-  it('<#= TextConverter.PascalCase(_smartApp.Id) #> Component: should hide splashscreen', fakeAsync(() => {
+  it('<#= _smartApp.Id.ToPascalCase() #> Component: should hide splashscreen', fakeAsync(() => {
     spy = spyOn(component._splashScreen, 'hide').and.callThrough();
-    var app = new <#= TextConverter.PascalCase(_smartApp.Id) #>(
+    var app = new <#= _smartApp.Id.ToPascalCase() #>(
 <#
         if (isLanguages)
         {
@@ -195,9 +195,9 @@ describe('<#= TextConverter.PascalCase(_smartApp.Id) #> Component', () => {
     expect(result).toBeUndefined();
   }));
 
-  it('<#= TextConverter.PascalCase(_smartApp.Id) #> Component: should set navigation root page', fakeAsync(() => {
+  it('<#= _smartApp.Id.ToPascalCase() #> Component: should set navigation root page', fakeAsync(() => {
     spy = spyOn(component._nav, 'setRoot').and.callThrough();
-    var app = new <#= TextConverter.PascalCase(_smartApp.Id) #>(
+    var app = new <#= _smartApp.Id.ToPascalCase() #>(
 <#
         if (isLanguages)
         {
@@ -224,10 +224,10 @@ describe('<#= TextConverter.PascalCase(_smartApp.Id) #> Component', () => {
 <#
         if (_smartApp.Concerns.AsEnumerable() != null && _rootLayout != null && _rootLayout.Id != null && _rootConcern != null && _rootConcern.Id != null)
         {
-            string concern = TextConverter.PascalCase(_rootConcern.Id);
-            string layout = TextConverter.PascalCase(_rootLayout.Id);
+            string concern = _rootConcern.Id.ToPascalCase();
+            string layout = _rootLayout.Id.ToPascalCase();
             string layoutComponent = concern + layout;
-            string layoutComponentToLower = TextConverter.CamelCase(concern) + "-" + TextConverter.CamelCase(layout);
+            string layoutComponentToLower = concern.ToCamelCase() + "-" + layout.ToCamelCase();
 #>
       <#= layoutComponent #>
 <#
@@ -239,9 +239,9 @@ describe('<#= TextConverter.PascalCase(_smartApp.Id) #> Component', () => {
     });
   }));
 
-  it('<#= TextConverter.PascalCase(_smartApp.Id) #> Component: should set default language', fakeAsync(() => {
+  it('<#= _smartApp.Id.ToPascalCase() #> Component: should set default language', fakeAsync(() => {
     spy = spyOn(component._translateService, 'setDefaultLang').and.callThrough();
-    var app = new <#= TextConverter.PascalCase(_smartApp.Id) #>(
+    var app = new <#= _smartApp.Id.ToPascalCase() #>(
 <#
         if (isLanguages)
         {
@@ -269,9 +269,9 @@ describe('<#= TextConverter.PascalCase(_smartApp.Id) #> Component', () => {
     expect(result).toBeUndefined();
   }));
 
-  it('<#= TextConverter.PascalCase(_smartApp.Id) #> Component: should use a language', fakeAsync(() => {
+  it('<#= _smartApp.Id.ToPascalCase() #> Component: should use a language', fakeAsync(() => {
     spy = spyOn(component._translateService, 'use').and.callThrough();
-    var app = new <#= TextConverter.PascalCase(_smartApp.Id) #>(
+    var app = new <#= _smartApp.Id.ToPascalCase() #>(
 <#
         if (isLanguages)
         {
@@ -300,9 +300,9 @@ describe('<#= TextConverter.PascalCase(_smartApp.Id) #> Component', () => {
     });
   }));
 
-  it('<#= TextConverter.PascalCase(_smartApp.Id) #> Component: should translate applicationTitle to test', fakeAsync(() => {
+  it('<#= _smartApp.Id.ToPascalCase() #> Component: should translate applicationTitle to test', fakeAsync(() => {
     spy = spyOn(component._translateService, 'get').and.callThrough();
-    var app = new <#= TextConverter.PascalCase(_smartApp.Id) #>(
+    var app = new <#= _smartApp.Id.ToPascalCase() #>(
 <#
         if (isLanguages)
         {
@@ -331,9 +331,9 @@ describe('<#= TextConverter.PascalCase(_smartApp.Id) #> Component', () => {
     });
   }));
 
-  it('<#= TextConverter.PascalCase(_smartApp.Id) #> Component: should set translated title', fakeAsync(() => {
+  it('<#= _smartApp.Id.ToPascalCase() #> Component: should set translated title', fakeAsync(() => {
     spy = spyOn(component._title, 'setTitle').and.callThrough();
-    var app = new <#= TextConverter.PascalCase(_smartApp.Id) #>(
+    var app = new <#= _smartApp.Id.ToPascalCase() #>(
 <#
         if (isLanguages)
         {
@@ -361,12 +361,12 @@ describe('<#= TextConverter.PascalCase(_smartApp.Id) #> Component', () => {
     expect(result).toBeUndefined();
   }));
 
-  it('<#= TextConverter.PascalCase(_smartApp.Id) #> Component: should be created', fakeAsync(() => {
+  it('<#= _smartApp.Id.ToPascalCase() #> Component: should be created', fakeAsync(() => {
     flushMicrotasks();
-    expect(component instanceof <#= TextConverter.PascalCase(_smartApp.Id) #>).toBeTruthy();
+    expect(component instanceof <#= _smartApp.Id.ToPascalCase() #>).toBeTruthy();
   }));
 
-  it('<#= TextConverter.PascalCase(_smartApp.Id) #> Component: should set root on test route', fakeAsync(() => {
+  it('<#= _smartApp.Id.ToPascalCase() #> Component: should set root on test route', fakeAsync(() => {
     spy = spyOn(component, 'selected').and.callThrough();
     component.selected('test');
     flushMicrotasks();

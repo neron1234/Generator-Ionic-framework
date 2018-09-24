@@ -1,6 +1,6 @@
-﻿using Mobioos.Foundation.Jade.Models;
+﻿using Common.Generator.Framework.Extensions;
+using Mobioos.Foundation.Jade.Models;
 using Mobioos.Foundation.Prompt.Infrastructure;
-using Mobioos.Scaffold.BaseGenerators.Helpers;
 using Mobioos.Scaffold.BaseInfrastructure.Contexts;
 using Mobioos.Scaffold.BaseInfrastructure.Notifiers;
 using Mobioos.Scaffold.BaseInfrastructure.Services.GeneratorsServices;
@@ -70,7 +70,7 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
                 {
                     JsonTemplate jsonTemplate = new JsonTemplate(smartApp, languageInfo.Id);
                     string jsonDirectoryPath = Path.Combine(jsonTemplate.OutputPath);
-                    string enJsonFile = TextConverter.PascalCase(languageInfo.Id) + ".json";
+                    string enJsonFile = languageInfo.Id.ToPascalCase() + ".json";
 
                     string fileToWritePath = Path.Combine(_context.BasePath, jsonDirectoryPath, enJsonFile);
                     string textToWrite = jsonTemplate.TransformText();

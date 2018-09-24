@@ -13,7 +13,7 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
     using System.Text;
     using System.Collections.Generic;
     using Mobioos.Scaffold.BaseGenerators.TextTemplating;
-    using Mobioos.Scaffold.BaseGenerators.Helpers;
+    using Common.Generator.Framework.Extensions;
     using Mobioos.Foundation.Jade.Models;
     using System;
     
@@ -69,7 +69,7 @@ import { Title } from '@angular/platform-browser';
 import { ");
             
             #line 26 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.PascalCase(_smartApp.Id)));
+            this.Write(this.ToStringHelper.ToStringWithCulture(_smartApp.Id.ToPascalCase()));
             
             #line default
             #line hidden
@@ -79,10 +79,10 @@ import { ");
 
         if (_smartApp.Concerns.AsEnumerable() != null && _rootLayout != null && _rootLayout.Id != null && _rootConcern != null && _rootConcern.Id != null)
         {
-            string concern = TextConverter.PascalCase(_rootConcern.Id);
-            string layout = TextConverter.PascalCase(_rootLayout.Id);
+            string concern = _rootConcern.Id.ToPascalCase();
+            string layout = _rootLayout.Id.ToPascalCase();
             string layoutComponent = concern + layout;
-            string layoutComponentToLower = TextConverter.CamelCase(concern) + "-" + TextConverter.CamelCase(layout);
+            string layoutComponentToLower = concern.ToCamelCase() + "-" + layout.ToCamelCase();
 
             
             #line default
@@ -97,14 +97,14 @@ import { ");
             this.Write("PageModule } from \'../pages/");
             
             #line 35 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.CamelCase(concern)));
+            this.Write(this.ToStringHelper.ToStringWithCulture(concern.ToCamelCase()));
             
             #line default
             #line hidden
             this.Write("/");
             
             #line 35 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.CamelCase(layout)));
+            this.Write(this.ToStringHelper.ToStringWithCulture(layout.ToCamelCase()));
             
             #line default
             #line hidden
@@ -125,14 +125,14 @@ import { ");
             this.Write(" } from \'../pages/");
             
             #line 36 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.CamelCase(concern)));
+            this.Write(this.ToStringHelper.ToStringWithCulture(concern.ToCamelCase()));
             
             #line default
             #line hidden
             this.Write("/");
             
             #line 36 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.CamelCase(layout)));
+            this.Write(this.ToStringHelper.ToStringWithCulture(layout.ToCamelCase()));
             
             #line default
             #line hidden
@@ -161,21 +161,21 @@ import { TitleMock } from '../../test-config/mocks/titleMock';
 describe('");
             
             #line 46 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.PascalCase(_smartApp.Id)));
+            this.Write(this.ToStringHelper.ToStringWithCulture(_smartApp.Id.ToPascalCase()));
             
             #line default
             #line hidden
             this.Write(" Component\', () => {\r\n  let fixture: ComponentFixture<");
             
             #line 47 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.PascalCase(_smartApp.Id)));
+            this.Write(this.ToStringHelper.ToStringWithCulture(_smartApp.Id.ToPascalCase()));
             
             #line default
             #line hidden
             this.Write(">;\r\n  let component: ");
             
             #line 48 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.PascalCase(_smartApp.Id)));
+            this.Write(this.ToStringHelper.ToStringWithCulture(_smartApp.Id.ToPascalCase()));
             
             #line default
             #line hidden
@@ -183,7 +183,7 @@ describe('");
                     "TestingModule({\r\n      declarations: [");
             
             #line 54 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.PascalCase(_smartApp.Id)));
+            this.Write(this.ToStringHelper.ToStringWithCulture(_smartApp.Id.ToPascalCase()));
             
             #line default
             #line hidden
@@ -211,10 +211,10 @@ describe('");
 
         if (_smartApp.Concerns.AsEnumerable() != null && _rootLayout != null && _rootLayout.Id != null && _rootConcern != null && _rootConcern.Id != null)
         {
-            string concern = TextConverter.PascalCase(_rootConcern.Id);
-            string layout = TextConverter.PascalCase(_rootLayout.Id);
+            string concern = _rootConcern.Id.ToPascalCase();
+            string layout = _rootLayout.Id.ToPascalCase();
             string layoutComponent = concern + layout;
-            string layoutComponentToLower = TextConverter.CamelCase(concern) + "-" + TextConverter.CamelCase(layout);
+            string layoutComponentToLower = concern.ToCamelCase() + "-" + layout.ToCamelCase();
 
             
             #line default
@@ -238,7 +238,7 @@ describe('");
             this.Write("        IonicModule.forRoot(");
             
             #line 77 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.PascalCase(_smartApp.Id)));
+            this.Write(this.ToStringHelper.ToStringWithCulture(_smartApp.Id.ToPascalCase()));
             
             #line default
             #line hidden
@@ -268,7 +268,7 @@ describe('");
                     "Each(async() => {\r\n    fixture = TestBed.createComponent(");
             
             #line 98 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.PascalCase(_smartApp.Id)));
+            this.Write(this.ToStringHelper.ToStringWithCulture(_smartApp.Id.ToPascalCase()));
             
             #line default
             #line hidden
@@ -276,7 +276,7 @@ describe('");
                     "   fixture.destroy();\r\n    component = null;\r\n  });\r\n\r\n  it(\'");
             
             #line 107 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.PascalCase(_smartApp.Id)));
+            this.Write(this.ToStringHelper.ToStringWithCulture(_smartApp.Id.ToPascalCase()));
             
             #line default
             #line hidden
@@ -284,7 +284,7 @@ describe('");
                     "nt._platform, \'ready\').and.callThrough();\r\n    var app = new ");
             
             #line 109 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.PascalCase(_smartApp.Id)));
+            this.Write(this.ToStringHelper.ToStringWithCulture(_smartApp.Id.ToPascalCase()));
             
             #line default
             #line hidden
@@ -335,7 +335,7 @@ describe('");
   it('");
             
             #line 138 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.PascalCase(_smartApp.Id)));
+            this.Write(this.ToStringHelper.ToStringWithCulture(_smartApp.Id.ToPascalCase()));
             
             #line default
             #line hidden
@@ -343,7 +343,7 @@ describe('");
                     "On(component._statusBar, \'styleDefault\').and.callThrough();\r\n    var app = new ");
             
             #line 140 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.PascalCase(_smartApp.Id)));
+            this.Write(this.ToStringHelper.ToStringWithCulture(_smartApp.Id.ToPascalCase()));
             
             #line default
             #line hidden
@@ -393,7 +393,7 @@ describe('");
   it('");
             
             #line 168 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.PascalCase(_smartApp.Id)));
+            this.Write(this.ToStringHelper.ToStringWithCulture(_smartApp.Id.ToPascalCase()));
             
             #line default
             #line hidden
@@ -401,7 +401,7 @@ describe('");
                     "nt._splashScreen, \'hide\').and.callThrough();\r\n    var app = new ");
             
             #line 170 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.PascalCase(_smartApp.Id)));
+            this.Write(this.ToStringHelper.ToStringWithCulture(_smartApp.Id.ToPascalCase()));
             
             #line default
             #line hidden
@@ -451,7 +451,7 @@ describe('");
   it('");
             
             #line 198 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.PascalCase(_smartApp.Id)));
+            this.Write(this.ToStringHelper.ToStringWithCulture(_smartApp.Id.ToPascalCase()));
             
             #line default
             #line hidden
@@ -459,7 +459,7 @@ describe('");
                     "component._nav, \'setRoot\').and.callThrough();\r\n    var app = new ");
             
             #line 200 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.PascalCase(_smartApp.Id)));
+            this.Write(this.ToStringHelper.ToStringWithCulture(_smartApp.Id.ToPascalCase()));
             
             #line default
             #line hidden
@@ -502,10 +502,10 @@ describe('");
 
         if (_smartApp.Concerns.AsEnumerable() != null && _rootLayout != null && _rootLayout.Id != null && _rootConcern != null && _rootConcern.Id != null)
         {
-            string concern = TextConverter.PascalCase(_rootConcern.Id);
-            string layout = TextConverter.PascalCase(_rootLayout.Id);
+            string concern = _rootConcern.Id.ToPascalCase();
+            string layout = _rootLayout.Id.ToPascalCase();
             string layoutComponent = concern + layout;
-            string layoutComponentToLower = TextConverter.CamelCase(concern) + "-" + TextConverter.CamelCase(layout);
+            string layoutComponentToLower = concern.ToCamelCase() + "-" + layout.ToCamelCase();
 
             
             #line default
@@ -530,7 +530,7 @@ describe('");
                     "esult).toBe(true);\r\n    });\r\n  }));\r\n\r\n  it(\'");
             
             #line 242 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.PascalCase(_smartApp.Id)));
+            this.Write(this.ToStringHelper.ToStringWithCulture(_smartApp.Id.ToPascalCase()));
             
             #line default
             #line hidden
@@ -539,7 +539,7 @@ describe('");
                     " ");
             
             #line 244 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.PascalCase(_smartApp.Id)));
+            this.Write(this.ToStringHelper.ToStringWithCulture(_smartApp.Id.ToPascalCase()));
             
             #line default
             #line hidden
@@ -589,7 +589,7 @@ describe('");
   it('");
             
             #line 272 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.PascalCase(_smartApp.Id)));
+            this.Write(this.ToStringHelper.ToStringWithCulture(_smartApp.Id.ToPascalCase()));
             
             #line default
             #line hidden
@@ -597,7 +597,7 @@ describe('");
                     "_translateService, \'use\').and.callThrough();\r\n    var app = new ");
             
             #line 274 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.PascalCase(_smartApp.Id)));
+            this.Write(this.ToStringHelper.ToStringWithCulture(_smartApp.Id.ToPascalCase()));
             
             #line default
             #line hidden
@@ -648,7 +648,7 @@ describe('");
   it('");
             
             #line 303 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.PascalCase(_smartApp.Id)));
+            this.Write(this.ToStringHelper.ToStringWithCulture(_smartApp.Id.ToPascalCase()));
             
             #line default
             #line hidden
@@ -657,7 +657,7 @@ describe('");
                     "new ");
             
             #line 305 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.PascalCase(_smartApp.Id)));
+            this.Write(this.ToStringHelper.ToStringWithCulture(_smartApp.Id.ToPascalCase()));
             
             #line default
             #line hidden
@@ -708,7 +708,7 @@ describe('");
   it('");
             
             #line 334 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.PascalCase(_smartApp.Id)));
+            this.Write(this.ToStringHelper.ToStringWithCulture(_smartApp.Id.ToPascalCase()));
             
             #line default
             #line hidden
@@ -716,7 +716,7 @@ describe('");
                     "onent._title, \'setTitle\').and.callThrough();\r\n    var app = new ");
             
             #line 336 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.PascalCase(_smartApp.Id)));
+            this.Write(this.ToStringHelper.ToStringWithCulture(_smartApp.Id.ToPascalCase()));
             
             #line default
             #line hidden
@@ -766,7 +766,7 @@ describe('");
   it('");
             
             #line 364 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.PascalCase(_smartApp.Id)));
+            this.Write(this.ToStringHelper.ToStringWithCulture(_smartApp.Id.ToPascalCase()));
             
             #line default
             #line hidden
@@ -774,14 +774,14 @@ describe('");
                     "pect(component instanceof ");
             
             #line 366 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.PascalCase(_smartApp.Id)));
+            this.Write(this.ToStringHelper.ToStringWithCulture(_smartApp.Id.ToPascalCase()));
             
             #line default
             #line hidden
             this.Write(").toBeTruthy();\r\n  }));\r\n\r\n  it(\'");
             
             #line 369 "C:\Users\Temoe\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\UnitTests\Templates\AppComponentSpecTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(TextConverter.PascalCase(_smartApp.Id)));
+            this.Write(this.ToStringHelper.ToStringWithCulture(_smartApp.Id.ToPascalCase()));
             
             #line default
             #line hidden

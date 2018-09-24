@@ -1,13 +1,12 @@
-﻿using Mobioos.Foundation.Jade.Models;
+﻿using Common.Generator.Framework.Extensions;
+using Mobioos.Foundation.Jade.Models;
 using Mobioos.Foundation.Prompt.Infrastructure;
-using Mobioos.Scaffold.BaseGenerators.Helpers;
 using Mobioos.Scaffold.BaseInfrastructure.Contexts;
 using Mobioos.Scaffold.BaseInfrastructure.Notifiers;
 using Mobioos.Scaffold.BaseInfrastructure.Services.GeneratorsServices;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 using WorkflowCore.Interface;
 using WorkflowCore.Models;
@@ -50,38 +49,9 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
         private void TransformViewModels(SmartAppInfo smartApp)
         {
             List<EntityInfo> alreadyCreated = new List<EntityInfo>();
-            if (smartApp != null && smartApp.Version != null)
-            {
-                if (smartApp.Api.AsEnumerable() != null)
-                {
-                    foreach (ApiInfo api in smartApp.Api.AsEnumerable())
-                    {
-                        if (api.Actions.AsEnumerable() != null)
-                        {
-                            foreach (ApiActionInfo apiAction in api.Actions.AsEnumerable())
-                            {
-                                if (apiAction.Parameters.AsEnumerable() != null)
-                                {
-                                    foreach (ApiParameterInfo apiParameter in apiAction.Parameters.AsEnumerable())
-                                    {
-                                        if (apiParameter.DataModel != null && !alreadyCreated.AsEnumerable().Contains(apiParameter.DataModel))
-                                        {
-                                            alreadyCreated.Add(apiParameter.DataModel);
-                                            TransformViewModel(apiParameter.DataModel);
-                                        }
-                                    }
-                                }
-
-                                if (apiAction.ReturnType != null && !alreadyCreated.AsEnumerable().Contains(apiAction.ReturnType))
-                                {
-                                    alreadyCreated.Add(apiAction.ReturnType);
-                                    TransformViewModel(apiAction.ReturnType);
-                                }
-                            }
-                        }
-                    }
-                }
-            }
+            var viewModels = smartApp.GetViewModels();
+            foreach (EntityInfo entity in viewModels)
+                TransformViewModel(entity);
         }
 
         /// <summary>
@@ -96,7 +66,7 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
                 ViewModelTemplate viewModelTemplate = new ViewModelTemplate(dataModel);
 
                 string viewModelDirectoryPath = viewModelTemplate.OutputPath;
-                string viewModelFilename = TextConverter.CamelCase(dataModel.Id) + ".ts";
+                string viewModelFilename = dataModel.Id.ToCamelCase() + ".ts";
 
                 string fileToWritePath = Path.Combine(_context.BasePath, viewModelDirectoryPath, viewModelFilename);
                 string textToWrite = viewModelTemplate.TransformText();

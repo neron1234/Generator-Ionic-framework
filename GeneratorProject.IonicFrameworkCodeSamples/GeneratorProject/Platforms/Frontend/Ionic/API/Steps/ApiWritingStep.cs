@@ -1,6 +1,6 @@
-﻿using Mobioos.Foundation.Jade.Models;
+﻿using Common.Generator.Framework.Extensions;
+using Mobioos.Foundation.Jade.Models;
 using Mobioos.Foundation.Prompt.Infrastructure;
-using Mobioos.Scaffold.BaseGenerators.Helpers;
 using Mobioos.Scaffold.BaseInfrastructure.Contexts;
 using Mobioos.Scaffold.BaseInfrastructure.Notifiers;
 using Mobioos.Scaffold.BaseInfrastructure.Services.GeneratorsServices;
@@ -59,7 +59,7 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
                     ApiTemplate apiTemplate = new ApiTemplate(api);
 
                     string apiDirectoryPath = apiTemplate.OutputPath;
-                    string apiFilename = TextConverter.CamelCase(api.Id) + ".service.ts";
+                    string apiFilename = api.Id.ToCamelCase() + ".service.ts";
 
                     string fileToWritePath = Path.Combine(_context.BasePath, apiDirectoryPath, apiFilename);
                     string textToWrite = apiTemplate.TransformText();

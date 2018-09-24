@@ -22,7 +22,7 @@
             {
 #>
 
-    "<#= TextConverter.CamelCase(concern.Id) #>": {
+    "<#= concern.Id.ToCamelCase() #>": {
 <#
                 foreach (LayoutInfo layout in concern.Layouts.AsEnumerable())
                 {
@@ -33,18 +33,18 @@
                             if (action.Id != null)
                             {
 #>
-        "<#= TextConverter.CamelCase(layout.Id) #>Layout<#= TextConverter.PascalCase(action.Id) #>Action": "<#= TextConverter.PascalCase(action.Id) #>",
+        "<#= layout.Id.ToCamelCase() #>Layout<#= action.Id.ToPascalCase() #>Action": "<#= action.Id.ToPascalCase() #>",
 <#
                             }
                         }
 #>
-        "<#= TextConverter.CamelCase(layout.Id) #>LayoutTitle": "<#= TextConverter.PascalCase(layout.Title) #>",
-        "<#= TextConverter.CamelCase(layout.Id) #>LayoutDescription": "<#= TextConverter.PascalCase(layout.Description) #>",
+        "<#= layout.Id.ToCamelCase() #>LayoutTitle": "<#= layout.Title.ToPascalCase() #>",
+        "<#= layout.Id.ToCamelCase() #>LayoutDescription": "<#= layout.Description.ToPascalCase() #>",
 <#
                     }
                 }
 #>
-        "<#= TextConverter.CamelCase(concern.Id) #>ConcernTitle": "<#= TextConverter.PascalCase(concern.Title) #>"
+        "<#= concern.Id.ToCamelCase() #>ConcernTitle": "<#= concern.Title.ToPascalCase() #>"
     },
 <#
             }
@@ -53,11 +53,11 @@
         if (_smartApp.SmallTitle != null)
         {
 #>
-    "applicationSmallTitle": "<#= TextConverter.PascalCase(_smartApp.SmallTitle) #>",
+    "applicationSmallTitle": "<#= _smartApp.SmallTitle.ToPascalCase() #>",
 <#
         }
 #>
-    "applicationTitle": "<#= TextConverter.PascalCase(_smartApp.Title) #>"
+    "applicationTitle": "<#= _smartApp.Title.ToPascalCase() #>"
 <#
     }
 #>
