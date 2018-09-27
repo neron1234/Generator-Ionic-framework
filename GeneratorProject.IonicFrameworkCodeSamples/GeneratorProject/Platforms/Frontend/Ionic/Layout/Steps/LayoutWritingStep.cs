@@ -51,9 +51,9 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
             var layouts = smartApp.GetLayouts();
             foreach (LayoutInfo layout in layouts.AsEnumerable())
             {
-                TransformLayoutModule(((ConcernInfo)layout.Parent).Id, layout, smartApp.Languages, smartApp.Api);
-                TransformLayoutComponent((ConcernInfo)layout.Parent, layout, smartApp.Languages, smartApp.Api);
-                TransformLayoutView(smartApp.Title, (ConcernInfo)layout.Parent, layout, smartApp.Languages);
+                TransformLayoutModule(((ConcernInfo)((LayoutList)layout.Parent).Parent).Id, layout, smartApp.Languages, smartApp.Api);
+                TransformLayoutComponent((ConcernInfo)((LayoutList)layout.Parent).Parent, layout, smartApp.Languages, smartApp.Api);
+                TransformLayoutView(smartApp.Title, (ConcernInfo)((LayoutList)layout.Parent).Parent, layout, smartApp.Languages);
             }
         }
 
