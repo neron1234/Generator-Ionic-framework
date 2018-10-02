@@ -1,10 +1,13 @@
 using GeneratorProject.Platforms.Frontend.Ionic;
 using Microsoft.Extensions.DependencyInjection;
 using Mobioos.Foundation.Jade;
+using Mobioos.Foundation.Prompt;
+using Mobioos.Foundation.Prompt.Infrastructure;
 using Mobioos.Scaffold.BaseInfrastructure.Contexts;
 using Mobioos.Scaffold.BaseInfrastructure.Notifiers;
 using Mobioos.Scaffold.BaseInfrastructure.Services.GeneratorsServices;
 using System;
+using System.Collections.Generic;
 using System.Dynamic;
 using System.IO;
 using System.Threading;
@@ -25,7 +28,6 @@ namespace GeneratorProject.Tests
         private IUnityContainer _container;
         private IPersistenceProvider _persistenceProvider;
         private IWorkflowHost _workflowHost;
-        private SessionContext _context;
 
         public Tests()
         {
@@ -35,25 +37,68 @@ namespace GeneratorProject.Tests
             _services.AddSingleton<IUnityServiceProvider, UnityServiceProvider>();
             _services.AddSingleton<IUnityContainer, UnityContainer>();
             _serviceProvider = _services.BuildServiceProvider();
-
             _unityServiceProvider = _serviceProvider.GetService<IUnityServiceProvider>();
             _container = _serviceProvider.GetService<IUnityContainer>();
             _container.AddExtension(new UnityFallbackProviderExtension(_serviceProvider));
             _workflowHost = _unityServiceProvider.GetService<IWorkflowHost>();
             _persistenceProvider = _unityServiceProvider.GetService<IPersistenceProvider>();
-            _context = new SessionContext();
+
+            var context = new SessionContext();
+            context.DynamicContext = new ExpandoObject();
+
             var basePath = AppDomain.CurrentDomain.BaseDirectory;
-            _context.BasePath = Path.Combine(basePath, "GeneratedCode");
-            _context.DynamicContext = new ExpandoObject();
+            context.BasePath = Path.Combine(basePath, "GeneratedCode");
+
             var manifestPath = Path.Combine(basePath, "Manifest");
-            _context.Manifest = JadeEngine.Parse(manifestPath);
+            context.Manifest = JadeEngine.Parse(manifestPath);
+
+            context.GeneratorPath = basePath;
+
             var writingService = new WritingService();
             var workflowNotifier = new WorkflowNotifier();
+            var workflowEndService = new WorkflowEndService();
+
+            _container.RegisterInstance<IWorkflowEnd>(workflowEndService);
             _container.RegisterInstance<IWorkflowNotifier>(workflowNotifier);
             _container.RegisterInstance<IWriting>(writingService);
-            _container.RegisterInstance<ISessionContext>(_context);
+            _container.RegisterInstance<ISessionContext>(context);
+
+            // Layout
             _workflowHost.RegisterWorkflow<LayoutWorkflow>();
             _container.RegisterType<LayoutWritingStep>();
+
+            // API
+            _workflowHost.RegisterWorkflow<ApiWorkflow>();
+            _container.RegisterType<ApiWritingStep>();
+
+            // Common
+            _workflowHost.RegisterWorkflow<CommonWorkflow>();
+            _container.RegisterType<CommonWritingStep>();
+            var answers = new List<Answer>();
+            answers.Add(new Answer()
+            {
+                Name = "Dark",
+                Type = AnswerType.Choice,
+                Value = "dark"
+            });
+            ((IDictionary<string, object>)context.DynamicContext).Add("Themes", answers);
+
+            // DataModel
+            _workflowHost.RegisterWorkflow<DataModelWorkflow>();
+            _container.RegisterType<DataModelWritingStep>();
+
+            // Language
+            _workflowHost.RegisterWorkflow<LanguageWorkflow>();
+            _container.RegisterType<LanguageWritingStep>();
+
+            // UnitTests
+            _workflowHost.RegisterWorkflow<UnitTestsWorkflow>();
+            _container.RegisterType<UnitTestsWritingStep>();
+
+            // ViewModel
+            _workflowHost.RegisterWorkflow<ViewModelWorkflow>();
+            _container.RegisterType<ViewModelWritingStep>();
+
             _workflowHost.Start();
         }
 
@@ -61,6 +106,16 @@ namespace GeneratorProject.Tests
         public async Task Execute()
         {
             string workflowId = await _workflowHost.StartWorkflow("IonicLayoutWorkflow", 1);
+            WaitForWorkflowToComplete(workflowId, TimeSpan.FromSeconds(30));
+            workflowId = await _workflowHost.StartWorkflow("IonicCommonWorkflow", 1);
+            WaitForWorkflowToComplete(workflowId, TimeSpan.FromSeconds(30));
+            workflowId = await _workflowHost.StartWorkflow("IonicDataModelWorkflow", 1);
+            WaitForWorkflowToComplete(workflowId, TimeSpan.FromSeconds(30));
+            workflowId = await _workflowHost.StartWorkflow("IonicLanguageWorkflow", 1);
+            WaitForWorkflowToComplete(workflowId, TimeSpan.FromSeconds(30));
+            workflowId = await _workflowHost.StartWorkflow("IonicUnitTestsWorkflow", 1);
+            WaitForWorkflowToComplete(workflowId, TimeSpan.FromSeconds(30));
+            workflowId = await _workflowHost.StartWorkflow("IonicViewModelWorkflow", 1);
             WaitForWorkflowToComplete(workflowId, TimeSpan.FromSeconds(30));
         }
 

@@ -12,10 +12,11 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
 
         public void Build(IWorkflowBuilder builder)
         {
-            builder.StartWith<CommonPromptingStep>()
-                   .WaitForAnswers(nameof(CommonPromptingStep))
-                   .Then<CommonWritingStep>()
-                   .Then<WorkFlowEndStepBase>();
+            builder//.StartWith<CommonPromptingStep>()
+                   //.WaitForAnswers(nameof(CommonPromptingStep))
+                   .StartWith<CommonWritingStep>()
+                   .Then<WorkFlowEndStepBase>()
+                   .EndWorkflow();
         }
     }
 }

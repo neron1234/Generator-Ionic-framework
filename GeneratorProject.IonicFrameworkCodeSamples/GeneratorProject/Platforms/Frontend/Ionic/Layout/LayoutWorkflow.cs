@@ -13,8 +13,8 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
         public void Build(IWorkflowBuilder builder)
         {
             builder.StartWith<LayoutWritingStep>()
+                   .Then<WorkFlowEndStepBase>()
                    .EndWorkflow();
-                   //.Then<WorkFlowEndStepBase>();
         }
     }
 }
