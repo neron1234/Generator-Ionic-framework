@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Dynamic;
 using System.IO;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Unity;
@@ -28,6 +29,7 @@ namespace GeneratorProject.Tests
         private IUnityContainer _container;
         private IPersistenceProvider _persistenceProvider;
         private IWorkflowHost _workflowHost;
+        private SessionContext _context;
 
         public Tests()
         {
@@ -43,16 +45,16 @@ namespace GeneratorProject.Tests
             _workflowHost = _unityServiceProvider.GetService<IWorkflowHost>();
             _persistenceProvider = _unityServiceProvider.GetService<IPersistenceProvider>();
 
-            var context = new SessionContext();
-            context.DynamicContext = new ExpandoObject();
+            _context = new SessionContext();
+            _context.DynamicContext = new ExpandoObject();
 
             var basePath = AppDomain.CurrentDomain.BaseDirectory;
-            context.BasePath = Path.Combine(basePath, "GeneratedCode");
+            _context.BasePath = Path.Combine(basePath, "GeneratedCode");
 
             var manifestPath = Path.Combine(basePath, "Manifest");
-            context.Manifest = JadeEngine.Parse(manifestPath);
+            _context.Manifest = JadeEngine.Parse(manifestPath);
 
-            context.GeneratorPath = basePath;
+            _context.GeneratorPath = basePath;
 
             var writingService = new WritingService();
             var workflowNotifier = new WorkflowNotifier();
@@ -61,7 +63,7 @@ namespace GeneratorProject.Tests
             _container.RegisterInstance<IWorkflowEnd>(workflowEndService);
             _container.RegisterInstance<IWorkflowNotifier>(workflowNotifier);
             _container.RegisterInstance<IWriting>(writingService);
-            _container.RegisterInstance<ISessionContext>(context);
+            _container.RegisterInstance<ISessionContext>(_context);
 
             // Layout
             _workflowHost.RegisterWorkflow<LayoutWorkflow>();
@@ -74,6 +76,7 @@ namespace GeneratorProject.Tests
             // Common
             _workflowHost.RegisterWorkflow<CommonWorkflow>();
             _container.RegisterType<CommonWritingStep>();
+            
             var answers = new List<Answer>();
             answers.Add(new Answer()
             {
@@ -81,7 +84,9 @@ namespace GeneratorProject.Tests
                 Type = AnswerType.Choice,
                 Value = "dark"
             });
-            ((IDictionary<string, object>)context.DynamicContext).Add("Themes", answers);
+            ((IDictionary<string, object>)_context.DynamicContext).Add("Themes", answers);
+            SetViewModelSuffixes("ViewModel", "Controller");
+            SetApiSuffixes("Controller");
 
             // DataModel
             _workflowHost.RegisterWorkflow<DataModelWorkflow>();
@@ -117,6 +122,8 @@ namespace GeneratorProject.Tests
             WaitForWorkflowToComplete(workflowId, TimeSpan.FromSeconds(30));
             workflowId = await _workflowHost.StartWorkflow("IonicViewModelWorkflow", 1);
             WaitForWorkflowToComplete(workflowId, TimeSpan.FromSeconds(30));
+            workflowId = await _workflowHost.StartWorkflow("IonicApiWorkflow", 1);
+            WaitForWorkflowToComplete(workflowId, TimeSpan.FromSeconds(30));
         }
 
         private WorkflowStatus GetStatus(string workflowId)
@@ -140,6 +147,49 @@ namespace GeneratorProject.Tests
         private void Dispose()
         {
             _workflowHost.Stop();
+        }
+
+        private void SetViewModelSuffixes(string suffix, string apiSuffix)
+        {
+            (_context.Manifest).Api?.Select(x => { x.Id += apiSuffix; return x.Actions; }).
+                  SelectMany(x => x).
+                  Where(x => x.ReturnType != null).
+                  Select(x => { x.ReturnType.Id += suffix; return x; }).ToList();
+
+            (_context.Manifest).Api?.Select(x => { return x.Actions; }).
+                  SelectMany(x => x).
+                  Where(x => x.Parameters != null && x.Parameters.Count > 0).
+                  SelectMany(x => x.Parameters).Where(x => x.DataModel != null).
+                  Select(x => { x.Type += suffix; x.DataModel.Id += suffix; return x; }).ToList();
+        }
+
+        private void SetApiSuffixes(string apiSuffix)
+        {
+            (_context.Manifest).Concerns?.SelectMany(x => x.Layouts).
+                    SelectMany(x => x.Actions).Where(x => x.Type != null).
+                    Select(x =>
+                    {
+                        switch (x.Type.ToLower())
+                        {
+                            case "dataget":
+                            case "datalist":
+                            case "datacreate":
+                            case "datadelete":
+                            case "dataupdate":
+                                if (x.Api != null)
+                                {
+                                    char delimiter = '.';
+                                    string[] actionSplitted = x.Api.Split(delimiter);
+                                    string apiService = actionSplitted[0] + apiSuffix;
+                                    string apiAction = actionSplitted[1];
+                                    x.Api = apiService + "." + apiAction;
+                                }
+                                break;
+                            default:
+                                break;
+                        }
+                        return x;
+                    }).ToList();
         }
     }
 }

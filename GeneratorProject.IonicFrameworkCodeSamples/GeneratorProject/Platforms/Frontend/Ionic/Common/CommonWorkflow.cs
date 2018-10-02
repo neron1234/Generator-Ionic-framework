@@ -15,8 +15,7 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
             builder//.StartWith<CommonPromptingStep>()
                    //.WaitForAnswers(nameof(CommonPromptingStep))
                    .StartWith<CommonWritingStep>()
-                   .Then<WorkFlowEndStepBase>()
-                   .EndWorkflow();
+                   .Then<WorkFlowEndStepBase>();
         }
     }
 }
