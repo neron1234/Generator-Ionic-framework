@@ -1,9 +1,8 @@
-﻿<Project>
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net461</TargetFramework>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
     <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
   </PropertyGroup>
-  <Import Project="Sdk.props" Sdk="Microsoft.NET.Sdk" />
   <ItemGroup>
     <None Remove="Platforms\Frontend\Ionic\API\Templates\src\services\data.service.ts" />
     <None Remove="Platforms\Frontend\Ionic\Common\Templates\.editorconfig" />
@@ -420,5 +419,4 @@
       <LastGenOutput>ViewModelTemplate.cs</LastGenOutput>
     </None>
   </ItemGroup>
-  <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" />
 </Project>

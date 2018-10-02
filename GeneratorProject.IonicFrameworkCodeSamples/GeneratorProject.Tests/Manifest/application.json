@@ -1,44 +1,43 @@
 {
-  "id": "CollaboratorsWeather",
-  "title": "Collaborators Weather",
-  "smallTitle": "CollabWeath",
-  "description": "Collaborators Weather",
+  "id": "MeteoMeter",
+  "title": "MeteoMeter",
+  "smallTitle": "MeteoMeter",
+  "description": "MeteoMeter SmartApp",
   "platforms": [
-    "Android",
-    "Ios",
-    "WindowsPhone",
-    "Web"
+    "BackEnd",
+    "FrontEnd"
   ],
   "version": "1.0.0.0",
   "themes": [
-    "Light",
-    "Dark"
+    "Dark",
+    "Light"
   ],
   "languages": [
     "fr",
     "en"
   ],
-  "$schema": "http://www.google.com",
+  "$schema": "http://meteometer.com",
   "addons": "addons.json",
   "api": [
     "api/Group.json",
-    "api/MoodCard.json",
-    "api/Photo.json",
+    "api/Idea.json",
     "api/User.json",
-    "api/Contribution.json",
+    "api/Post.json",
     "api/Flow.json",
-    "api/Wall.json"
+    "api/Highlights.json"
   ],
   "concerns": [
-    "concerns/Home.json",
-    "concerns/SignIn.json",
-    "concerns/Menu.json",
-    "concerns/Reporting.json",
+    "concerns/Idea.json",
+    "concerns/Report.json",
     "concerns/Account.json",
-    "concerns/Alerts.json",
     "concerns/ManageGroups.json",
-    "concerns/PhotoLibrary.json",
-    "concerns/Mood.json"
+    "concerns/Flow.json",
+    "concerns/Highlights.json",
+    "concerns/Notifications.json",
+    "concerns/Posts.json",
+    "concerns/Login.json",
+    "concerns/Tabs.json",
+    "concerns/Settings.json"
   ],
   "configurations": [
     {

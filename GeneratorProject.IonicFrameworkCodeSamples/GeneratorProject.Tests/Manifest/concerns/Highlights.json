@@ -1,98 +1,45 @@
 {
-  "id": "Account",
-  "title": "Account",
-  "description": "Account",
+  "id": "Highlights",
+  "title": "Highlights ",
+  "description": "Highlights concern",
   "mandatory": false,
   "layouts": [
     {
       "id": "main",
-      "title": "Account",
-      "description": "Account ",
-      "isVisibleInMenu": false,
-      "isRoot": false,
+      "title": "Highlights",
+      "description": "Highlights",
+      "isVisibleInMenu": true,
+      "isRoot": true,
       "actions": [
         {
-          "id": "getUser",
+          "id": "getBestPost",
           "type": "DataGet",
           "target": "",
-          "api": "User.get"
+          "api": "Highlights.getBestIdea"
         },
         {
-          "id": "toEditProfile",
+          "id": "GoToFlow",
           "type": "Navigation",
-          "target": "Account.editProfile",
+          "target": "Flow.main",
           "api": ""
         },
         {
-          "id": "toManageGroups",
+          "id": "GoToPosts",
           "type": "Navigation",
-          "target": "ManageGroups.main",
-          "api": ""
-        },
-        {
-          "id": "toSettings",
-          "type": "Navigation",
-          "target": "Settings.main",
-          "api": ""
-        },
-        {
-          "id": "signOut",
-          "type": "Method",
-          "target": "",
+          "target": "Posts.main",
           "api": ""
         }
       ],
       "dataModel": {
-        "id": "User",
+        "id": "Report",
         "isAbstract": false,
         "isEnum": false,
-        "properties": [
-          {
-            "id": "firstname",
-            "type": "string",
-            "isKey": false,
-            "isCollection": false,
-            "isRequired": false,
-            "minimum": 0,
-            "maximum": 0,
-            "modelProperty": ""
-          },
-          {
-            "id": "lastname",
-            "type": "string",
-            "isKey": false,
-            "isCollection": false,
-            "isRequired": false,
-            "minimum": 0,
-            "maximum": 0,
-            "modelProperty": ""
-          },
-          {
-            "id": "pictureUrl",
-            "type": "string",
-            "isKey": false,
-            "isCollection": false,
-            "isRequired": false,
-            "minimum": 0,
-            "maximum": 0,
-            "modelProperty": ""
-          },
-          {
-            "id": "facebookId",
-            "type": "string",
-            "isKey": false,
-            "isCollection": false,
-            "isRequired": false,
-            "minimum": 0,
-            "maximum": 0,
-            "modelProperty": ""
-          }
-        ],
+        "properties": [],
         "references": [
           {
-            "id": "user",
+            "id": "reporting",
             "foreignKey": "Id",
-            "type": "UserProfile",
+            "type": "Reporting",
             "isCollection": false,
             "isRequired": false
           }
@@ -101,17 +48,60 @@
       }
     },
     {
-      "id": "editProfile",
-      "title": "editprofile",
-      "description": "editprofile ",
-      "isVisibleInMenu": false,
+      "id": "topIdeas",
+      "title": "latestIdeas",
+      "description": "latestIdeas",
+      "isVisibleInMenu": true,
       "isRoot": false,
       "actions": [
         {
-          "id": "updateUser",
-          "type": "DataUpdate",
+          "id": "showCard",
+          "type": "Method",
           "target": "",
-          "api": "User.update"
+          "api": ""
+        },
+        {
+          "id": "getTopPosts",
+          "type": "DataList",
+          "target": "",
+          "api": "Highlights.GetTopPosts"
+        }
+      ],
+      "dataModel": {
+        "id": "Cards",
+        "isAbstract": false,
+        "isEnum": false,
+        "properties": [],
+        "references": [
+          {
+            "id": "cards",
+            "foreignKey": "Id",
+            "type": "Card",
+            "isCollection": true,
+            "isRequired": false
+          }
+        ],
+        "values": []
+      }
+    },
+    {
+      "id": "BestContributor",
+      "title": "BestContributor",
+      "description": "BestContributor",
+      "isVisibleInMenu": true,
+      "isRoot": false,
+      "actions": [
+        {
+          "id": "showContributor",
+          "type": "Method",
+          "target": "",
+          "api": ""
+        },
+        {
+          "id": "getBestContributor",
+          "type": "DataGet",
+          "target": "",
+          "api": "Highlights.getBestContributor"
         }
       ],
       "dataModel": {

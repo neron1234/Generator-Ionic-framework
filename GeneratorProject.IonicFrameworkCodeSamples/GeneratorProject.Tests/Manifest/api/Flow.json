@@ -3,11 +3,11 @@
   "description": "Flow",
   "actions": [
     {
-      "id": "GetCards",
+      "id": "list",
       "parameters": [
         {
-          "id": "userId",
-          "type": "number"
+          "id": "idUser",
+          "type": "integer"
         }
       ],
       "type": "datalist",
@@ -21,9 +21,9 @@
         "properties": [],
         "references": [
           {
-            "id": "moodCards",
+            "id": "cards",
             "foreignKey": "Id",
-            "type": "MoodCard",
+            "type": "Card",
             "isCollection": true,
             "isRequired": false
           }
