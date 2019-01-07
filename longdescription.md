@@ -51,7 +51,29 @@
 
 ### Generated Ionic project's structure
 
+- General project structure :
 
+![alt text](https://github.com/Mobioos/Ionic-framework/raw/Release1/docs/images/GeneralProjectStructure.jpg "General project's structure")
+
+- Pages :
+
+![alt text](https://github.com/Mobioos/Ionic-framework/raw/Release1/docs/images/Pages.jpg "Pages")
+
+- Models :
+
+![alt text](https://github.com/Mobioos/Ionic-framework/raw/Release1/docs/images/Models.jpg "Models")
+
+- ViewModels :
+
+![alt text](https://github.com/Mobioos/Ionic-framework/raw/Release1/docs/images/ViewModels.jpg "ViewModels")
+
+- Services :
+
+![alt text](https://github.com/Mobioos/Ionic-framework/raw/Release1/docs/images/Services.jpg "Services")
+
+- Tests :
+
+![alt text](https://github.com/Mobioos/Ionic-framework/raw/Release1/docs/images/Tests.jpg "Tests")
 
 ### Generated Ionic project's specifications
 
@@ -64,8 +86,8 @@
 
 ### Remarks on generated code's possibilities
 
-- You can have a basic menu if in the modelization you have at least one layout described with IsVisibleInMenu attribute to true.
-- Forge modelization description have a strong impact on the generated code, particularly from DataModels, Layouts Apis and SmartApp metadatas.
+- You can build a basic menu if in the modelization you have at least one layout described with IsVisibleInMenu attribute to true.
+- Forge modelization's description have a strong impact on the generated code, particularly from DataModels, Layouts, Apis and SmartApp metadatas.
 
 ## Interview's Questions
 
