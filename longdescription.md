@@ -53,27 +53,27 @@
 
 - *General project's structure* :
 
-<img src="https://github.com/Mobioos/Ionic-framework/raw/Release1/docs/images/GeneralProjectStructure.jpg" alt="General project's structure" style="width:300px;height:400px"/>
+<img src="https://github.com/Mobioos/Ionic-framework/raw/Release1/docs/images/GeneralProjectStructure.jpg" alt="General project's structure" style="width:220px;height:300px"/>
 
 - *Pages* :
 
-<img src="https://github.com/Mobioos/Ionic-framework/raw/Release1/docs/images/Pages.jpg" alt="Pages" style="width:300px;height:400px"/>
+<img src="https://github.com/Mobioos/Ionic-framework/raw/Release1/docs/images/Pages.jpg" alt="Pages" style="width:225px;height:200px"/>
 
 - *Models* :
 
-<img src="https://github.com/Mobioos/Ionic-framework/raw/Release1/docs/images/Models.jpg" alt="Models" style="width:300px;height:400px"/>
+<img src="https://github.com/Mobioos/Ionic-framework/raw/Release1/docs/images/Models.jpg" alt="Models" style="width:200px;height:200px"/>
 
 - *ViewModels* :
 
-<img src="https://github.com/Mobioos/Ionic-framework/raw/Release1/docs/images/ViewModels.jpg" alt="ViewModels" style="width:300px;height:400px"/>
+<img src="https://github.com/Mobioos/Ionic-framework/raw/Release1/docs/images/ViewModels.jpg" alt="ViewModels" style="width:225px;height:400px"/>
 
 - *Services* :
 
-<img src="https://github.com/Mobioos/Ionic-framework/raw/Release1/docs/images/Services.jpg" alt="Services" style="width:300px;height:400px"/>
+<img src="https://github.com/Mobioos/Ionic-framework/raw/Release1/docs/images/Services.jpg" alt="Services" style="width:250px;height:220px"/>
 
 - *Tests* :
 
-<img src="https://github.com/Mobioos/Ionic-framework/raw/Release1/docs/images/Tests.jpg" alt="Tests" style="width:300px;height:400px"/>
+<img src="https://github.com/Mobioos/Ionic-framework/raw/Release1/docs/images/Tests.jpg" alt="Tests" style="width:225px;height:400px"/>
 
 ### Generated Ionic project's specifications
 
@@ -91,4 +91,4 @@
 
 ## Interview's Questions
 
-- Theming : There is one question about choosing between **available themes**. Modelization themes metadatas are **ignored**.
+- *Theming* : There is one question about choosing between **available themes**. Modelization themes metadatas are **ignored**.
