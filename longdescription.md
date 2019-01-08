@@ -51,44 +51,44 @@
 
 ### Generated Ionic project's structure
 
-- General project structure :
+- *General project's structure* :
 
-![alt text](https://github.com/Mobioos/Ionic-framework/raw/Release1/docs/images/GeneralProjectStructure.jpg "General project's structure")
+<img src="https://github.com/Mobioos/Ionic-framework/raw/Release1/docs/images/GeneralProjectStructure.jpg" alt="General project's structure" style="width:300px;height:400px"/>
 
-- Pages :
+- *Pages* :
 
-![alt text](https://github.com/Mobioos/Ionic-framework/raw/Release1/docs/images/Pages.jpg "Pages")
+<img src="https://github.com/Mobioos/Ionic-framework/raw/Release1/docs/images/Pages.jpg" alt="Pages" style="width:300px;height:400px"/>
 
-- Models :
+- *Models* :
 
-![alt text](https://github.com/Mobioos/Ionic-framework/raw/Release1/docs/images/Models.jpg "Models")
+<img src="https://github.com/Mobioos/Ionic-framework/raw/Release1/docs/images/Models.jpg" alt="Models" style="width:300px;height:400px"/>
 
-- ViewModels :
+- *ViewModels* :
 
-![alt text](https://github.com/Mobioos/Ionic-framework/raw/Release1/docs/images/ViewModels.jpg "ViewModels")
+<img src="https://github.com/Mobioos/Ionic-framework/raw/Release1/docs/images/ViewModels.jpg" alt="ViewModels" style="width:300px;height:400px"/>
 
-- Services :
+- *Services* :
 
-![alt text](https://github.com/Mobioos/Ionic-framework/raw/Release1/docs/images/Services.jpg "Services")
+<img src="https://github.com/Mobioos/Ionic-framework/raw/Release1/docs/images/Services.jpg" alt="Services" style="width:300px;height:400px"/>
 
-- Tests :
+- *Tests* :
 
-![alt text](https://github.com/Mobioos/Ionic-framework/raw/Release1/docs/images/Tests.jpg "Tests")
+<img src="https://github.com/Mobioos/Ionic-framework/raw/Release1/docs/images/Tests.jpg" alt="Tests" style="width:300px;height:400px"/>
 
 ### Generated Ionic project's specifications
 
-- Project architecture : MVC
-- Web services : REST
-- Internationalization : Initialization based on described languages in
-  the Forge modelization's metadatas.
-- Unit tests : Basic tests and environment setup.
-- Available themes : Dark, Light
+- *Project architecture* : MVC
+- *Web services* : REST
+- *Internationalization* : Initialization based on described languages in
+  the **Forge modelization's** metadatas.
+- *Unit tests* : Basic tests and environment setup.
+- *Available themes* : Dark, Light
 
 ### Remarks on generated code's possibilities
 
-- You can build a basic menu if in the modelization you have at least one layout described with IsVisibleInMenu attribute to true.
-- Forge modelization's description have a strong impact on the generated code, particularly from DataModels, Layouts, Apis and SmartApp metadatas.
+- You can build a basic menu if in the modelization you have **at least one** layout described with **IsVisibleInMenu** attribute to **true**.
+- **Forge modelization's** description have a strong impact on the generated code, particularly from **DataModels**, **Layouts**, **Apis** and **SmartApp** metadatas.
 
 ## Interview's Questions
 
-- Theming : There is one question about choosing between available themes. Modelization themes metadatas are ignored.
+- Theming : There is one question about choosing between **available themes**. Modelization themes metadatas are **ignored**.
