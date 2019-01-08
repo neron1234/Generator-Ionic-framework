@@ -13,7 +13,7 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
     using System.Text;
     using System.Collections.Generic;
     using Mobioos.Foundation.Jade.Models;
-    using Mobioos.Scaffold.Generators.Helpers;
+    using Mobioos.Scaffold.BaseGenerators.Helpers;
     using System;
     
     /// <summary>

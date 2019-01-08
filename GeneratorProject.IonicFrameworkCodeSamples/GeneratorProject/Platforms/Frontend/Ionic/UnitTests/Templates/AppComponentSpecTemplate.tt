@@ -12,7 +12,7 @@
         {
 #>
 import { LanguagePageModule } from '../pages/language/language.module';
-import { TranslateModule, TranslateLoader, TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { TranslateServiceMock } from '../../test-config/mocks/translateServiceMock';
 <#
         }
@@ -58,6 +58,7 @@ describe('<#= TextConverter.PascalCase(_smartApp.Id) #> Component', () => {
         {
 #>
         LanguagePageModule,
+        TranslateModule.forChild(),
 <#
         }
 #>
@@ -113,6 +114,13 @@ describe('<#= TextConverter.PascalCase(_smartApp.Id) #> Component', () => {
       component._translateService,
 <#
         }
+
+        if (_isMenu)
+        {
+#>
+      component._events,
+<#
+        }
 #>
       component._platform,
       component._statusBar,
@@ -135,6 +143,13 @@ describe('<#= TextConverter.PascalCase(_smartApp.Id) #> Component', () => {
         {
 #>
       component._translateService,
+<#
+        }
+
+        if (_isMenu)
+        {
+#>
+      component._events,
 <#
         }
 #>
@@ -160,6 +175,13 @@ describe('<#= TextConverter.PascalCase(_smartApp.Id) #> Component', () => {
       component._translateService,
 <#
         }
+
+        if (_isMenu)
+        {
+#>
+      component._events,
+<#
+        }
 #>
       component._platform,
       component._statusBar,
@@ -181,6 +203,13 @@ describe('<#= TextConverter.PascalCase(_smartApp.Id) #> Component', () => {
         {
 #>
       component._translateService,
+<#
+        }
+
+        if (_isMenu)
+        {
+#>
+      component._events,
 <#
         }
 #>
@@ -213,27 +242,18 @@ describe('<#= TextConverter.PascalCase(_smartApp.Id) #> Component', () => {
   it('<#= TextConverter.PascalCase(_smartApp.Id) #> Component: should set default language', fakeAsync(() => {
     spy = spyOn(component._translateService, 'setDefaultLang').and.callThrough();
     var app = new <#= TextConverter.PascalCase(_smartApp.Id) #>(
-      component._translateService,
-      component._platform,
-      component._statusBar,
-      component._splashScreen,
-      component._title
-    );
-    app._nav = component._nav;
-    flushMicrotasks();
-    expect(spy).toHaveBeenCalledWith('Fr');
-    var result = spy.calls.mostRecent().returnValue;
-    expect(result).toBeUndefined();
-  }));
-
-  it('<#= TextConverter.PascalCase(_smartApp.Id) #> Component: should use fr language', fakeAsync(() => {
-    spy = spyOn(component._translateService, 'use').and.callThrough();
-    var app = new <#= TextConverter.PascalCase(_smartApp.Id) #>(
 <#
         if (isLanguages)
         {
 #>
       component._translateService,
+<#
+        }
+
+        if (_isMenu)
+        {
+#>
+      component._events,
 <#
         }
 #>
@@ -244,9 +264,39 @@ describe('<#= TextConverter.PascalCase(_smartApp.Id) #> Component', () => {
     );
     app._nav = component._nav;
     flushMicrotasks();
-    expect(spy).toHaveBeenCalledWith('Fr');
+    expect(spy).toHaveBeenCalled();
+    var result = spy.calls.mostRecent().returnValue;
+    expect(result).toBeUndefined();
+  }));
+
+  it('<#= TextConverter.PascalCase(_smartApp.Id) #> Component: should use a language', fakeAsync(() => {
+    spy = spyOn(component._translateService, 'use').and.callThrough();
+    var app = new <#= TextConverter.PascalCase(_smartApp.Id) #>(
+<#
+        if (isLanguages)
+        {
+#>
+      component._translateService,
+<#
+        }
+
+        if (_isMenu)
+        {
+#>
+      component._events,
+<#
+        }
+#>
+      component._platform,
+      component._statusBar,
+      component._splashScreen,
+      component._title
+    );
+    app._nav = component._nav;
+    flushMicrotasks();
+    expect(spy).toHaveBeenCalled();
     spy.calls.mostRecent().returnValue.subscribe((result) => {
-      expect(result).toEqual('Fr');
+      expect(result).toBeDefined();
     });
   }));
 
@@ -258,6 +308,13 @@ describe('<#= TextConverter.PascalCase(_smartApp.Id) #> Component', () => {
         {
 #>
       component._translateService,
+<#
+        }
+
+        if (_isMenu)
+        {
+#>
+      component._events,
 <#
         }
 #>
@@ -282,6 +339,13 @@ describe('<#= TextConverter.PascalCase(_smartApp.Id) #> Component', () => {
         {
 #>
       component._translateService,
+<#
+        }
+
+        if (_isMenu)
+        {
+#>
+      component._events,
 <#
         }
 #>

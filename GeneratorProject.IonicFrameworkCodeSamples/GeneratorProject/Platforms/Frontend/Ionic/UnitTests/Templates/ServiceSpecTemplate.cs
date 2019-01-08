@@ -12,8 +12,8 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
     using System.Linq;
     using System.Text;
     using System.Collections.Generic;
-    using Mobioos.Scaffold.TextTemplating;
-    using Mobioos.Scaffold.Generators.Helpers;
+    using Mobioos.Scaffold.BaseGenerators.TextTemplating;
+    using Mobioos.Scaffold.BaseGenerators.Helpers;
     using Mobioos.Foundation.Jade.Models;
     using Mobioos.Foundation.Jade.Extensions;
     using System;

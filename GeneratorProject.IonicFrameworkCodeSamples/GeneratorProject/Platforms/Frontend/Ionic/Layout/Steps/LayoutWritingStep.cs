@@ -1,72 +1,44 @@
-﻿using Mobioos.Scaffold.Core.Runtime.Activities;
-using System.IO;
-using System.Threading.Tasks;
-using Mobioos.Scaffold.Infrastructure.Runtime;
+﻿using Mobioos.Foundation.Jade.Models;
+using Mobioos.Foundation.Prompt.Infrastructure;
+using Mobioos.Scaffold.BaseGenerators.Helpers;
+using Mobioos.Scaffold.BaseInfrastructure.Contexts;
+using Mobioos.Scaffold.BaseInfrastructure.Notifiers;
+using Mobioos.Scaffold.BaseInfrastructure.Services.GeneratorsServices;
 using System;
-using Mobioos.Foundation.Jade.Models;
+using System.IO;
 using System.Linq;
-using Mobioos.Scaffold.Core.Runtime.Attributes;
-using Mobioos.Foundation.Prompts.Interfaces;
-using System.Collections.Generic;
-using Mobioos.Scaffold.Generators.Helpers;
+using System.Threading.Tasks;
+using WorkflowCore.Interface;
+using WorkflowCore.Models;
 
 namespace GeneratorProject.Platforms.Frontend.Ionic
 {
-    [Activity(Order = 3)]
-    public class LayoutActivity : GeneratorActivity
-    {   
-        public LayoutActivity(string name, string basePath)
-            : base(name, basePath)
-        { 
-        }
+    public class LayoutWritingStep : StepBodyAsync
+    {
+        private readonly ISessionContext _context;
+        private readonly IWriting _writingService;
+        private readonly IWorkflowNotifier _workflowNotifier;
 
-        #region GeneratorActivity Methods
-
-        /// <summary>
-        /// Initializing task in the Scaffold runtime.
-        /// </summary>
-        /// <param name="activityContext">The activityContext which contains the SmartApp's manifeste.</param>
-        [Task(Order = 1)]
-        public async override Task Initializing(IActivityContext activityContext)
+        public LayoutWritingStep(ISessionContext context, IWriting writingService, IWorkflowNotifier workflowNotifier)
         {
-            await base.Initializing(activityContext);
+            _context = context;
+            _writingService = writingService;
+            _workflowNotifier = workflowNotifier;
         }
 
-        /// <summary>
-        /// Prompting users with questions. Responses given will help
-        /// the activity bringing more spectifications.
-        /// </summary>
-        //[Task(2)]
-        public override Task Prompting()
+        public override Task<ExecutionResult> RunAsync(IStepExecutionContext context)
         {
-            return base.Prompting();
+            if (null == _context.Manifest)
+                throw new ArgumentNullException(nameof(_context.Manifest));
+
+            SmartAppInfo smartApp = _context.Manifest;
+            _workflowNotifier.Notify(nameof(LayoutWritingStep), NotificationType.GeneralInfo, "Generating ionic views");
+            if (_context.BasePath != null)
+            {
+                TransformLayouts(smartApp);
+            }
+            return Task.FromResult(ExecutionResult.Next());
         }
-
-        /// <summary>
-        /// Method invoked when prompting user is done and
-        /// answers are given.
-        /// </summary>
-        /// <param name="questions">A list of questions answered.</param>
-        protected override void ActivityPrompt_Completed(IEnumerable<IQuestion> questions)
-        {
-            base.ActivityPrompt_Completed(questions);
-        }
-
-        /// <summary>
-        /// Writing task in the Scaffold runtime.
-        /// </summary>
-        [Task(Order = 2)]
-        public async override Task Writing()
-        {
-            if (null == Context.DynamicContext.Manifest)
-                throw new ArgumentNullException(nameof(Context.DynamicContext.Manifest));
-
-            SmartAppInfo smartApp = Context.DynamicContext.Manifest;
-            TransformLayouts(smartApp);
-            await base.Writing();
-        }
-
-        #endregion
 
         #region Writing Methods
 
@@ -114,10 +86,10 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
                 string layoutModuleDirectoryPath = Path.Combine(layoutModuleTemplate.OutputPath, TextConverter.CamelCase(concernId), TextConverter.CamelCase(layout.Id));
                 string layoutModuleFilename = TextConverter.CamelCase(concernId) + "-" + TextConverter.CamelCase(layout.Id) + ".module.ts";
 
-                string fileToWritePath = Path.Combine(BasePath, layoutModuleDirectoryPath, layoutModuleFilename);
+                string fileToWritePath = Path.Combine(_context.BasePath, layoutModuleDirectoryPath, layoutModuleFilename);
                 string textToWrite = layoutModuleTemplate.TransformText();
 
-                WriteFile(fileToWritePath, textToWrite);
+                _writingService.WriteFile(fileToWritePath, textToWrite);
             }
         }
 
@@ -139,10 +111,10 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
                 string layoutComponentDirectoryPath = Path.Combine(layoutComponentTemplate.OutputPath, TextConverter.CamelCase(concern.Id), TextConverter.CamelCase(layout.Id));
                 string layoutComponentFilename = TextConverter.CamelCase(concern.Id) + "-" + TextConverter.CamelCase(layout.Id) + ".ts";
 
-                string fileToWritePath = Path.Combine(BasePath, layoutComponentDirectoryPath, layoutComponentFilename);
+                string fileToWritePath = Path.Combine(_context.BasePath, layoutComponentDirectoryPath, layoutComponentFilename);
                 string textToWrite = layoutComponentTemplate.TransformText();
 
-                WriteFile(fileToWritePath, textToWrite);
+                _writingService.WriteFile(fileToWritePath, textToWrite);
             }
         }
 
@@ -165,10 +137,10 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
                 string layoutViewDirectoryPath = Path.Combine(layoutViewTemplate.OutputPath, TextConverter.CamelCase(concern.Id), TextConverter.CamelCase(layout.Id));
                 string layoutViewFilename = TextConverter.CamelCase(concern.Id) + "-" + TextConverter.CamelCase(layout.Id) + ".html";
 
-                string fileToWritePath = Path.Combine(BasePath, layoutViewDirectoryPath, layoutViewFilename);
+                string fileToWritePath = Path.Combine(_context.BasePath, layoutViewDirectoryPath, layoutViewFilename);
                 string textToWrite = layoutViewTemplate.TransformText();
 
-                WriteFile(fileToWritePath, textToWrite);
+                _writingService.WriteFile(fileToWritePath, textToWrite);
             }
         }
 
@@ -188,10 +160,10 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
                 string layoutStyleDirectoryPath = Path.Combine(layoutStyleTemplate.OutputPath, TextConverter.CamelCase(concernId), TextConverter.CamelCase(layout.Id));
                 string layoutStyleFilename = TextConverter.CamelCase(concernId) + "-" + TextConverter.CamelCase(layout.Id) + ".scss";
 
-                string fileToWritePath = Path.Combine(BasePath, layoutStyleDirectoryPath, layoutStyleFilename);
+                string fileToWritePath = Path.Combine(_context.BasePath, layoutStyleDirectoryPath, layoutStyleFilename);
                 string textToWrite = layoutStyleTemplate.TransformText();
 
-                WriteFile(fileToWritePath, textToWrite);
+                _writingService.WriteFile(fileToWritePath, textToWrite);
             }
         }
 

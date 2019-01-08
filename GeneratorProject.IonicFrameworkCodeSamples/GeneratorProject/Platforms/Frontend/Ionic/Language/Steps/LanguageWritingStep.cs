@@ -1,72 +1,44 @@
-﻿using Mobioos.Scaffold.Core.Runtime.Activities;
-using System.IO;
-using System.Threading.Tasks;
-using Mobioos.Scaffold.Infrastructure.Runtime;
+﻿using Mobioos.Foundation.Jade.Models;
+using Mobioos.Foundation.Prompt.Infrastructure;
+using Mobioos.Scaffold.BaseGenerators.Helpers;
+using Mobioos.Scaffold.BaseInfrastructure.Contexts;
+using Mobioos.Scaffold.BaseInfrastructure.Notifiers;
+using Mobioos.Scaffold.BaseInfrastructure.Services.GeneratorsServices;
 using System;
-using Mobioos.Foundation.Jade.Models;
-using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-using Mobioos.Scaffold.Core.Runtime.Attributes;
-using Mobioos.Foundation.Prompts.Interfaces;
-using Mobioos.Scaffold.Generators.Helpers;
+using System.Threading.Tasks;
+using WorkflowCore.Interface;
+using WorkflowCore.Models;
 
 namespace GeneratorProject.Platforms.Frontend.Ionic
 {
-    [Activity(Order = 4)]
-    public class LanguageActivity : GeneratorActivity
+    public class LanguageWritingStep : StepBodyAsync
     {
-        public LanguageActivity(string name, string basePath)
-            : base(name, basePath)
+        private readonly ISessionContext _context;
+        private readonly IWriting _writingService;
+        private readonly IWorkflowNotifier _workflowNotifier;
+
+        public LanguageWritingStep(ISessionContext context, IWriting writingService, IWorkflowNotifier workflowNotifier)
         {
+            _context = context;
+            _writingService = writingService;
+            _workflowNotifier = workflowNotifier;
         }
 
-        #region GeneratorActivity Methods
-
-        /// <summary>
-        /// Initializing task in the Scaffold runtime.
-        /// </summary>
-        /// <param name="activityContext">The activityContext which contains the SmartApp's manifeste.</param>
-        [Task(Order = 1)]
-        public async override Task Initializing(IActivityContext activityContext)
+        public override Task<ExecutionResult> RunAsync(IStepExecutionContext context)
         {
-            await base.Initializing(activityContext);
+            if (null == _context.Manifest)
+                throw new ArgumentNullException(nameof(_context.Manifest));
+
+            SmartAppInfo smartApp = _context.Manifest;
+            _workflowNotifier.Notify(nameof(LanguageWritingStep), NotificationType.GeneralInfo, "Generating ionic internationalization files");
+            if (_context.BasePath != null)
+            {
+                TransformLanguage(smartApp);
+            }
+            return Task.FromResult(ExecutionResult.Next());
         }
-
-        /// <summary>
-        /// Prompting users with questions. Responses given will help
-        /// the activity bringing more spectifications.
-        /// </summary>
-        //[Task(2)]
-        public override Task Prompting()
-        {
-            return base.Prompting();
-        }
-
-        /// <summary>
-        /// Method invoked when prompting user is done and
-        /// answers are given.
-        /// </summary>
-        /// <param name="questions">A list of questions answered.</param>
-        protected override void ActivityPrompt_Completed(IEnumerable<IQuestion> questions)
-        {
-            base.ActivityPrompt_Completed(questions);
-        }
-
-        /// <summary>
-        /// Writing task in the Scaffold runtime.
-        /// </summary>
-        [Task(Order = 2)]
-        public async override Task Writing()
-        {
-            if (null == Context.DynamicContext.Manifest)
-                throw new ArgumentNullException(nameof(Context.DynamicContext.Manifest));
-
-            SmartAppInfo smartApp = Context.DynamicContext.Manifest;
-            TransformLanguage(smartApp);
-            await base.Writing();
-        }
-
-        #endregion
 
         #region Writing Methods
 
@@ -76,7 +48,7 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
         /// <param name="smartApp">A SmartApp's manifeste.</param>
         private void TransformLanguage(SmartAppInfo smartApp)
         {
-            if(smartApp != null && smartApp.Languages.AsEnumerable() != null && smartApp.Languages.AsEnumerable().Count() > 0)
+            if (smartApp != null && smartApp.Languages.AsEnumerable() != null && smartApp.Languages.AsEnumerable().Count() > 0)
             {
                 TransformJsonTemplate(smartApp);
                 TransformLanguageComponentTemplate();
@@ -100,10 +72,10 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
                     string jsonDirectoryPath = Path.Combine(jsonTemplate.OutputPath);
                     string enJsonFile = TextConverter.PascalCase(languageInfo.Id) + ".json";
 
-                    string fileToWritePath = Path.Combine(BasePath, jsonDirectoryPath, enJsonFile);
+                    string fileToWritePath = Path.Combine(_context.BasePath, jsonDirectoryPath, enJsonFile);
                     string textToWrite = jsonTemplate.TransformText();
 
-                    WriteFile(fileToWritePath, textToWrite);
+                    _writingService.WriteFile(fileToWritePath, textToWrite);
                 }
             }
         }
@@ -117,10 +89,10 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
         {
             LanguageComponentTemplate languageComponentTemplate = new LanguageComponentTemplate();
 
-            string fileToWritePath = Path.Combine(BasePath, languageComponentTemplate.OutputPath);
+            string fileToWritePath = Path.Combine(_context.BasePath, languageComponentTemplate.OutputPath);
             string textToWrite = languageComponentTemplate.TransformText();
 
-            WriteFile(fileToWritePath, textToWrite);
+            _writingService.WriteFile(fileToWritePath, textToWrite);
         }
 
         /// <summary>
@@ -131,10 +103,10 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
         {
             LanguageModuleTemplate languageModuleTemplate = new LanguageModuleTemplate();
 
-            string fileToWritePath = Path.Combine(BasePath, languageModuleTemplate.OutputPath);
+            string fileToWritePath = Path.Combine(_context.BasePath, languageModuleTemplate.OutputPath);
             string textToWrite = languageModuleTemplate.TransformText();
 
-            WriteFile(fileToWritePath, textToWrite);
+            _writingService.WriteFile(fileToWritePath, textToWrite);
         }
 
         /// <summary>
@@ -145,10 +117,10 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
         {
             LanguageStyleTemplate languageStyleTemplate = new LanguageStyleTemplate();
 
-            string fileToWritePath = Path.Combine(BasePath, languageStyleTemplate.OutputPath);
+            string fileToWritePath = Path.Combine(_context.BasePath, languageStyleTemplate.OutputPath);
             string textToWrite = languageStyleTemplate.TransformText();
 
-            WriteFile(fileToWritePath, textToWrite);
+            _writingService.WriteFile(fileToWritePath, textToWrite);
         }
 
         /// <summary>
@@ -162,14 +134,13 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
             {
                 LanguageViewTemplate languageViewTemplate = new LanguageViewTemplate(smartApp.Concerns, smartApp.Languages);
 
-                string fileToWritePath = Path.Combine(BasePath, languageViewTemplate.OutputPath);
+                string fileToWritePath = Path.Combine(_context.BasePath, languageViewTemplate.OutputPath);
                 string textToWrite = languageViewTemplate.TransformText();
 
-                WriteFile(fileToWritePath, textToWrite);
+                _writingService.WriteFile(fileToWritePath, textToWrite);
             }
         }
 
         #endregion
-
     }
 }

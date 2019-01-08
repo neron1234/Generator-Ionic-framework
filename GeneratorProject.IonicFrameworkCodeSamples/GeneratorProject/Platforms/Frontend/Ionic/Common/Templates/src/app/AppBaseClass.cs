@@ -9,7 +9,7 @@
 // ------------------------------------------------------------------------------
 namespace GeneratorProject.Platforms.Frontend.Ionic
 {
-    using Mobioos.Scaffold.TextTemplating;
+    using Mobioos.Scaffold.BaseGenerators.TextTemplating;
     using System;
     
     /// <summary>

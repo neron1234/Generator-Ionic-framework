@@ -12,8 +12,8 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
     using System.Linq;
     using System.Text;
     using System.Collections.Generic;
-    using Mobioos.Scaffold.TextTemplating;
-    using Mobioos.Scaffold.Generators.Helpers;
+    using Mobioos.Scaffold.BaseGenerators.TextTemplating;
+    using Mobioos.Scaffold.BaseGenerators.Helpers;
     using Mobioos.Foundation.Jade.Models;
     using System;
     
@@ -98,22 +98,22 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
                     "1.1\",\r\n    \"@ngx-translate/http-loader\": \"^2.0.1\",\r\n    \"ionic-angular\": \"^3.9.2" +
                     "\",\r\n    \"ionicons\": \"^3.0.0\",\r\n    \"rxjs\": \"^5.5.7\",\r\n    \"sw-toolbox\": \"^3.6.0\"" +
                     ",\r\n    \"zone.js\": \"^0.8.26\"\r\n  },\r\n  \"devDependencies\": {\r\n    \"@angular/cli\": \"" +
-                    "^1.6.0\",\r\n    \"@ionic/app-scripts\": \"3.1.4\",\r\n    \"@types/jasmine\": \"^2.8.6\",\r\n " +
-                    "   \"@types/node\": \"^9.6.4\",\r\n    \"angular2-template-loader\": \"^0.6.2\",\r\n    \"htm" +
-                    "l-loader\": \"^0.5.1\",\r\n    \"jasmine\": \"^2.5.3\",\r\n    \"karma\": \"^2.0.0\",\r\n    \"kar" +
-                    "ma-chrome-launcher\": \"^2.2.0\",\r\n    \"karma-jasmine\": \"^1.1.1\",\r\n    \"karma-jasmi" +
-                    "ne-html-reporter\": \"^0.2.2\",\r\n    \"karma-mocha-reporter\": \"^2.2.5\",\r\n    \"karma-" +
-                    "sourcemap-loader\": \"^0.3.7\",\r\n    \"karma-webpack\": \"^2.0.3\",\r\n    \"null-loader\":" +
-                    " \"^0.1.1\",\r\n    \"ts-loader\": \"^3.0.3\",\r\n    \"ts-node\": \"^5.0.1\",\r\n    \"tslint\": " +
-                    "\"^5.9.1\",\r\n    \"tslint-eslint-rules\": \"^5.1.0\",\r\n    \"typescript\": \"^2.4.2\"\r\n  }" +
-                    ",\r\n  \"scripts\": {\r\n    \"clean\": \"ionic-app-scripts clean\",\r\n    \"build\": \"ionic-" +
-                    "app-scripts build\",\r\n    \"ionic:build\": \"ionic-app-scripts build\",\r\n    \"ionic:s" +
-                    "erve\": \"ionic-app-scripts serve\",\r\n    \"test\": \"karma start ./test-config/karma." +
-                    "conf.js\",\r\n    \"test-ci\": \"karma start ./test-config/karma.conf.js --single-run\"" +
-                    ",\r\n    \"test-coverage\": \"karma start ./test-config/karma.conf.js --coverage\"\r\n  " +
-                    "}\r\n}\r\n");
+                    "^1.6.0\",\r\n    \"@ionic/app-scripts\": \"^3.1.11\",\r\n    \"@types/jasmine\": \"^2.8.6\",\r" +
+                    "\n    \"@types/node\": \"^9.6.4\",\r\n    \"angular2-template-loader\": \"^0.6.2\",\r\n    \"f" +
+                    "ork-ts-checker-webpack-plugin\": \"^0.4.9\",\r\n    \"html-loader\": \"^0.5.1\",\r\n    \"ja" +
+                    "smine\": \"^2.5.3\",\r\n    \"karma\": \"^3.0.0\",\r\n    \"karma-chrome-launcher\": \"^2.2.0\"" +
+                    ",\r\n    \"karma-jasmine\": \"^1.1.1\",\r\n    \"karma-jasmine-html-reporter\": \"^0.2.2\",\r" +
+                    "\n    \"karma-mocha-reporter\": \"^2.2.5\",\r\n    \"karma-sourcemap-loader\": \"^0.3.7\",\r" +
+                    "\n    \"karma-webpack\": \"^2.0.3\",\r\n    \"null-loader\": \"^0.1.1\",\r\n    \"ts-loader\": " +
+                    "\"^3.0.3\",\r\n    \"ts-node\": \"^5.0.1\",\r\n    \"tslint\": \"^5.9.1\",\r\n    \"tslint-eslint" +
+                    "-rules\": \"^5.1.0\",\r\n    \"typescript\": \"^2.4.2\"\r\n  },\r\n  \"scripts\": {\r\n    \"clean" +
+                    "\": \"ionic-app-scripts clean\",\r\n    \"build\": \"ionic-app-scripts build\",\r\n    \"ion" +
+                    "ic:build\": \"ionic-app-scripts build\",\r\n    \"ionic:serve\": \"ionic-app-scripts ser" +
+                    "ve\",\r\n    \"test\": \"karma start ./test-config/karma.conf.js\",\r\n    \"test-ci\": \"ka" +
+                    "rma start ./test-config/karma.conf.js --single-run\",\r\n    \"test-coverage\": \"karm" +
+                    "a start ./test-config/karma.conf.js --coverage\"\r\n  }\r\n}\r\n");
             
-            #line 72 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\Package.tt"
+            #line 73 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\Package.tt"
 
     }
 

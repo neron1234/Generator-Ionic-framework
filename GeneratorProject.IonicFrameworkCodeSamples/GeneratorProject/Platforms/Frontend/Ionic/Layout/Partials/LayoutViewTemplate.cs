@@ -1,5 +1,5 @@
 ﻿using Mobioos.Foundation.Jade.Models;
-using Mobioos.Scaffold.Generators.Helpers;
+using Mobioos.Scaffold.BaseGenerators.Helpers;
 using System.Collections.Generic;
 using System.Linq;
 

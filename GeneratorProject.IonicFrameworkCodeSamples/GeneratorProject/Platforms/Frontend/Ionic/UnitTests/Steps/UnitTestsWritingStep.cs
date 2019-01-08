@@ -1,80 +1,46 @@
 ﻿using Mobioos.Foundation.Jade.Models;
-using Mobioos.Foundation.Prompts.Interfaces;
-using Mobioos.Scaffold.Core.Runtime.Activities;
-using Mobioos.Scaffold.Core.Runtime.Attributes;
-using Mobioos.Scaffold.Generators.Helpers;
-using Mobioos.Scaffold.Infrastructure.Runtime;
+using Mobioos.Foundation.Prompt.Infrastructure;
+using Mobioos.Scaffold.BaseGenerators.Helpers;
+using Mobioos.Scaffold.BaseInfrastructure.Contexts;
+using Mobioos.Scaffold.BaseInfrastructure.Notifiers;
+using Mobioos.Scaffold.BaseInfrastructure.Services.GeneratorsServices;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using WorkflowCore.Interface;
+using WorkflowCore.Models;
 
 namespace GeneratorProject.Platforms.Frontend.Ionic
 {
-    [Activity(Order = 7)]
-    public class UnitTestsActivity : GeneratorActivity
+    public class UnitTestsWritingStep : StepBodyAsync
     {
-        private string _currentDirectoryPath;
-        private string _unitTestsTemplates;
+        private readonly ISessionContext _context;
+        private readonly IWriting _writingService;
+        private readonly IWorkflowNotifier _workflowNotifier;
 
-        private string _unitTestsTemplatesDirectoryPath;
-
-        public UnitTestsActivity(string name, string basePath)
-            : base(name, basePath)
+        public UnitTestsWritingStep(ISessionContext context, IWriting writingService, IWorkflowNotifier workflowNotifier)
         {
+            _context = context;
+            _writingService = writingService;
+            _workflowNotifier = workflowNotifier;
         }
 
-        #region GeneratorActivity Methods
-
-        /// <summary>
-        /// Initializing task in the Scaffold runtime.
-        /// </summary>
-        /// <param name="activityContext">The activityContext which contains the SmartApp's manifeste.</param>
-        [Task(Order = 1)]
-        public async override Task Initializing(IActivityContext activityContext)
+        public override Task<ExecutionResult> RunAsync(IStepExecutionContext context)
         {
-            _currentDirectoryPath = activityContext.DynamicContext.GeneratorPath;
-            _unitTestsTemplates = "Platforms\\Frontend\\Ionic\\UnitTests\\Templates";
-            _unitTestsTemplatesDirectoryPath = Path.Combine(_currentDirectoryPath, _unitTestsTemplates);
-            await base.Initializing(activityContext);
+            if (null == _context.Manifest)
+                throw new ArgumentNullException(nameof(_context.Manifest));
+
+            SmartAppInfo smartApp = _context.Manifest;
+            var unitTestsTemplates = "Platforms\\Frontend\\Ionic\\UnitTests\\Templates";
+            _workflowNotifier.Notify(nameof(UnitTestsWritingStep), NotificationType.GeneralInfo, "Generating ionic unit tests");
+            if (_context.BasePath != null && _context.GeneratorPath != null)
+            {
+                var unitTestsTemplatesDirectoryPath = Path.Combine(_context.GeneratorPath, unitTestsTemplates);
+                TransformUnitTests(smartApp, unitTestsTemplatesDirectoryPath);
+            }
+            return Task.FromResult(ExecutionResult.Next());
         }
-
-        /// <summary>
-        /// Prompting users with questions. Responses given will help
-        /// the activity bringing more spectifications.
-        /// </summary>
-        //[Task(2)]
-        public override Task Prompting()
-        {
-            return base.Prompting();
-        }
-
-        /// <summary>
-        /// Method invoked when prompting user is done and
-        /// answers are given.
-        /// </summary>
-        /// <param name="questions">A list of questions answered.</param>
-        protected override void ActivityPrompt_Completed(IEnumerable<IQuestion> questions)
-        {
-            base.ActivityPrompt_Completed(questions);
-        }
-
-        /// <summary>
-        /// Writing task in the Scaffold runtime.
-        /// </summary>
-        [Task(Order = 2)]
-        public async override Task Writing()
-        {
-            if (null == Context.DynamicContext.Manifest)
-                throw new ArgumentNullException(nameof(Context.DynamicContext.Manifest));
-
-            SmartAppInfo smartApp = Context.DynamicContext.Manifest;
-            TransformUnitTests(smartApp, _unitTestsTemplatesDirectoryPath);
-            await base.Writing();
-        }
-
-        #endregion
 
         #region Writing Methods
 
@@ -95,7 +61,7 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
                 {
                     TransformLanguagePageSpec(smartApp);
                 }
-                CopyDirectory(unitTestsTemplatesDirectoryPath, BasePath);
+                _writingService.CopyDirectory(unitTestsTemplatesDirectoryPath, _context.BasePath);
             }
         }
 
@@ -114,10 +80,10 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
                     string mocksDirectoryPath = mocksTemplate.OutputPath;
                     string mocksFilename = TextConverter.CamelCase(api.Id) + "Mock.ts";
 
-                    string fileToWritePath = Path.Combine(BasePath, mocksDirectoryPath, mocksFilename);
+                    string fileToWritePath = Path.Combine(_context.BasePath, mocksDirectoryPath, mocksFilename);
                     string textToWrite = mocksTemplate.TransformText();
 
-                    WriteFile(fileToWritePath, textToWrite);
+                    _writingService.WriteFile(fileToWritePath, textToWrite);
                 }
             }
         }
@@ -137,10 +103,10 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
                     string servicesSpecsDirectoryPath = servicesSpecsTemplate.OutputPath;
                     string servicesSpecsFilename = TextConverter.CamelCase(api.Id) + ".spec.ts";
 
-                    string fileToWritePath = Path.Combine(BasePath, servicesSpecsDirectoryPath, servicesSpecsFilename);
+                    string fileToWritePath = Path.Combine(_context.BasePath, servicesSpecsDirectoryPath, servicesSpecsFilename);
                     string textToWrite = servicesSpecsTemplate.TransformText();
 
-                    WriteFile(fileToWritePath, textToWrite);
+                    _writingService.WriteFile(fileToWritePath, textToWrite);
                 }
             }
         }
@@ -158,10 +124,10 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
                 string appComponentSpecDirectoryPath = appComponentSpecTemplate.OutputPath;
                 string appComponentSpecFilename = "app.component.spec.ts";
 
-                string fileToWritePath = Path.Combine(BasePath, appComponentSpecDirectoryPath, appComponentSpecFilename);
+                string fileToWritePath = Path.Combine(_context.BasePath, appComponentSpecDirectoryPath, appComponentSpecFilename);
                 string textToWrite = appComponentSpecTemplate.TransformText();
 
-                WriteFile(fileToWritePath, textToWrite);
+                _writingService.WriteFile(fileToWritePath, textToWrite);
             }
         }
 
@@ -186,10 +152,10 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
                                 string componentsSpecDirectoryPath = Path.Combine(componentsSpecTemplate.OutputPath, TextConverter.CamelCase(concern.Id), TextConverter.CamelCase(layout.Id));
                                 string componentsSpecFilename = TextConverter.CamelCase(concern.Id) + "-" + TextConverter.CamelCase(layout.Id) + ".spec.ts";
 
-                                string fileToWritePath = Path.Combine(BasePath, componentsSpecDirectoryPath, componentsSpecFilename);
+                                string fileToWritePath = Path.Combine(_context.BasePath, componentsSpecDirectoryPath, componentsSpecFilename);
                                 string textToWrite = componentsSpecTemplate.TransformText();
 
-                                WriteFile(fileToWritePath, textToWrite);
+                                _writingService.WriteFile(fileToWritePath, textToWrite);
                             }
                         }
                     }
@@ -210,10 +176,10 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
                 string languagePageSpecDirectoryPath = languagePageSpecTemplate.OutputPath;
                 string languagePageSpecFilename = "language.spec.ts";
 
-                string fileToWritePath = Path.Combine(BasePath, languagePageSpecDirectoryPath, languagePageSpecFilename);
+                string fileToWritePath = Path.Combine(_context.BasePath, languagePageSpecDirectoryPath, languagePageSpecFilename);
                 string textToWrite = languagePageSpecTemplate.TransformText();
 
-                WriteFile(fileToWritePath, textToWrite);
+                _writingService.WriteFile(fileToWritePath, textToWrite);
             }
         }
 

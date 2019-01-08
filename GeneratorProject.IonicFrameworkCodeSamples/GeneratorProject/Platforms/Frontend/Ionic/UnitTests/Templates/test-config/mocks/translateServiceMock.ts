@@ -1,6 +1,5 @@
 import { Observable } from 'rxjs';
 
-let lang: string = 'frr';
 let translatedWord = 'test';
 
 export class TranslateServiceMock {

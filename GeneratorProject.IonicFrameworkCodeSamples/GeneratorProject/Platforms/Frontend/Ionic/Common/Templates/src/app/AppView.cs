@@ -13,7 +13,7 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
     using System.Text;
     using System.Collections.Generic;
     using Mobioos.Foundation.Jade.Models;
-    using Mobioos.Scaffold.Generators.Helpers;
+    using Mobioos.Scaffold.BaseGenerators.Helpers;
     using System;
     
     /// <summary>
@@ -97,8 +97,8 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
             #line default
             #line hidden
             this.Write("      </ion-item>\r\n      <ion-item-group>\r\n        <a ion-item menuClose *ngFor=\"" +
-                    "let m of _menu\" (click)=\"selected(m.component.toLowerCase())\">{{ m.name }}</a>\r\n" +
-                    "      </ion-item-group>\r\n    </ion-list>\r\n  </ion-content>\r\n</ion-menu>\r\n");
+                    "let m of _menu\" (click)=\"selected(m.component)\">{{ m.name }}</a>\r\n      </ion-it" +
+                    "em-group>\r\n    </ion-list>\r\n  </ion-content>\r\n</ion-menu>\r\n");
             
             #line 62 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Common\Templates\src\app\AppView.tt"
 
