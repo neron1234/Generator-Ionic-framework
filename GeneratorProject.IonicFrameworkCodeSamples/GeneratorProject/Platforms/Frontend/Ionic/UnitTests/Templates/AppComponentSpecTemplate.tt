@@ -1,9 +1,12 @@
 <#@ include file="..\..\Base\Templates\Include.tt" #>
 <#
-    if (_smartApp != null && _smartApp.Id != null)
+    if (SmartApp != null
+        && SmartApp.Id != null)
     {
-        bool isLanguages = false;
-        if (_smartApp.Languages.AsEnumerable() != null && _smartApp.Languages.AsEnumerable().Count() > 0)
+        var isLanguages = false;
+
+        if (SmartApp.Languages.AsEnumerable() != null
+            && SmartApp.Languages.AsEnumerable().Count() > 0)
         {
             isLanguages = true;
         }
@@ -23,17 +26,21 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Title } from '@angular/platform-browser';
 
-import { <#= TextConverter.PascalCase(_smartApp.Id) #> } from './app.component';
+import { <#= SmartApp.Id.ToPascalCase() #> } from './app.component';
 <#
-        if (_smartApp.Concerns.AsEnumerable() != null && _rootLayout != null && _rootLayout.Id != null && _rootConcern != null && _rootConcern.Id != null)
+        if (SmartApp.Concerns.AsEnumerable() != null
+            && RootLayout != null
+            && RootLayout.Id != null
+            && RootConcern != null
+            && RootConcern.Id != null)
         {
-            string concern = TextConverter.PascalCase(_rootConcern.Id);
-            string layout = TextConverter.PascalCase(_rootLayout.Id);
-            string layoutComponent = concern + layout;
-            string layoutComponentToLower = TextConverter.CamelCase(concern) + "-" + TextConverter.CamelCase(layout);
+            var concern = RootConcern.Id.ToPascalCase();
+            var layout = RootLayout.Id.ToPascalCase();
+            var layoutComponent = $"{concern}{layout}";
+            var layoutComponentToLower = $"{concern.ToCamelCase()}-{layout.ToCamelCase()}";
 #>
-import { <#= layoutComponent #>PageModule } from '../pages/<#= TextConverter.CamelCase(concern) #>/<#= TextConverter.CamelCase(layout) #>/<#= layoutComponentToLower #>.module';
-import { <#= layoutComponent #> } from '../pages/<#= TextConverter.CamelCase(concern) #>/<#= TextConverter.CamelCase(layout) #>/<#= layoutComponentToLower #>';
+import { <#= layoutComponent #>PageModule } from '../pages/<#= concern.ToCamelCase() #>/<#= layout.ToCamelCase() #>/<#= layoutComponentToLower #>.module';
+import { <#= layoutComponent #> } from '../pages/<#= concern.ToCamelCase() #>/<#= layout.ToCamelCase() #>/<#= layoutComponentToLower #>';
 <#
         }
 #>
@@ -43,15 +50,15 @@ import { SplashScreenMock } from '../../test-config/mocks/splashScreenMock';
 import { NavMock } from '../../test-config/mocks/navMock';
 import { TitleMock } from '../../test-config/mocks/titleMock';
 
-describe('<#= TextConverter.PascalCase(_smartApp.Id) #> Component', () => {
-  let fixture: ComponentFixture<<#= TextConverter.PascalCase(_smartApp.Id) #>>;
-  let component: <#= TextConverter.PascalCase(_smartApp.Id) #>;
+describe('<#= SmartApp.Id.ToPascalCase() #> Component', () => {
+  let fixture: ComponentFixture<<#= SmartApp.Id.ToPascalCase() #>>;
+  let component: <#= SmartApp.Id.ToPascalCase() #>;
 
   let spy: jasmine.Spy;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [<#= TextConverter.PascalCase(_smartApp.Id) #>],
+      declarations: [<#= SmartApp.Id.ToPascalCase() #>],
       imports: [
 <#
         if (isLanguages)
@@ -63,18 +70,22 @@ describe('<#= TextConverter.PascalCase(_smartApp.Id) #> Component', () => {
         }
 #>
 <#
-        if (_smartApp.Concerns.AsEnumerable() != null && _rootLayout != null && _rootLayout.Id != null && _rootConcern != null && _rootConcern.Id != null)
+        if (SmartApp.Concerns.AsEnumerable() != null
+            && RootLayout != null
+            && RootLayout.Id != null
+            && RootConcern != null
+            && RootConcern.Id != null)
         {
-            string concern = TextConverter.PascalCase(_rootConcern.Id);
-            string layout = TextConverter.PascalCase(_rootLayout.Id);
-            string layoutComponent = concern + layout;
-            string layoutComponentToLower = TextConverter.CamelCase(concern) + "-" + TextConverter.CamelCase(layout);
+            var concern = RootConcern.Id.ToPascalCase();
+            var layout = RootLayout.Id.ToPascalCase();
+            var layoutComponent = $"{concern}{layout}";
+            var layoutComponentToLower = $"{concern.ToCamelCase()}-{layout.ToCamelCase()}";
 #>
         <#= layoutComponent #>PageModule,
 <#
         }
 #>
-        IonicModule.forRoot(<#= TextConverter.PascalCase(_smartApp.Id) #>)
+        IonicModule.forRoot(<#= SmartApp.Id.ToPascalCase() #>)
       ],
       providers: [
         { provide: Platform, useClass: PlatformMock },
@@ -95,7 +106,7 @@ describe('<#= TextConverter.PascalCase(_smartApp.Id) #> Component', () => {
   }));
 
   beforeEach(async() => {
-    fixture = TestBed.createComponent(<#= TextConverter.PascalCase(_smartApp.Id) #>);
+    fixture = TestBed.createComponent(<#= SmartApp.Id.ToPascalCase() #>);
     component = fixture.componentInstance;
   });
   
@@ -104,9 +115,9 @@ describe('<#= TextConverter.PascalCase(_smartApp.Id) #> Component', () => {
     component = null;
   });
 
-  it('<#= TextConverter.PascalCase(_smartApp.Id) #> Component: platform should be ready', fakeAsync(() => {
+  it('<#= SmartApp.Id.ToPascalCase() #> Component: platform should be ready', fakeAsync(() => {
     spy = spyOn(component._platform, 'ready').and.callThrough();
-    var app = new <#= TextConverter.PascalCase(_smartApp.Id) #>(
+    var app = new <#= SmartApp.Id.ToPascalCase() #>(
 <#
         if (isLanguages)
         {
@@ -115,7 +126,7 @@ describe('<#= TextConverter.PascalCase(_smartApp.Id) #> Component', () => {
 <#
         }
 
-        if (_isMenu)
+        if (IsMenu)
         {
 #>
       component._events,
@@ -135,9 +146,9 @@ describe('<#= TextConverter.PascalCase(_smartApp.Id) #> Component', () => {
     });
   }));
 
-  it('<#= TextConverter.PascalCase(_smartApp.Id) #> Component: should set default style statusBar', fakeAsync(() => {
+  it('<#= SmartApp.Id.ToPascalCase() #> Component: should set default style statusBar', fakeAsync(() => {
     spy = spyOn(component._statusBar, 'styleDefault').and.callThrough();
-    var app = new <#= TextConverter.PascalCase(_smartApp.Id) #>(
+    var app = new <#= SmartApp.Id.ToPascalCase() #>(
 <#
         if (isLanguages)
         {
@@ -146,7 +157,7 @@ describe('<#= TextConverter.PascalCase(_smartApp.Id) #> Component', () => {
 <#
         }
 
-        if (_isMenu)
+        if (IsMenu)
         {
 #>
       component._events,
@@ -165,9 +176,9 @@ describe('<#= TextConverter.PascalCase(_smartApp.Id) #> Component', () => {
     expect(result).toBeUndefined();
   }));
 
-  it('<#= TextConverter.PascalCase(_smartApp.Id) #> Component: should hide splashscreen', fakeAsync(() => {
+  it('<#= SmartApp.Id.ToPascalCase() #> Component: should hide splashscreen', fakeAsync(() => {
     spy = spyOn(component._splashScreen, 'hide').and.callThrough();
-    var app = new <#= TextConverter.PascalCase(_smartApp.Id) #>(
+    var app = new <#= SmartApp.Id.ToPascalCase() #>(
 <#
         if (isLanguages)
         {
@@ -176,7 +187,7 @@ describe('<#= TextConverter.PascalCase(_smartApp.Id) #> Component', () => {
 <#
         }
 
-        if (_isMenu)
+        if (IsMenu)
         {
 #>
       component._events,
@@ -195,9 +206,9 @@ describe('<#= TextConverter.PascalCase(_smartApp.Id) #> Component', () => {
     expect(result).toBeUndefined();
   }));
 
-  it('<#= TextConverter.PascalCase(_smartApp.Id) #> Component: should set navigation root page', fakeAsync(() => {
+  it('<#= SmartApp.Id.ToPascalCase() #> Component: should set navigation root page', fakeAsync(() => {
     spy = spyOn(component._nav, 'setRoot').and.callThrough();
-    var app = new <#= TextConverter.PascalCase(_smartApp.Id) #>(
+    var app = new <#= SmartApp.Id.ToPascalCase() #>(
 <#
         if (isLanguages)
         {
@@ -206,7 +217,7 @@ describe('<#= TextConverter.PascalCase(_smartApp.Id) #> Component', () => {
 <#
         }
 
-        if (_isMenu)
+        if (IsMenu)
         {
 #>
       component._events,
@@ -222,12 +233,16 @@ describe('<#= TextConverter.PascalCase(_smartApp.Id) #> Component', () => {
     flushMicrotasks();
     expect(spy).toHaveBeenCalledWith(
 <#
-        if (_smartApp.Concerns.AsEnumerable() != null && _rootLayout != null && _rootLayout.Id != null && _rootConcern != null && _rootConcern.Id != null)
+        if (SmartApp.Concerns.AsEnumerable() != null
+            && RootLayout != null
+            && RootLayout.Id != null
+            && RootConcern != null
+            && RootConcern.Id != null)
         {
-            string concern = TextConverter.PascalCase(_rootConcern.Id);
-            string layout = TextConverter.PascalCase(_rootLayout.Id);
-            string layoutComponent = concern + layout;
-            string layoutComponentToLower = TextConverter.CamelCase(concern) + "-" + TextConverter.CamelCase(layout);
+            var concern = RootConcern.Id.ToPascalCase();
+            var layout = RootLayout.Id.ToPascalCase();
+            var layoutComponent = $"{concern}{layout}";
+            var layoutComponentToLower = $"{concern.ToCamelCase()}-{layout.ToCamelCase()}";
 #>
       <#= layoutComponent #>
 <#
@@ -239,9 +254,9 @@ describe('<#= TextConverter.PascalCase(_smartApp.Id) #> Component', () => {
     });
   }));
 
-  it('<#= TextConverter.PascalCase(_smartApp.Id) #> Component: should set default language', fakeAsync(() => {
+  it('<#= SmartApp.Id.ToPascalCase() #> Component: should set default language', fakeAsync(() => {
     spy = spyOn(component._translateService, 'setDefaultLang').and.callThrough();
-    var app = new <#= TextConverter.PascalCase(_smartApp.Id) #>(
+    var app = new <#= SmartApp.Id.ToPascalCase() #>(
 <#
         if (isLanguages)
         {
@@ -250,7 +265,7 @@ describe('<#= TextConverter.PascalCase(_smartApp.Id) #> Component', () => {
 <#
         }
 
-        if (_isMenu)
+        if (IsMenu)
         {
 #>
       component._events,
@@ -269,9 +284,9 @@ describe('<#= TextConverter.PascalCase(_smartApp.Id) #> Component', () => {
     expect(result).toBeUndefined();
   }));
 
-  it('<#= TextConverter.PascalCase(_smartApp.Id) #> Component: should use a language', fakeAsync(() => {
+  it('<#= SmartApp.Id.ToPascalCase() #> Component: should use a language', fakeAsync(() => {
     spy = spyOn(component._translateService, 'use').and.callThrough();
-    var app = new <#= TextConverter.PascalCase(_smartApp.Id) #>(
+    var app = new <#= SmartApp.Id.ToPascalCase() #>(
 <#
         if (isLanguages)
         {
@@ -280,7 +295,7 @@ describe('<#= TextConverter.PascalCase(_smartApp.Id) #> Component', () => {
 <#
         }
 
-        if (_isMenu)
+        if (IsMenu)
         {
 #>
       component._events,
@@ -300,9 +315,9 @@ describe('<#= TextConverter.PascalCase(_smartApp.Id) #> Component', () => {
     });
   }));
 
-  it('<#= TextConverter.PascalCase(_smartApp.Id) #> Component: should translate applicationTitle to test', fakeAsync(() => {
+  it('<#= SmartApp.Id.ToPascalCase() #> Component: should translate applicationTitle to test', fakeAsync(() => {
     spy = spyOn(component._translateService, 'get').and.callThrough();
-    var app = new <#= TextConverter.PascalCase(_smartApp.Id) #>(
+    var app = new <#= SmartApp.Id.ToPascalCase() #>(
 <#
         if (isLanguages)
         {
@@ -311,7 +326,7 @@ describe('<#= TextConverter.PascalCase(_smartApp.Id) #> Component', () => {
 <#
         }
 
-        if (_isMenu)
+        if (IsMenu)
         {
 #>
       component._events,
@@ -331,9 +346,9 @@ describe('<#= TextConverter.PascalCase(_smartApp.Id) #> Component', () => {
     });
   }));
 
-  it('<#= TextConverter.PascalCase(_smartApp.Id) #> Component: should set translated title', fakeAsync(() => {
+  it('<#= SmartApp.Id.ToPascalCase() #> Component: should set translated title', fakeAsync(() => {
     spy = spyOn(component._title, 'setTitle').and.callThrough();
-    var app = new <#= TextConverter.PascalCase(_smartApp.Id) #>(
+    var app = new <#= SmartApp.Id.ToPascalCase() #>(
 <#
         if (isLanguages)
         {
@@ -342,7 +357,7 @@ describe('<#= TextConverter.PascalCase(_smartApp.Id) #> Component', () => {
 <#
         }
 
-        if (_isMenu)
+        if (IsMenu)
         {
 #>
       component._events,
@@ -361,12 +376,12 @@ describe('<#= TextConverter.PascalCase(_smartApp.Id) #> Component', () => {
     expect(result).toBeUndefined();
   }));
 
-  it('<#= TextConverter.PascalCase(_smartApp.Id) #> Component: should be created', fakeAsync(() => {
+  it('<#= SmartApp.Id.ToPascalCase() #> Component: should be created', fakeAsync(() => {
     flushMicrotasks();
-    expect(component instanceof <#= TextConverter.PascalCase(_smartApp.Id) #>).toBeTruthy();
+    expect(component instanceof <#= SmartApp.Id.ToPascalCase() #>).toBeTruthy();
   }));
 
-  it('<#= TextConverter.PascalCase(_smartApp.Id) #> Component: should set root on test route', fakeAsync(() => {
+  it('<#= SmartApp.Id.ToPascalCase() #> Component: should set root on test route', fakeAsync(() => {
     spy = spyOn(component, 'selected').and.callThrough();
     component.selected('test');
     flushMicrotasks();

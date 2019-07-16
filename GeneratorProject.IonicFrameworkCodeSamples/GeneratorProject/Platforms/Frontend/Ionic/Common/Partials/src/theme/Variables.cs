@@ -2,10 +2,11 @@
 {
     public partial class Variables
     {
-        public string _theme { get; set; }
+        public string Theme { get; set; }
+
         public Variables(string theme)
         {
-            _theme = theme;
+            Theme = theme;
         }
 
         public override string OutputPath => "src\\theme\\variables.scss";

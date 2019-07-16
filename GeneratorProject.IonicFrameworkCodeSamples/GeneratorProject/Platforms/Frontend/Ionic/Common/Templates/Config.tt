@@ -21,12 +21,16 @@
   Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 -->
 <#
-    SmartAppInfo smartApp = (SmartAppInfo)Model;
-    if (smartApp != null && smartApp.Id != null && smartApp.Title != null && smartApp.Version != null)
+    var smartApp = (SmartAppInfo)Model;
+
+    if (smartApp != null
+        && smartApp.Id != null
+        && smartApp.Title != null
+        && smartApp.Version != null)
     {
 #>
   <?xml version='1.0' encoding='utf-8'?>
-  <widget id="com.<#= smartApp.Id #>.<#= smartApp.Title #>" version="<#= _version #>" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+  <widget id="com.<#= smartApp.Id #>.<#= smartApp.Title #>" version="<#= SmartAppVersion #>" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name><#= smartApp.Title #></name>
 <#
         if (smartApp.Description != null)

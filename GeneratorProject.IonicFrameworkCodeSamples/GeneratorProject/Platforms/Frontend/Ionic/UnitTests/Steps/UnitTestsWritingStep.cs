@@ -1,6 +1,6 @@
-﻿using Mobioos.Foundation.Jade.Models;
+﻿using Common.Generator.Framework.Extensions;
+using Mobioos.Foundation.Jade.Models;
 using Mobioos.Foundation.Prompt.Infrastructure;
-using Mobioos.Scaffold.BaseGenerators.Helpers;
 using Mobioos.Scaffold.BaseInfrastructure.Contexts;
 using Mobioos.Scaffold.BaseInfrastructure.Notifiers;
 using Mobioos.Scaffold.BaseInfrastructure.Services.GeneratorsServices;
@@ -99,12 +99,12 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
             if (smartApp != null
                 && smartApp.Api.AsEnumerable() != null)
             {
-                foreach (ApiInfo api in smartApp.Api.AsEnumerable())
+                foreach (var api in smartApp.Api.AsEnumerable())
                 {
                     var mocksTemplate = new MocksTemplate(api);
 
                     var mocksDirectoryPath = mocksTemplate.OutputPath;
-                    var mocksFilename = $"{TextConverter.CamelCase(api.Id)}Mock.ts";
+                    var mocksFilename = $"{api.Id.ToCamelCase()}Mock.ts";
 
                     var fileToWritePath = Path.Combine(
                         _context.BasePath,
@@ -129,12 +129,12 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
             if (smartApp != null
                 && smartApp.Api.AsEnumerable() != null)
             {
-                foreach (ApiInfo api in smartApp.Api.AsEnumerable())
+                foreach (var api in smartApp.Api.AsEnumerable())
                 {
                     var servicesSpecsTemplate = new ServiceSpecTemplate(api);
 
                     var servicesSpecsDirectoryPath = servicesSpecsTemplate.OutputPath;
-                    var servicesSpecsFilename = $"{TextConverter.CamelCase(api.Id)}.spec.ts";
+                    var servicesSpecsFilename = $"{api.Id.ToCamelCase()}.spec.ts";
 
                     var fileToWritePath = Path.Combine(
                         _context.BasePath,
@@ -192,7 +192,7 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
                         && concern.Id != null
                         && concern.Layouts.AsEnumerable() != null)
                     {
-                        foreach (LayoutInfo layout in concern.Layouts.AsEnumerable())
+                        foreach (var layout in concern.Layouts.AsEnumerable())
                         {
                             if (layout != null)
                             {
@@ -205,11 +205,11 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
 
                                 var componentsSpecDirectoryPath = Path.Combine(
                                     componentsSpecTemplate.OutputPath,
-                                    TextConverter.CamelCase(concern.Id),
-                                    TextConverter.CamelCase(layout.Id));
+                                    concern.Id.ToCamelCase(),
+                                    layout.Id.ToCamelCase());
 
                                 var componentsSpecFilename =
-                                    $"{TextConverter.CamelCase(concern.Id)}-{TextConverter.CamelCase(layout.Id)}.spec.ts";
+                                    $"{concern.Id.ToCamelCase()}-{layout.Id.ToCamelCase()}.spec.ts";
 
                                 var fileToWritePath = Path.Combine(
                                     _context.BasePath,

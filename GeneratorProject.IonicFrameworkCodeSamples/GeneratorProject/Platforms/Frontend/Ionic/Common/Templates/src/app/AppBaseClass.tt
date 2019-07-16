@@ -1,2 +1,1 @@
-<#@ template language="C#" inherits="TemplateBase" #>
-<#@ import namespace="Mobioos.Scaffold.BaseGenerators.TextTemplating" #>
+<#@ include file="..\..\..\..\Base\Templates\Include.tt" #>

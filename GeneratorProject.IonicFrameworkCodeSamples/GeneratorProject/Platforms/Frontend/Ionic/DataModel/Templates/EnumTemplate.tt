@@ -21,31 +21,33 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 <#
-    if (_entity != null && _entity.Id != null)
+    if (Entity != null && Entity.Id != null)
     {
 #>
 /**
- * class: <#= TextConverter.PascalCase(_entity.Id) #>Enum.
+ * class: <#= Entity.Id.ToPascalCase() #>Enum.
  * You should add a description of your enumeration here.
  * That enumeration is a reference used in viewModels or
  * in models.
  * That enumeration is generated from DataModel domain.
  */
-export enum <#= TextConverter.PascalCase(_entity.Id) #>Enum {
+export enum <#= Entity.Id.ToPascalCase() #>Enum {
 <#
-        if (_entity.Values.AsEnumerable() != null)
+        if (Entity.Values.AsEnumerable() != null)
         {
-            int index = 0;
-            int indexLast = _entity.Values.AsEnumerable().Count() - 1;
-            foreach (ValueInfo value in _entity.Values.AsEnumerable())
+            var index = 0;
+            var indexLast = Entity.Values.AsEnumerable().Count() - 1;
+
+            foreach (var value in Entity.Values.AsEnumerable())
             {
-                if (value.Id != null && index == indexLast)
+                if (value.Id != null
+                    && index == indexLast)
                 {
 #>
   /**
    * Change the index by a string to fit string enums.
    */
-  <#= TextConverter.CamelCase(value.Id).ToUpper() #> = <#= index #>
+  <#= value.Id.ToCamelCase().ToUpper() #> = <#= index #>
 <#
                 }
                 else if (value.Id != null)
@@ -54,9 +56,10 @@ export enum <#= TextConverter.PascalCase(_entity.Id) #>Enum {
   /**
    * Change the index by a string to fit string enums.
    */
-  <#= TextConverter.CamelCase(value.Id).ToUpper() #> = <#= index #>,
+  <#= value.Id.ToCamelCase().ToUpper() #> = <#= index #>,
 <#
                 }
+
                 index++;
             }
         }

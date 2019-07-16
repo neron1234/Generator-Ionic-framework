@@ -23,7 +23,7 @@
 <ion-header>
   <ion-navbar>
 <#
-    if (_isMenu)
+    if (IsMenu)
     {
 #>
     <button ion-button icon-only menuToggle>
@@ -47,14 +47,16 @@
   <h1>Language preference</h1> 
   <ion-item-group>
 <#
-    if (_languages.AsEnumerable() != null && _languages.AsEnumerable().Count() > 0)
+    if (Languages.AsEnumerable() != null
+        && Languages.AsEnumerable().Count() > 0)
     {
-        foreach (LanguageInfo language in _languages.AsEnumerable()) 
+        foreach (var language in Languages.AsEnumerable()) 
         {
-            if (language != null && language.Id != null)
+            if (language != null
+                && language.Id != null)
             {
 #>
-    <ion-item (click)="changeLanguage('<#= TextConverter.PascalCase(language.Id) #>')"><#= TextConverter.PascalCase(language.Id) #></ion-item>
+    <ion-item (click)="changeLanguage('<#= language.Id.ToPascalCase() #>')"><#= language.Id.ToPascalCase() #></ion-item>
 <#
             }
         }

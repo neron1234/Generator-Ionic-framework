@@ -1,6 +1,6 @@
-﻿using Mobioos.Foundation.Jade.Models;
+﻿using Common.Generator.Framework.Extensions;
+using Mobioos.Foundation.Jade.Models;
 using Mobioos.Foundation.Prompt.Infrastructure;
-using Mobioos.Scaffold.BaseGenerators.Helpers;
 using Mobioos.Scaffold.BaseInfrastructure.Contexts;
 using Mobioos.Scaffold.BaseInfrastructure.Notifiers;
 using Mobioos.Scaffold.BaseInfrastructure.Services.GeneratorsServices;
@@ -81,14 +81,14 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
                 && smartApp.Languages.AsEnumerable() != null
                 && smartApp.Languages.AsEnumerable().Count() > 0)
             {
-                foreach (LanguageInfo languageInfo in smartApp.Languages.AsEnumerable())
+                foreach (var languageInfo in smartApp.Languages.AsEnumerable())
                 {
                     var jsonTemplate = new JsonTemplate(
                         smartApp,
                         languageInfo.Id);
 
                     var jsonDirectoryPath = jsonTemplate.OutputPath;
-                    var enJsonFile = $"{TextConverter.PascalCase(languageInfo.Id)}.json";
+                    var enJsonFile = $"{languageInfo.Id.ToPascalCase()}.json";
 
                     var fileToWritePath = Path.Combine(
                         _context.BasePath,
@@ -173,9 +173,7 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
                 && smartApp.Languages.AsEnumerable() != null
                 && smartApp.Languages.AsEnumerable().Count() > 0)
             {
-                var languageViewTemplate = new LanguageViewTemplate(
-                    smartApp.Concerns,
-                    smartApp.Languages);
+                var languageViewTemplate = new LanguageViewTemplate(smartApp);
 
                 var fileToWritePath = Path.Combine(
                     _context.BasePath,

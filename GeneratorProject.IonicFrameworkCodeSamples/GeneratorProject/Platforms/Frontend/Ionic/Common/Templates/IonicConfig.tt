@@ -1,7 +1,10 @@
 <#@ include file="..\..\Base\Templates\Include.tt" #>
 <#
-    SmartAppInfo smartApp = (SmartAppInfo)Model;
-    if (smartApp != null && smartApp.Title != null && smartApp.Id != null)
+    var smartApp = (SmartAppInfo)Model;
+
+    if (smartApp != null
+        && smartApp.Title != null
+        && smartApp.Id != null)
     {
 #>
 {

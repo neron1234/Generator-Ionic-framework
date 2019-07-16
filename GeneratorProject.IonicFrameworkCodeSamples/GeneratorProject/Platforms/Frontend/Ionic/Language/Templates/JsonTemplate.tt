@@ -1,9 +1,13 @@
 ﻿<#@ include file="..\..\Base\Templates\Include.tt" #>
 {
 <#
-    if (_smartApp != null && _smartApp.Title != null && _smartApp.Concerns.AsEnumerable() != null && _language != null)
+    if (SmartApp != null
+        && SmartApp.Title != null
+        && SmartApp.Concerns.AsEnumerable() != null
+        && Language != null)
     { 
-        if (_language == "Fr" || _language == "fr")
+        if (Language == "Fr"
+            || Language == "fr")
         {
 #>
     "closeMenu": "FermerMenu",
@@ -16,48 +20,52 @@
 <#
         }
 
-        foreach (ConcernInfo concern in _smartApp.Concerns.AsEnumerable())
+        foreach (var concern in SmartApp.Concerns.AsEnumerable())
         {
-            if (concern.Id != null && concern.Title != null && concern.Layouts.AsEnumerable() != null)
+            if (concern.Id != null
+                && concern.Title != null
+                && concern.Layouts.AsEnumerable() != null)
             {
 #>
 
-    "<#= TextConverter.CamelCase(concern.Id) #>": {
+    "<#= concern.Id.ToCamelCase() #>": {
 <#
-                foreach (LayoutInfo layout in concern.Layouts.AsEnumerable())
+                foreach (var layout in concern.Layouts.AsEnumerable())
                 {
-                    if (layout.Id != null && layout.Description != null && layout.Actions.AsEnumerable() != null)
+                    if (layout.Id != null
+                    && layout.Description != null
+                    && layout.Actions.AsEnumerable() != null)
                     {
-                        foreach (ActionInfo action in layout.Actions.AsEnumerable())
+                        foreach (var action in layout.Actions.AsEnumerable())
                         {
                             if (action.Id != null)
                             {
 #>
-        "<#= TextConverter.CamelCase(layout.Id) #>Layout<#= TextConverter.PascalCase(action.Id) #>Action": "<#= TextConverter.PascalCase(action.Id) #>",
+        "<#= layout.Id.ToCamelCase() #>Layout<#= action.Id.ToPascalCase() #>Action": "<#= action.Id.ToPascalCase() #>",
 <#
                             }
                         }
 #>
-        "<#= TextConverter.CamelCase(layout.Id) #>LayoutTitle": "<#= TextConverter.PascalCase(layout.Title) #>",
-        "<#= TextConverter.CamelCase(layout.Id) #>LayoutDescription": "<#= TextConverter.PascalCase(layout.Description) #>",
+        "<#= layout.Id.ToCamelCase() #>LayoutTitle": "<#= layout.Title.ToPascalCase() #>",
+        "<#= layout.Id.ToCamelCase() #>LayoutDescription": "<#= layout.Description.ToPascalCase() #>",
 <#
                     }
                 }
 #>
-        "<#= TextConverter.CamelCase(concern.Id) #>ConcernTitle": "<#= TextConverter.PascalCase(concern.Title) #>"
+        "<#= concern.Id.ToCamelCase() #>ConcernTitle": "<#= concern.Title.ToPascalCase() #>"
     },
 <#
             }
         }
 
-        if (_smartApp.SmallTitle != null)
+        if (SmartApp.SmallTitle != null)
         {
 #>
-    "applicationSmallTitle": "<#= TextConverter.PascalCase(_smartApp.SmallTitle) #>",
+    "applicationSmallTitle": "<#= SmartApp.SmallTitle.ToPascalCase() #>",
 <#
         }
 #>
-    "applicationTitle": "<#= TextConverter.PascalCase(_smartApp.Title) #>"
+    "applicationTitle": "<#= SmartApp.Title.ToPascalCase() #>"
 <#
     }
 #>

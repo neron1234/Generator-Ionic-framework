@@ -1,5 +1,4 @@
 <#@ include file="..\..\Base\Templates\Include.tt" #>
-<#@ import namespace="Mobioos.Foundation.Jade.Extensions" #>
 /*
  * You should add your licence here, here is an example :
  *
@@ -22,39 +21,44 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 <#
-    if (_concernId != null && _layout != null && _layout.Id != null)
+    if (ConcernId != null
+        && Layout != null
+        && Layout.Id != null)
     {
-        string layout = TextConverter.PascalCase(_concernId) + TextConverter.PascalCase(_layout.Id);
-        string layoutToLower = TextConverter.CamelCase(_concernId) + "-" + TextConverter.CamelCase(_layout.Id);
-        string layoutPathToLower = TextConverter.CamelCase(_concernId) + "/" + TextConverter.CamelCase(_layout.Id);
+        var layout = ConcernId.ToPascalCase() + Layout.Id.ToPascalCase();
+        var layoutToLower = $"{ConcernId.ToCamelCase()}-{Layout.Id.ToCamelCase()}";
+        var layoutPathToLower = $"{ConcernId.ToCamelCase()}/{Layout.Id.ToCamelCase()}";
 #>
 import { Component } from '@angular/core';
-import { IonicPage, NavController<# if (_menu.AsEnumerable() != null && _menu.AsEnumerable().Count() > 0) { #>, Events<# } #> } from 'ionic-angular';
+import { IonicPage, NavController<# if (Menu.AsEnumerable() != null && Menu.AsEnumerable().Count() > 0) { #>, Events<# } #> } from 'ionic-angular';
 <#
-        if (_viewModels.AsEnumerable() != null && _viewModels.AsEnumerable().Count() > 0)
+        if (ViewModels.AsEnumerable() != null
+            && ViewModels.AsEnumerable().Count() > 0)
         {
-            foreach (string viewModel in _viewModels.AsEnumerable())
+            foreach (var viewModel in ViewModels.AsEnumerable())
             {
 #>
-import { <#= TextConverter.PascalCase(viewModel) #> } from '../../../viewModels/<#= TextConverter.CamelCase(viewModel) #>';
+import { <#= viewModel.ToPascalCase() #> } from '../../../viewModels/<#= viewModel.ToCamelCase() #>';
 <#
             }
         }
 
-        if (_apiDomainServices.AsEnumerable() != null && _apiDomainServices.AsEnumerable().Count() > 0)
+        if (ApiDomainServices.AsEnumerable() != null
+            && ApiDomainServices.AsEnumerable().Count() > 0)
         {
 #>
 import { Observable } from 'rxjs';
 <#
-            foreach (string service in _apiDomainServices.AsEnumerable())
+            foreach (var service in ApiDomainServices.AsEnumerable())
             {
 #>
-import { <#= TextConverter.PascalCase(service) #> } from '../../../services/<#= TextConverter.CamelCase(service) #>.service';
+import { <#= service.ToPascalCase() #> } from '../../../services/<#= service.ToCamelCase() #>.service';
 <#
             }
         }
 
-        if (_languages.AsEnumerable() != null && _languages.AsEnumerable().Count() > 0)
+        if (Languages.AsEnumerable() != null
+            && Languages.AsEnumerable().Count() > 0)
         {
 #>
 import { LanguagePage } from '../../language/language';
@@ -65,10 +69,10 @@ import { LanguagePage } from '../../language/language';
 /**
  * class: <#= layout #>.
 <#
-        if (_layout.Description != null)
+        if (Layout.Description != null)
         {
 #>
- * <#= _layout.Description #>.
+ * <#= Layout.Description #>.
  * This is the component of that layout.
  * This component is generated from Concerns domain.
 <#
@@ -94,7 +98,8 @@ import { LanguagePage } from '../../language/language';
 })
 export class <#= layout #> {
 <#
-        if (_menu.AsEnumerable() != null && _menu.AsEnumerable().Count() > 0)
+        if (Menu.AsEnumerable() != null
+            && Menu.AsEnumerable().Count() > 0)
         {
 #>
   public _menu;
@@ -103,19 +108,21 @@ export class <#= layout #> {
 #>
   constructor(
 <#
-        if (_menu.AsEnumerable() != null && _menu.AsEnumerable().Count() > 0)
+        if (Menu.AsEnumerable() != null
+            && Menu.AsEnumerable().Count() > 0)
         {
 #>
     public _events: Events,
 <#
         }
 
-        if (_apiDomainServices.AsEnumerable() != null && _apiDomainServices.AsEnumerable().Count() > 0)
+        if (ApiDomainServices.AsEnumerable() != null
+            && ApiDomainServices.AsEnumerable().Count() > 0)
         {
-            foreach (string service in _apiDomainServices.AsEnumerable())
+            foreach (var service in ApiDomainServices.AsEnumerable())
             {
 #>
-    public _<#= TextConverter.CamelCase(service) #>: <#= TextConverter.PascalCase(service) #>,
+    public _<#= service.ToCamelCase() #>: <#= service.ToPascalCase() #>,
 <#
             }
         }
@@ -123,13 +130,14 @@ export class <#= layout #> {
     public _nav: NavController
   ) {
 <#
-        if (_menu.AsEnumerable() != null && _menu.AsEnumerable().Count() > 0)
+        if (Menu.AsEnumerable() != null
+            && Menu.AsEnumerable().Count() > 0)
         {
 #>
     this._menu = [
 <#
-            string last = _menu.Keys.Last();
-            foreach(KeyValuePair<string, string> m in _menu.AsEnumerable())
+            var last = Menu.Keys.Last();
+            foreach(var m in Menu.AsEnumerable())
             {
                 if (m.Key.Equals(last))
                 {
@@ -152,25 +160,25 @@ export class <#= layout #> {
   }
 
 <#
-        if (_layout.Actions.AsEnumerable() != null)
+        if (Layout.Actions.AsEnumerable() != null)
         {
-            foreach (ActionInfo action in _layout.Actions.AsEnumerable())
+            foreach (var action in Layout.Actions.AsEnumerable())
             {
                 switch (action.Type.ToLower())
                 {
                     case "navigation":
                         if (action.Target != null)
                         {
-                            string[] actionTargetSplitted = action.Target.Split('.');
-                            string targetedConcern = TextConverter.CamelCase(actionTargetSplitted[0]);
-                            string targetedLayout = TextConverter.CamelCase(actionTargetSplitted[1]);
+                            var actionTargetSplitted = action.Target.Split('.');
+                            var targetedConcern = actionTargetSplitted[0].ToCamelCase();
+                            var targetedLayout = actionTargetSplitted[1].ToCamelCase();
 #>
   /**
-   * method: on<#= TextConverter.PascalCase(action.Id) #>
+   * method: on<#= action.Id.ToPascalCase() #>
    * That method is a navigation method.
    */
-  public on<#= TextConverter.PascalCase(action.Id) #>() {
-    this._nav.push('<#= targetedConcern + "-" + targetedLayout #>');
+  public on<#= action.Id.ToPascalCase() #>() {
+    this._nav.push('<#= $"{targetedConcern}-{targetedLayout}" #>');
   }
 
 <#
@@ -179,45 +187,48 @@ export class <#= layout #> {
                     case "method":
 #>
   /**
-   * method: on<#= TextConverter.PascalCase(action.Id) #>
+   * method: on<#= action.Id.ToPascalCase() #>
    * That method is a blank method.
    */
-  public on<#= TextConverter.PascalCase(action.Id) #>() {
+  public on<#= action.Id.ToPascalCase() #>() {
     // TO DO
   }
 
 <#
                         break;
                     case "dataget": case "datalist": case "datacreate": case "dataupdate": case "datadelete":
-                        if (action.Api != null && _api != null)
+                        if (action.Api != null
+                            && Api != null)
                         {
-                            string[] actionSplitted = action.Api.Split('.');
-                            string apiService = actionSplitted[0];
-                            string apiAction = actionSplitted[1];
+                            var actionSplitted = action.Api.Split('.');
+                            var apiService = actionSplitted[0];
+                            var apiAction = actionSplitted[1];
 
-                            foreach (ApiInfo api in _api.AsEnumerable())
+                            foreach (var api in Api.AsEnumerable())
                             {
-                                if (api.Id.ToLower().Equals(apiService.ToLower()) && api.Actions.AsEnumerable() != null)
+                                if (api.Id.ToLower().Equals(apiService.ToLower())
+                                    && api.Actions.AsEnumerable() != null)
                                 {
-                                    foreach (ApiActionInfo apiA in api.Actions.AsEnumerable())
+                                    foreach (var apiA in api.Actions.AsEnumerable())
                                     {
                                         if (apiA.Id.ToLower().Equals(apiAction.ToLower()))
                                         {
 #>
   /**
-   * method: on<#= TextConverter.PascalCase(action.Id) #>
+   * method: on<#= action.Id.ToPascalCase() #>
    * You should add a description of your method here.
    * that method is an Api service call method.
 <#
-                                            if (apiA.Parameters.AsEnumerable() != null && apiA.Parameters.AsEnumerable().Count() > 0)
+                                            if (apiA.Parameters.AsEnumerable() != null
+                                                && apiA.Parameters.AsEnumerable().Count() > 0)
                                             {
-                                                foreach (ApiParameterInfo apiParameter in apiA.Parameters.AsEnumerable())
+                                                foreach (var apiParameter in apiA.Parameters.AsEnumerable())
                                                 {
                                                     if (apiParameter.Id != null)
                                                     {
-                                                        string type = apiParameter.TypeScriptType();
+                                                        var type = apiParameter.TypeScriptType();
 #>
-   * @param <#= TextConverter.CamelCase(apiParameter.Id) #> `<#= type #>`.
+   * @param <#= apiParameter.Id.ToCamelCase() #> `<#= type #>`.
 <#
                                                     }
                                                 }
@@ -225,26 +236,28 @@ export class <#= layout #> {
 #>
    * @returns A `Subscription<any>`.
    */
-  public on<#= TextConverter.PascalCase(action.Id) #>(
+  public on<#= action.Id.ToPascalCase() #>(
 <#
-                                            if (apiA.Parameters.AsEnumerable() != null && apiA.Parameters.AsEnumerable().Count() > 0)
+                                            if (apiA.Parameters.AsEnumerable() != null
+                                                && apiA.Parameters.AsEnumerable().Count() > 0)
                                             {
-                                                ApiParameterInfo last = apiA.Parameters.AsEnumerable().Last();
-                                                foreach (ApiParameterInfo apiParameter in apiA.Parameters.AsEnumerable())
+                                                var last = apiA.Parameters.AsEnumerable().Last();
+                                                foreach (var apiParameter in apiA.Parameters.AsEnumerable())
                                                 {
                                                     if (apiParameter.Id != null)
                                                     {
-                                                        string type = apiParameter.TypeScriptType();
+                                                        var type = apiParameter.TypeScriptType();
+
                                                         if (apiParameter.Equals(last))
                                                         {
 #>
-    <#= TextConverter.CamelCase(apiParameter.Id) #>: <#= type #>
+    <#= apiParameter.Id.ToCamelCase() #>: <#= type #>
 <#
                                                         }
                                                         else
                                                         {
 #>
-    <#= TextConverter.CamelCase(apiParameter.Id) #>: <#= type #>,
+    <#= apiParameter.Id.ToCamelCase() #>: <#= type #>,
 <#
                                                         }
                                                     }
@@ -252,23 +265,26 @@ export class <#= layout #> {
                                             }
 #>
   ) {
-    return this._<#= TextConverter.CamelCase(api.Id) #>.<#= TextConverter.CamelCase(apiA.Id) #>(
+    return this._<#= api.Id.ToCamelCase() #>.<#= apiA.Id.ToCamelCase() #>(
 <#
-                                            if (apiA.Parameters.AsEnumerable() != null && apiA.Parameters.AsEnumerable().Count() > 0)
+                                            if (apiA.Parameters.AsEnumerable() != null
+                                                && apiA.Parameters.AsEnumerable().Count() > 0)
                                             {
-                                                ApiParameterInfo last = apiA.Parameters.AsEnumerable().Last();
-                                                foreach (ApiParameterInfo apiParameter in apiA.Parameters.AsEnumerable())
+                                                var last = apiA.Parameters.AsEnumerable().Last();
+
+                                                foreach (var apiParameter in apiA.Parameters.AsEnumerable())
                                                 {
-                                                    if (apiParameter.Id != null && apiParameter.Equals(last))
+                                                    if (apiParameter.Id != null
+                                                        && apiParameter.Equals(last))
                                                     {
 #>
-      <#= TextConverter.CamelCase(apiParameter.Id) #>
+      <#= apiParameter.Id.ToCamelCase() #>
 <#
                                                     }
                                                     else if (apiParameter.Id != null)
                                                     {
 #>
-      <#= TextConverter.CamelCase(apiParameter.Id) #>,
+      <#= apiParameter.Id.ToCamelCase() #>,
 <#
                                                     }
                                                 }
@@ -289,7 +305,8 @@ export class <#= layout #> {
             }
         }
 
-        if (_languages.AsEnumerable() != null && _languages.AsEnumerable().Count() > 0)
+        if (Languages.AsEnumerable() != null
+            && Languages.AsEnumerable().Count() > 0)
         {
 #>
   /**
@@ -304,7 +321,8 @@ export class <#= layout #> {
 <#
         }
 
-        if (_menu.AsEnumerable() != null && _menu.AsEnumerable().Count() > 0)
+        if (Menu.AsEnumerable() != null
+            && Menu.AsEnumerable().Count() > 0)
         {
 #>
   /**

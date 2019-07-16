@@ -22,7 +22,7 @@ $font-path: '../assets/fonts';
 $app-direction: ltr;
 
 <#
-    switch (_theme)
+    switch (Theme)
     {
       case "dark":
 #>

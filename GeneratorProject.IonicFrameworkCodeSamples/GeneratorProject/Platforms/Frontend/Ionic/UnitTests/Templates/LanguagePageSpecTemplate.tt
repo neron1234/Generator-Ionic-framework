@@ -1,5 +1,5 @@
 ﻿<#@ include file="..\..\Base\Templates\Include.tt" #>
-<#@ import namespace="Mobioos.Foundation.Jade.Extensions" #>
+
 import { IonicModule, NavController, Platform } from 'ionic-angular';
 import { NavMock } from '../../../test-config/mocks/navMock';
 import { PlatformMock } from '../../../test-config/mocks/platformMock';
@@ -14,7 +14,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { TranslateServiceMock } from '../../../test-config/mocks/translateServiceMock';
 import { LanguagePageModule } from './language.module';
 import { LanguagePage } from './language';
-import { <#= _smartAppId #> } from '../../app/app.component';
+import { <#= SmartAppId #> } from '../../app/app.component';
 describe('LanguagePage Component', () => {
   let fixture: ComponentFixture<LanguagePage>;
   let component: LanguagePage;
@@ -23,12 +23,12 @@ describe('LanguagePage Component', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        <#= _smartAppId #>,
+        <#= SmartAppId #>,
         LanguagePage
       ],
       imports: [
         TranslateModule.forChild(),
-        IonicModule.forRoot(<#= _smartAppId #>)
+        IonicModule.forRoot(<#= SmartAppId #>)
       ],
       providers: [
         { provide: Platform, useClass: PlatformMock },

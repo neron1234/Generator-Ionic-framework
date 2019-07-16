@@ -1,13 +1,16 @@
 <#@ include file="..\..\Base\Templates\Include.tt" #>
 <#
-    SmartAppInfo smartApp = (SmartAppInfo)Model;
-    if (smartApp != null && smartApp.Title != null && smartApp.Version != null)
+    var smartApp = (SmartAppInfo)Model;
+
+    if (smartApp != null
+        && smartApp.Title != null
+        && smartApp.Version != null)
     {
 #>
 {
   "name": "<#= smartApp.Id.ToLower() #>",
   "displayName": "<#= smartApp.Title #>",
-  "version": "<#= _version #>",
+  "version": "<#= SmartAppVersion #>",
   "private": true,
 <#
       if (smartApp.Description != null)

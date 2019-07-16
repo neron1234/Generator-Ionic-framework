@@ -4,12 +4,15 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
 {
     public partial class LayoutStyleTemplate
     {
-        private string _concernId;
-        private LayoutInfo _layout;
-        public LayoutStyleTemplate(string concernId, LayoutInfo layout)
+        public string ConcernId { get; set; }
+        public LayoutInfo Layout { get; set; }
+
+        public LayoutStyleTemplate(
+            string concernId,
+            LayoutInfo layout)
         {
-            _concernId = concernId;
-            _layout = layout;
+            ConcernId = concernId;
+            Layout = layout;
         }
 
         public override string OutputPath => "src\\pages";

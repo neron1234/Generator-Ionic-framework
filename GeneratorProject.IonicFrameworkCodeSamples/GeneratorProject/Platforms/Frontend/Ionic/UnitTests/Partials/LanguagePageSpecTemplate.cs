@@ -2,12 +2,13 @@
 {
     public partial class LanguagePageSpecTemplate
     {
-        private string _smartAppId;
+        public string SmartAppId { get; set; }
+
         public LanguagePageSpecTemplate(string smartAppId)
         {
-            _smartAppId = smartAppId;
+            SmartAppId = smartAppId;
         }
-        
+
         public override string OutputPath => "src\\pages\\language";
     }
 }

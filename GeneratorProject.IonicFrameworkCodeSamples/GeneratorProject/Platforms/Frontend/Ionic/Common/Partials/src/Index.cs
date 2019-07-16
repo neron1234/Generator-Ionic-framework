@@ -5,7 +5,8 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
 {
     public partial class Index : TemplateBase
     {
-        public Index(SmartAppInfo smartApp) : base(smartApp)
+        public Index(SmartAppInfo smartApp)
+            : base(smartApp)
         {
         }
 

@@ -5,7 +5,8 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
 {
     public partial class Manifest : TemplateBase
     {
-        public Manifest(SmartAppInfo smartApp) : base(smartApp)
+        public Manifest(SmartAppInfo smartApp)
+            : base(smartApp)
         {
         }
 

@@ -1,10 +1,5 @@
 <#@ template language="C#" inherits="AppBaseClass" #>
-<#@ assembly name="System.Core" #>
-<#@ import namespace="System.Linq" #>
-<#@ import namespace="System.Text" #>
-<#@ import namespace="System.Collections.Generic" #>
-<#@ import namespace="Mobioos.Foundation.Jade.Models" #>
-<#@ import namespace="Mobioos.Scaffold.BaseGenerators.Helpers" #>
+<#@ include file="..\..\..\..\Base\Templates\Include.tt" #>
 <!--
   You should add your licence here, here is an example :
 
@@ -27,10 +22,12 @@
   Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 -->
 <#
-    SmartAppInfo smartApp = (SmartAppInfo)Model;
-    if (smartApp != null && smartApp.Concerns.AsEnumerable() != null)
+    var smartApp = (SmartAppInfo)Model;
+
+    if (smartApp != null
+        && smartApp.Concerns.AsEnumerable() != null)
     {
-      if (_isMenu)
+      if (IsMenu)
       {
 #>
 <ion-menu persistent="true" [content]="nav" side="left">
@@ -39,7 +36,8 @@
       <ion-item menuClose text-center>
         <ion-icon name="ios-arrow-back" float-left></ion-icon>
 <# 
-        if (smartApp.Languages.AsEnumerable() != null && smartApp.Languages.AsEnumerable().Count() > 0)
+        if (smartApp.Languages.AsEnumerable() != null
+            && smartApp.Languages.AsEnumerable().Count() > 0)
         {
 #>
           {{ "closeMenu" | translate }}
@@ -65,14 +63,16 @@
 <ion-nav #nav></ion-nav>
 <#
     }
-    else if (smartApp != null && smartApp.Title != null)
+    else if (smartApp != null
+             && smartApp.Title != null)
     {
 #>
 <ion-header>
   <ion-navbar>
     <ion-title>
 <#
-      if (smartApp.Languages.AsEnumerable() != null && smartApp.Languages.AsEnumerable().Count() > 0)
+      if (smartApp.Languages.AsEnumerable() != null
+          && smartApp.Languages.AsEnumerable().Count() > 0)
       {
 #>
       {{ "applicationTitle" | translate }}
@@ -81,7 +81,7 @@
       else
       {
 #>
-      <#= TextConverter.PascalCase(smartApp.Title) #>
+      <#= smartApp.Title.ToPascalCase() #>
 <#
       }
 #>
@@ -91,7 +91,8 @@
 <ion-content padding>
   <p>
 <#
-      if (smartApp.Languages.AsEnumerable() != null && smartApp.Languages.AsEnumerable().Count() > 0)
+      if (smartApp.Languages.AsEnumerable() != null
+          && smartApp.Languages.AsEnumerable().Count() > 0)
       {
 #>
     Welcome to {{ "applicationTitle" | translate }} application !
@@ -100,7 +101,7 @@
       else
       {
 #>
-    Welcome to <#= TextConverter.PascalCase(smartApp.Title) #> application !
+    Welcome to <#= smartApp.Title.ToPascalCase() #> application !
 <#
       }
 #>

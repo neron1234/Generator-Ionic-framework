@@ -22,6 +22,7 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
         public async override Task<ExecutionResult> RunAsync(IStepExecutionContext context)
         {
             var prompts = new Queue<Question>();
+
             var choices = new List<Choice>
             {
                 new Choice { Key = "light", Name = "Light", Value = "light" },

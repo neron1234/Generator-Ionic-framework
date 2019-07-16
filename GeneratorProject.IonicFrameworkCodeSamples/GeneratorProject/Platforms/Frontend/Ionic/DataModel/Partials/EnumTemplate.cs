@@ -4,11 +4,11 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
 {
     public partial class EnumTemplate
     {
-        private EntityInfo _entity { get; set; }
+        public EntityInfo Entity { get; set; }
 
         public EnumTemplate(EntityInfo entity)
         {
-            _entity = entity;
+            Entity = entity;
         }
 
         public override string OutputPath => "src\\models";

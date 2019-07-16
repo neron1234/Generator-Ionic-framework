@@ -5,7 +5,8 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
 {
     public partial class IonicConfig : TemplateBase
     {
-        public IonicConfig(SmartAppInfo smartApp) : base(smartApp)
+        public IonicConfig(SmartAppInfo smartApp)
+            : base(smartApp)
         {
         }
 

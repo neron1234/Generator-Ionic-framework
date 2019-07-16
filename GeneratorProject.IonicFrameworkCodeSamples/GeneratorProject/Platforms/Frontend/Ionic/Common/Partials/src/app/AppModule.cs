@@ -4,11 +4,15 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
 {
     public partial class AppModule : AppBaseClass
     {
-        private LanguageList _languages { get; set; }
-        public AppModule(SmartAppInfo smartApp) : base(smartApp)
+        public LanguageList Languages { get; set; }
+
+        public AppModule(SmartAppInfo smartApp)
+            : base(smartApp)
         {
             if (smartApp.Languages != null)
-                _languages = smartApp.Languages;
+            {
+                Languages = smartApp.Languages;
+            }
         }
 
         public override string OutputPath => "src\\app\\app.module.ts";

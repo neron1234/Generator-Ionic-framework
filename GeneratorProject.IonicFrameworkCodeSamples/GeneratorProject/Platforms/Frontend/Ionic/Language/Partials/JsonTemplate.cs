@@ -4,12 +4,15 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
 {
     public partial class JsonTemplate
     {
-        private SmartAppInfo _smartApp { get; set; }
-        private string _language { get; set; }
-        public JsonTemplate(SmartAppInfo smartApp, string language)
+        public SmartAppInfo SmartApp { get; set; }
+        public string Language { get; set; }
+
+        public JsonTemplate(
+            SmartAppInfo smartApp,
+            string language)
         {
-            _smartApp = smartApp;
-            _language = language;
+            SmartApp = smartApp;
+            Language = language;
         }
         
         public override string OutputPath => "src\\assets\\i18n";

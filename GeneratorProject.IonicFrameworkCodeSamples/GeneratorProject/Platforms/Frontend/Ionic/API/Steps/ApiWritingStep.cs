@@ -1,6 +1,6 @@
-﻿using Mobioos.Foundation.Jade.Models;
+﻿using Common.Generator.Framework.Extensions;
+using Mobioos.Foundation.Jade.Models;
 using Mobioos.Foundation.Prompt.Infrastructure;
-using Mobioos.Scaffold.BaseGenerators.Helpers;
 using Mobioos.Scaffold.BaseInfrastructure.Contexts;
 using Mobioos.Scaffold.BaseInfrastructure.Notifiers;
 using Mobioos.Scaffold.BaseInfrastructure.Services.GeneratorsServices;
@@ -74,12 +74,12 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
             if (smartApp != null
                 && smartApp.Api.AsEnumerable() != null)
             {
-                foreach (ApiInfo api in smartApp.Api.AsEnumerable())
+                foreach (var api in smartApp.Api.AsEnumerable())
                 {
                     var apiTemplate = new ApiTemplate(api);
 
                     var apiDirectoryPath = apiTemplate.OutputPath;
-                    var apiFilename = $"{TextConverter.CamelCase(api.Id)}.service.ts";
+                    var apiFilename = $"{api.Id.ToCamelCase()}.service.ts";
 
                     var fileToWritePath = Path.Combine(
                         _context.BasePath,

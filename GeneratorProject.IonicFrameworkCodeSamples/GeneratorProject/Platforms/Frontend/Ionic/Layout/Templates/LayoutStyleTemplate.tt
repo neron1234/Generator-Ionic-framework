@@ -19,9 +19,11 @@
 // along with this program; if not, write to the Free Software Foundation,
 // Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 <#
-    if (_concernId != null && _layout != null && _layout.Id != null)
+    if (ConcernId != null
+        && Layout != null
+        && Layout.Id != null)
     {
-        string layoutToLower = _concernId.ToLower() + "-" + _layout.Id.ToLower();
+        var layoutToLower = $"{ConcernId.ToLower()}-{Layout.Id.ToLower()}";
 #>
 <#= layoutToLower #>
 {

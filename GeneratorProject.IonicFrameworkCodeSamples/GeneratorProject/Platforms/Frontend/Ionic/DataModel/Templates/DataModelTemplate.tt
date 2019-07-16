@@ -1,5 +1,4 @@
 ﻿<#@ include file="..\..\Base\Templates\Include.tt" #>
-<#@ import namespace="Mobioos.Foundation.Jade.Extensions" #>
 /*
  * You should add your licence here, here is an example :
  *
@@ -22,131 +21,146 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 <#
-    if (_entity != null)
+    if (Entity != null)
     {
-        if (_entity.Extends != null)
+        if (Entity.Extends != null)
         {
 #>
-import { <#= TextConverter.PascalCase(_entity.Extends) #>Model } from './<#= TextConverter.CamelCase(_entity.Extends) #>Model';
+import { <#= Entity.Extends.ToPascalCase() #>Model } from './<#= Entity.Extends.ToCamelCase() #>Model';
 <#
         }
 
-        List<string> alreadyImported = new List<string>();
-        if (_constructorParametersObj.AsEnumerable() != null)
+        var alreadyImported = new List<string>();
+
+        if (ConstructorParametersObj.AsEnumerable() != null)
         {
-            foreach (PropertyInfo property in _constructorParametersObj.AsEnumerable())
+            foreach (var property in ConstructorParametersObj.AsEnumerable())
             {
-                if (property.Target != null && property.Type != null && !alreadyImported.AsEnumerable().Contains(property.Type))
+                if (property.Target != null
+                    && property.Type != null
+                    && !alreadyImported.AsEnumerable().Contains(property.Type))
                 {
                     alreadyImported.Add(property.Type);
+
                     if (property.Target.IsEnum)
                     {
 #>
-import { <#= TextConverter.PascalCase(property.Type) #>Enum } from './<#= TextConverter.CamelCase(property.Type) #>Enum';
+import { <#= property.Type.ToPascalCase() #>Enum } from './<#= property.Type.ToCamelCase() #>Enum';
 <#
                     }
                     else
                     {
 #>
-import { <#= TextConverter.PascalCase(property.Type) #>Model } from './<#= TextConverter.CamelCase(property.Type) #>Model';
+import { <#= property.Type.ToPascalCase() #>Model } from './<#= property.Type.ToCamelCase() #>Model';
 <#
                     }
                 }
             }
         }
 
-        if (_entity.References.AsEnumerable() != null)
+        if (Entity.References.AsEnumerable() != null)
         {
-            foreach (ReferenceInfo reference in _entity.References.AsEnumerable())
+            foreach (var reference in Entity.References.AsEnumerable())
             {
-                if (reference.Target != null && reference.Type != null && !alreadyImported.AsEnumerable().Contains(reference.Type))
+                if (reference.Target != null
+                    && reference.Type != null
+                    && !alreadyImported.AsEnumerable().Contains(reference.Type))
                 {
                     alreadyImported.Add(reference.Type);
+
                     if (reference.Target.IsEnum)
                     {
 #>
-import { <#= TextConverter.PascalCase(reference.Type) #>Enum } from './<#= TextConverter.CamelCase(reference.Type) #>Enum';
+import { <#= reference.Type.ToPascalCase() #>Enum } from './<#= reference.Type.ToCamelCase() #>Enum';
 <#
                     }
                     else
                     {
 #>
-import { <#= TextConverter.PascalCase(reference.Type) #>Model } from './<#= TextConverter.CamelCase(reference.Type) #>Model';
+import { <#= reference.Type.ToPascalCase() #>Model } from './<#= reference.Type.ToCamelCase() #>Model';
 <#
                     }
                 }
             }
         }
 
-        if (_entity.Id != null)
+        if (Entity.Id != null)
         {
 #>
 /**
- * class: <#= TextConverter.PascalCase(_entity.Id) #>.
+ * class: <#= Entity.Id.ToPascalCase() #>.
  * You should add a description of your entity here.
  * This model is a reference used in viewModels or
  * in another referenced model.
  * This model is generated from DataModel domain.
  */
-export <# if (_entity.IsAbstract) {#>abstract <#}#>class <#= TextConverter.PascalCase(_entity.Id) #>Model<# if (_entity.Extends != null) {#> extends <#= TextConverter.PascalCase(_entity.Extends) #>Model<#}#> {
+export <# if (Entity.IsAbstract) {#>abstract <#}#>class <#= Entity.Id.ToPascalCase() #>Model<# if (Entity.Extends != null) {#> extends <#= Entity.Extends.ToPascalCase() #>Model<#}#> {
 <# 
-            if (_entity.Properties.AsEnumerable() != null)
+            if (Entity.Properties.AsEnumerable() != null)
             {
-                foreach (PropertyInfo property in _entity.Properties.AsEnumerable())
+                foreach (var property in Entity.Properties.AsEnumerable())
                 {
-                    if (property.Id != null && property.TypeScriptType() != null && property.IsCollection)
+                    if (property.Id != null
+                        && property.TypeScriptType() != null
+                        && property.IsCollection)
                     {
 #>
   /**
    * property.
    * isCollection.
    */
-  public <#= TextConverter.CamelCase(property.Id) #>: <#= property.TypeScriptType() #>[];
+  public <#= property.Id.ToCamelCase() #>: <#= property.TypeScriptType() #>[];
 <#
                     }
-                    else if (property.Id != null && property.TypeScriptType() != null)
+                    else if (property.Id != null
+                            && property.TypeScriptType() != null)
                     {
 #>
   /**
    * property.
    */
-  public <#= TextConverter.CamelCase(property.Id) #>: <#= property.TypeScriptType() #>;
+  public <#= property.Id.ToCamelCase() #>: <#= property.TypeScriptType() #>;
 <#
                     }
                 }
             }
 
-            if (_entity.References.AsEnumerable() != null)
+            if (Entity.References.AsEnumerable() != null)
             {
-                foreach (ReferenceInfo reference in _entity.References.AsEnumerable())
+                foreach (var reference in Entity.References.AsEnumerable())
                 {
-                    if (reference.Id != null && reference.Target != null && reference.Target.IsEnum)
+                    if (reference.Id != null
+                        && reference.Target != null
+                        && reference.Target.IsEnum)
                     {
 #>
   /**
    * reference.
    * isEnum.
    */
-  public <#= TextConverter.CamelCase(reference.Id) #>: <#= TextConverter.PascalCase(reference.TypeScriptType()) #>Enum;
+  public <#= reference.Id.ToCamelCase() #>: <#= reference.TypeScriptType().ToPascalCase() #>Enum;
 <#
                     }
-                    else if (reference.Id != null && reference.TypeScriptType() != null && reference.IsCollection)
+                    else if (reference.Id != null 
+                            && reference.TypeScriptType() != null
+                            && reference.IsCollection)
                     {
 #>
   /**
    * reference.
    * isCollection.
    */
-  public <#= TextConverter.CamelCase(reference.Id) #>: <#= TextConverter.PascalCase(reference.TypeScriptType()) #>Model[];
+  public <#= reference.Id.ToCamelCase() #>: <#= reference.TypeScriptType().ToPascalCase() #>Model[];
 <#
                     }
-                    else if (reference.Id != null && reference.TypeScriptType() != null)
+                    else if (reference.Id != null
+                            && reference.TypeScriptType() != null)
                     {
 #>
   /**
    * reference.
    */
-  public <#= TextConverter.CamelCase(reference.Id) #>: <#= TextConverter.PascalCase(reference.TypeScriptType()) #>Model;
+  public <#= reference.Id.ToCamelCase() #>: <#= reference.TypeScriptType().ToPascalCase() #>Model;
 <#
                     }
                 }
@@ -154,86 +168,107 @@ export <# if (_entity.IsAbstract) {#>abstract <#}#>class <#= TextConverter.Pasca
 #>
   constructor(
 <#
-            if (_constructorParametersObj.AsEnumerable() != null && _constructorParametersObj.AsEnumerable().Count() > 0)
+            if (ConstructorParametersObj.AsEnumerable() != null
+                && ConstructorParametersObj.AsEnumerable().Count() > 0)
             {
-                int lastIndex = _constructorParametersObj.AsEnumerable().Count() - 1;
-                int index = 0;
-                Dictionary<string, int> countConstructor = new Dictionary<string, int>();
-                foreach (PropertyInfo property in _constructorParametersObj.AsEnumerable())
+                var lastIndex = ConstructorParametersObj.AsEnumerable().Count() - 1;
+                var index = 0;
+                var countConstructor = new Dictionary<string, int>();
+
+                foreach (var property in ConstructorParametersObj.AsEnumerable())
                 {
-                    if (property.Id != null && property.TypeScriptType() != null)
+                    if (property.Id != null
+                        && property.TypeScriptType() != null)
                     {
-                        string propertyIsModel = IsModelOrEnum(property);
+                        var propertyIsModel = IsModelOrEnum(property);
+
                         if (!countConstructor.ContainsKey(property.Id))
+                        {
                             countConstructor.Add(property.Id, 1);
+                        }
                         else
+                        {
                             countConstructor[property.Id] = countConstructor[property.Id] + 1;
-                        string type =  property.TypeScriptType();
+                        }
+
+                        var type =  property.TypeScriptType();
+
                         if (!propertyIsModel.Equals(""))
                         {
-                            type = TextConverter.PascalCase(type);
+                            type = type.ToPascalCase();
                         }
-                        if (property.IsCollection && index == lastIndex)
+
+                        if (property.IsCollection
+                            && index == lastIndex)
                         {
 #>
-    <#= TextConverter.CamelCase(property.Id) + countConstructor[property.Id] #>: <#= type + propertyIsModel #>[]
+    <#= $"{property.Id.ToCamelCase()}{countConstructor[property.Id]}" #>: <#= $"{type}{propertyIsModel}" #>[]
 <#
                         }
                         else if (index == lastIndex)
                         {
 #>
-    <#= TextConverter.CamelCase(property.Id) + countConstructor[property.Id] #>: <#= type + propertyIsModel #>
+    <#= $"{property.Id.ToCamelCase()}{countConstructor[property.Id]}" #>: <#= $"{type}{propertyIsModel}" #>
 <#
                         }
                         else if (property.IsCollection)
                         {
 #>
-    <#= TextConverter.CamelCase(property.Id) + countConstructor[property.Id] #>: <#= type + propertyIsModel #>[],
+    <#= $"{property.Id.ToCamelCase()}{countConstructor[property.Id]}" #>: <#= $"{type}{propertyIsModel}" #>[],
 <#
                         }
                         else
                         {
 #>
-    <#= TextConverter.CamelCase(property.Id) + countConstructor[property.Id] #>: <#= type + propertyIsModel #>,
+    <#= $"{property.Id.ToCamelCase()}{countConstructor[property.Id]}" #>: <#= $"{type}{propertyIsModel}" #>,
 <#
                         }
                     }
+
                     index++;
                 }
             }
 #>
   ) {
 <#
-            Dictionary<string, int> countObj = new Dictionary<string, int>();
-            if (_superPropertiesObj.AsEnumerable() != null && _superPropertiesObj.AsEnumerable().Count() > 0)
+            var countObj = new Dictionary<string, int>();
+
+            if (SuperPropertiesObj.AsEnumerable() != null
+                && SuperPropertiesObj.AsEnumerable().Count() > 0)
             {
 #>
     super(
 <#
-                int lastIndex = _superPropertiesObj.AsEnumerable().Count() - 1;
-                int index = 0;
+                var lastIndex = SuperPropertiesObj.AsEnumerable().Count() - 1;
+                var index = 0;
                 
-                foreach (PropertyInfo property in _superPropertiesObj.AsEnumerable())
+                foreach (var property in SuperPropertiesObj.AsEnumerable())
                 {
                     if (property.Id != null)
                     {
                         if (!countObj.ContainsKey(property.Id))
+                        {
                             countObj.Add(property.Id, 1);
+                        }
                         else
+                        {
                             countObj[property.Id] = countObj[property.Id] + 1;
+                        }
+
                         if (index == lastIndex)
                         {
 #>
-      <#= TextConverter.CamelCase(property.Id) + countObj[property.Id] #>
+      <#= $"{property.Id.ToCamelCase()}{countObj[property.Id]}" #>
 <#
                         }
                         else
                         {
 #>
-      <#= TextConverter.CamelCase(property.Id) + countObj[property.Id] #>,
+      <#= $"{property.Id.ToCamelCase()}{countObj[property.Id]}" #>,
 <#
                         }
                     }
+
                     index++;
                 }
 #>
@@ -241,35 +276,43 @@ export <# if (_entity.IsAbstract) {#>abstract <#}#>class <#= TextConverter.Pasca
 <#
             }
 
-            if (_entity.Properties.AsEnumerable() != null)
+            if (Entity.Properties.AsEnumerable() != null)
             {
-                foreach (PropertyInfo property in _entity.Properties.AsEnumerable())
+                foreach (var property in Entity.Properties.AsEnumerable())
                 {
                     if (property.Id != null)
                     {
                         if (!countObj.ContainsKey(property.Id))
+                        {
                             countObj.Add(property.Id, 1);
+                        }
                         else
+                        {
                             countObj[property.Id] = countObj[property.Id] + 1;
+                        }
 #>
-    this.<#= TextConverter.CamelCase(property.Id) #> = <#= TextConverter.CamelCase(property.Id) + countObj[property.Id] #>;
+    this.<#= property.Id.ToCamelCase() #> = <#= $"{property.Id.ToCamelCase()}{countObj[property.Id]}" #>;
 <#
                     }
                 }
             }
 
-            if (_entity.References.AsEnumerable() != null)
+            if (Entity.References.AsEnumerable() != null)
             {
-                foreach (ReferenceInfo reference in _entity.References.AsEnumerable())
+                foreach (var reference in Entity.References.AsEnumerable())
                 {
                     if (reference.Id != null)
                     {
                         if (!countObj.ContainsKey(reference.Id))
+                        {
                             countObj.Add(reference.Id, 1);
+                        }
                         else
+                        {
                             countObj[reference.Id] = countObj[reference.Id] + 1;
+                        }
 #>
-    this.<#= TextConverter.CamelCase(reference.Id) #> = <#= TextConverter.CamelCase(reference.Id) + countObj[reference.Id] #>;
+    this.<#= reference.Id.ToCamelCase() #> = <#= $"{reference.Id.ToCamelCase()}{countObj[reference.Id]}" #>;
 <#
                     }
                 }

@@ -1,6 +1,6 @@
-﻿using Mobioos.Foundation.Jade.Models;
+﻿using Common.Generator.Framework.Extensions;
+using Mobioos.Foundation.Jade.Models;
 using Mobioos.Foundation.Prompt.Infrastructure;
-using Mobioos.Scaffold.BaseGenerators.Helpers;
 using Mobioos.Scaffold.BaseInfrastructure.Contexts;
 using Mobioos.Scaffold.BaseInfrastructure.Notifiers;
 using Mobioos.Scaffold.BaseInfrastructure.Services.GeneratorsServices;
@@ -59,41 +59,27 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
         /// <param name="smartApp">SmartApp manifeste.</param>
         private void TransformLayouts(SmartAppInfo smartApp)
         {
-            if (smartApp != null
-                && smartApp.Concerns.AsEnumerable() != null
-                && smartApp.Version != null)
+            var layouts = smartApp.GetLayouts();
+
+            foreach (var layout in layouts.AsEnumerable())
             {
-                foreach (ConcernInfo concern in smartApp.Concerns.AsEnumerable())
-                {
-                    if (concern != null
-                        && concern.Id != null
-                        && concern.Layouts.AsEnumerable() != null)
-                    {
-                        foreach (LayoutInfo layout in concern.Layouts.AsEnumerable())
-                        {
-                            if (layout != null)
-                            {
-                                TransformLayoutModule(
-                                    concern.Id,
-                                    layout,
-                                    smartApp.Languages,
-                                    smartApp.Api);
+                TransformLayoutModule(
+                    ((ConcernInfo)layout.Parent).Id,
+                    layout,
+                    smartApp.Languages,
+                    smartApp.Api);
 
-                                TransformLayoutComponent(
-                                    concern,
-                                    layout,
-                                    smartApp.Languages,
-                                    smartApp.Api);
+                TransformLayoutComponent(
+                    ((ConcernInfo)layout.Parent),
+                    layout,
+                    smartApp.Languages,
+                    smartApp.Api);
 
-                                TransformLayoutView(
-                                    smartApp.Title,
-                                    concern,
-                                    layout,
-                                    smartApp.Languages);
-                            }
-                        }
-                    }
-                }
+                TransformLayoutView(
+                    smartApp.Title,
+                    ((ConcernInfo)layout.Parent),
+                    layout,
+                    smartApp.Languages);
             }
         }
 
@@ -125,11 +111,11 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
 
                 var layoutModuleDirectoryPath = Path.Combine(
                     layoutModuleTemplate.OutputPath,
-                    TextConverter.CamelCase(concernId),
-                    TextConverter.CamelCase(layout.Id));
+                    concernId.ToCamelCase(),
+                    layout.Id.ToCamelCase());
 
                 var layoutModuleFilename =
-                    $"{TextConverter.CamelCase(concernId)}-{TextConverter.CamelCase(layout.Id)}.module.ts";
+                    $"{concernId.ToCamelCase()}-{layout.Id.ToCamelCase()}.module.ts";
 
                 var fileToWritePath = Path.Combine(
                     _context.BasePath,
@@ -173,11 +159,11 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
 
                 var layoutComponentDirectoryPath = Path.Combine(
                     layoutComponentTemplate.OutputPath,
-                    TextConverter.CamelCase(concern.Id),
-                    TextConverter.CamelCase(layout.Id));
+                    concern.Id.ToCamelCase(),
+                    layout.Id.ToCamelCase());
 
                 var layoutComponentFilename =
-                    $"{TextConverter.CamelCase(concern.Id)}-{TextConverter.CamelCase(layout.Id)}.ts";
+                    $"{concern.Id.ToCamelCase()}-{layout.Id.ToCamelCase()}.ts";
 
                 var fileToWritePath = Path.Combine(
                     _context.BasePath,
@@ -222,11 +208,11 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
 
                 var layoutViewDirectoryPath = Path.Combine(
                     layoutViewTemplate.OutputPath,
-                    TextConverter.CamelCase(concern.Id),
-                    TextConverter.CamelCase(layout.Id));
+                    concern.Id.ToCamelCase(),
+                    layout.Id.ToCamelCase());
 
                 var layoutViewFilename =
-                    $"{TextConverter.CamelCase(concern.Id)}-{TextConverter.CamelCase(layout.Id)}.html";
+                    $"{concern.Id.ToCamelCase()}-{layout.Id.ToCamelCase()}.html";
 
                 var fileToWritePath = Path.Combine(
                     _context.BasePath,
@@ -260,11 +246,11 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
 
                 var layoutStyleDirectoryPath = Path.Combine(
                     layoutStyleTemplate.OutputPath,
-                    TextConverter.CamelCase(concernId),
-                    TextConverter.CamelCase(layout.Id));
+                    concernId.ToCamelCase(),
+                    layout.Id.ToCamelCase());
 
                 var layoutStyleFilename =
-                    $"{TextConverter.CamelCase(concernId)}-{TextConverter.CamelCase(layout.Id)}.scss";
+                    $"{concernId.ToCamelCase()}-{layout.Id.ToCamelCase()}.scss";
 
                 var fileToWritePath = Path.Combine(
                     _context.BasePath,

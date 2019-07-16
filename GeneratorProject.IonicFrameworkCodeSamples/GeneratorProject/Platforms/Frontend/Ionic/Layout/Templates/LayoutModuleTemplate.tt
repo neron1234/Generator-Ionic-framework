@@ -21,29 +21,33 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 <#
-    if (_concernId != null && _layout != null && _layout.Id != null)
+    if (ConcernId != null
+        && Layout != null
+        && Layout.Id != null)
     {
-        string layout = TextConverter.PascalCase(_concernId) + TextConverter.PascalCase(_layout.Id);
-        string layoutToLower = TextConverter.CamelCase(_concernId) + "-" + TextConverter.CamelCase(_layout.Id);
+        var layout = $"{ConcernId.ToPascalCase()}{Layout.Id.ToPascalCase()}";
+        var layoutToLower = $"{ConcernId.ToCamelCase()}-{Layout.Id.ToCamelCase()}";
 #>
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 
 import { <#= layout #> } from './<#= layoutToLower #>';
 <#
-        if (_languages.AsEnumerable() != null && _languages.AsEnumerable().Count() > 0)
+        if (Languages.AsEnumerable() != null
+            && Languages.AsEnumerable().Count() > 0)
         {
 #>
 import { TranslateModule } from '@ngx-translate/core';
 <#
         }
 
-        if (_apiDomainServices.AsEnumerable() != null && _apiDomainServices.AsEnumerable().Count() > 0)
+        if (ApiDomainServices.AsEnumerable() != null
+            && ApiDomainServices.AsEnumerable().Count() > 0)
         {
-            foreach (string service in _apiDomainServices.AsEnumerable())
+            foreach (var service in ApiDomainServices.AsEnumerable())
             {
 #>
-import { <#= TextConverter.PascalCase(service) #> } from '../../../services/<#= TextConverter.CamelCase(service) #>.service';
+import { <#= service.ToPascalCase() #> } from '../../../services/<#= service.ToCamelCase() #>.service';
 <#
             }
         }
@@ -52,10 +56,10 @@ import { <#= TextConverter.PascalCase(service) #> } from '../../../services/<#= 
 /**
  * class: <#= layout #>PageModule.
 <#
-        if (_layout.Description != null)
+        if (Layout.Description != null)
         {
 #>
- * <#= _layout.Description #>.
+ * <#= Layout.Description #>.
  * This is the module of the current layout.
  * This module is generated from Concerns domain.
  */
@@ -78,7 +82,8 @@ import { <#= TextConverter.PascalCase(service) #> } from '../../../services/<#= 
   ],
   imports: [
 <#
-        if (_languages.AsEnumerable() != null && _languages.AsEnumerable().Count() > 0)
+        if (Languages.AsEnumerable() != null
+            && Languages.AsEnumerable().Count() > 0)
         {
 #>
     TranslateModule.forChild(),
@@ -89,22 +94,24 @@ import { <#= TextConverter.PascalCase(service) #> } from '../../../services/<#= 
   ],
   providers: [
 <#
-        if (_apiDomainServices.AsEnumerable() != null && _apiDomainServices.AsEnumerable().Count() > 0)
+        if (ApiDomainServices.AsEnumerable() != null
+            && ApiDomainServices.AsEnumerable().Count() > 0)
         {
-            int lastIndex = _apiDomainServices.AsEnumerable().Count() - 1;
-            int index = 0;
-            foreach (string service in _apiDomainServices.AsEnumerable())
+            var lastIndex = ApiDomainServices.AsEnumerable().Count() - 1;
+            var index = 0;
+
+            foreach (var service in ApiDomainServices.AsEnumerable())
             {
                 if (index == lastIndex)
                 {
 #>
-    <#= TextConverter.PascalCase(service) #>
+    <#= service.ToPascalCase() #>
 <#
                 }
                 else
                 {
 #>
-    <#= TextConverter.PascalCase(service) #>,
+    <#= service.ToPascalCase() #>,
 <#
                 }
                 index++;

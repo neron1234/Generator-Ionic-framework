@@ -1,59 +1,65 @@
 <#@ include file="..\..\Base\Templates\Include.tt" #>
-<#@ import namespace="Mobioos.Foundation.Jade.Extensions" #>
+
 import { Observable } from 'rxjs';
 <#
-    if (_viewModels.AsEnumerable() != null)
+    if (ViewModels.AsEnumerable() != null)
     {
-        foreach(string viewModel in _viewModels.AsEnumerable())
+        foreach(var viewModel in ViewModels.AsEnumerable())
         {
 #>
-import { <#= TextConverter.PascalCase(viewModel) #> } from '../../src/viewModels/<#= TextConverter.CamelCase(viewModel) #>';
+import { <#= viewModel.ToPascalCase() #> } from '../../src/viewModels/<#= viewModel.ToCamelCase() #>';
 <#
         }
     }
 
-    if (_api.Id != null)
+    if (Api.Id != null)
     {
 #>
-export class <#= TextConverter.PascalCase(_api.Id) #>Mock {
+export class <#= Api.Id.ToPascalCase() #>Mock {
 <#
-        if (_api.Actions.AsEnumerable() != null)
+        if (Api.Actions.AsEnumerable() != null)
         {
-            foreach (ApiActionInfo action in _api.Actions.AsEnumerable())
+            foreach (var action in Api.Actions.AsEnumerable())
             {
-                if (action.Id != null && action.Url != null && action.Type != null)
+                if (action.Id != null
+                    && action.Url != null
+                    && action.Type != null)
                 {
 #>
-    public <#= TextConverter.CamelCase(action.Id) #>(
+    public <#= action.Id.ToCamelCase() #>(
 <#
-                    if (action.Parameters.AsEnumerable() != null && action.Parameters.AsEnumerable().Count() > 0)
+                    if (action.Parameters.AsEnumerable() != null
+                        && action.Parameters.AsEnumerable().Count() > 0)
                     {
-                        ApiParameterInfo last = action.Parameters.AsEnumerable().Last();
-                        foreach (ApiParameterInfo apiParameter in action.Parameters.AsEnumerable())
+                        var last = action.Parameters.AsEnumerable().Last();
+
+                        foreach (var apiParameter in action.Parameters.AsEnumerable())
                         {
                             if (apiParameter.Id != null)
                             {
-                                string type = apiParameter.TypeScriptType();
+                                var type = apiParameter.TypeScriptType();
+
                                 if (apiParameter.Equals(last))
                                 {
 #>
-        <#= TextConverter.CamelCase(apiParameter.Id) #>Param: <#= type #>
+        <#= apiParameter.Id.ToCamelCase() #>Param: <#= type #>
 <#
                                 }
                                 else
                                 {
 #>
-        <#= TextConverter.CamelCase(apiParameter.Id) #>Param: <#= type #>,
+        <#= apiParameter.Id.ToCamelCase() #>Param: <#= type #>,
 <#
                                 }
                             }
                         }
                     }
 
-                    if (action.ReturnType != null && action.ReturnType.Id != null)
+                    if (action.ReturnType != null
+                        && action.ReturnType.Id != null)
                     {
 #>
-    ): Observable<<#= TextConverter.PascalCase(action.ReturnType.Id) #>> {
+    ): Observable<<#= action.ReturnType.Id.ToPascalCase() #>> {
       return Observable.of();
     }
 

@@ -1,10 +1,5 @@
 <#@ template language="C#" inherits="AppBaseClass" #>
-<#@ assembly name="System.Core" #>
-<#@ import namespace="System.Linq" #>
-<#@ import namespace="System.Text" #>
-<#@ import namespace="System.Collections.Generic" #>
-<#@ import namespace="Mobioos.Foundation.Jade.Models" #>
-<#@ import namespace="Mobioos.Scaffold.BaseGenerators.Helpers" #>
+<#@ include file="..\..\..\..\Base\Templates\Include.tt" #>
 /*
  * You should add your licence here, here is an example :
  *
@@ -27,8 +22,10 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 <#
-    SmartAppInfo smartApp = (SmartAppInfo)Model;
-    if (smartApp != null && smartApp.Id != null)
+    var smartApp = (SmartAppInfo)Model;
+
+    if (smartApp != null
+        && smartApp.Id != null)
     {
 #>
 import { NgModule, ErrorHandler } from '@angular/core';
@@ -47,20 +44,25 @@ import { DataService } from '../services/data.service';
 <#
       }
 
-      if (smartApp.Concerns.AsEnumerable() != null && _rootLayout != null && _rootLayout.Id != null && _rootConcern != null && _rootConcern.Id != null)
+      if (smartApp.Concerns.AsEnumerable() != null
+          && RootLayout != null
+          && RootLayout.Id != null
+          && RootConcern != null
+          && RootConcern.Id != null)
       {
-        string concern = TextConverter.PascalCase(_rootConcern.Id);
-        string layout = TextConverter.PascalCase(_rootLayout.Id);
-        string layoutModule = concern + layout;
-        string layoutModuleToLower = TextConverter.CamelCase(concern) + "-" + TextConverter.CamelCase(layout);
+        var concern = RootConcern.Id.ToPascalCase();
+        var layout = RootLayout.Id.ToPascalCase();
+        var layoutModule = $"{concern}{layout}";
+        var layoutModuleToLower = $"{concern.ToCamelCase()}-{layout.ToCamelCase()}";
 #>
-import { <#= layoutModule #>PageModule } from '../pages/<#= TextConverter.CamelCase(concern) #>/<#= TextConverter.CamelCase(layout) #>/<#= layoutModuleToLower #>.module';
+import { <#= layoutModule #>PageModule } from '../pages/<#= concern.ToCamelCase() #>/<#= layout.ToCamelCase() #>/<#= layoutModuleToLower #>.module';
 <#
       }
 #>
 
 <#
-      if (_languages.AsEnumerable() != null && _languages.AsEnumerable().Count() > 0)
+      if (Languages.AsEnumerable() != null
+          && Languages.AsEnumerable().Count() > 0)
       {
 #>
 import { LanguagePageModule } from '../pages/language/language.module';
@@ -96,24 +98,29 @@ export function createTranslateLoader(http: HttpClient) {
  */
 @NgModule({
   declarations: [
-    <#= TextConverter.PascalCase(smartApp.Id) #>
+    <#= smartApp.Id.ToPascalCase() #>
   ],
   imports: [
     BrowserModule,
     CommonModule,
     HttpClientModule,
 <#
-      if (smartApp.Concerns.AsEnumerable() != null && _rootLayout != null && _rootLayout.Id != null && _rootConcern != null && _rootConcern.Id != null)
+      if (smartApp.Concerns.AsEnumerable() != null
+          && RootLayout != null
+          && RootLayout.Id != null
+          && RootConcern != null
+          && RootConcern.Id != null)
       {
-        string concern = TextConverter.PascalCase(_rootConcern.Id);
-        string layout = TextConverter.PascalCase(_rootLayout.Id);
-        string layoutModule = concern + layout;
+        var concern = RootConcern.Id.ToPascalCase();
+        var layout = RootLayout.Id.ToPascalCase();
+        var layoutModule = $"{concern}{layout}";
 #>
     <#= layoutModule #>PageModule,
 <#
       }
       
-      if (_languages.AsEnumerable() != null && _languages.AsEnumerable().Count() > 0)
+      if (Languages.AsEnumerable() != null
+          && Languages.AsEnumerable().Count() > 0)
       {
 #>
     LanguagePageModule,
@@ -127,11 +134,11 @@ export function createTranslateLoader(http: HttpClient) {
 <#
       }
 #>
-    IonicModule.forRoot(<#= TextConverter.PascalCase(smartApp.Id) #>)
+    IonicModule.forRoot(<#= smartApp.Id.ToPascalCase() #>)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    <#= TextConverter.PascalCase(smartApp.Id) #>
+    <#= smartApp.Id.ToPascalCase() #>
   ],
   providers: [
 <#

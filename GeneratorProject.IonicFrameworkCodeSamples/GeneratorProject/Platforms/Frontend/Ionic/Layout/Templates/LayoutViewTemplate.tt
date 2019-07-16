@@ -21,7 +21,8 @@
   Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 -->
 <#
-    if (_smartAppTitle != null && _layout != null)
+    if (SmartAppTitle != null
+        && Layout != null)
     {
 #>
 <!--
@@ -33,7 +34,8 @@
 <ion-header>
   <ion-navbar>
 <#
-        if (_menu.AsEnumerable() != null && _menu.AsEnumerable().Count() > 0)
+        if (Menu.AsEnumerable() != null
+            && Menu.AsEnumerable().Count() > 0)
         {
 #>
     <button ion-button icon-only menuToggle>
@@ -44,7 +46,8 @@
 #>
     <ion-title text-center>
 <#
-        if (_languages.AsEnumerable() != null && _languages.AsEnumerable().Count() > 0)
+        if (Languages.AsEnumerable() != null
+            && Languages.AsEnumerable().Count() > 0)
         {
 #>
         {{ "applicationTitle" | translate }}
@@ -53,13 +56,14 @@
         else
         {
 #>
-        <#= TextConverter.PascalCase(_smartAppTitle) #>
+        <#= SmartAppTitle.ToPascalCase() #>
 <#
         }
 #>
     </ion-title>
 <#
-        if (_languages.AsEnumerable() != null && _languages.AsEnumerable().Count() > 0)
+        if (Languages.AsEnumerable() != null
+            && Languages.AsEnumerable().Count() > 0)
         {
 #>
     <ion-buttons end>
@@ -75,31 +79,33 @@
 
 <ion-content padding>
 <#
-        if (_layout.Actions.AsEnumerable() != null)
+        if (Layout.Actions.AsEnumerable() != null)
         {
 #>
   <ion-list no-lines>
 <#
-            foreach (ActionInfo action in _layout.Actions.AsEnumerable())
+            foreach (var action in Layout.Actions.AsEnumerable())
             {
-                if (action != null && action.Id != null)
+                if (action != null
+                    && action.Id != null)
                 {
 #>
     <ion-item>
-      <button ion-button (click)="on<#= TextConverter.PascalCase(action.Id) #>()">
+      <button ion-button (click)="on<#= action.Id.ToPascalCase() #>()">
 <#
-                    if (_languages.AsEnumerable() != null && _languages.AsEnumerable().Count() > 0)
+                    if (Languages.AsEnumerable() != null
+                        && Languages.AsEnumerable().Count() > 0)
                     {
 #>
         <!-- Generic call to component's methods, should be used differenty -->
-        on{{ "<#= TextConverter.CamelCase(_concern.Id) #>.<#= TextConverter.CamelCase(_layout.Id) #>Layout<#= TextConverter.PascalCase(action.Id) #>Action" | translate }}
+        on{{ "<#= Concern.Id.ToCamelCase() #>.<#= Layout.Id.ToCamelCase() #>Layout<#= action.Id.ToPascalCase() #>Action" | translate }}
 <#  
                     }
                     else 
                     {
 #>
         <!-- Generic call to component's methods, should be used differenty -->
-        on<#= TextConverter.PascalCase(action.Id) #> 
+        on<#= action.Id.ToPascalCase() #> 
 <#
                     }
                 }
