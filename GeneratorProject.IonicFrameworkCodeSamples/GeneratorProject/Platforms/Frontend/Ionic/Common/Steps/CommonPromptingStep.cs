@@ -2,7 +2,6 @@
 using Mobioos.Foundation.Prompt.Infrastructure;
 using Mobioos.Scaffold.BaseInfrastructure.Attributes;
 using Mobioos.Scaffold.BaseInfrastructure.Services.GeneratorsServices;
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using WorkflowCore.Interface;
@@ -22,12 +21,14 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
 
         public async override Task<ExecutionResult> RunAsync(IStepExecutionContext context)
         {
-            var prompts = new Stack<Question>();
-            var choices = new List<Choice>();
-            choices.Add(new Choice { Key = "light", Name = "Light", Value = "light" });
-            choices.Add(new Choice { Key = "dark", Name = "Dark", Value = "dark" });
+            var prompts = new Queue<Question>();
+            var choices = new List<Choice>
+            {
+                new Choice { Key = "light", Name = "Light", Value = "light" },
+                new Choice { Key = "dark", Name = "Dark", Value = "dark" }
+            };
 
-            prompts.Push(new ChoiceQuestion()
+            prompts.Enqueue(new ChoiceQuestion()
             {
                 Name = "Themes",
                 Message = "Select a theme",
@@ -35,7 +36,11 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
                 Choices = choices
             });
 
-            await _promptingService.Prompts(nameof(CommonPromptingStep), prompts, "Common questions related to ionic");
+            await _promptingService.Prompts(
+                nameof(CommonPromptingStep),
+                prompts,
+                "Common questions related to ionic");
+
             return ExecutionResult.Next();
         }
     }

@@ -19,7 +19,10 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
         private readonly IWriting _writingService;
         private readonly IWorkflowNotifier _workflowNotifier;
 
-        public LanguageWritingStep(ISessionContext context, IWriting writingService, IWorkflowNotifier workflowNotifier)
+        public LanguageWritingStep(
+            ISessionContext context,
+            IWriting writingService,
+            IWorkflowNotifier workflowNotifier)
         {
             _context = context;
             _writingService = writingService;
@@ -28,15 +31,23 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
 
         public override Task<ExecutionResult> RunAsync(IStepExecutionContext context)
         {
-            if (null == _context.Manifest)
+            if (_context.Manifest == null)
+            {
                 throw new ArgumentNullException(nameof(_context.Manifest));
+            }
 
-            SmartAppInfo smartApp = _context.Manifest;
-            _workflowNotifier.Notify(nameof(LanguageWritingStep), NotificationType.GeneralInfo, "Generating ionic internationalization files");
+            var smartApp = _context.Manifest;
+
+            _workflowNotifier.Notify(
+                nameof(LanguageWritingStep),
+                NotificationType.GeneralInfo,
+                "Generating ionic internationalization files");
+
             if (_context.BasePath != null)
             {
                 TransformLanguage(smartApp);
             }
+
             return Task.FromResult(ExecutionResult.Next());
         }
 
@@ -48,7 +59,9 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
         /// <param name="smartApp">A SmartApp's manifeste.</param>
         private void TransformLanguage(SmartAppInfo smartApp)
         {
-            if (smartApp != null && smartApp.Languages.AsEnumerable() != null && smartApp.Languages.AsEnumerable().Count() > 0)
+            if (smartApp != null
+                && smartApp.Languages.AsEnumerable() != null
+                && smartApp.Languages.AsEnumerable().Count() > 0)
             {
                 TransformJsonTemplate(smartApp);
                 TransformLanguageComponentTemplate();
@@ -64,18 +77,29 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
         /// <param name="smartApp">A SmartApp manifeste.</param>
         public void TransformJsonTemplate(SmartAppInfo smartApp)
         {
-            if (smartApp != null && smartApp.Languages.AsEnumerable() != null && smartApp.Languages.AsEnumerable().Count() > 0)
+            if (smartApp != null
+                && smartApp.Languages.AsEnumerable() != null
+                && smartApp.Languages.AsEnumerable().Count() > 0)
             {
                 foreach (LanguageInfo languageInfo in smartApp.Languages.AsEnumerable())
                 {
-                    JsonTemplate jsonTemplate = new JsonTemplate(smartApp, languageInfo.Id);
-                    string jsonDirectoryPath = Path.Combine(jsonTemplate.OutputPath);
-                    string enJsonFile = TextConverter.PascalCase(languageInfo.Id) + ".json";
+                    var jsonTemplate = new JsonTemplate(
+                        smartApp,
+                        languageInfo.Id);
 
-                    string fileToWritePath = Path.Combine(_context.BasePath, jsonDirectoryPath, enJsonFile);
-                    string textToWrite = jsonTemplate.TransformText();
+                    var jsonDirectoryPath = jsonTemplate.OutputPath;
+                    var enJsonFile = $"{TextConverter.PascalCase(languageInfo.Id)}.json";
 
-                    _writingService.WriteFile(fileToWritePath, textToWrite);
+                    var fileToWritePath = Path.Combine(
+                        _context.BasePath,
+                        jsonDirectoryPath,
+                        enJsonFile);
+
+                    var textToWrite = jsonTemplate.TransformText();
+
+                    _writingService.WriteFile(
+                        fileToWritePath,
+                        textToWrite);
                 }
             }
         }
@@ -87,12 +111,17 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
         /// </summary>
         public void TransformLanguageComponentTemplate()
         {
-            LanguageComponentTemplate languageComponentTemplate = new LanguageComponentTemplate();
+            var languageComponentTemplate = new LanguageComponentTemplate();
 
-            string fileToWritePath = Path.Combine(_context.BasePath, languageComponentTemplate.OutputPath);
-            string textToWrite = languageComponentTemplate.TransformText();
+            var fileToWritePath = Path.Combine(
+                _context.BasePath,
+                languageComponentTemplate.OutputPath);
 
-            _writingService.WriteFile(fileToWritePath, textToWrite);
+            var textToWrite = languageComponentTemplate.TransformText();
+
+            _writingService.WriteFile(
+                fileToWritePath,
+                textToWrite);
         }
 
         /// <summary>
@@ -101,12 +130,17 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
         /// </summary>
         public void TransformLanguageModuleTemplate()
         {
-            LanguageModuleTemplate languageModuleTemplate = new LanguageModuleTemplate();
+            var languageModuleTemplate = new LanguageModuleTemplate();
 
-            string fileToWritePath = Path.Combine(_context.BasePath, languageModuleTemplate.OutputPath);
-            string textToWrite = languageModuleTemplate.TransformText();
+            var fileToWritePath = Path.Combine(
+                _context.BasePath,
+                languageModuleTemplate.OutputPath);
 
-            _writingService.WriteFile(fileToWritePath, textToWrite);
+            var textToWrite = languageModuleTemplate.TransformText();
+
+            _writingService.WriteFile(
+                fileToWritePath,
+                textToWrite);
         }
 
         /// <summary>
@@ -115,12 +149,17 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
         /// </summary>
         public void TransformLanguageStyleTemplate()
         {
-            LanguageStyleTemplate languageStyleTemplate = new LanguageStyleTemplate();
+            var languageStyleTemplate = new LanguageStyleTemplate();
 
-            string fileToWritePath = Path.Combine(_context.BasePath, languageStyleTemplate.OutputPath);
-            string textToWrite = languageStyleTemplate.TransformText();
+            var fileToWritePath = Path.Combine(
+                _context.BasePath,
+                languageStyleTemplate.OutputPath);
 
-            _writingService.WriteFile(fileToWritePath, textToWrite);
+            var textToWrite = languageStyleTemplate.TransformText();
+
+            _writingService.WriteFile(
+                fileToWritePath,
+                textToWrite);
         }
 
         /// <summary>
@@ -130,14 +169,23 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
         /// <param name="smartApp">A SmartApp manifeste.</param>
         public void TransformLanguageViewTemplate(SmartAppInfo smartApp)
         {
-            if (smartApp != null && smartApp.Languages.AsEnumerable() != null && smartApp.Languages.AsEnumerable().Count() > 0)
+            if (smartApp != null
+                && smartApp.Languages.AsEnumerable() != null
+                && smartApp.Languages.AsEnumerable().Count() > 0)
             {
-                LanguageViewTemplate languageViewTemplate = new LanguageViewTemplate(smartApp.Concerns, smartApp.Languages);
+                var languageViewTemplate = new LanguageViewTemplate(
+                    smartApp.Concerns,
+                    smartApp.Languages);
 
-                string fileToWritePath = Path.Combine(_context.BasePath, languageViewTemplate.OutputPath);
-                string textToWrite = languageViewTemplate.TransformText();
+                var fileToWritePath = Path.Combine(
+                    _context.BasePath,
+                    languageViewTemplate.OutputPath);
 
-                _writingService.WriteFile(fileToWritePath, textToWrite);
+                var textToWrite = languageViewTemplate.TransformText();
+
+                _writingService.WriteFile(
+                    fileToWritePath,
+                    textToWrite);
             }
         }
 

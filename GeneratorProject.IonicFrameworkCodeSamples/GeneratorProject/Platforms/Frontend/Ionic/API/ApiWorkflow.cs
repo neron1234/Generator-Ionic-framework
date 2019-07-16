@@ -4,16 +4,19 @@ using WorkflowCore.Interface;
 
 namespace GeneratorProject.Platforms.Frontend.Ionic
 {
-    [WorkFlow(Id = "IonicApiWorkflow", Order = 2)]
+    [Workflow(
+        Id = "IonicApiWorkflow",
+        Order = 2)]
     public class ApiWorkflow : IWorkflow
     {
-        public string Id => "IonicApiWorkflow";
-        public int Version => 1;
+        public string Id
+        => "IonicApiWorkflow";
 
-        public void Build(IWorkflowBuilder builder)
-        {
-            builder.StartWith<ApiWritingStep>()
-                   .Then<WorkFlowEndStepBase>();
-        }
+        public int Version
+        => 1;
+
+        public void Build(IWorkflowBuilder<object> builder)
+        => builder.StartWith<ApiWritingStep>()
+                  .Then<WorkflowEndStepBase>();
     }
 }

@@ -19,7 +19,10 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
         private readonly IWriting _writingService;
         private readonly IWorkflowNotifier _workflowNotifier;
 
-        public LayoutWritingStep(ISessionContext context, IWriting writingService, IWorkflowNotifier workflowNotifier)
+        public LayoutWritingStep(
+            ISessionContext context,
+            IWriting writingService,
+            IWorkflowNotifier workflowNotifier)
         {
             _context = context;
             _writingService = writingService;
@@ -28,15 +31,23 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
 
         public override Task<ExecutionResult> RunAsync(IStepExecutionContext context)
         {
-            if (null == _context.Manifest)
+            if (_context.Manifest == null)
+            {
                 throw new ArgumentNullException(nameof(_context.Manifest));
+            }
 
-            SmartAppInfo smartApp = _context.Manifest;
-            _workflowNotifier.Notify(nameof(LayoutWritingStep), NotificationType.GeneralInfo, "Generating ionic views");
+            var smartApp = _context.Manifest;
+
+            _workflowNotifier.Notify(
+                nameof(LayoutWritingStep),
+                NotificationType.GeneralInfo,
+                "Generating ionic views");
+
             if (_context.BasePath != null)
             {
                 TransformLayouts(smartApp);
             }
+
             return Task.FromResult(ExecutionResult.Next());
         }
 
@@ -48,19 +59,37 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
         /// <param name="smartApp">SmartApp manifeste.</param>
         private void TransformLayouts(SmartAppInfo smartApp)
         {
-            if (smartApp != null && smartApp.Concerns.AsEnumerable() != null && smartApp.Version != null)
+            if (smartApp != null
+                && smartApp.Concerns.AsEnumerable() != null
+                && smartApp.Version != null)
             {
                 foreach (ConcernInfo concern in smartApp.Concerns.AsEnumerable())
                 {
-                    if (concern != null && concern.Id != null && concern.Layouts.AsEnumerable() != null)
+                    if (concern != null
+                        && concern.Id != null
+                        && concern.Layouts.AsEnumerable() != null)
                     {
                         foreach (LayoutInfo layout in concern.Layouts.AsEnumerable())
                         {
                             if (layout != null)
                             {
-                                TransformLayoutModule(concern.Id, layout, smartApp.Languages, smartApp.Api);
-                                TransformLayoutComponent(concern, layout, smartApp.Languages, smartApp.Api);
-                                TransformLayoutView(smartApp.Title, concern, layout, smartApp.Languages);
+                                TransformLayoutModule(
+                                    concern.Id,
+                                    layout,
+                                    smartApp.Languages,
+                                    smartApp.Api);
+
+                                TransformLayoutComponent(
+                                    concern,
+                                    layout,
+                                    smartApp.Languages,
+                                    smartApp.Api);
+
+                                TransformLayoutView(
+                                    smartApp.Title,
+                                    concern,
+                                    layout,
+                                    smartApp.Languages);
                             }
                         }
                     }
@@ -77,19 +106,41 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
         /// <param name="layout">A layout.</param>
         /// <param name="languages">A list of languages. (can be null)</param>
         /// <param name="api">A lit of apis.</param>
-        public void TransformLayoutModule(string concernId, LayoutInfo layout, LanguageList languages, ApiList api)
+        public void TransformLayoutModule(
+            string concernId,
+            LayoutInfo layout,
+            LanguageList languages,
+            ApiList api)
         {
-            if (concernId != null && layout != null && layout.Id != null && api != null)
+            if (concernId != null
+                && layout != null
+                && layout.Id != null
+                && api != null)
             {
-                LayoutModuleTemplate layoutModuleTemplate = new LayoutModuleTemplate(concernId, layout, languages, api);
+                var layoutModuleTemplate = new LayoutModuleTemplate(
+                    concernId,
+                    layout,
+                    languages,
+                    api);
 
-                string layoutModuleDirectoryPath = Path.Combine(layoutModuleTemplate.OutputPath, TextConverter.CamelCase(concernId), TextConverter.CamelCase(layout.Id));
-                string layoutModuleFilename = TextConverter.CamelCase(concernId) + "-" + TextConverter.CamelCase(layout.Id) + ".module.ts";
+                var layoutModuleDirectoryPath = Path.Combine(
+                    layoutModuleTemplate.OutputPath,
+                    TextConverter.CamelCase(concernId),
+                    TextConverter.CamelCase(layout.Id));
 
-                string fileToWritePath = Path.Combine(_context.BasePath, layoutModuleDirectoryPath, layoutModuleFilename);
-                string textToWrite = layoutModuleTemplate.TransformText();
+                var layoutModuleFilename =
+                    $"{TextConverter.CamelCase(concernId)}-{TextConverter.CamelCase(layout.Id)}.module.ts";
 
-                _writingService.WriteFile(fileToWritePath, textToWrite);
+                var fileToWritePath = Path.Combine(
+                    _context.BasePath,
+                    layoutModuleDirectoryPath,
+                    layoutModuleFilename);
+
+                var textToWrite = layoutModuleTemplate.TransformText();
+
+                _writingService.WriteFile(
+                    fileToWritePath,
+                    textToWrite);
             }
         }
 
@@ -102,19 +153,42 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
         /// <param name="layout">A layout.</param>
         /// <param name="languages">A list of languages. (can be null)</param>
         /// <param name="api">A list of apis.</param>
-        public void TransformLayoutComponent(ConcernInfo concern, LayoutInfo layout, LanguageList languages, ApiList api)
+        public void TransformLayoutComponent(
+            ConcernInfo concern,
+            LayoutInfo layout,
+            LanguageList languages,
+            ApiList api)
         {
-            if (concern != null && concern.Id != null && layout != null && layout.Id != null && api != null)
+            if (concern != null
+                && concern.Id != null
+                && layout != null
+                && layout.Id != null
+                && api != null)
             {
-                LayoutComponentTemplate layoutComponentTemplate = new LayoutComponentTemplate(concern, layout, languages, api);
+                var layoutComponentTemplate = new LayoutComponentTemplate(
+                    concern,
+                    layout,
+                    languages,
+                    api);
 
-                string layoutComponentDirectoryPath = Path.Combine(layoutComponentTemplate.OutputPath, TextConverter.CamelCase(concern.Id), TextConverter.CamelCase(layout.Id));
-                string layoutComponentFilename = TextConverter.CamelCase(concern.Id) + "-" + TextConverter.CamelCase(layout.Id) + ".ts";
+                var layoutComponentDirectoryPath = Path.Combine(
+                    layoutComponentTemplate.OutputPath,
+                    TextConverter.CamelCase(concern.Id),
+                    TextConverter.CamelCase(layout.Id));
 
-                string fileToWritePath = Path.Combine(_context.BasePath, layoutComponentDirectoryPath, layoutComponentFilename);
-                string textToWrite = layoutComponentTemplate.TransformText();
+                var layoutComponentFilename =
+                    $"{TextConverter.CamelCase(concern.Id)}-{TextConverter.CamelCase(layout.Id)}.ts";
 
-                _writingService.WriteFile(fileToWritePath, textToWrite);
+                var fileToWritePath = Path.Combine(
+                    _context.BasePath,
+                    layoutComponentDirectoryPath,
+                    layoutComponentFilename);
+
+                var textToWrite = layoutComponentTemplate.TransformText();
+
+                _writingService.WriteFile(
+                    fileToWritePath,
+                    textToWrite);
             }
         }
 
@@ -127,20 +201,43 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
         /// <param name="concern">A concern.</param>
         /// <param name="layout">A layout.</param>
         /// <param name="languages">A list of languages. (can be null)</param>
-        public void TransformLayoutView(string smartAppTitle, ConcernInfo concern, LayoutInfo layout, LanguageList languages)
+        public void TransformLayoutView(
+            string smartAppTitle,
+            ConcernInfo concern,
+            LayoutInfo layout,
+            LanguageList languages)
         {
             // languages can be null
-            if (smartAppTitle != null && concern != null && concern.Id != null && layout != null && layout.Id != null)
+            if (smartAppTitle != null
+                && concern != null
+                && concern.Id != null 
+                && layout != null
+                && layout.Id != null)
             {
-                LayoutViewTemplate layoutViewTemplate = new LayoutViewTemplate(smartAppTitle, concern, layout, languages);
+                var layoutViewTemplate = new LayoutViewTemplate(
+                    smartAppTitle,
+                    concern,
+                    layout,
+                    languages);
 
-                string layoutViewDirectoryPath = Path.Combine(layoutViewTemplate.OutputPath, TextConverter.CamelCase(concern.Id), TextConverter.CamelCase(layout.Id));
-                string layoutViewFilename = TextConverter.CamelCase(concern.Id) + "-" + TextConverter.CamelCase(layout.Id) + ".html";
+                var layoutViewDirectoryPath = Path.Combine(
+                    layoutViewTemplate.OutputPath,
+                    TextConverter.CamelCase(concern.Id),
+                    TextConverter.CamelCase(layout.Id));
 
-                string fileToWritePath = Path.Combine(_context.BasePath, layoutViewDirectoryPath, layoutViewFilename);
-                string textToWrite = layoutViewTemplate.TransformText();
+                var layoutViewFilename =
+                    $"{TextConverter.CamelCase(concern.Id)}-{TextConverter.CamelCase(layout.Id)}.html";
 
-                _writingService.WriteFile(fileToWritePath, textToWrite);
+                var fileToWritePath = Path.Combine(
+                    _context.BasePath,
+                    layoutViewDirectoryPath,
+                    layoutViewFilename);
+
+                var textToWrite = layoutViewTemplate.TransformText();
+
+                _writingService.WriteFile(
+                    fileToWritePath,
+                    textToWrite);
             }
         }
 
@@ -151,19 +248,34 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
         /// </summary>
         /// <param name="concernId">A concern Id.</param>
         /// <param name="layout">A layout.</param>
-        public void TransformLayoutStyle(string concernId, LayoutInfo layout)
+        public void TransformLayoutStyle(
+            string concernId,
+            LayoutInfo layout)
         {
-            if (concernId != null && layout != null && layout.Id != null)
+            if (concernId != null
+                && layout != null
+                && layout.Id != null)
             {
-                LayoutStyleTemplate layoutStyleTemplate = new LayoutStyleTemplate(concernId, layout);
+                var layoutStyleTemplate = new LayoutStyleTemplate(concernId, layout);
 
-                string layoutStyleDirectoryPath = Path.Combine(layoutStyleTemplate.OutputPath, TextConverter.CamelCase(concernId), TextConverter.CamelCase(layout.Id));
-                string layoutStyleFilename = TextConverter.CamelCase(concernId) + "-" + TextConverter.CamelCase(layout.Id) + ".scss";
+                var layoutStyleDirectoryPath = Path.Combine(
+                    layoutStyleTemplate.OutputPath,
+                    TextConverter.CamelCase(concernId),
+                    TextConverter.CamelCase(layout.Id));
 
-                string fileToWritePath = Path.Combine(_context.BasePath, layoutStyleDirectoryPath, layoutStyleFilename);
-                string textToWrite = layoutStyleTemplate.TransformText();
+                var layoutStyleFilename =
+                    $"{TextConverter.CamelCase(concernId)}-{TextConverter.CamelCase(layout.Id)}.scss";
 
-                _writingService.WriteFile(fileToWritePath, textToWrite);
+                var fileToWritePath = Path.Combine(
+                    _context.BasePath,
+                    layoutStyleDirectoryPath,
+                    layoutStyleFilename);
+
+                var textToWrite = layoutStyleTemplate.TransformText();
+
+                _writingService.WriteFile(
+                    fileToWritePath,
+                    textToWrite);
             }
         }
 

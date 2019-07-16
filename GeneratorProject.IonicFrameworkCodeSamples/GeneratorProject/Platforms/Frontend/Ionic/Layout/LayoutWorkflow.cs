@@ -4,16 +4,19 @@ using WorkflowCore.Interface;
 
 namespace GeneratorProject.Platforms.Frontend.Ionic
 {
-    [WorkFlow(Id = "IonicLayoutWorkflow", Order = 3)]
+    [Workflow(
+        Id = "IonicLayoutWorkflow",
+        Order = 3)]
     public class LayoutWorkflow : IWorkflow
     {
-        public string Id => "IonicLayoutWorkflow";
-        public int Version => 1;
+        public string Id
+        => "IonicLayoutWorkflow";
 
-        public void Build(IWorkflowBuilder builder)
-        {
-            builder.StartWith<LayoutWritingStep>()
-                   .Then<WorkFlowEndStepBase>();
-        }
+        public int Version
+        => 1;
+
+        public void Build(IWorkflowBuilder<object> builder)
+        => builder.StartWith<LayoutWritingStep>()
+                  .Then<WorkflowEndStepBase>();
     }
 }

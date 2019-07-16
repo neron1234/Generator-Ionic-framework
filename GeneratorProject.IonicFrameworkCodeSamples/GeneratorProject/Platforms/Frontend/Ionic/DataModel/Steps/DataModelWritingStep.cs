@@ -20,7 +20,10 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
         private readonly IWriting _writingService;
         private readonly IWorkflowNotifier _workflowNotifier;
 
-        public DataModelWritingStep(ISessionContext context, IWriting writingService, IWorkflowNotifier workflowNotifier)
+        public DataModelWritingStep(
+            ISessionContext context,
+            IWriting writingService,
+            IWorkflowNotifier workflowNotifier)
         {
             _context = context;
             _writingService = writingService;
@@ -29,15 +32,23 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
 
         public override Task<ExecutionResult> RunAsync(IStepExecutionContext context)
         {
-            if (null == _context.Manifest)
+            if (_context.Manifest == null)
+            {
                 throw new ArgumentNullException(nameof(_context.Manifest));
+            }
 
-            SmartAppInfo smartApp = _context.Manifest;
-            _workflowNotifier.Notify(nameof(DataModelWritingStep), NotificationType.GeneralInfo, "Generating ionic models");
+            var smartApp = _context.Manifest;
+
+            _workflowNotifier.Notify(
+                nameof(DataModelWritingStep),
+                NotificationType.GeneralInfo,
+                "Generating ionic models");
+
             if (_context.BasePath != null)
             {
                 TransformDataModels(smartApp);
             }
+
             return Task.FromResult(ExecutionResult.Next());
         }
 
@@ -51,8 +62,9 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
         /// <param name="smartApp">A SmartApp's manifeste.</param>
         private void TransformDataModels(SmartAppInfo smartApp)
         {
-            List<EntityInfo> layoutApiReferences = new List<EntityInfo>();
-            List<EntityInfo> references = new List<EntityInfo>();
+            var layoutApiReferences = new List<EntityInfo>();
+            var references = new List<EntityInfo>();
+
             if (smartApp != null
                 && smartApp.Version != null
                 && smartApp.DataModel != null
@@ -61,59 +73,132 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
             {
                 // Search for references in layout's datamodels
                 foreach (ConcernInfo concern in smartApp.Concerns.AsEnumerable())
+                {
                     if (concern.Layouts.AsEnumerable() != null)
+                    {
                         foreach (LayoutInfo layout in concern.Layouts.AsEnumerable())
-                            if (layout.DataModel != null && layout.DataModel.References.AsEnumerable() != null)
-                                foreach (ReferenceInfo reference in layout.DataModel.References.AsEnumerable())
-                                    if (reference.Target != null && !layoutApiReferences.AsEnumerable().Contains(reference.Target))
+                        {
+                            if (layout.DataModel != null
+                                && layout
+                                    .DataModel
+                                    .References
+                                    .AsEnumerable() != null)
+                            {
+                                foreach (ReferenceInfo reference
+                                    in layout.DataModel.References.AsEnumerable())
+                                {
+                                    if (reference.Target != null
+                                        && !layoutApiReferences
+                                            .AsEnumerable()
+                                            .Contains(reference.Target))
+                                    {
                                         layoutApiReferences.Add(reference.Target);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
 
                 // Search for references in api's datamodels
                 foreach (ApiInfo api in smartApp.Api.AsEnumerable())
+                {
                     if (api.Actions.AsEnumerable() != null)
+                    {
                         foreach (ApiActionInfo apiAction in api.Actions.AsEnumerable())
                         {
                             if (apiAction.Parameters.AsEnumerable() != null)
-                                foreach (ApiParameterInfo apiActionParameter in apiAction.Parameters.AsEnumerable())
-                                    if (apiActionParameter.DataModel != null && apiActionParameter.DataModel.References.AsEnumerable() != null)
-                                        foreach (ReferenceInfo reference in apiActionParameter.DataModel.References.AsEnumerable())
-                                            if (reference.Target != null && !layoutApiReferences.AsEnumerable().Contains(reference.Target))
+                            {
+                                foreach (ApiParameterInfo apiActionParameter in
+                                    apiAction.Parameters.AsEnumerable())
+                                {
+                                    if (apiActionParameter.DataModel != null
+                                        && apiActionParameter
+                                            .DataModel
+                                            .References
+                                            .AsEnumerable() != null)
+                                    {
+                                        foreach (ReferenceInfo reference in
+                                            apiActionParameter.DataModel.References.AsEnumerable())
+                                        {
+                                            if (reference.Target != null
+                                                && !layoutApiReferences
+                                                    .AsEnumerable()
+                                                    .Contains(reference.Target))
+                                            {
                                                 layoutApiReferences.Add(reference.Target);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
 
-                            if (apiAction.ReturnType != null && apiAction.ReturnType.References.AsEnumerable() != null)
+                            if (apiAction.ReturnType != null
+                                && apiAction
+                                    .ReturnType
+                                    .References
+                                    .AsEnumerable() != null)
+                            {
                                 foreach (ReferenceInfo reference in apiAction.ReturnType.References.AsEnumerable())
-                                    if (reference.Target != null && !layoutApiReferences.AsEnumerable().Contains(reference.Target))
+                                {
+                                    if (reference.Target != null
+                                        && !layoutApiReferences
+                                            .AsEnumerable()
+                                            .Contains(reference.Target))
+                                    {
                                         layoutApiReferences.Add(reference.Target);
+                                    }
+                                }
+                            }
                         }
+                    }
+                }
 
                 // Extract references from these references and generate them
                 foreach (EntityInfo entity in layoutApiReferences.AsEnumerable())
+                {
                     if (entity.Id != null)
                     {
-                        DataModelTemplate dataModelTemplate = new DataModelTemplate(entity);
-                        foreach (PropertyInfo property in dataModelTemplate.getReferenceProperties(entity).AsEnumerable())
+                        var dataModelTemplate = new DataModelTemplate(entity);
+
+                        foreach (PropertyInfo property in
+                            dataModelTemplate.getReferenceProperties(entity).AsEnumerable())
                         {
-                            if (property.Parent != null && property.Id != null && !references.AsEnumerable().Contains((EntityInfo)property.Parent))
+                            if (property.Parent != null
+                                && property.Id != null
+                                && !references
+                                    .AsEnumerable()
+                                    .Contains((EntityInfo)property.Parent))
                             {
-                                EntityInfo parent = (EntityInfo)property.Parent;
+                                var parent = (EntityInfo)property.Parent;
                                 references.Add(parent);
                                 TransformDataModel(parent);
                             }
-                            if (property.Target != null && !references.AsEnumerable().Contains(property.Target))
+
+                            if (property.Target != null
+                                && !references
+                                    .AsEnumerable()
+                                    .Contains(property.Target))
                             {
                                 references.Add(property.Target);
                                 TransformDataModel(property.Target);
                             }
                         }
                     }
+                }
 
                 // Generate base references
                 foreach (EntityInfo entity in layoutApiReferences.AsEnumerable())
-                    if (entity.Id != null && !references.AsEnumerable().Contains(entity))
+                {
+                    if (entity.Id != null
+                        && !references
+                            .AsEnumerable()
+                            .Contains(entity))
                     {
                         references.Add(entity);
                         TransformDataModel(entity);
                     }
+                }
             }
         }
 
@@ -123,28 +208,42 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
         /// <param name="entity">An entity.</param>
         private void TransformDataModel(EntityInfo entity)
         {
-            if (entity != null && entity.Id != null)
+            if (entity != null
+                && entity.Id != null)
             {
-                string fileToWritePath = "";
-                string textToWrite = "";
+                var fileToWritePath = "";
+                var textToWrite = "";
+
                 if (entity.IsEnum)
                 {
-                    EnumTemplate enumTemplate = new EnumTemplate(entity);
-                    string enumDirectoryPath = Path.Combine(enumTemplate.OutputPath);
-                    string enumFilename = TextConverter.CamelCase(entity.Id) + "Enum.ts";
-                    fileToWritePath = Path.Combine(_context.BasePath, enumDirectoryPath, enumFilename);
+                    var enumTemplate = new EnumTemplate(entity);
+                    var enumDirectoryPath = enumTemplate.OutputPath;
+                    var enumFilename = $"{TextConverter.CamelCase(entity.Id)}Enum.ts";
+
+                    fileToWritePath = Path.Combine(
+                        _context.BasePath,
+                        enumDirectoryPath,
+                        enumFilename);
+
                     textToWrite = enumTemplate.TransformText();
                 }
                 else
                 {
-                    DataModelTemplate dataModelTemplate = new DataModelTemplate(entity);
-                    string dataModelDirectoryPath = Path.Combine(dataModelTemplate.OutputPath);
-                    string dataModelFilename = TextConverter.CamelCase(entity.Id) + "Model.ts";
-                    fileToWritePath = Path.Combine(_context.BasePath, dataModelDirectoryPath, dataModelFilename);
+                    var dataModelTemplate = new DataModelTemplate(entity);
+                    var dataModelDirectoryPath = dataModelTemplate.OutputPath;
+                    var dataModelFilename = $"{TextConverter.CamelCase(entity.Id)}Model.ts";
+
+                    fileToWritePath = Path.Combine(
+                        _context.BasePath,
+                        dataModelDirectoryPath,
+                        dataModelFilename);
+
                     textToWrite = dataModelTemplate.TransformText();
                 }
 
-                _writingService.WriteFile(fileToWritePath, textToWrite);
+                _writingService.WriteFile(
+                    fileToWritePath,
+                    textToWrite);
             }
         }
 

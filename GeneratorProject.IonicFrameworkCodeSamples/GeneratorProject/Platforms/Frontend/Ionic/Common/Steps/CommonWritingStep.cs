@@ -20,7 +20,10 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
         private readonly IWriting _writingService;
         private readonly IWorkflowNotifier _workflowNotifier;
 
-        public CommonWritingStep(ISessionContext context, IWriting writingService, IWorkflowNotifier workflowNotifier)
+        public CommonWritingStep(
+            ISessionContext context,
+            IWriting writingService,
+            IWorkflowNotifier workflowNotifier)
         {
             _context = context;
             _writingService = writingService;
@@ -29,18 +32,37 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
 
         public override Task<ExecutionResult> RunAsync(IStepExecutionContext context)
         {
-            if (null == _context.Manifest)
+            if (_context.Manifest == null)
+            {
                 throw new ArgumentNullException(nameof(_context.Manifest));
+            }
 
             var commonTemplates = "Platforms\\Frontend\\Ionic\\Common\\Templates";
-            _workflowNotifier.Notify(nameof(CommonWritingStep), NotificationType.GeneralInfo, "Generating common ionic files");
-            if (_context.BasePath != null && _context.GeneratorPath != null)
+
+            _workflowNotifier.Notify(
+                nameof(CommonWritingStep),
+                NotificationType.GeneralInfo,
+                "Generating common ionic files");
+
+            if (_context.BasePath != null
+                && _context.GeneratorPath != null)
             {
-                var commonTemplatesDirectoryPath = Path.Combine(_context.GeneratorPath, commonTemplates);
-                SmartAppInfo smartApp = _context.Manifest;
-                var themes = ((IDictionary<string, object>)_context.DynamicContext).ContainsKey("Themes") ? _context.DynamicContext.Themes as List<Answer> : new List<Answer>();
-                string theme = (themes != null && themes.Count > 0) ? themes.FirstOrDefault().Value : "light";
-                TransformCommon(smartApp, commonTemplatesDirectoryPath);
+                var commonTemplatesDirectoryPath = Path.Combine(
+                    _context.GeneratorPath,
+                    commonTemplates);
+
+                var smartApp = _context.Manifest;
+
+                var themes = ((IDictionary<string, object>)_context.DynamicContext).ContainsKey("Themes") ?
+                    _context.DynamicContext.Themes as List<Answer> : new List<Answer>();
+
+                var theme = (themes != null && themes.Count > 0) ?
+                    themes.FirstOrDefault().Value : "light";
+
+                TransformCommon(
+                    smartApp,
+                    commonTemplatesDirectoryPath);
+
                 TransformSimpleTheme(theme);
             }
 
@@ -55,9 +77,12 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
         /// </summary>
         /// <param name="smartApp">A SmartApp's manifeste.</param>
         /// <param name="commonTemplatesDirectoryPath">Path to common activity templates.</param>
-        private void TransformCommon(SmartAppInfo smartApp, string commonTemplatesDirectoryPath)
+        private void TransformCommon(
+            SmartAppInfo smartApp,
+            string commonTemplatesDirectoryPath)
         {
-            if (smartApp != null && commonTemplatesDirectoryPath != null)
+            if (smartApp != null
+                && commonTemplatesDirectoryPath != null)
             {
                 TransformPackage(smartApp);
                 TransformIonicConfig(smartApp);
@@ -68,7 +93,10 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
                 TransformAppComponent(smartApp);
                 TransformAppView(smartApp);
             }
-            _writingService.CopyDirectory(commonTemplatesDirectoryPath, _context.BasePath);
+
+            _writingService.CopyDirectory(
+                commonTemplatesDirectoryPath,
+                _context.BasePath);
         }
 
         /// <summary>
@@ -77,11 +105,18 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
         /// <param name="smartApp">A SmartApp's manifest</param>
         private void TransformPackage(SmartAppInfo smartApp)
         {
-            Package packageTemplate = new Package(smartApp);
-            string packageDirectoryPath = packageTemplate.OutputPath;
-            string fileToWritePath = Path.Combine(_context.BasePath, packageDirectoryPath);
-            string textToWrite = packageTemplate.TransformText();
-            _writingService.WriteFile(fileToWritePath, textToWrite);
+            var packageTemplate = new Package(smartApp);
+            var packageDirectoryPath = packageTemplate.OutputPath;
+
+            var fileToWritePath = Path.Combine(
+                _context.BasePath,
+                packageDirectoryPath);
+
+            var textToWrite = packageTemplate.TransformText();
+
+            _writingService.WriteFile(
+                fileToWritePath,
+                textToWrite);
         }
 
         /// <summary>
@@ -90,11 +125,18 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
         /// <param name="smartApp">A SmartApp's manifest</param>
         private void TransformIonicConfig(SmartAppInfo smartApp)
         {
-            IonicConfig ionicConfigTemplate = new IonicConfig(smartApp);
-            string ionicConfigDirectoryPath = ionicConfigTemplate.OutputPath;
-            string fileToWritePath = Path.Combine(_context.BasePath, ionicConfigDirectoryPath);
-            string textToWrite = ionicConfigTemplate.TransformText();
-            _writingService.WriteFile(fileToWritePath, textToWrite);
+            var ionicConfigTemplate = new IonicConfig(smartApp);
+            var ionicConfigDirectoryPath = ionicConfigTemplate.OutputPath;
+
+            var fileToWritePath = Path.Combine(
+                _context.BasePath,
+                ionicConfigDirectoryPath);
+
+            var textToWrite = ionicConfigTemplate.TransformText();
+
+            _writingService.WriteFile(
+                fileToWritePath,
+                textToWrite);
         }
 
         /// <summary>
@@ -103,11 +145,18 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
         /// <param name="smartApp">A SmartApp's manifest</param>
         private void TransformConfig(SmartAppInfo smartApp)
         {
-            Config configTemplate = new Config(smartApp);
-            string configDirectoryPath = configTemplate.OutputPath;
-            string fileToWritePath = Path.Combine(_context.BasePath, configDirectoryPath);
-            string textToWrite = configTemplate.TransformText();
-            _writingService.WriteFile(fileToWritePath, textToWrite);
+            var configTemplate = new Config(smartApp);
+            var configDirectoryPath = configTemplate.OutputPath;
+
+            var fileToWritePath = Path.Combine(
+                _context.BasePath,
+                configDirectoryPath);
+
+            var textToWrite = configTemplate.TransformText();
+
+            _writingService.WriteFile(
+                fileToWritePath,
+                textToWrite);
         }
 
         /// <summary>
@@ -116,11 +165,18 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
         /// <param name="smartApp">A SmartApp's manifest</param>
         private void TransformManifest(SmartAppInfo smartApp)
         {
-            Manifest manifestTemplate = new Manifest(smartApp);
-            string manifestDirectoryPath = manifestTemplate.OutputPath;
-            string fileToWritePath = Path.Combine(_context.BasePath, manifestDirectoryPath);
-            string textToWrite = manifestTemplate.TransformText();
-            _writingService.WriteFile(fileToWritePath, textToWrite);
+            var manifestTemplate = new Manifest(smartApp);
+            var manifestDirectoryPath = manifestTemplate.OutputPath;
+
+            var fileToWritePath = Path.Combine(
+                _context.BasePath,
+                manifestDirectoryPath);
+
+            var textToWrite = manifestTemplate.TransformText();
+
+            _writingService.WriteFile(
+                fileToWritePath,
+                textToWrite);
         }
 
         /// <summary>
@@ -129,11 +185,18 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
         /// <param name="smartApp">A SmartApp's manifest</param>
         private void TransformIndex(SmartAppInfo smartApp)
         {
-            Index indexTemplate = new Index(smartApp);
-            string indexDirectoryPath = indexTemplate.OutputPath;
-            string fileToWritePath = Path.Combine(_context.BasePath, indexDirectoryPath);
-            string textToWrite = indexTemplate.TransformText();
-            _writingService.WriteFile(fileToWritePath, textToWrite);
+            var indexTemplate = new Index(smartApp);
+            var indexDirectoryPath = indexTemplate.OutputPath;
+
+            var fileToWritePath = Path.Combine(
+                _context.BasePath,
+                indexDirectoryPath);
+
+            var textToWrite = indexTemplate.TransformText();
+
+            _writingService.WriteFile(
+                fileToWritePath,
+                textToWrite);
         }
 
         /// <summary>
@@ -142,11 +205,18 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
         /// <param name="smartApp">A SmartApp's manifest</param>
         private void TransformAppModule(SmartAppInfo smartApp)
         {
-            AppModule appModuleTemplate = new AppModule(smartApp);
-            string appModuleDirectoryPath = appModuleTemplate.OutputPath;
-            string fileToWritePath = Path.Combine(_context.BasePath, appModuleDirectoryPath);
-            string textToWrite = appModuleTemplate.TransformText();
-            _writingService.WriteFile(fileToWritePath, textToWrite);
+            var appModuleTemplate = new AppModule(smartApp);
+            var appModuleDirectoryPath = appModuleTemplate.OutputPath;
+
+            var fileToWritePath = Path.Combine(
+                _context.BasePath,
+                appModuleDirectoryPath);
+
+            var textToWrite = appModuleTemplate.TransformText();
+
+            _writingService.WriteFile(
+                fileToWritePath,
+                textToWrite);
         }
 
         /// <summary>
@@ -155,11 +225,18 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
         /// <param name="smartApp">A SmartApp's manifest</param>
         private void TransformAppComponent(SmartAppInfo smartApp)
         {
-            AppComponent appComponentTemplate = new AppComponent(smartApp);
-            string appComponentDirectoryPath = appComponentTemplate.OutputPath;
-            string fileToWritePath = Path.Combine(_context.BasePath, appComponentDirectoryPath);
-            string textToWrite = appComponentTemplate.TransformText();
-            _writingService.WriteFile(fileToWritePath, textToWrite);
+            var appComponentTemplate = new AppComponent(smartApp);
+            var appComponentDirectoryPath = appComponentTemplate.OutputPath;
+
+            var fileToWritePath = Path.Combine(
+                _context.BasePath,
+                appComponentDirectoryPath);
+
+            var textToWrite = appComponentTemplate.TransformText();
+
+            _writingService.WriteFile(
+                fileToWritePath,
+                textToWrite);
         }
 
         /// <summary>
@@ -168,11 +245,18 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
         /// <param name="smartApp">A SmartApp's manifest</param>
         private void TransformAppView(SmartAppInfo smartApp)
         {
-            AppView appViewTemplate = new AppView(smartApp);
-            string appViewDirectoryPath = appViewTemplate.OutputPath;
-            string fileToWritePath = Path.Combine(_context.BasePath, appViewDirectoryPath);
-            string textToWrite = appViewTemplate.TransformText();
-            _writingService.WriteFile(fileToWritePath, textToWrite);
+            var appViewTemplate = new AppView(smartApp);
+            var appViewDirectoryPath = appViewTemplate.OutputPath;
+
+            var fileToWritePath = Path.Combine(
+                _context.BasePath,
+                appViewDirectoryPath);
+
+            var textToWrite = appViewTemplate.TransformText();
+
+            _writingService.WriteFile(
+                fileToWritePath,
+                textToWrite);
         }
 
         /// <summary>
@@ -181,11 +265,18 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
         /// <param name="theme">A theme.</param>
         private void TransformSimpleTheme(string theme)
         {
-            Variables variablesTemplate = new Variables(theme);
-            string variablesDirectoryPath = variablesTemplate.OutputPath;
-            string fileToWritePath = Path.Combine(_context.BasePath, variablesDirectoryPath);
-            string textToWrite = variablesTemplate.TransformText();
-            _writingService.WriteFile(fileToWritePath, textToWrite);
+            var variablesTemplate = new Variables(theme);
+            var variablesDirectoryPath = variablesTemplate.OutputPath;
+
+            var fileToWritePath = Path.Combine(
+                _context.BasePath,
+                variablesDirectoryPath);
+
+            var textToWrite = variablesTemplate.TransformText();
+
+            _writingService.WriteFile(
+                fileToWritePath,
+                textToWrite);
         }
 
         #endregion

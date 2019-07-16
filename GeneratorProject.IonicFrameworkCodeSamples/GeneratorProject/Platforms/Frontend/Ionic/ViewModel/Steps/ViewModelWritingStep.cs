@@ -20,7 +20,10 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
         private readonly IWriting _writingService;
         private readonly IWorkflowNotifier _workflowNotifier;
 
-        public ViewModelWritingStep(ISessionContext context, IWriting writingService, IWorkflowNotifier workflowNotifier)
+        public ViewModelWritingStep(
+            ISessionContext context,
+            IWriting writingService,
+            IWorkflowNotifier workflowNotifier)
         {
             _context = context;
             _writingService = writingService;
@@ -29,15 +32,23 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
 
         public override Task<ExecutionResult> RunAsync(IStepExecutionContext context)
         {
-            if (null == _context.Manifest)
+            if (_context.Manifest == null)
+            {
                 throw new ArgumentNullException(nameof(_context.Manifest));
+            }
 
-            SmartAppInfo smartApp = _context.Manifest;
-            _workflowNotifier.Notify(nameof(ViewModelWritingStep), NotificationType.GeneralInfo, "Generating ionic viewmodels");
+            var smartApp = _context.Manifest;
+
+            _workflowNotifier.Notify(
+                nameof(ViewModelWritingStep),
+                NotificationType.GeneralInfo,
+                "Generating ionic viewmodels");
+
             if (_context.BasePath != null)
             {
                 TransformViewModels(smartApp);
             }
+
             return Task.FromResult(ExecutionResult.Next());
         }
 
@@ -49,8 +60,10 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
         /// <param name="smartApp">SmartApp manifeste.</param>
         private void TransformViewModels(SmartAppInfo smartApp)
         {
-            List<EntityInfo> alreadyCreated = new List<EntityInfo>();
-            if (smartApp != null && smartApp.Version != null)
+            var alreadyCreated = new List<EntityInfo>();
+
+            if (smartApp != null
+                && smartApp.Version != null)
             {
                 if (smartApp.Api.AsEnumerable() != null)
                 {
@@ -64,7 +77,10 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
                                 {
                                     foreach (ApiParameterInfo apiParameter in apiAction.Parameters.AsEnumerable())
                                     {
-                                        if (apiParameter.DataModel != null && !alreadyCreated.AsEnumerable().Contains(apiParameter.DataModel))
+                                        if (apiParameter.DataModel != null
+                                            && !alreadyCreated
+                                                .AsEnumerable()
+                                                .Contains(apiParameter.DataModel))
                                         {
                                             alreadyCreated.Add(apiParameter.DataModel);
                                             TransformViewModel(apiParameter.DataModel);
@@ -72,7 +88,10 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
                                     }
                                 }
 
-                                if (apiAction.ReturnType != null && !alreadyCreated.AsEnumerable().Contains(apiAction.ReturnType))
+                                if (apiAction.ReturnType != null
+                                    && !alreadyCreated
+                                        .AsEnumerable()
+                                        .Contains(apiAction.ReturnType))
                                 {
                                     alreadyCreated.Add(apiAction.ReturnType);
                                     TransformViewModel(apiAction.ReturnType);
@@ -91,17 +110,24 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
         /// <param name="dataModel">A dataModel.</param>
         private void TransformViewModel(EntityInfo dataModel)
         {
-            if (dataModel != null && dataModel.Id != null)
+            if (dataModel != null
+                && dataModel.Id != null)
             {
-                ViewModelTemplate viewModelTemplate = new ViewModelTemplate(dataModel);
+                var viewModelTemplate = new ViewModelTemplate(dataModel);
 
-                string viewModelDirectoryPath = viewModelTemplate.OutputPath;
-                string viewModelFilename = TextConverter.CamelCase(dataModel.Id) + ".ts";
+                var viewModelDirectoryPath = viewModelTemplate.OutputPath;
+                var viewModelFilename = $"{TextConverter.CamelCase(dataModel.Id)}.ts";
 
-                string fileToWritePath = Path.Combine(_context.BasePath, viewModelDirectoryPath, viewModelFilename);
-                string textToWrite = viewModelTemplate.TransformText();
+                var fileToWritePath = Path.Combine(
+                    _context.BasePath,
+                    viewModelDirectoryPath,
+                    viewModelFilename);
 
-                _writingService.WriteFile(fileToWritePath, textToWrite);
+                var textToWrite = viewModelTemplate.TransformText();
+
+                _writingService.WriteFile(
+                    fileToWritePath,
+                    textToWrite);
             }
         }
 

@@ -4,16 +4,19 @@ using WorkflowCore.Interface;
 
 namespace GeneratorProject.Platforms.Frontend.Ionic
 {
-    [WorkFlow(Id = "IonicUnitTestsWorkflow", Order = 7)]
+    [Workflow(
+        Id = "IonicUnitTestsWorkflow",
+        Order = 7)]
     public class UnitTestsWorkflow : IWorkflow
     {
-        public string Id => "IonicUnitTestsWorkflow";
-        public int Version => 1;
+        public string Id
+        => "IonicUnitTestsWorkflow";
 
-        public void Build(IWorkflowBuilder builder)
-        {
-            builder.StartWith<UnitTestsWritingStep>()
-                   .Then<WorkFlowEndStepBase>();
-        }
+        public int Version
+        => 1;
+
+        public void Build(IWorkflowBuilder<object> builder)
+        => builder.StartWith<UnitTestsWritingStep>()
+                  .Then<WorkflowEndStepBase>();
     }
 }
