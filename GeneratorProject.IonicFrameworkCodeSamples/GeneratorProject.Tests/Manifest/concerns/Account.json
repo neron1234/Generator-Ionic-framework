@@ -1,42 +1,52 @@
 {
   "id": "Account",
   "title": "Account",
-  "description": "Account",
+  "description": "The account concern containing the ccount related layouts",
   "mandatory": false,
   "layouts": [
     {
-      "id": "details",
-      "title": "account_details",
-      "description": "account_details",
+      "id": "login",
+      "title": "Login",
+      "description": "Application login page",
       "isVisibleInMenu": false,
       "isRoot": false,
       "actions": [
         {
-          "id": "toAccountEdit",
-          "type": "Navigation",
-          "target": "Account.edit",
-          "api": ""
-        },
-        {
-          "id": "return",
-          "type": "Navigation",
-          "target": "Menu.profile_menu",
-          "api": ""
-        },
-        {
-          "id": "getAccountDetails",
+          "id": "login",
           "type": "DataGet",
           "target": "",
-          "api": "User.GetUser"
+          "api": "Account.Login"
+        },
+        {
+          "id": "toRegister",
+          "type": "Navigation",
+          "target": "Account.register",
+          "api": ""
+        },
+        {
+          "id": "close",
+          "type": "Method",
+          "target": "",
+          "api": ""
         }
       ],
       "dataModel": {
-        "id": "User",
+        "id": "SignIn",
         "isAbstract": false,
         "isEnum": false,
         "properties": [
           {
-            "id": "firstname",
+            "id": "username",
+            "type": "string",
+            "isKey": false,
+            "isCollection": false,
+            "isRequired": false,
+            "minimum": 0,
+            "maximum": 0,
+            "modelProperty": "User.username"
+          },
+          {
+            "id": "password",
             "type": "string",
             "isKey": false,
             "isCollection": false,
@@ -44,86 +54,6 @@
             "minimum": 0,
             "maximum": 0,
             "modelProperty": ""
-          },
-          {
-            "id": "lastname",
-            "type": "string",
-            "isKey": false,
-            "isCollection": false,
-            "isRequired": false,
-            "minimum": 0,
-            "maximum": 0,
-            "modelProperty": ""
-          },
-          {
-            "id": "facebookId",
-            "type": "string",
-            "isKey": false,
-            "isCollection": false,
-            "isRequired": false,
-            "minimum": 0,
-            "maximum": 0,
-            "modelProperty": ""
-          },
-          {
-            "id": "pictureUrl",
-            "type": "string",
-            "isKey": false,
-            "isCollection": false,
-            "isRequired": false,
-            "minimum": 0,
-            "maximum": 0,
-            "modelProperty": ""
-          },
-          {
-            "id": "Job",
-            "type": "string",
-            "isKey": false,
-            "isCollection": false,
-            "isRequired": false,
-            "minimum": 0,
-            "maximum": 0,
-            "modelProperty": "UserProfile.Job"
-          },
-          {
-            "id": "Departement",
-            "type": "string",
-            "isKey": false,
-            "isCollection": false,
-            "isRequired": false,
-            "minimum": 0,
-            "maximum": 0,
-            "modelProperty": "UserProfile.Departement"
-          },
-          {
-            "id": "Country",
-            "type": "string",
-            "isKey": false,
-            "isCollection": false,
-            "isRequired": false,
-            "minimum": 0,
-            "maximum": 0,
-            "modelProperty": "UserProfile.Country"
-          },
-          {
-            "id": "Region",
-            "type": "string",
-            "isKey": false,
-            "isCollection": false,
-            "isRequired": false,
-            "minimum": 0,
-            "maximum": 0,
-            "modelProperty": "UserProfile.Region"
-          },
-          {
-            "id": "UserId",
-            "type": "string",
-            "isKey": false,
-            "isCollection": false,
-            "isRequired": false,
-            "minimum": 0,
-            "maximum": 0,
-            "modelProperty": "UserProfile.UserId"
           }
         ],
         "references": [],
@@ -131,38 +61,48 @@
       }
     },
     {
-      "id": "edit",
-      "title": "account_edit",
-      "description": "account_edit",
+      "id": "register",
+      "title": "Register",
+      "description": "Application registration page",
       "isVisibleInMenu": false,
       "isRoot": false,
       "actions": [
         {
-          "id": "return",
+          "id": "toLogin",
           "type": "Navigation",
-          "target": "Account.details",
+          "target": "Account.login",
           "api": ""
         },
         {
-          "id": "toAccountDetails",
-          "type": "Navigation",
-          "target": "Account.details",
-          "api": ""
-        },
-        {
-          "id": "updateAccount",
-          "type": "DataUpdate",
+          "id": "register",
+          "type": "DataCreate",
           "target": "",
-          "api": "User.EditUser"
+          "api": "Account.Register"
+        },
+        {
+          "id": "close",
+          "type": "Method",
+          "target": "",
+          "api": ""
         }
       ],
       "dataModel": {
-        "id": "EditUser",
+        "id": "SignUp",
         "isAbstract": false,
         "isEnum": false,
         "properties": [
           {
-            "id": "firstname",
+            "id": "username",
+            "type": "string",
+            "isKey": false,
+            "isCollection": false,
+            "isRequired": false,
+            "minimum": 0,
+            "maximum": 0,
+            "modelProperty": "User.username"
+          },
+          {
+            "id": "password",
             "type": "string",
             "isKey": false,
             "isCollection": false,
@@ -172,8 +112,70 @@
             "modelProperty": ""
           },
           {
-            "id": "lastname",
+            "id": "confirmPassword",
             "type": "string",
+            "isKey": false,
+            "isCollection": false,
+            "isRequired": false,
+            "minimum": 0,
+            "maximum": 0,
+            "modelProperty": ""
+          }
+        ],
+        "references": [],
+        "values": []
+      }
+    },
+    {
+      "id": "userInformations",
+      "title": "User Informations",
+      "description": "Display general user informations",
+      "isVisibleInMenu": false,
+      "isRoot": false,
+      "actions": [
+        {
+          "id": "deleteAccount",
+          "type": "DataDelete",
+          "target": "",
+          "api": "Account.Delete"
+        },
+        {
+          "id": "close",
+          "type": "Method",
+          "target": "",
+          "api": ""
+        },
+        {
+          "id": "logout",
+          "type": "Method",
+          "target": "",
+          "api": ""
+        },
+        {
+          "id": "validateDeleteAccount",
+          "type": "Method",
+          "target": "",
+          "api": ""
+        }
+      ],
+      "dataModel": {
+        "id": "UserInformations",
+        "isAbstract": false,
+        "isEnum": false,
+        "properties": [
+          {
+            "id": "username",
+            "type": "string",
+            "isKey": false,
+            "isCollection": false,
+            "isRequired": false,
+            "minimum": 0,
+            "maximum": 0,
+            "modelProperty": "User.username"
+          },
+          {
+            "id": "registeredAt",
+            "type": "date",
             "isKey": false,
             "isCollection": false,
             "isRequired": false,
@@ -182,17 +184,7 @@
             "modelProperty": ""
           },
           {
-            "id": "facebookId",
-            "type": "string",
-            "isKey": false,
-            "isCollection": false,
-            "isRequired": false,
-            "minimum": 0,
-            "maximum": 0,
-            "modelProperty": ""
-          },
-          {
-            "id": "pictureUrl",
+            "id": "userId",
             "type": "string",
             "isKey": false,
             "isCollection": false,

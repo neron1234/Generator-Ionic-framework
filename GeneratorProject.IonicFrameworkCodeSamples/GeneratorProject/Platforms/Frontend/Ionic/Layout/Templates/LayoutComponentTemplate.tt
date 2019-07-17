@@ -227,6 +227,11 @@ export class <#= layout #> {
                                                     if (apiParameter.Id != null)
                                                     {
                                                         var type = apiParameter.TypeScriptType();
+
+                                                        if (!type.IsPrimitiveType())
+                                                        {
+                                                            type = type.ToPascalCase();
+                                                        }
 #>
    * @param <#= apiParameter.Id.ToCamelCase() #> `<#= type #>`.
 <#
@@ -247,6 +252,11 @@ export class <#= layout #> {
                                                     if (apiParameter.Id != null)
                                                     {
                                                         var type = apiParameter.TypeScriptType();
+
+                                                        if (!type.IsPrimitiveType())
+                                                        {
+                                                            type = type.ToPascalCase();
+                                                        }
 
                                                         if (apiParameter.Equals(last))
                                                         {

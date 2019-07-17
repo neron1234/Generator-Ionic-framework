@@ -1,13 +1,11 @@
 {
-  "id": "CollaboratorsWeather",
-  "title": "Collaborators Weather",
-  "smallTitle": "CollabWeath",
-  "description": "Collaborators Weather",
+  "id": "Cookbook",
+  "title": "Cookbook",
+  "smallTitle": "Cookbook",
+  "description": "Simple and easy Kitchen recipes Application",
   "platforms": [
     "Android",
-    "Ios",
-    "WindowsPhone",
-    "Web"
+    "Ios"
   ],
   "version": "1.0.0.0",
   "themes": [
@@ -15,30 +13,19 @@
     "Dark"
   ],
   "languages": [
-    "fr",
-    "en"
+    "Fr",
+    "En"
   ],
-  "$schema": "http://www.google.com",
+  "$schema": "https://www.cookbook.com",
   "addons": "addons.json",
   "api": [
-    "api/Group.json",
-    "api/MoodCard.json",
-    "api/Photo.json",
-    "api/User.json",
-    "api/Contribution.json",
-    "api/Flow.json",
-    "api/Wall.json"
+    "api/Account.json",
+    "api/Recipes.json"
   ],
   "concerns": [
-    "concerns/Home.json",
-    "concerns/SignIn.json",
-    "concerns/Menu.json",
-    "concerns/Reporting.json",
+    "concerns/Base.json",
     "concerns/Account.json",
-    "concerns/Alerts.json",
-    "concerns/ManageGroups.json",
-    "concerns/PhotoLibrary.json",
-    "concerns/Mood.json"
+    "concerns/Cookbook.json"
   ],
   "configurations": [
     {

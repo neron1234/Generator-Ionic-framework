@@ -379,8 +379,6 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
                     if (property.Id != null
                         && property.TypeScriptType() != null)
                     {
-                        var propertyIsModel = property.IsModel();
-
                         if (!countConstructor.ContainsKey(property.Id))
                         {
                             countConstructor.Add(property.Id, 1);
@@ -392,10 +390,15 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
 
                         var type =  property.TypeScriptType();
 
-                        if (!propertyIsModel.Equals(""))
+                        if (property.IsModel())
                         {
-                            type = type.ToPascalCase();
+                            type = $"{type.ToPascalCase()}Model";
                         }
+                        else if (property.IsEnum())
+                        {
+                            type = $"{type.ToPascalCase()}Enum";
+                        }
+
                         if (property.IsCollection
                             && index == lastIndex)
                         {
@@ -405,21 +408,21 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
             #line hidden
             this.Write("    ");
             
-            #line 195 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\ViewModel\Templates\ViewModelTemplate.tt"
+            #line 198 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\ViewModel\Templates\ViewModelTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture($"{property.Id.ToCamelCase()}{countConstructor[property.Id]}"));
             
             #line default
             #line hidden
             this.Write(": ");
             
-            #line 195 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\ViewModel\Templates\ViewModelTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture($"{type}{propertyIsModel}"));
+            #line 198 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\ViewModel\Templates\ViewModelTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(type));
             
             #line default
             #line hidden
             this.Write("[]\r\n");
             
-            #line 196 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\ViewModel\Templates\ViewModelTemplate.tt"
+            #line 199 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\ViewModel\Templates\ViewModelTemplate.tt"
 
                         }
                         else if (index == lastIndex)
@@ -430,21 +433,21 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
             #line hidden
             this.Write("    ");
             
-            #line 201 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\ViewModel\Templates\ViewModelTemplate.tt"
+            #line 204 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\ViewModel\Templates\ViewModelTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture($"{property.Id.ToCamelCase()}{countConstructor[property.Id]}"));
             
             #line default
             #line hidden
             this.Write(": ");
             
-            #line 201 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\ViewModel\Templates\ViewModelTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture($"{type}{propertyIsModel}"));
+            #line 204 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\ViewModel\Templates\ViewModelTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(type));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 202 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\ViewModel\Templates\ViewModelTemplate.tt"
+            #line 205 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\ViewModel\Templates\ViewModelTemplate.tt"
 
                         }
                         else if (property.IsCollection)
@@ -455,21 +458,21 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
             #line hidden
             this.Write("    ");
             
-            #line 207 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\ViewModel\Templates\ViewModelTemplate.tt"
+            #line 210 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\ViewModel\Templates\ViewModelTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture($"{property.Id.ToCamelCase()}{countConstructor[property.Id]}"));
             
             #line default
             #line hidden
             this.Write(": ");
             
-            #line 207 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\ViewModel\Templates\ViewModelTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture($"{type}{propertyIsModel}"));
+            #line 210 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\ViewModel\Templates\ViewModelTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(type));
             
             #line default
             #line hidden
             this.Write("[],\r\n");
             
-            #line 208 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\ViewModel\Templates\ViewModelTemplate.tt"
+            #line 211 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\ViewModel\Templates\ViewModelTemplate.tt"
 
                         }
                         else
@@ -480,21 +483,21 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
             #line hidden
             this.Write("    ");
             
-            #line 213 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\ViewModel\Templates\ViewModelTemplate.tt"
+            #line 216 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\ViewModel\Templates\ViewModelTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture($"{property.Id.ToCamelCase()}{countConstructor[property.Id]}"));
             
             #line default
             #line hidden
             this.Write(": ");
             
-            #line 213 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\ViewModel\Templates\ViewModelTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture($"{type}{propertyIsModel}"));
+            #line 216 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\ViewModel\Templates\ViewModelTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(type));
             
             #line default
             #line hidden
             this.Write(",\r\n");
             
-            #line 214 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\ViewModel\Templates\ViewModelTemplate.tt"
+            #line 217 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\ViewModel\Templates\ViewModelTemplate.tt"
 
                         }
                     }
@@ -508,7 +511,7 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
             #line hidden
             this.Write("  ) {\r\n");
             
-            #line 223 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\ViewModel\Templates\ViewModelTemplate.tt"
+            #line 226 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\ViewModel\Templates\ViewModelTemplate.tt"
 
             var countObj = new Dictionary<string, int>();
 
@@ -532,21 +535,21 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
             #line hidden
             this.Write("    this.");
             
-            #line 241 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\ViewModel\Templates\ViewModelTemplate.tt"
+            #line 244 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\ViewModel\Templates\ViewModelTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(property.Id.ToCamelCase()));
             
             #line default
             #line hidden
             this.Write(" = ");
             
-            #line 241 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\ViewModel\Templates\ViewModelTemplate.tt"
+            #line 244 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\ViewModel\Templates\ViewModelTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture($"{property.Id.ToCamelCase()}{countObj[property.Id]}"));
             
             #line default
             #line hidden
             this.Write(";\r\n");
             
-            #line 242 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\ViewModel\Templates\ViewModelTemplate.tt"
+            #line 245 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\ViewModel\Templates\ViewModelTemplate.tt"
 
                     }
                 }
@@ -572,21 +575,21 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
             #line hidden
             this.Write("    this.");
             
-            #line 262 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\ViewModel\Templates\ViewModelTemplate.tt"
+            #line 265 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\ViewModel\Templates\ViewModelTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(reference.Id.ToCamelCase()));
             
             #line default
             #line hidden
             this.Write(" = ");
             
-            #line 262 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\ViewModel\Templates\ViewModelTemplate.tt"
+            #line 265 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\ViewModel\Templates\ViewModelTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture($"{reference.Id.ToCamelCase()}{countObj[reference.Id]}"));
             
             #line default
             #line hidden
             this.Write(";\r\n");
             
-            #line 263 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\ViewModel\Templates\ViewModelTemplate.tt"
+            #line 266 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\ViewModel\Templates\ViewModelTemplate.tt"
 
                     }
                 }
@@ -597,7 +600,7 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
             #line hidden
             this.Write("  }\r\n}\r\n");
             
-            #line 270 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\ViewModel\Templates\ViewModelTemplate.tt"
+            #line 273 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\ViewModel\Templates\ViewModelTemplate.tt"
 
     }
 

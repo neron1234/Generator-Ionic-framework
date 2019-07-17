@@ -30,7 +30,7 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
             Languages = languages;
             Api = api;
             ViewModels = layout.GetLayoutViewModelsId(api);
-            ApiDomainServices = Layout.GetLayoutServices(api);
+            ApiDomainServices = layout.GetLayoutServices(api);
             Menu = concern.GetMenu();
         }
 

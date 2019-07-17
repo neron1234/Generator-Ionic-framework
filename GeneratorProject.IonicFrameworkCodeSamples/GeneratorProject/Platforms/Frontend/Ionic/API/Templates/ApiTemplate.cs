@@ -232,26 +232,31 @@ import { Observable } from 'rxjs';
                             {
                                 var type = apiParameter.TypeScriptType();
 
+                                if (!type.IsPrimitiveType())
+                                {
+                                    type = type.ToPascalCase();
+                                }
+
             
             #line default
             #line hidden
             this.Write("     * @param ");
             
-            #line 106 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
+            #line 111 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(apiParameter.Id.ToCamelCase()));
             
             #line default
             #line hidden
             this.Write("Param `");
             
-            #line 106 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
+            #line 111 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(type));
             
             #line default
             #line hidden
             this.Write("`.\r\n");
             
-            #line 107 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
+            #line 112 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
 
                             }
                         }
@@ -265,14 +270,14 @@ import { Observable } from 'rxjs';
             #line hidden
             this.Write("     * @returns `");
             
-            #line 115 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
+            #line 120 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(action.ReturnType.Id.ToPascalCase()));
             
             #line default
             #line hidden
             this.Write(">`.\r\n");
             
-            #line 116 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
+            #line 121 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
 
                     }
 
@@ -281,14 +286,14 @@ import { Observable } from 'rxjs';
             #line hidden
             this.Write("     */\r\n    public ");
             
-            #line 120 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
+            #line 125 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(action.Id.ToCamelCase()));
             
             #line default
             #line hidden
             this.Write("(\r\n");
             
-            #line 121 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
+            #line 126 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
 
                     if (action.Parameters.AsEnumerable() != null
                         && action.Parameters.AsEnumerable().Count() > 0)
@@ -301,6 +306,11 @@ import { Observable } from 'rxjs';
                             {
                                 var type = apiParameter.TypeScriptType();
 
+                                if (!type.IsPrimitiveType())
+                                {
+                                    type = type.ToPascalCase();
+                                }
+
                                 if (apiParameter.Equals(last))
                                 {
 
@@ -309,21 +319,21 @@ import { Observable } from 'rxjs';
             #line hidden
             this.Write("        ");
             
-            #line 136 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
+            #line 146 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(apiParameter.Id.ToCamelCase()));
             
             #line default
             #line hidden
             this.Write("Param: ");
             
-            #line 136 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
+            #line 146 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(type));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 137 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
+            #line 147 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
 
                                 }
                                 else
@@ -334,21 +344,21 @@ import { Observable } from 'rxjs';
             #line hidden
             this.Write("        ");
             
-            #line 142 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
+            #line 152 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(apiParameter.Id.ToCamelCase()));
             
             #line default
             #line hidden
             this.Write("Param: ");
             
-            #line 142 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
+            #line 152 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(type));
             
             #line default
             #line hidden
             this.Write(",\r\n");
             
-            #line 143 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
+            #line 153 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
 
                                 }
                             }
@@ -364,14 +374,14 @@ import { Observable } from 'rxjs';
             #line hidden
             this.Write("    ): Observable<");
             
-            #line 153 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
+            #line 163 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(action.ReturnType.Id.ToPascalCase()));
             
             #line default
             #line hidden
             this.Write("> {\r\n");
             
-            #line 154 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
+            #line 164 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
 
                     }
                     else
@@ -382,7 +392,7 @@ import { Observable } from 'rxjs';
             #line hidden
             this.Write("    ) {\r\n");
             
-            #line 160 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
+            #line 170 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
 
                     }
 
@@ -395,7 +405,7 @@ import { Observable } from 'rxjs';
             #line hidden
             this.Write("        return this._dataService.get(\r\n");
             
-            #line 168 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
+            #line 178 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
 
                             if (action.Parameters.AsEnumerable() != null
                                 && action.Parameters.AsEnumerable().Count() > 0)
@@ -406,14 +416,14 @@ import { Observable } from 'rxjs';
             #line hidden
             this.Write("          `${this._");
             
-            #line 173 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
+            #line 183 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(action.Id.ToCamelCase()));
             
             #line default
             #line hidden
             this.Write("Api}`,\r\n          {\r\n");
             
-            #line 175 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
+            #line 185 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
 
                                 var last = action.Parameters.AsEnumerable().Last();
 
@@ -429,21 +439,21 @@ import { Observable } from 'rxjs';
             #line hidden
             this.Write("              ");
             
-            #line 185 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
+            #line 195 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(apiParameter.Id.ToCamelCase()));
             
             #line default
             #line hidden
             this.Write(": JSON.stringify(");
             
-            #line 185 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
+            #line 195 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(apiParameter.Id.ToCamelCase()));
             
             #line default
             #line hidden
             this.Write("Param)\r\n");
             
-            #line 186 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
+            #line 196 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
 
                                         }
                                         else
@@ -454,21 +464,21 @@ import { Observable } from 'rxjs';
             #line hidden
             this.Write("              ");
             
-            #line 191 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
+            #line 201 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(apiParameter.Id.ToCamelCase()));
             
             #line default
             #line hidden
             this.Write(": JSON.stringify(");
             
-            #line 191 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
+            #line 201 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(apiParameter.Id.ToCamelCase()));
             
             #line default
             #line hidden
             this.Write("Param),\r\n");
             
-            #line 192 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
+            #line 202 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
 
                                         }
                                     }
@@ -479,7 +489,7 @@ import { Observable } from 'rxjs';
             #line hidden
             this.Write("          });\r\n");
             
-            #line 198 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
+            #line 208 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
 
                             }
                             else
@@ -490,14 +500,14 @@ import { Observable } from 'rxjs';
             #line hidden
             this.Write("          `${this._");
             
-            #line 203 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
+            #line 213 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(action.Id.ToCamelCase()));
             
             #line default
             #line hidden
             this.Write("Api}`,\r\n          {});\r\n");
             
-            #line 205 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
+            #line 215 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
 
                             }
 
@@ -509,7 +519,7 @@ import { Observable } from 'rxjs';
             #line hidden
             this.Write("        return this._dataService.post(\r\n");
             
-            #line 212 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
+            #line 222 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
 
                             if (action.Parameters.AsEnumerable() != null
                                 && action.Parameters.AsEnumerable().Count() > 0)
@@ -520,14 +530,14 @@ import { Observable } from 'rxjs';
             #line hidden
             this.Write("          `${this._");
             
-            #line 217 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
+            #line 227 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(action.Id.ToCamelCase()));
             
             #line default
             #line hidden
             this.Write("Api}`,\r\n          {\r\n");
             
-            #line 219 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
+            #line 229 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
 
                                 var last = action.Parameters.AsEnumerable().Last();
 
@@ -543,21 +553,21 @@ import { Observable } from 'rxjs';
             #line hidden
             this.Write("              ");
             
-            #line 229 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
+            #line 239 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(apiParameter.Id.ToCamelCase()));
             
             #line default
             #line hidden
             this.Write(": ");
             
-            #line 229 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
+            #line 239 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(apiParameter.Id.ToCamelCase()));
             
             #line default
             #line hidden
             this.Write("Param\r\n");
             
-            #line 230 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
+            #line 240 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
 
                                         }
                                         else
@@ -568,21 +578,21 @@ import { Observable } from 'rxjs';
             #line hidden
             this.Write("              ");
             
-            #line 235 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
+            #line 245 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(apiParameter.Id.ToCamelCase()));
             
             #line default
             #line hidden
             this.Write(": ");
             
-            #line 235 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
+            #line 245 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(apiParameter.Id.ToCamelCase()));
             
             #line default
             #line hidden
             this.Write("Param,\r\n");
             
-            #line 236 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
+            #line 246 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
 
                                         }
                                     }
@@ -593,7 +603,7 @@ import { Observable } from 'rxjs';
             #line hidden
             this.Write("          },\r\n         {});\r\n");
             
-            #line 243 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
+            #line 253 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
 
                             }
                             else
@@ -604,14 +614,14 @@ import { Observable } from 'rxjs';
             #line hidden
             this.Write("          `${this._");
             
-            #line 248 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
+            #line 258 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(action.Id.ToCamelCase()));
             
             #line default
             #line hidden
             this.Write("Api}`,\r\n          {},\r\n          {});\r\n");
             
-            #line 251 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
+            #line 261 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
 
                             }
 
@@ -623,7 +633,7 @@ import { Observable } from 'rxjs';
             #line hidden
             this.Write("        return this._dataService.put(\r\n");
             
-            #line 258 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
+            #line 268 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
 
                             if (action.Parameters.AsEnumerable() != null
                                 && action.Parameters.AsEnumerable().Count() > 0)
@@ -634,14 +644,14 @@ import { Observable } from 'rxjs';
             #line hidden
             this.Write("          `${this._");
             
-            #line 263 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
+            #line 273 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(action.Id.ToCamelCase()));
             
             #line default
             #line hidden
             this.Write("Api}`,\r\n          {\r\n");
             
-            #line 265 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
+            #line 275 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
 
                                 var last = action.Parameters.AsEnumerable().Last();
 
@@ -657,21 +667,21 @@ import { Observable } from 'rxjs';
             #line hidden
             this.Write("              ");
             
-            #line 275 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
+            #line 285 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(apiParameter.Id.ToCamelCase()));
             
             #line default
             #line hidden
             this.Write(": ");
             
-            #line 275 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
+            #line 285 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(apiParameter.Id.ToCamelCase()));
             
             #line default
             #line hidden
             this.Write("Param\r\n");
             
-            #line 276 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
+            #line 286 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
 
                                         }
                                         else
@@ -682,21 +692,21 @@ import { Observable } from 'rxjs';
             #line hidden
             this.Write("              ");
             
-            #line 281 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
+            #line 291 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(apiParameter.Id.ToCamelCase()));
             
             #line default
             #line hidden
             this.Write(": ");
             
-            #line 281 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
+            #line 291 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(apiParameter.Id.ToCamelCase()));
             
             #line default
             #line hidden
             this.Write("Param,\r\n");
             
-            #line 282 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
+            #line 292 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
 
                                         }
                                     }
@@ -707,7 +717,7 @@ import { Observable } from 'rxjs';
             #line hidden
             this.Write("          },\r\n         {});\r\n");
             
-            #line 289 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
+            #line 299 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
 
                             }
                             else
@@ -718,14 +728,14 @@ import { Observable } from 'rxjs';
             #line hidden
             this.Write("            `${this._");
             
-            #line 294 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
+            #line 304 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(action.Id.ToCamelCase()));
             
             #line default
             #line hidden
             this.Write("Api}`,\r\n            {},\r\n            {});\r\n");
             
-            #line 297 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
+            #line 307 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
 
                             }
 
@@ -737,7 +747,7 @@ import { Observable } from 'rxjs';
             #line hidden
             this.Write("        return this._dataService.delete(\r\n");
             
-            #line 304 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
+            #line 314 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
 
                             if (action.Parameters.AsEnumerable() != null
                                 && action.Parameters.AsEnumerable().Count() > 0)
@@ -748,14 +758,14 @@ import { Observable } from 'rxjs';
             #line hidden
             this.Write("            `${this._");
             
-            #line 309 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
+            #line 319 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(action.Id.ToCamelCase()));
             
             #line default
             #line hidden
             this.Write("Api}`,\r\n            {\r\n");
             
-            #line 311 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
+            #line 321 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
 
                                 var last = action.Parameters.AsEnumerable().Last();
 
@@ -771,21 +781,21 @@ import { Observable } from 'rxjs';
             #line hidden
             this.Write("               ");
             
-            #line 321 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
+            #line 331 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(apiParameter.Id.ToCamelCase()));
             
             #line default
             #line hidden
             this.Write(": JSON.stringify(");
             
-            #line 321 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
+            #line 331 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(apiParameter.Id.ToCamelCase()));
             
             #line default
             #line hidden
             this.Write("Param)\r\n");
             
-            #line 322 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
+            #line 332 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
 	
                                         }
                                         else
@@ -796,21 +806,21 @@ import { Observable } from 'rxjs';
             #line hidden
             this.Write("               ");
             
-            #line 327 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
+            #line 337 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(apiParameter.Id.ToCamelCase()));
             
             #line default
             #line hidden
             this.Write(": JSON.stringify(");
             
-            #line 327 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
+            #line 337 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(apiParameter.Id.ToCamelCase()));
             
             #line default
             #line hidden
             this.Write("Param),\r\n");
             
-            #line 328 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
+            #line 338 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
 
                                         }
                                     }
@@ -821,7 +831,7 @@ import { Observable } from 'rxjs';
             #line hidden
             this.Write("            });\r\n");
             
-            #line 334 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
+            #line 344 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
 
                             }
                             else
@@ -832,14 +842,14 @@ import { Observable } from 'rxjs';
             #line hidden
             this.Write("            `${this._");
             
-            #line 339 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
+            #line 349 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(action.Id.ToCamelCase()));
             
             #line default
             #line hidden
             this.Write("Api}`,\r\n            {});\r\n");
             
-            #line 341 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
+            #line 351 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
 
                             }
 
@@ -852,7 +862,7 @@ import { Observable } from 'rxjs';
             #line hidden
             this.Write("    }\r\n");
             
-            #line 349 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
+            #line 359 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
 
                 }
             }
@@ -863,7 +873,7 @@ import { Observable } from 'rxjs';
             #line hidden
             this.Write("}\r\n");
             
-            #line 355 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
+            #line 365 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\API\Templates\ApiTemplate.tt"
 
     }
 

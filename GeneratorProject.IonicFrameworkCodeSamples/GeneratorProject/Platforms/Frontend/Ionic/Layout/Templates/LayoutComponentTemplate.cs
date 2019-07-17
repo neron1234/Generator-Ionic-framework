@@ -517,26 +517,31 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
                                                     {
                                                         var type = apiParameter.TypeScriptType();
 
+                                                        if (!type.IsPrimitiveType())
+                                                        {
+                                                            type = type.ToPascalCase();
+                                                        }
+
             
             #line default
             #line hidden
             this.Write("   * @param ");
             
-            #line 231 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
+            #line 236 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(apiParameter.Id.ToCamelCase()));
             
             #line default
             #line hidden
             this.Write(" `");
             
-            #line 231 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
+            #line 236 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(type));
             
             #line default
             #line hidden
             this.Write("`.\r\n");
             
-            #line 232 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
+            #line 237 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
 
                                                     }
                                                 }
@@ -547,14 +552,14 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
             #line hidden
             this.Write("   * @returns A `Subscription<any>`.\r\n   */\r\n  public on");
             
-            #line 239 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
+            #line 244 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(action.Id.ToPascalCase()));
             
             #line default
             #line hidden
             this.Write("(\r\n");
             
-            #line 240 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
+            #line 245 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
 
                                             if (apiA.Parameters.AsEnumerable() != null
                                                 && apiA.Parameters.AsEnumerable().Count() > 0)
@@ -566,6 +571,11 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
                                                     {
                                                         var type = apiParameter.TypeScriptType();
 
+                                                        if (!type.IsPrimitiveType())
+                                                        {
+                                                            type = type.ToPascalCase();
+                                                        }
+
                                                         if (apiParameter.Equals(last))
                                                         {
 
@@ -574,21 +584,21 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
             #line hidden
             this.Write("    ");
             
-            #line 254 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
+            #line 264 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(apiParameter.Id.ToCamelCase()));
             
             #line default
             #line hidden
             this.Write(": ");
             
-            #line 254 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
+            #line 264 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(type));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 255 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
+            #line 265 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
 
                                                         }
                                                         else
@@ -599,21 +609,21 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
             #line hidden
             this.Write("    ");
             
-            #line 260 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
+            #line 270 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(apiParameter.Id.ToCamelCase()));
             
             #line default
             #line hidden
             this.Write(": ");
             
-            #line 260 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
+            #line 270 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(type));
             
             #line default
             #line hidden
             this.Write(",\r\n");
             
-            #line 261 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
+            #line 271 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
 
                                                         }
                                                     }
@@ -625,21 +635,21 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
             #line hidden
             this.Write("  ) {\r\n    return this._");
             
-            #line 268 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
+            #line 278 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(api.Id.ToCamelCase()));
             
             #line default
             #line hidden
             this.Write(".");
             
-            #line 268 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
+            #line 278 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(apiA.Id.ToCamelCase()));
             
             #line default
             #line hidden
             this.Write("(\r\n");
             
-            #line 269 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
+            #line 279 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
 
                                             if (apiA.Parameters.AsEnumerable() != null
                                                 && apiA.Parameters.AsEnumerable().Count() > 0)
@@ -657,14 +667,14 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
             #line hidden
             this.Write("      ");
             
-            #line 281 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
+            #line 291 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(apiParameter.Id.ToCamelCase()));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 282 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
+            #line 292 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
 
                                                     }
                                                     else if (apiParameter.Id != null)
@@ -675,14 +685,14 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
             #line hidden
             this.Write("      ");
             
-            #line 287 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
+            #line 297 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(apiParameter.Id.ToCamelCase()));
             
             #line default
             #line hidden
             this.Write(",\r\n");
             
-            #line 288 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
+            #line 298 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
 
                                                     }
                                                 }
@@ -694,7 +704,7 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
             #line hidden
             this.Write("    ).subscribe();\r\n  }\r\n\r\n");
             
-            #line 297 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
+            #line 307 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
 
                                         }
                                     }
@@ -717,7 +727,7 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
                     " page with a button.\r\n   */\r\n  public onLanguage() {\r\n    this._nav.push(Languag" +
                     "ePage);\r\n  }\r\n\r\n");
             
-            #line 321 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
+            #line 331 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
 
         }
 
@@ -733,7 +743,7 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
                     "  public ionViewWillEnter() {\r\n    this._events.publish(\'menu\', this._menu);\r\n  " +
                     "}\r\n");
             
-            #line 337 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
+            #line 347 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
 
         }
 
@@ -742,7 +752,7 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
             #line hidden
             this.Write("}\r\n");
             
-            #line 341 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
+            #line 351 "C:\Users\PC\Documents\Gits\Ionic-framework\GeneratorProject.IonicFrameworkCodeSamples\GeneratorProject\Platforms\Frontend\Ionic\Layout\Templates\LayoutComponentTemplate.tt"
 
     }
 

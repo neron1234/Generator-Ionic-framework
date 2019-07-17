@@ -171,8 +171,6 @@ export class <#= DataModel.Id.ToPascalCase() #> {
                     if (property.Id != null
                         && property.TypeScriptType() != null)
                     {
-                        var propertyIsModel = property.IsModel();
-
                         if (!countConstructor.ContainsKey(property.Id))
                         {
                             countConstructor.Add(property.Id, 1);
@@ -184,33 +182,38 @@ export class <#= DataModel.Id.ToPascalCase() #> {
 
                         var type =  property.TypeScriptType();
 
-                        if (!propertyIsModel.Equals(""))
+                        if (property.IsModel())
                         {
-                            type = type.ToPascalCase();
+                            type = $"{type.ToPascalCase()}Model";
                         }
+                        else if (property.IsEnum())
+                        {
+                            type = $"{type.ToPascalCase()}Enum";
+                        }
+
                         if (property.IsCollection
                             && index == lastIndex)
                         {
 #>
-    <#= $"{property.Id.ToCamelCase()}{countConstructor[property.Id]}" #>: <#= $"{type}{propertyIsModel}" #>[]
+    <#= $"{property.Id.ToCamelCase()}{countConstructor[property.Id]}" #>: <#= type #>[]
 <#
                         }
                         else if (index == lastIndex)
                         {
 #>
-    <#= $"{property.Id.ToCamelCase()}{countConstructor[property.Id]}" #>: <#= $"{type}{propertyIsModel}" #>
+    <#= $"{property.Id.ToCamelCase()}{countConstructor[property.Id]}" #>: <#= type #>
 <#
                         }
                         else if (property.IsCollection)
                         {
 #>
-    <#= $"{property.Id.ToCamelCase()}{countConstructor[property.Id]}" #>: <#= $"{type}{propertyIsModel}" #>[],
+    <#= $"{property.Id.ToCamelCase()}{countConstructor[property.Id]}" #>: <#= type #>[],
 <#
                         }
                         else
                         {
 #>
-    <#= $"{property.Id.ToCamelCase()}{countConstructor[property.Id]}" #>: <#= $"{type}{propertyIsModel}" #>,
+    <#= $"{property.Id.ToCamelCase()}{countConstructor[property.Id]}" #>: <#= type #>,
 <#
                         }
                     }

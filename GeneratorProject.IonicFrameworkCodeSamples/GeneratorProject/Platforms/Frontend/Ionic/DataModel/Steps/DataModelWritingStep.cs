@@ -60,7 +60,7 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
         /// <param name="smartApp">A SmartApp's manifeste.</param>
         private void TransformDataModels(SmartAppInfo smartApp)
         {
-            var models = smartApp.GetModels();
+            var models = smartApp.GetUsedModels();
 
             foreach (var entity in models)
             {
@@ -69,7 +69,7 @@ namespace GeneratorProject.Platforms.Frontend.Ionic
         }
 
         /// <summary>
-        /// Generating a typescript model. 
+        /// Generating a typescript model.
         /// </summary>
         /// <param name="entity">An entity.</param>
         private void TransformDataModel(EntityInfo entity)
