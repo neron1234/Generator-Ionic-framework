@@ -1,0 +1,204 @@
+{
+  "id": "Flow",
+  "title": "Flow",
+  "description": "Flow concern",
+  "mandatory": false,
+  "layouts": [
+    {
+      "id": "main",
+      "title": "flow-main",
+      "description": "Flow concern main layout",
+      "isVisibleInMenu": false,
+      "isRoot": false,
+      "actions": [
+        {
+          "id": "nextCard",
+          "type": "Method",
+          "target": "",
+          "api": ""
+        },
+        {
+          "id": "toPostsMain",
+          "type": "Navigation",
+          "target": "Posts.main",
+          "api": ""
+        },
+        {
+          "id": "getCards",
+          "type": "DataList",
+          "target": "",
+          "api": "Flow.List"
+        },
+        {
+          "id": "discard",
+          "type": "DataCreate",
+          "target": "",
+          "api": "Answer.Discard"
+        },
+        {
+          "id": "previousCard",
+          "type": "Method",
+          "target": "",
+          "api": ""
+        },
+        {
+          "id": "addView",
+          "type": "DataCreate",
+          "target": "",
+          "api": "Flow.AddView"
+        },
+        {
+          "id": "swipeCard",
+          "type": "Method",
+          "target": "",
+          "api": ""
+        },
+        {
+          "id": "adaptCardsStack",
+          "type": "Method",
+          "target": "",
+          "api": ""
+        },
+        {
+          "id": "destroyOldCards",
+          "type": "Method",
+          "target": "",
+          "api": ""
+        },
+        {
+          "id": "cardAnswered",
+          "type": "Method",
+          "target": "",
+          "api": ""
+        }
+      ],
+      "dataModel": {
+        "id": "Card",
+        "isAbstract": false,
+        "isEnum": false,
+        "properties": [
+          {
+            "id": "id",
+            "type": "integer",
+            "isKey": false,
+            "isCollection": false,
+            "isRequired": false,
+            "minimum": 0,
+            "maximum": 0,
+            "modelProperty": "Card.Id"
+          },
+          {
+            "id": "linkedCardId",
+            "type": "integer",
+            "isKey": false,
+            "isCollection": false,
+            "isRequired": false,
+            "minimum": 0,
+            "maximum": 0,
+            "modelProperty": "Card.Id"
+          },
+          {
+            "id": "content",
+            "type": "string",
+            "isKey": false,
+            "isCollection": false,
+            "isRequired": false,
+            "minimum": 0,
+            "maximum": 0,
+            "modelProperty": "Card.Content"
+          },
+          {
+            "id": "targetGroups",
+            "type": "string",
+            "isKey": false,
+            "isCollection": false,
+            "isRequired": false,
+            "minimum": 0,
+            "maximum": 0,
+            "modelProperty": ""
+          },
+          {
+            "id": "publicationDate",
+            "type": "date",
+            "isKey": false,
+            "isCollection": false,
+            "isRequired": false,
+            "minimum": 0,
+            "maximum": 0,
+            "modelProperty": "Card.PublicationDate"
+          },
+          {
+            "id": "endDate",
+            "type": "date",
+            "isKey": false,
+            "isCollection": false,
+            "isRequired": false,
+            "minimum": 0,
+            "maximum": 0,
+            "modelProperty": "Card.EndDate"
+          },
+          {
+            "id": "author",
+            "type": "string",
+            "isKey": false,
+            "isCollection": false,
+            "isRequired": false,
+            "minimum": 0,
+            "maximum": 0,
+            "modelProperty": ""
+          },
+          {
+            "id": "type",
+            "type": "string",
+            "isKey": false,
+            "isCollection": false,
+            "isRequired": false,
+            "minimum": 0,
+            "maximum": 0,
+            "modelProperty": "Card.Type"
+          },
+          {
+            "id": "views",
+            "type": "integer",
+            "isKey": false,
+            "isCollection": false,
+            "isRequired": false,
+            "minimum": 0,
+            "maximum": 0,
+            "modelProperty": "Reporting.Views"
+          },
+          {
+            "id": "answers",
+            "type": "integer",
+            "isKey": false,
+            "isCollection": false,
+            "isRequired": false,
+            "minimum": 0,
+            "maximum": 0,
+            "modelProperty": "Reporting.Answers"
+          },
+          {
+            "id": "picture",
+            "type": "string",
+            "isKey": false,
+            "isCollection": false,
+            "isRequired": false,
+            "minimum": 0,
+            "maximum": 0,
+            "modelProperty": "Picture.PicBase64"
+          }
+        ],
+        "references": [
+          {
+            "id": "results",
+            "foreignKey": "Id",
+            "type": "Result",
+            "isCollection": true,
+            "isRequired": false
+          }
+        ],
+        "values": []
+      }
+    }
+  ]
+}

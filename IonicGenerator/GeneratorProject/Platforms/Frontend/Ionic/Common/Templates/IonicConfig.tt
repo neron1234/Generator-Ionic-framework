@@ -1,0 +1,16 @@
+﻿<#@ include file="..\..\Base\Templates\Include.tt" #>
+<#
+    var smartApp = (SmartAppInfo)Model;
+#>
+<#
+    if (smartApp != null && smartApp.Id != null)
+    {
+#>
+{
+  "name": "<#= smartApp.Id #>",
+  "integrations": {},
+  "type": "angular"
+}
+<#
+    }
+#>

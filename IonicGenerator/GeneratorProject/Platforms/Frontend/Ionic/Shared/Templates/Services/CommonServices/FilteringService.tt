@@ -1,0 +1,20 @@
+﻿<#@ include file="..\..\..\..\Base\Templates\Include.tt" #>
+import { Pipe, PipeTransform } from '@angular/core';
+
+@Pipe({ name: 'filterPipe' })
+
+export class FilteringService implements PipeTransform {
+  transform(values: any[], filter: string): any {
+    if (!values || !values.length) return [];
+    if (!filter) return values;
+
+      filter = filter.toUpperCase();
+
+      if (filter && Array.isArray(values)) {
+        const keys = Object.keys(values[0]);
+        return values.filter(value =>
+          value && keys.some(key => value[key] ? (value[key].toUpperCase().indexOf(filter) >= 0) : value[key] )
+        );
+      }
+  }
+}

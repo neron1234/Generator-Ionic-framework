@@ -1,0 +1,54 @@
+﻿<#@ include file="..\..\..\Base\Templates\Include.tt" #>
+<#
+    var model = (SmartAppInfo)Model;
+#>
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { Routes, RouterModule } from '@angular/router';
+import { IonicModule } from '@ionic/angular';
+
+import { AppTabsPage } from './app-tabs.page';
+import { AuthorizationGuard } from '../../core/services/authorization.guard';
+
+const routes: Routes = [
+    {
+        path: '',
+        component: AppTabsPage,
+        children: [
+        {
+            path: '',
+            redirectTo: '/tabs/<#=_rootScreen#>',
+            pathMatch: 'full'
+        },
+        {
+            path: 'appsettings',
+            loadChildren: '../appsettings/app-settings.module#AppSettingsPageModule',
+        },
+<#
+    foreach(var concern in model.Concerns)
+     {
+#>
+        {
+            path: '<#=concern.Id.ToLower()#>',
+            loadChildren: '../<#=concern.Id.ToCamelCase()#>/<#=concern.Id.ToCamelCase()#>.module#<#=concern.Id.ToPascalCase()#>PageModule',
+            //canActivate: [AuthorizationGuard]
+        },
+<#
+     }
+#>
+        ]
+    }
+];
+
+@NgModule({
+  imports: [
+    CommonModule,
+    FormsModule,
+    IonicModule,
+    RouterModule.forChild(routes)
+  ],
+  declarations: [AppTabsPage]
+})
+
+export class AppTabsPageModule {}

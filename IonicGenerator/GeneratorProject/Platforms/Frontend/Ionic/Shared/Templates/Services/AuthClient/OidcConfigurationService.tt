@@ -1,0 +1,45 @@
+﻿<#@ include file="..\..\..\..\Base\Templates\Include.tt" #>
+import {Injectable} from '@angular/core';
+import {UserManagerSettings} from 'oidc-client';
+import {BehaviorSubject} from 'rxjs';
+import {filter} from 'rxjs/operators';
+
+@Injectable()
+export class OidcConfigurationService {
+  authSettings: UserManagerSettings = {};
+
+  constructor() {
+  }
+
+  _loaded$: BehaviorSubject<boolean> = new BehaviorSubject(false);
+
+  get loaded$() {
+    return this._loaded$.asObservable().pipe(filter(_ => _));
+  }
+
+  setSettings(_settings: any) {
+    if (!_settings.clientRoot) {
+      throw new Error('client root url missing in configuration');
+    }
+
+    if (!_settings.client_id) {
+      throw new Error('client id missing in configuration');
+    }
+
+    const clientRoot = _settings.clientRoot.replace(/^\/|\/$/g, '');
+    delete _settings.clientRoot;
+    const settings = {
+      ..._settings,
+      client_id: _settings.client_id,
+      redirect_uri: `${clientRoot}/account/auth-callback`,
+      post_logout_redirect_uri: `${clientRoot}/account/postLogout`,
+    };
+
+    this.authSettings = {
+      ...this.authSettings,
+      ...settings,
+    };
+
+    this._loaded$.next(true);
+  }
+}

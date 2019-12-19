@@ -1,0 +1,156 @@
+﻿<#@ include file="..\..\..\Base\Templates\Include.tt" #>
+<#
+    if(_api != null){
+        string model= RemoveApiSuffix((_api.Id).ToLower());
+        var isCreate = _api.Actions.Where(p => p.Type.ToLower() == "datacreate");
+        var isUpdate = _api.Actions.Where(p => p.Type.ToLower() == "dataupdate");
+        var isList = _api.Actions.Where(p => p.Type.ToLower() == "datalist");
+        var isGet = _api.Actions.Where(p => p.Type.ToLower() == "dataget");
+        var isDelete = _api.Actions.Where(p => p.Type.ToLower() == "datadelete");
+#>
+//import { <#=model.ToPascalCase()#><#=_viewModelSuffix#> } from '../../viewModels/<#=model.ToCamelCase()#><#=_viewModelSuffix#>';
+import { <#=_api.Id.ToPascalCase()#>ActionTypes, <#=_api.Id.ToPascalCase()#>Actions } from '../<#=_api.Id.ToCamelCase()#>/actions';
+import { <#=_api.Id.ToCamelCase()#>Adapter, initialState, <#=_api.Id.ToPascalCase()#>State } from '../<#=_api.Id.ToCamelCase()#>/state';
+
+export function <#=_api.Id.ToCamelCase()#>Reducers (
+    state = initialState,
+    action: <#=_api.Id.ToPascalCase()#>Actions
+): <#=_api.Id.ToPascalCase()#>State {
+   switch (action.type) {
+<#
+    if(_api.Actions.AsEnumerable()!= null)
+    {
+        foreach(ApiActionInfo apiA in _api.Actions.AsEnumerable())
+        {
+#>
+    case <#=_api.Id.ToPascalCase()#>ActionTypes.<#=(apiA.Id).ToUpper()#>_<#=(_api.Id).ToUpper()#>:
+<#
+		}
+#>
+    {
+      return {
+        ...state,
+        isLoading: true,
+        error: null
+      };
+    }	
+
+<#
+    }
+    if(_api.Actions.AsEnumerable()!= null)
+    {
+        foreach(ApiActionInfo apiA in _api.Actions.AsEnumerable())
+        {
+#>
+    case <#=_api.Id.ToPascalCase()#>ActionTypes.<#=(apiA.Id).ToUpper()#>_<#=(_api.Id).ToUpper()#>_FAILURE:
+<#
+		}
+#>
+	{
+      return {
+        ...state,
+        isLoading: false,
+        error: action.payload.error
+      };
+    }	
+
+ <#
+ 	}
+    if(isList.AsEnumerable().Count() > 0)
+    {
+        foreach(var apiA in isList.AsEnumerable())
+        {
+#>
+    case <#=_api.Id.ToPascalCase()#>ActionTypes.<#=(apiA.Id).ToUpper()#>_<#=(_api.Id).ToUpper()#>_SUCCESS:
+<#
+		}
+#>
+	{
+      return <#=_api.Id.ToCamelCase()#>Adapter.addAll(action.payload, {
+        ...state,
+        isLoading: false,
+        error: null
+      });
+    }
+
+<#
+    }
+	    if(isGet.AsEnumerable().Count() > 0)
+    {
+        foreach(var apiA in isGet.AsEnumerable())
+        {
+#>
+    case <#=_api.Id.ToPascalCase()#>ActionTypes.<#=(apiA.Id).ToUpper()#>_<#=(_api.Id).ToUpper()#>_SUCCESS:
+<#	
+		}
+             string returnParameter  = getReturnType(isGet.AsEnumerable().FirstOrDefault());
+            string returnType = Helper.GetType(returnParameter);
+            bool isModel = Helper.IsModelBool(returnType) ? true  : false; 
+#>
+     {
+	    return <#if(isModel){#><#=_api.Id.ToCamelCase()#>Adapter.addOne<#}#>(action.payload, {
+        ...state<#if(isModel){#>,<#}#>
+<#        if(isModel){
+#>
+        // selectedGroupId: (action.payload as <#=model.ToPascalCase()#><#=_viewModelSuffix#>).id
+<#
+        }
+#>
+      });
+     }
+
+<#
+    }
+	    if(isCreate.AsEnumerable().Count() > 0)
+    {
+        foreach(var apiA in isCreate.AsEnumerable())
+        {
+#>
+     case <#=_api.Id.ToPascalCase()#>ActionTypes.<#=(apiA.Id).ToUpper()#>_<#=(_api.Id).ToUpper()#>_SUCCESS: 
+<#	
+		}
+#>
+     {
+	   return <#=_api.Id.ToCamelCase()#>Adapter.addOne(action.payload, state)
+     }
+
+<#
+    }
+	 if(isUpdate.AsEnumerable().Count() > 0)
+    {
+        foreach(var apiA in isUpdate.AsEnumerable())
+        {
+#>
+     case <#=_api.Id.ToPascalCase()#>ActionTypes.<#=(apiA.Id).ToUpper()#>_<#=(_api.Id).ToUpper()#>_SUCCESS: 
+<#	
+		}
+#>
+     {
+	   return <#=_api.Id.ToCamelCase()#>Adapter.updateOne(action.payload, state);
+     }
+
+<#
+    }
+		    if(isDelete.AsEnumerable().Count() > 0)
+    {
+        foreach(var apiA in isDelete.AsEnumerable())
+        {
+#>
+    case <#=_api.Id.ToPascalCase()#>ActionTypes.<#=(apiA.Id).ToUpper()#>_<#=(_api.Id).ToUpper()#>_SUCCESS:
+<#	
+		}
+#>
+     {
+	   return (action.payload, state);
+     }
+
+<#
+    }
+#>
+    default:
+      return state;
+    }
+}
+<#
+	}
+#>

@@ -1,0 +1,70 @@
+﻿<#@ include file="..\..\..\..\Base\Templates\Include.tt" #>
+import { NgModule, APP_INITIALIZER } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { RouteReuseStrategy } from '@angular/router';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+
+import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
+import { SplashScreen } from '@ionic-native/splash-screen/ngx';
+import { StatusBar } from '@ionic-native/status-bar/ngx';
+
+import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing.module';
+import { RootStoreModule } from './store/root-store.module';
+
+import { AuthInterceptorService } from './core/services/auth-interceptor.service';
+import { environment } from '../environments/environment';
+
+import { WebStorageStateStore } from 'oidc-client';
+
+import { FilteringService } from '../app/shared/pipes/filteringService';
+import { SortingService } from '../app/shared/pipes/sortingService';
+import { LoadingService } from '../app/shared/services/common/loadingService';
+import { LoggerService } from '../app/shared/services/common/loggerService';
+import { OidcSecurityService } from '../app/shared/services/auth-client/oidc-security.service';
+import { OidcConfigurationService } from '../app/shared/services/auth-client/oidc-configuration.service';
+
+export function loadConfig(config: OidcConfigurationService) {
+  return () => {
+    config.setSettings({
+      userStore: new WebStorageStateStore({store: localStorage}),
+      ...environment.auth
+    });
+    return config;
+  };
+}
+
+@NgModule({
+   declarations: [
+    AppComponent,
+    FilteringService, 
+    SortingService,
+  ],
+  entryComponents: [],
+  imports: [
+    BrowserModule,
+    IonicModule.forRoot(),
+    AppRoutingModule,
+    RootStoreModule,
+    HttpClientModule
+  ],
+  providers: [
+    StatusBar,
+    SplashScreen,
+    LoadingService,
+    LoggerService,
+    OidcSecurityService,
+    OidcConfigurationService,
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+     {
+             provide: APP_INITIALIZER,
+             useFactory: loadConfig,
+             deps: [OidcConfigurationService],
+             multi: true,
+           },
+       { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true },
+  ],
+  bootstrap: [AppComponent]
+})
+
+export class AppModule {}

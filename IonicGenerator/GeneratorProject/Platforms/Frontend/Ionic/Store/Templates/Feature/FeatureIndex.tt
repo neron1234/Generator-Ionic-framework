@@ -1,0 +1,14 @@
+﻿<#@ include file="..\..\..\Base\Templates\Include.tt" #>
+import * as <#=_api.Id.ToPascalCase()#>StoreActions from './actions';
+import * as <#=_api.Id.ToPascalCase()#>StoreSelectors from './selector';
+import * as <#=_api.Id.ToPascalCase()#>StoreState from './state';
+
+export {
+  <#=_api.Id.ToPascalCase()#>StoreModule
+} from './<#=_api.Id.ToCamelCase()#>-store.module';
+
+export {
+  <#=_api.Id.ToPascalCase()#>StoreActions,
+  <#=_api.Id.ToPascalCase()#>StoreSelectors,
+  <#=_api.Id.ToPascalCase()#>StoreState
+};

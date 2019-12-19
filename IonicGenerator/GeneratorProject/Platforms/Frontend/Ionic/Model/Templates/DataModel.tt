@@ -1,0 +1,43 @@
+﻿<#@ include file="..\..\Base\Templates\Include.tt" #>
+<#
+    var model = (EntityInfo)Model;
+#>
+<#
+    if(_directReferences != null && _directReferences.Count() > 0)
+        {
+    foreach (var reference in _directReferences)
+            {
+                if(reference.Id != model.Id)
+                {
+#>
+import { <#=reference.Id#><#=_modelsuffix#> } from './<#=reference.Id.ToCamelCase()#>.<#=_modelsuffix.ToLower()#>';
+<#
+                }
+            }
+        }
+#>
+
+export interface <#=model.Id.ToPascalCase()#><#=_modelsuffix#><#if(model.BaseEntity != null){#> extends <#=model.Extends.ToPascalCase()#><#=_modelsuffix#><#}#>{
+
+<# 
+          foreach(var property in _superProperties)
+          {
+#>
+<#
+              if(property.IsKey && model.BaseEntity == null)
+              {
+#> 
+	<#=property.Id.ToCamelCase()#>: <#=Helper.GetType(property.Type)#><#if(Helper.IsModelBool(property.Type)){#><#=_modelsuffix#><#}#><#if(property.IsCollection){#>[]<#}#>;
+<#
+              }
+#>
+<#
+              if(!property.IsKey)
+              {
+#>
+	<#=property.Id.ToCamelCase()#>: <#=Helper.GetType(property.Type)#><#if(Helper.IsModelBool(property.Type)){#><#=_modelsuffix#><#}#><#if(property.IsCollection){#>[]<#}#>;
+<#
+              }
+          }
+#>
+}

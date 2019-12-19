@@ -1,0 +1,13 @@
+﻿<#@ include file="..\..\Base\Templates\Include.tt" #>
+import { RootStoreModule } from './root-store.module';
+import * as RootStoreState from './root.state';
+
+export { RootStoreState, RootStoreModule };
+<#
+	foreach (var api in apiList.AsEnumerable())
+	{					
+#>
+export * from './<#=api.Id.ToCamelCase()#>';
+<#
+    }										
+#>

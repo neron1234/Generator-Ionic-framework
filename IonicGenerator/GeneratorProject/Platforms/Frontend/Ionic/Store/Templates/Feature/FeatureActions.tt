@@ -1,0 +1,157 @@
+﻿<#@ include file="..\..\..\Base\Templates\Include.tt" #>
+<#
+    var _modelSuffix= "Model";
+#>
+import { Action } from '@ngrx/store';
+import { Update } from "@ngrx/entity";
+import { BaseViewModel } from '../../viewModels/baseViewModel';
+<#
+    if (_viewModels.AsEnumerable() != null)
+    {
+        List<string> alreadyImported = new List<string>(); 
+        foreach(string viewModel in _viewModels.AsEnumerable())
+        {
+                if(!alreadyImported.AsEnumerable().Contains(viewModel.ToPascalCase()))
+                {
+                 alreadyImported.Add(viewModel.ToPascalCase());
+#>
+import { <#= viewModel.ToPascalCase() #> } from '../../viewModels/<#= viewModel.ToCamelCase() #>';
+<#
+      List<EntityInfo> aprRefVeiwModels = _api.GetApiDirectReferences();
+        if( aprRefVeiwModels.AsEnumerable() != null)
+        {
+            foreach(EntityInfo aprRefVeiwModel in aprRefVeiwModels.AsEnumerable())
+            {
+                if(!alreadyImported.AsEnumerable().Contains(aprRefVeiwModel.Id.ToPascalCase() + _viewModelSuffix.ToPascalCase()))
+                {
+#>
+//import { <#= aprRefVeiwModel.Id.ToPascalCase() #><#=_viewModelSuffix#> } from '../../viewModels/<#= aprRefVeiwModel.Id.ToCamelCase() #><#=_viewModelSuffix.ToPascalCase()#>';
+<#
+              alreadyImported.Add(aprRefVeiwModel.Id.ToPascalCase() + _viewModelSuffix.ToPascalCase());
+                }
+            }
+        }
+                }
+        }
+    }
+#>
+
+export enum <#=_api.Id.ToPascalCase()#>ActionTypes {
+
+<#
+    if(_api.Actions.AsEnumerable()!= null && _api.Actions.AsEnumerable().Count() > 0)
+    {
+        foreach(ApiActionInfo apiA in _api.Actions.AsEnumerable())
+        {
+#>
+    <#=(apiA.Id).ToUpper()#>_<#=(_api.Id).ToUpper()#> = '[ <#=_api.Id.ToPascalCase().ToUpper()#> ] <#=(apiA.Id).ToUpper()#> <#=(_api.Id).ToUpper()#>',
+    <#=(apiA.Id).ToUpper()#>_<#=(_api.Id).ToUpper()#>_SUCCESS = '[ <#=_api.Id.ToPascalCase().ToUpper()#> ] <#=(apiA.Id).ToUpper()#> <#=(_api.Id).ToUpper()#> SUCCESS',
+<#
+        ApiActionInfo last =  _api.Actions.AsEnumerable().Last();
+            if (apiA.Equals(last))
+            {
+#>
+    <#=(apiA.Id).ToUpper()#>_<#=(_api.Id).ToUpper()#>_FAILURE = '[ <#=_api.Id.ToPascalCase().ToUpper()#> ] <#=(apiA.Id).ToUpper()#> <#=(_api.Id).ToUpper()#> FAILURE'
+<#
+            } else {
+#>
+    <#=(apiA.Id).ToUpper()#>_<#=(_api.Id).ToUpper()#>_FAILURE = '[ <#=_api.Id.ToPascalCase().ToUpper()#> ] <#=(apiA.Id).ToUpper()#> <#=(_api.Id).ToUpper()#> FAILURE',
+
+<#
+            }
+
+        }
+    }
+#>
+}
+
+<#
+    if(_api.Actions.AsEnumerable()!= null && _api.Actions.AsEnumerable().Count() > 0)
+    {
+        foreach(ApiActionInfo apiA in _api.Actions.AsEnumerable())
+        {
+		    string returnParameter  = getReturnType(apiA);
+            string returnType = Helper.GetType(returnParameter);
+            returnType = Helper.IsModelBool(returnType) ? "BaseViewModel"  : "true";    
+#>
+    export class <#=apiA.Id.ToPascalCase()#><#=_api.Id.ToPascalCase()#> implements Action {
+        public readonly type = <#=_api.Id.ToPascalCase()#>ActionTypes.<#=(apiA.Id).ToUpper()#>_<#=(_api.Id).ToUpper()#>;
+<#
+            if(apiA.Parameters.AsEnumerable()!= null && apiA.Parameters.AsEnumerable().Count() >0)
+			{
+ #>		
+		constructor(public payload:{
+<#
+                ApiParameterInfo last = apiA.Parameters.AsEnumerable().Last();
+                foreach (ApiParameterInfo apiParameter in apiA.Parameters.AsEnumerable())
+                {
+                    if (apiParameter.Id != null)
+                        {
+						   string type = apiParameter.TypeScriptType();
+							if (apiParameter.Equals(last))
+                           {
+#>
+            <#=apiParameter.Id.ToCamelCase() #>: <#=type #>
+<#
+                            }
+                            else
+                            {
+#>
+            <#=apiParameter.Id.ToCamelCase() #>: <#=type #>,
+<#
+                            }
+                         }
+                    }
+#>		
+}) { }		
+<#
+                }
+#>
+    }	
+
+
+    export class <#=apiA.Id.ToPascalCase()#><#=_api.Id.ToPascalCase()#>Success implements Action {
+        public readonly type = <#=_api.Id.ToPascalCase()#>ActionTypes.<#=(apiA.Id).ToUpper()#>_<#=(_api.Id).ToUpper()#>_SUCCESS;
+<#
+         if(apiA.Type.Equals("dataupdate")){
+#>
+        constructor(public payload: Update<<#=returnType#>>) { }
+<# 
+            } else if(apiA.Type.Equals("datalist")) {
+#>
+        constructor(public payload: <#=returnType#>[]) { }
+<#
+            }  else {
+#>
+        constructor(public payload: <#=returnType#>) { }
+<#
+            }
+#>
+	}
+
+    export class <#=apiA.Id.ToPascalCase()#><#=_api.Id.ToPascalCase()#>Failure implements Action {
+        public readonly type = <#=_api.Id.ToPascalCase()#>ActionTypes.<#=(apiA.Id).ToUpper()#>_<#=(_api.Id).ToUpper()#>_FAILURE;
+        constructor(public payload: { error: string }) { }
+	}
+
+<#
+        }
+  }
+#>
+
+    export type <#=_api.Id.ToPascalCase()#>Actions =
+<#
+    if(_api.Actions.AsEnumerable()!= null && _api.Actions.AsEnumerable().Count() > 0)
+    {
+        foreach(ApiActionInfo apiA in _api.Actions.AsEnumerable())
+        {
+#>
+        | <#=apiA.Id.ToPascalCase()#><#=_api.Id.ToPascalCase()#>
+        | <#=apiA.Id.ToPascalCase()#><#=_api.Id.ToPascalCase()#>Success
+        | <#=apiA.Id.ToPascalCase()#><#=_api.Id.ToPascalCase()#>Failure
+
+<#
+        }
+  }
+#>
+

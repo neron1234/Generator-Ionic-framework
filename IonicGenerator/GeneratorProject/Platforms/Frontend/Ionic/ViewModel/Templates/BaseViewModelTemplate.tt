@@ -1,0 +1,4 @@
+﻿<#@ include file="..\..\Base\Templates\Include.tt" #>
+export interface  BaseViewModel {
+    id: any;
+}

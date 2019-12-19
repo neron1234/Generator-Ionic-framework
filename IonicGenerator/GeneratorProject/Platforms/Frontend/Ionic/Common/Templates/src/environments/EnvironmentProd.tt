@@ -1,0 +1,12 @@
+﻿<#@ include file="..\..\..\..\Base\Templates\Include.tt" #>
+export const environment = {
+  production: true,
+  apiURI: "http://localhost:3000",
+  auth: {
+    'authority': '',
+    'client_id': '',
+    'clientRoot': '',
+    'scope': '',
+    'response_type': 'code'
+  },
+};

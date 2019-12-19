@@ -1,0 +1,250 @@
+﻿<#@ include file="..\..\..\Base\Templates\Include.tt" #>
+import { Injectable } from '@angular/core';
+import { Actions, Effect, ofType } from '@ngrx/effects';
+import { Action } from '@ngrx/store';
+import { Observable, of } from 'rxjs';
+import { catchError, map, switchMap, mergeMap, tap } from 'rxjs/operators';
+import { Router } from '@angular/router';
+
+import { BaseViewModel } from '../../viewModels/baseViewModel';
+import { <#=_api.Id.ToPascalCase()#>Service } from '../../shared/services/<#=_api.Id.ToCamelCase()#>.service';
+import * as featureActions from './actions';
+<#
+    if (_viewModels.AsEnumerable() != null)
+    {
+        List<string> alreadyImported = new List<string>(); 
+        foreach(string viewModel in _viewModels.AsEnumerable())
+        {
+               if(!alreadyImported.AsEnumerable().Contains(viewModel.ToPascalCase()))
+                {
+                alreadyImported.Add(viewModel.ToPascalCase());
+#>
+import { <#= viewModel.ToPascalCase() #> } from '../../viewModels/<#= viewModel.ToCamelCase() #>';
+<#
+      List<EntityInfo> aprRefVeiwModels = _api.GetApiDirectReferences();
+        if( aprRefVeiwModels.AsEnumerable() != null)
+        {
+            foreach(EntityInfo aprRefVeiwModel in aprRefVeiwModels.AsEnumerable())
+            {
+                if(!alreadyImported.AsEnumerable().Contains(aprRefVeiwModel.Id.ToPascalCase() + _viewModelSuffix.ToPascalCase()))
+                {
+#>
+//import { <#= aprRefVeiwModel.Id.ToPascalCase() #><#=_viewModelSuffix#> } from '../../viewModels/<#= aprRefVeiwModel.Id.ToCamelCase() #><#=_viewModelSuffix.ToPascalCase()#>';
+
+<#
+              alreadyImported.Add(aprRefVeiwModel.Id.ToPascalCase() + _viewModelSuffix.ToPascalCase());
+                }
+            }
+        }
+                }
+        }
+    }
+#>
+
+@Injectable()
+export class <#=_api.Id.ToPascalCase()#>Effects {
+
+  constructor(private <#=_api.Id.ToCamelCase()#>Service: <#=_api.Id.ToPascalCase()#>Service, private actions$: Actions, private router: Router) { }
+ <#
+    if(_api.Actions.AsEnumerable()!= null)
+    {
+        foreach(ApiActionInfo apiA in _api.Actions.AsEnumerable())
+        {
+            string returnParameter  = getReturnType(apiA);
+            string returnType = Helper.GetType(returnParameter);
+            returnType = Helper.IsModelBool(returnType) ? "BaseViewModel"  : "true";  
+
+            switch (apiA.Type.ToLower())
+            {
+                case "datalist":
+#>
+
+  @Effect()
+  <#= apiA.Id.ToCamelCase() #><#=_api.Id.ToPascalCase()#>$: Observable<Action> = this.actions$.pipe(
+    ofType<featureActions.<#=apiA.Id.ToPascalCase()#><#=_api.Id.ToPascalCase()#>>(featureActions.<#=_api.Id.ToPascalCase()#>ActionTypes.<#=(apiA.Id).ToUpper()#>_<#=(_api.Id).ToUpper()#>),
+    switchMap(() => this.<#=_api.Id.ToCamelCase()#>Service.<#= apiA.Id.ToCamelCase() #>()),
+    switchMap((<#=returnType.ToCamelCase()#>s: <#=returnType#>[]) => of(new featureActions.<#=apiA.Id.ToPascalCase()#><#=_api.Id.ToPascalCase()#>Success(<#=returnType.ToCamelCase()#>s)))
+  );
+<#
+                break;
+                case "dataget":
+#>
+
+  @Effect()
+  <#= apiA.Id.ToCamelCase() #><#=_api.Id.ToPascalCase()#>$: Observable<Action> = this.actions$.pipe(
+    ofType<featureActions.<#=apiA.Id.ToPascalCase()#><#=_api.Id.ToPascalCase()#>>(
+      featureActions.<#=_api.Id.ToPascalCase()#>ActionTypes.<#=(apiA.Id).ToUpper()#>_<#=(_api.Id).ToUpper()#>
+    ),
+    switchMap((action: featureActions.<#=apiA.Id.ToPascalCase()#><#=_api.Id.ToPascalCase()#>) =>
+      this.<#=_api.Id.ToCamelCase()#>Service.<#= apiA.Id.ToCamelCase() #>(
+<#
+     if (apiA.Parameters.AsEnumerable() != null && apiA.Parameters.AsEnumerable().Count() > 0){
+                         ApiParameterInfo last = apiA.Parameters.AsEnumerable().Last();
+                        foreach (ApiParameterInfo apiParameter in apiA.Parameters.AsEnumerable())
+                        {
+                            if (apiParameter.Id != null)
+                            {
+                              if (apiParameter.Equals(last))
+                                {
+ #>
+        action.payload.<#= apiParameter.Id.ToCamelCase() #>
+<#
+                                }
+                                else
+                                {
+#>
+        action.payload.<#= apiParameter.Id.ToCamelCase() #>,
+<#
+                                }
+               }
+                            }
+}
+#>
+          ).pipe(
+        map(
+          (<#=returnParameter.ToCamelCase()#> : <#=returnType#>) =>
+            new featureActions.<#=apiA.Id.ToPascalCase()#><#=_api.Id.ToPascalCase()#>Success(<#=returnParameter.ToCamelCase()#>)
+        ),
+        catchError(err => of(new featureActions.<#=apiA.Id.ToPascalCase()#><#=_api.Id.ToPascalCase()#>Failure(err)))
+      )
+    ));
+<#
+                break;
+                case "datacreate":
+#>
+
+  @Effect()
+  <#= apiA.Id.ToCamelCase() #><#=_api.Id.ToPascalCase()#>$: Observable<Action> = this.actions$.pipe(
+    ofType<featureActions.<#=apiA.Id.ToPascalCase()#><#=_api.Id.ToPascalCase()#>>(
+      featureActions.<#=_api.Id.ToPascalCase()#>ActionTypes.<#=(apiA.Id).ToUpper()#>_<#=(_api.Id).ToUpper()#>
+    ),
+    switchMap((action: featureActions.<#=apiA.Id.ToPascalCase()#><#=_api.Id.ToPascalCase()#>) =>
+      this.<#=_api.Id.ToCamelCase()#>Service.<#= apiA.Id.ToCamelCase() #>(
+<#
+     if (apiA.Parameters.AsEnumerable() != null && apiA.Parameters.AsEnumerable().Count() > 0){
+                         ApiParameterInfo last = apiA.Parameters.AsEnumerable().Last();
+                        foreach (ApiParameterInfo apiParameter in apiA.Parameters.AsEnumerable())
+                        {
+                            if (apiParameter.Id != null)
+                            {
+                              if (apiParameter.Equals(last))
+                                {
+ #>
+        action.payload.<#= apiParameter.Id.ToCamelCase() #>
+<#
+                                }
+                                else
+                                {
+#>
+        action.payload.<#= apiParameter.Id.ToCamelCase() #>,
+<#
+                                }
+               }
+                            }
+}
+#>
+          ).pipe(
+        map(
+          (<#=returnParameter.ToCamelCase()#>: <#=returnType#>) =>
+            new featureActions.<#=apiA.Id.ToPascalCase()#><#=_api.Id.ToPascalCase()#>Success(<#=returnParameter.ToCamelCase()#>)
+        ),
+        catchError(err => of(new featureActions.<#=apiA.Id.ToPascalCase()#><#=_api.Id.ToPascalCase()#>Failure(err)))
+      )
+    ));
+<#
+                break;
+                case "dataupdate":
+#>
+
+  @Effect()
+  <#= apiA.Id.ToCamelCase() #><#=_api.Id.ToPascalCase()#>$: Observable<Action> = this.actions$.pipe(
+    ofType<featureActions.<#=apiA.Id.ToPascalCase()#><#=_api.Id.ToPascalCase()#>>(
+      featureActions.<#=_api.Id.ToPascalCase()#>ActionTypes.<#=(apiA.Id).ToUpper()#>_<#=(_api.Id).ToUpper()#>
+    ),
+    switchMap((action: featureActions.<#=apiA.Id.ToPascalCase()#><#=_api.Id.ToPascalCase()#>) =>
+      this.<#=_api.Id.ToCamelCase()#>Service.<#= apiA.Id.ToCamelCase() #>(
+<#
+     if (apiA.Parameters.AsEnumerable() != null && apiA.Parameters.AsEnumerable().Count() > 0){
+                         ApiParameterInfo last = apiA.Parameters.AsEnumerable().Last();
+                        foreach (ApiParameterInfo apiParameter in apiA.Parameters.AsEnumerable())
+                        {
+                            if (apiParameter.Id != null)
+                            {
+                              if (apiParameter.Equals(last))
+                                {
+ #>
+        action.payload.<#= apiParameter.Id.ToCamelCase() #>
+<#
+                                }
+                                else
+                                {
+#>
+        action.payload.<#= apiParameter.Id.ToCamelCase() #>,
+<#
+                                }
+               }
+                            }
+}
+#>
+          ).pipe(
+        map(
+          (<#=returnParameter.ToCamelCase()#>: <#=returnType#>) =>
+            new featureActions.<#=apiA.Id.ToPascalCase()#><#=_api.Id.ToPascalCase()#>Success({
+              id: <#=returnParameter.ToCamelCase()#>.id,
+              changes: <#=returnParameter.ToCamelCase()#>
+            }),
+        catchError(err => of(new featureActions.<#=apiA.Id.ToPascalCase()#><#=_api.Id.ToPascalCase()#>Failure(err)))
+      )
+    )));
+<#
+                break;
+               case "datadelete":
+#>
+
+  @Effect()
+  <#= apiA.Id.ToCamelCase() #><#=_api.Id.ToPascalCase()#>$: Observable<Action> = this.actions$.pipe(
+    ofType<featureActions.<#=apiA.Id.ToPascalCase()#><#=_api.Id.ToPascalCase()#>>(
+      featureActions.<#=_api.Id.ToPascalCase()#>ActionTypes.<#=(apiA.Id).ToUpper()#>_<#=(_api.Id).ToUpper()#>
+    ),
+    switchMap((action: featureActions.<#=apiA.Id.ToPascalCase()#><#=_api.Id.ToPascalCase()#>) =>
+      this.<#=_api.Id.ToCamelCase()#>Service.<#= apiA.Id.ToCamelCase() #>(
+<#
+     if (apiA.Parameters.AsEnumerable() != null && apiA.Parameters.AsEnumerable().Count() > 0){
+                         ApiParameterInfo last = apiA.Parameters.AsEnumerable().Last();
+                        foreach (ApiParameterInfo apiParameter in apiA.Parameters.AsEnumerable())
+                        {
+                            if (apiParameter.Id != null)
+                            {
+                              if (apiParameter.Equals(last))
+                                {
+ #>
+        action.payload.<#= apiParameter.Id.ToCamelCase() #>
+<#
+                                }
+                                else
+                                {
+#>
+        action.payload.<#= apiParameter.Id.ToCamelCase() #>,
+<#
+                                }
+               }
+                            }
+}
+#>
+          ).pipe(
+        map(
+          () =>
+            new featureActions.<#=apiA.Id.ToPascalCase()#><#=_api.Id.ToPascalCase()#>Success(true)
+        ),
+        catchError(err => of(new featureActions.<#=apiA.Id.ToPascalCase()#><#=_api.Id.ToPascalCase()#>Failure(err)))
+      )
+    ));
+<#
+                break;
+            }
+        }
+    }
+#>
+
+}
+	

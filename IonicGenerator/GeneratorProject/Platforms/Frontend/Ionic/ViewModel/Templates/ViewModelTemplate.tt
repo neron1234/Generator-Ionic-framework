@@ -1,0 +1,47 @@
+﻿<#@ include file="..\..\Base\Templates\Include.tt" #>
+import { BaseViewModel } from './baseViewModel';
+<#
+    var model = (EntityInfo)Model;
+#>
+<#
+    if(_dataModel != null && _dataModel.Id != null)
+    {
+        if(_constructorParametersObj.AsEnumerable() != null && _constructorParametersObj.AsEnumerable().Count() > 0 )
+        {
+            foreach(var property in _constructorParametersObj.AsEnumerable())
+            {
+                if (property.Target != null && property.Type != null)
+                {
+#>
+import { <#= property.Type.ToPascalCase() #><#=_modelSuffix.ToPascalCase()#> } from '../shared/models/<#= property.Type.ToCamelCase() #>.<#=_modelSuffix.ToLower()#>';
+<#
+                }
+            }
+        }
+#>
+
+/**
+ * class: <#= _dataModel.Id.ToPascalCase() #>
+ * You should add a description of your entity here.
+ * This viewModel is a reference used in Concerns or
+ * in APIs' parameters or return types.
+ * This model is generated from ViewModel domain.
+ */
+
+export interface  <#= _dataModel.Id.ToPascalCase() #> extends BaseViewModel {
+
+<#
+    if(_constructorParametersObj.AsEnumerable() != null && _constructorParametersObj.AsEnumerable().Count() > 0 )
+    {
+        foreach(var property in _constructorParametersObj.AsEnumerable())
+        {	
+#>
+    <#=property.Id.ToCamelCase()#>: <#=property.TypeScriptType()#><#if(Helper.IsModelBool(property.Type)){#><#=_modelSuffix#><#}#><#if(property.IsCollection){#>[]<#}#>;
+<#
+        }
+    }
+#>
+}
+<#
+    }
+#>

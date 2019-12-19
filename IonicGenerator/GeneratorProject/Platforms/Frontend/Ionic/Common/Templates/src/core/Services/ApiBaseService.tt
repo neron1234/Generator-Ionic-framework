@@ -1,0 +1,43 @@
+﻿<#@ include file="..\..\..\..\..\Base\Templates\Include.tt" #>
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { environment } from '../../../environments/environment';
+import { map } from 'rxjs/operators';
+
+export type RequestParams = HttpParams | {
+  [param: string]: string | string[];
+};
+
+export class ApiBaseService {
+  apiUrl: string;
+
+  constructor(protected http: HttpClient) {
+    this.apiUrl = `${environment.apiURI}`;
+  }
+
+ getMethod(url?: string, params?: any): Observable<any> {
+    return this.http.get(`${this.apiUrl}${url}`, { params });
+  }
+
+  getByIdMethod(url?: string, id?: string, params?: RequestParams, ): Observable<any> {
+   // return this.http.get(`${this.apiUrl}${url}`, { params }).pipe(
+    return this.http.get(`${this.apiUrl}${url}/${id}`, { params }).pipe(
+      map(response => response || {})
+    )
+  }
+
+  createMethod(url?: string, model?: any,  params?: RequestParams): Observable<any> {
+    return this.http.post(`${this.apiUrl}${url}`, model, { params });
+  }
+
+  putMethod( url?: string, id?: string, model?: any, params?: RequestParams): Observable<any>{
+    return this.http.put(`${this.apiUrl}${url}`, model, { params });
+    // return this.http.put(`${this.apiUrl}${url}/${id}`, model, { params });
+  }
+
+  deleteMethod(url?: string, id?: string,  params?: RequestParams): Observable<any> {
+   //return this.http.delete(`${this.apiUrl}${url}`, { params });
+    return this.http.delete(`${this.apiUrl}${url}/${id}`, { params });
+  }
+
+}

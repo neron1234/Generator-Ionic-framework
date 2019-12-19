@@ -1,0 +1,5 @@
+﻿<#@ include file="..\..\..\Base\Templates\Include.tt" #>
+ion-tab-bar {
+    overflow-x: scroll;
+    justify-content: left;
+}

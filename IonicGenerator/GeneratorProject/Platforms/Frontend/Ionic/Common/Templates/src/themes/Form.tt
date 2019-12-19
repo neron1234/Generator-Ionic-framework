@@ -1,0 +1,12 @@
+﻿<#@ include file="..\..\..\..\Base\Templates\Include.tt" #>
+.error-message {
+    padding: 8px 0;
+    font-size: 13px;
+    line-height: 16px;
+    font-weight: 300;
+  
+    &.danger {
+      background-color: rgba(var(--ion-color-danger-rgb), 0.1);
+      color: var(--ion-color-danger);
+    }
+  }

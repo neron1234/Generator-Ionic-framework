@@ -1,0 +1,19 @@
+﻿<#@ include file="..\..\..\Base\Templates\Include.tt" #>
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
+import { <#=_api.Id.ToPascalCase()#>Effects } from './effects';
+import { <#=_api.Id.ToCamelCase()#>Reducers } from './reducers';
+
+@NgModule({
+  imports: [
+    CommonModule,
+    StoreModule.forFeature('<#=_api.Id.ToCamelCase()#>', <#=_api.Id.ToCamelCase()#>Reducers),
+    EffectsModule.forFeature([<#=_api.Id.ToPascalCase()#>Effects])
+  ],
+  providers: [<#=_api.Id.ToPascalCase()#>Effects]
+})
+
+export class <#=_api.Id.ToPascalCase()#>StoreModule { }
+

@@ -1,0 +1,73 @@
+﻿<#@ include file="..\..\..\..\Base\Templates\Include.tt" #>
+import {EventEmitter, Injectable} from '@angular/core';
+import {User, UserManager} from 'oidc-client';
+import {OidcConfigurationService} from './oidc-configuration.service';
+import {asapScheduler, BehaviorSubject, Observable} from 'rxjs';
+import {fromPromise} from 'rxjs/internal-compatibility';
+import {filter, map, mapTo, take} from 'rxjs/operators';
+
+
+@Injectable()
+export class OidcSecurityService {
+  tokenExpired = new EventEmitter<boolean>();
+  private _userManager: UserManager;
+  private _userLoaded$ = new BehaviorSubject(false);
+  private _currentUser: User;
+
+  constructor(private config: OidcConfigurationService) {
+    this.config.loaded$.pipe(take(1)).subscribe(() => {
+      this._userManager = new UserManager(config.authSettings);
+      this._setupEvents();
+    });
+  }
+
+  authorize() {
+    return fromPromise(this._userManager.signinRedirect(), asapScheduler);
+  }
+
+  getUserData(): Observable<any> {
+    return this._userLoaded$.asObservable().pipe(filter(_ => !!_), map(() => {
+      return this._currentUser ? this._currentUser.profile : null;
+    }));
+  }
+
+  getToken(): string {
+    if (this._userLoaded$.getValue()) {
+      return this._currentUser ? this._currentUser.access_token : null;
+    }
+    return null;
+  }
+
+
+  authorizedCallback(): Observable<any> {
+    return fromPromise(this._userManager.signinRedirectCallback());
+  }
+
+  getIsAuthorized() {
+    return this._userLoaded$.asObservable().pipe(
+      filter(_ => _),
+      mapTo(!!this._currentUser)
+    );
+  }
+
+  logoff() {
+    return fromPromise(this._userManager.signoutRedirect(), asapScheduler);
+  }
+
+  logoffCallback() {
+    return fromPromise(this._userManager.signoutRedirectCallback(), asapScheduler);
+  }
+
+  private _setupEvents() {
+    this._userManager.events.addUserLoaded((user) => this.setUser(user));
+    this._userManager.events.addAccessTokenExpired(() => {
+      this.tokenExpired.emit(true);
+    });
+    this._userManager.getUser().then((user) => this.setUser(user));
+  }
+
+  private setUser(user) {
+    this._currentUser = user;
+    this._userLoaded$.next(true);
+  }
+}

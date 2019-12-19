@@ -1,0 +1,200 @@
+﻿<#@ include file="..\..\..\Base\Templates\Include.tt" #>
+<#
+   var baseModel = _viewModels.AsEnumerable().FirstOrDefault();
+#>
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { ApiBaseService } from '../../core/services/api-base.service';
+<#
+    if (_viewModels.AsEnumerable() != null)
+    {
+        foreach(string viewModel in _viewModels.AsEnumerable())
+        {
+#>
+import { <#= viewModel.ToPascalCase() #> } from '../../viewModels/<#= viewModel.ToCamelCase() #>';
+<#
+        }
+    }
+#>
+
+@Injectable({
+  providedIn: 'root'
+})
+
+export class <#=_api.Id.ToPascalCase()#>Service extends ApiBaseService{
+    
+     constructor(protected http: HttpClient) {
+        super(http);
+    }
+<#
+        if (_api.Actions.AsEnumerable() != null)
+        {
+            foreach (ApiActionInfo action in _api.Actions.AsEnumerable())
+            {
+                if (action.Id != null && action.Url != null && action.Type != null)
+                {
+#>
+
+    public <#= action.Id.ToCamelCase() #>(
+<#
+            if (action.Parameters.AsEnumerable() != null && action.Parameters.AsEnumerable().Count() > 0)
+                    {
+                        ApiParameterInfo last = action.Parameters.AsEnumerable().Last();
+                        foreach (ApiParameterInfo apiParameter in action.Parameters.AsEnumerable())
+                        {
+                            if (apiParameter.Id != null)
+                            {
+                                string type = apiParameter.TypeScriptType();
+                                if (apiParameter.Equals(last))
+                                {
+#>
+        <#= apiParameter.Id.ToCamelCase() #><#if(action.Type.Equals("datalist")){#>?<#}#>: <#= type #>
+<#
+                                }
+                                else
+                                {
+#>
+        <#= apiParameter.Id.ToCamelCase() #><#if(action.Type.Equals("datalist")){#>?<#}#>: <#= type #>,
+<#
+                                }
+                            }
+                        }
+                    }
+#>
+        ) {
+<#
+                   switch (action.Type.ToLower())
+                    {
+                        case "dataget":
+    
+                            if (action.Parameters.AsEnumerable() != null && action.Parameters.AsEnumerable().Count() > 0)
+                            {
+                            var count = 0;
+#>
+        let obj = {};
+<#
+                             foreach (ApiParameterInfo apiParameter in action.Parameters.AsEnumerable())
+                                {
+                                    count++;
+                                    if (apiParameter.Id != null && count <=1 )
+                                    {
+#>
+       let inputId: string = <#= apiParameter.Id.ToCamelCase() #>.toString();
+<#
+                                }else{
+#>
+      
+       obj[" <#= apiParameter.Id.ToCamelCase() #>"] =  <#= apiParameter.Id.ToCamelCase() #>;
+<#
+                      }
+                                }
+#>
+        return this.getByIdMethod('<#=action.Url#>', inputId, obj);
+<#
+                            }
+                            else
+                            {
+#>
+        return this.getByIdMethod('<#=action.Url#>');
+<#
+                            }
+							
+                        break;
+                        case "datalist":
+						   
+                            if (action.Parameters.AsEnumerable() != null && action.Parameters.AsEnumerable().Count() > 0)
+                            {
+#>
+        let urlSearchParams = new URLSearchParams();
+<#
+                             foreach (ApiParameterInfo apiParameter in action.Parameters.AsEnumerable())
+                                {
+                                    if (apiParameter.Id != null)
+                                    {
+#>
+        urlSearchParams .append('<#=apiParameter.Id.ToCamelCase()#>', JSON.stringify(<#=apiParameter.Id.ToCamelCase()#>));
+<#
+                                    }
+                                }
+#>
+        return this.getMethod('<#=action.Url#>', urlSearchParams);
+<#
+                            }
+                            else
+                            {
+#>
+        return this.getMethod('<#=action.Url#>');
+<#
+                            }
+									   
+                        break;
+                        case "datacreate":
+						
+#>
+        let postData: any = {};
+<#
+                            if (action.Parameters.AsEnumerable() != null && action.Parameters.AsEnumerable().Count() > 0)
+                            {
+                                foreach (ApiParameterInfo apiParameter in action.Parameters.AsEnumerable())
+                                {
+                                    if (apiParameter.Id != null)
+                                    {
+#>
+        postData['<#=apiParameter.Id.ToCamelCase()#>'] = <#=apiParameter.Id.ToCamelCase()#>;
+<#
+                                    }
+                                }
+                            }
+#>
+        return this.createMethod('<#=action.Url#>', postData);
+<#
+                    break;
+                    case "dataupdate":
+#>
+         let putData: any = {};
+<#
+                            if (action.Parameters.AsEnumerable() != null && action.Parameters.AsEnumerable().Count() > 0)
+                            {
+                                foreach (ApiParameterInfo apiParameter in action.Parameters.AsEnumerable())
+                                {
+                                    if (apiParameter.Id != null)
+                                    {
+#>
+        putData['<#=apiParameter.Id.ToCamelCase()#>'] = <#=apiParameter.Id.ToCamelCase()#>;
+<#
+                                    }
+                                }
+                            }
+#>
+        return this.putMethod('<#=action.Url#>', putData);
+<#
+
+                        break;
+                       case "datadelete":
+                         if (action.Parameters.AsEnumerable() != null && action.Parameters.AsEnumerable().Count() > 0)
+                            {
+                                foreach (ApiParameterInfo apiParameter in action.Parameters.AsEnumerable())
+                                {
+                                    if (apiParameter.Id != null)
+                                    {
+#>
+        let inputId: string = <#= apiParameter.Id.ToCamelCase() #>.toString();
+ <#
+                                    }
+                                }
+                            }
+#>
+         return this.deleteMethod('<#=action.Url#>', inputId);
+<#
+                        break;
+                        default: break;
+                    }
+#>
+    }
+<#
+                }
+            }
+        }
+#>
+}

@@ -1,0 +1,35 @@
+﻿<#@ include file="..\..\..\..\..\Base\Templates\Include.tt" #>
+import {Injectable, Injector} from '@angular/core';
+import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
+import {Observable} from 'rxjs';
+import {OidcSecurityService} from '../../shared/services/auth-client/oidc-security.service';
+
+@Injectable()
+
+export class AuthInterceptorService implements HttpInterceptor {
+
+  private oidcSecurityService: OidcSecurityService;
+
+  constructor(private injector: Injector) {
+  }
+
+  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    let requestToForward = req;
+
+    if (this.oidcSecurityService === undefined) {
+      this.oidcSecurityService = this.injector.get(OidcSecurityService);
+    }
+
+    if (this.oidcSecurityService !== undefined) {
+      const token = this.oidcSecurityService.getToken();
+      if (token !== '') {
+        const tokenValue = 'Bearer ' + token;
+        requestToForward = req.clone({setHeaders: {Authorization: tokenValue}});
+      }
+    } else {
+      console.log('SecurityService undefined: NO auth header!');
+    }
+
+    return next.handle(requestToForward);
+  }
+}

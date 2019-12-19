@@ -1,0 +1,43 @@
+﻿<#@ include file="..\..\..\..\..\Base\Templates\Include.tt" #>
+import {Injectable} from '@angular/core';
+import {ActivatedRouteSnapshot, CanActivate, CanLoad, Route, Router, RouterStateSnapshot, UrlSegment, UrlTree} from '@angular/router';
+import {Observable} from 'rxjs';
+
+import {tap} from 'rxjs/operators';
+import {OidcSecurityService} from '../../shared/services/auth-client/oidc-security.service';
+
+@Injectable({
+  providedIn: 'root'
+})
+
+export class AuthorizationGuard implements CanActivate, CanLoad {
+  constructor(private router: Router, private oidcSecurityService: OidcSecurityService) {
+
+  }
+
+  canActivate(
+    next: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+
+    return this.checkUser();
+  }
+
+  canLoad(
+    route: Route,
+    segments: UrlSegment[]): Observable<boolean> | Promise<boolean> | boolean {
+    return this.checkUser();
+  }
+
+  private checkUser(): Observable<boolean> | boolean {
+    return this.oidcSecurityService.getIsAuthorized().pipe(
+      tap((isAuthorized: boolean) => {
+          if (!isAuthorized) {
+            console.warn('User not Authorized');
+            this.router.navigate(['/account/login']);
+          } else {
+            console.log('User Authorized');
+          }
+        }
+      ));
+  }
+}

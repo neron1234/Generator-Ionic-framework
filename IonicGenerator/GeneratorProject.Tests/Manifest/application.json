@@ -1,0 +1,50 @@
+{
+  "id": "Hive",
+  "title": "Hive",
+  "smallTitle": "Hive",
+  "description": "Hive application, Open Source POC version",
+  "platforms": [
+    "Android",
+    "IOS"
+  ],
+  "version": "1.0.0.0",
+  "themes": [
+    "Light",
+    "Dark"
+  ],
+  "languages": [
+    "en",
+    "fr"
+  ],
+  "$schema": "https://meteometer.",
+  "addons": "addons.json",
+  "api": [
+    "api/Answer.json",
+    "api/Flow.json",
+    "api/Group.json",
+    "api/Highlights.json",
+    "api/Idea.json",
+    "api/Picture.json",
+    "api/Post.json",
+    "api/User.json"
+  ],
+  "concerns": [
+    "concerns/Idea.json",
+    "concerns/Reporting.json",
+    "concerns/Account.json",
+    "concerns/ManageGroups.json",
+    "concerns/Settings.json",
+    "concerns/Flow.json",
+    "concerns/Highlights.json",
+    "concerns/Posts.json",
+    "concerns/Login.json",
+    "concerns/Tabs.json"
+  ],
+  "configurations": [
+    {
+      "type": "dev",
+      "Path": "configurations\\configuration.dev.json"
+    }
+  ],
+  "data": "data.json"
+}

@@ -1,0 +1,43 @@
+﻿<#@ include file="..\..\..\Base\Templates\Include.tt" #>
+<#
+    var smartApp = (SmartAppInfo)Model;
+#>
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Settings</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<#
+    if ( smartApp.Languages.AsEnumerable() != null &&  smartApp.Languages.AsEnumerable().Count() > 0)
+    {
+#>
+  <ion-list>
+    <ion-radio-group>
+      <ion-list-header>
+        Language preference
+      </ion-list-header>
+<#
+        foreach (LanguageInfo language in  smartApp.Languages.AsEnumerable()) 
+        {
+            if (language != null && language.Id != null)
+            {
+#>
+      <ion-item lines="none">
+        <ion-radio (ionSelect)="selectLanguage('<#= language.Id.ToPascalCase() #>')" slot="start" ></ion-radio>
+        <ion-label><#= language.Id.ToPascalCase() #></ion-label>
+      </ion-item>
+<#
+            }
+        }
+#>
+    </ion-radio-group>
+  </ion-list>
+<#
+    }
+#>
+    <ion-item lines="none">
+       <ion-button color="primary" routerLink="/account/login">Logout</ion-button>
+    </ion-item>
+</ion-content>

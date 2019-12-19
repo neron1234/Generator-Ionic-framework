@@ -1,0 +1,29 @@
+﻿<#@ include file="..\..\..\Base\Templates\Include.tt" #>
+<#
+    var model = (SmartAppInfo)Model;
+#>
+<ion-tabs>
+    <ion-tab-bar slot="bottom">
+        <ion-tab-button tab="<#=_rootScreen#>">
+            <ion-icon name="logo-ionic"></ion-icon>
+            <ion-label><#=_rootScreen.ToPascalCase()#></ion-label>
+        </ion-tab-button>
+<#
+    foreach(var concern in model.Concerns)
+     {
+         if(concern.Id.ToLower() != _rootScreen){
+#>
+        <ion-tab-button tab="<#=concern.Id.ToLower()#>">
+            <ion-icon name="logo-ionic"></ion-icon>
+            <ion-label><#=concern.Id.ToPascalCase()#></ion-label>
+        </ion-tab-button>
+<#
+            }
+     }
+#>
+        <ion-tab-button tab="appsettings">
+            <ion-icon name="settings"></ion-icon>
+            <ion-label>Settings</ion-label>
+        </ion-tab-button>
+    </ion-tab-bar>
+</ion-tabs>

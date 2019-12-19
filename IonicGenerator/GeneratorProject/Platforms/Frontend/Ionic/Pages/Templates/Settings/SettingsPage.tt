@@ -1,0 +1,21 @@
+﻿<#@ include file="..\..\..\Base\Templates\Include.tt" #>
+import { Component, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'app-settings',
+  templateUrl: './app-settings.page.html',
+  styleUrls: ['./app-settings.page.scss'],
+})
+export class AppSettingsPage implements OnInit {
+
+  constructor() { }
+
+  ngOnInit() {
+  }
+
+  selectLanguage(language) {
+    console.log(language);
+   }
+
+}
+

@@ -1,0 +1,58 @@
+﻿<#@ include file="..\..\Base\Templates\Include.tt" #>
+<#
+    var model = (SmartAppInfo)Model;
+#>
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { IonicModule } from '@ionic/angular';
+import { Routes, RouterModule } from '@angular/router';
+
+<#
+    foreach(var layout in _concern.Layouts)
+    {
+#>
+import { <#=_concern.Id.ToPascalCase()#><#=layout.Id.ToPascalCase()#>Component } from './<#=layout.Id.ToCamelCase()#>/<#=_concern.Id.ToCamelCase()#>-<#=layout.Id.ToCamelCase()#>.component';
+<#
+    }
+#>
+import { <#=_concern.Id.ToPascalCase()#>Page } from './<#=_concern.Id.ToCamelCase()#>.page';
+
+const routes: Routes = [
+    { path: '',  component: <#=_concern.Id.ToPascalCase()#>Page},
+<#
+    var counter = 0;
+    foreach(var layout in _concern.Layouts)
+    {
+#>
+    { path: '<#=layout.Id.ToLower()#>', component: <#=_concern.Id.ToPascalCase()#><#=layout.Id.ToPascalCase()#>Component}<#if(counter < _concern.Layouts.Count()-1){#>,<#}#>
+
+<#
+        counter++;
+    }
+#>
+];
+
+@NgModule({
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    IonicModule,
+    RouterModule.forChild(routes)
+  ],
+  declarations: [
+<#
+    foreach(var layout in _concern.Layouts)
+    {
+#>
+    <#=_concern.Id.ToPascalCase()#><#=layout.Id.ToPascalCase()#>Component,
+<#
+    }
+#>
+    <#=_concern.Id.ToPascalCase()#>Page
+  ],
+  providers:[]
+})
+
+export class <#=_concernId.ToPascalCase()#>PageModule {}

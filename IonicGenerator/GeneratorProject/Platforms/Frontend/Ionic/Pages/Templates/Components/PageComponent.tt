@@ -1,0 +1,495 @@
+﻿<#@ include file="..\..\..\Base\Templates\Include.tt" #>
+<#
+    string layout = _concernId.ToPascalCase() + _layout.Id.ToPascalCase();
+    string layoutToLower = _concernId.ToCamelCase() + "-" + _layout.Id.ToCamelCase();
+    string layoutPathToLower = _concernId.ToCamelCase() + "/" + _layout.Id.ToCamelCase();
+    var isCreate = _layout.Actions.Where(p => p.Type.ToLower() == "datacreate");
+    var isUpdate = _layout.Actions.Where(p => p.Type.ToLower() == "dataupdate");
+    var isList = _layout.Actions.Where(p => p.Type.ToLower() == "datalist");
+    var isGet = _layout.Actions.Where(p => p.Type.ToLower() == "dataget");
+    var isNavigate = _layout.Actions.Where(p => p.Type.ToLower() == "navigation");
+    string apiId = apiIds.AsEnumerable().FirstOrDefault(); 
+#>
+import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { select, Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { ActionSheetController, AlertController } from '@ionic/angular';
+
+import { Actions, ofType } from '@ngrx/effects';
+import { tap, takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+import { BaseViewModel }  from '../../../viewModels/baseViewModel';
+<#
+    if(isCreate.Count() > 0 || isUpdate.Count() > 0)
+    {
+ #>
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+<#
+    }
+#>
+<#
+    if(apiIds.AsEnumerable() != null && dataModel !=null)
+    {
+#>
+import { 
+<#
+    foreach(var api in apiIds.AsEnumerable())
+        {  
+#>
+    <#=api.ToPascalCase()#>StoreActions,
+	<#=api.ToPascalCase()#>StoreSelectors,
+<#
+}
+#>
+    RootStoreState,
+    } from '../../../store';
+<#
+    }
+#>
+<#
+    if (_viewModels.AsEnumerable() != null && _viewModels.AsEnumerable().Count() > 0)
+    {
+        foreach (EntityInfo viewModel in _viewModels.AsEnumerable())
+        {
+#>
+//import { <#= viewModel.Id.ToPascalCase()#> } from '../../../viewModels/<#= viewModel.Id.ToCamelCase() #>';
+<#
+        }
+    }
+#>
+<#
+    if(dataModel !=null)
+    {
+#>
+import { <#= dataModel.Id.ToPascalCase()+_viewModelSuffix #> } from '../../../viewModels/<#= dataModel.Id.ToCamelCase() #><#=_viewModelSuffix.ToPascalCase()#>';
+<#
+    }
+#>
+
+@Component({
+    selector: '<#=layoutToLower#>',
+    templateUrl: './<#=layoutToLower#>.component.html',
+    styleUrls: ['./<#=layoutToLower#>.component.scss']
+})
+
+export class <#=layout#>Component implements OnInit{
+
+    error$: Observable<any>;   
+    loading$: Observable<boolean>;   
+<#
+    if(dataModel != null && _constructorParametersObj.AsEnumerable() != null)
+    {
+        if(isList.Count() > 0 ){
+#>
+	<#=dataModel.Id.ToCamelCase()#>s$: Observable<BaseViewModel[]>;
+<#
+        }  if(isGet.Count() > 0 ){
+#>
+	<#=dataModel.Id.ToCamelCase()#>$: Observable<BaseViewModel>;
+<#
+        }  if(isCreate.Count() > 0 && apiId != null) {
+#>
+	<#=_layout.Title.ToCamelCase()#>Form: FormGroup;
+    destroyed$ = new Subject<boolean>();
+<#
+        }  if(isUpdate.Count() > 0 && apiId != null){
+#>
+	<#=_layout.Title.ToCamelCase()#>Form: FormGroup;
+<#
+        }
+    }
+#>
+
+    constructor(
+<#
+    if(dataModel != null && apiId != null ){
+#>
+        private _store: Store<RootStoreState.AppState>,
+<#
+}
+ #>
+        private _router: Router,  
+        private route: ActivatedRoute,  
+        private actionSheetController: ActionSheetController,
+        private alertController: AlertController,
+<#
+        if(isCreate.Count() > 0 || isUpdate.Count() > 0)
+		{
+            if(isCreate.Count() > 0 && apiId != null) {
+                if(dataModel != null &&  _constructorParametersObj.AsEnumerable() != null)
+                {
+#>
+        private fb: FormBuilder,   
+        private create<#=apiId.ToPascalCase()#>$: Actions  
+    ) { 
+         this.<#=_layout.Title.ToCamelCase()#>Form = fb.group({   
+<#
+                foreach(var property in  _constructorParametersObj.AsEnumerable())
+                {
+                    if(property.IsKey){
+#>
+            <#=property.Id.ToCamelCase()#>: null,
+<#
+                        } else {
+                      
+#>
+            <#=property.Id.ToCamelCase()#>: ['', Validators.required],
+<#
+                        }
+                }
+#>
+        });
+    }
+<#
+                } else {
+#>
+    ) {       
+	    }
+<#
+            }
+            }  if(isUpdate.Count() > 0 && apiId != null){
+	            if(dataModel != null &&  _constructorParametersObj.AsEnumerable() != null){
+#>
+        private fb: FormBuilder,  
+		private update<#=apiId.ToPascalCase()#>$: Actions
+    ) { 
+ 
+		this.<#=_layout.Title.ToCamelCase()#>Form = fb.group({
+<#
+                foreach(var property in  _constructorParametersObj.AsEnumerable())
+                {
+                    if(property.IsKey){
+#>
+            <#=property.Id.ToCamelCase()#>: null,
+<#
+                        } else {
+                      
+#>
+            <#=property.Id.ToCamelCase()#>: ['', Validators.required],
+<#
+                        }
+                  }
+#>
+		});
+	}
+<#
+            } else {
+#>
+    ) {
+    }
+<#
+                 }
+	        }
+		} else {
+#>
+    ) {
+    }
+<#
+}
+#>
+
+    ngOnInit() {
+<#
+    if(dataModel != null)
+    {
+#>
+        /// Remove Comment if any for usage  && Todo
+<#
+        if(isList.Count() > 0) {
+            foreach(var listItem in  isList.AsEnumerable()){
+#>
+        // this.on<#=listItem.Id.ToPascalCase() #>();
+<#
+            }
+        } else if(isGet.Count() > 0) {
+            foreach(var listItem in  isGet.AsEnumerable()){
+#>
+        // this.on<#=listItem.Id.ToPascalCase() #>();
+<#
+            }
+        } else if(isUpdate.Count() > 0) {
+#>
+        // this.get<#=dataModel.Id.ToPascalCase()#>();
+<#
+        }
+    }
+#>
+    }
+<#
+    if(_layout.Actions.AsEnumerable() != null && _layout.Actions.AsEnumerable().Count() > 0)
+    {
+        foreach(var action in _layout.Actions.AsEnumerable())
+        {
+            switch (action.Type.ToLower())
+            {
+                case "navigation":
+                    if(action.Target != null)
+                    {
+                        string[] actionTargetSplitted = action.Target.Split('.');
+                        string targetedConcern = actionTargetSplitted[0].ToLower();
+                        string targetedLayout = actionTargetSplitted[1].ToLower();
+#>
+
+    public on<#=action.Id.ToPascalCase()#>(): void {
+        this._router.navigate(['/tabs/<#=targetedConcern#>/<#=targetedLayout#>']);
+    }
+<#
+                    }
+                break;
+                case "method":
+                   
+#>
+
+    public on<#=action.Id.ToPascalCase()#>(){
+        //TODO
+    }
+<#
+                break;
+                case "datalist":
+                    if(action.Api != null )
+                    {
+                        string[] datalistApiSplitted = action.Api.Split('.');
+                        string datalistApiId = datalistApiSplitted[0];
+                        string datalistApiAction = datalistApiSplitted[1];
+                        if(dataModel != null)
+                        {
+#>
+
+    public on<#= action.Id.ToPascalCase() #>()
+    {
+        this.loading$ = this._store.pipe(
+            select(<#=datalistApiId.ToPascalCase()#>StoreSelectors.get<#=datalistApiId.ToPascalCase()#>sLoadingState)
+        );
+    
+        this.<#=dataModel.Id.ToCamelCase()#>s$ = this._store.pipe(
+            select(<#=datalistApiId.ToPascalCase()#>StoreSelectors.getAll<#=datalistApiId.ToPascalCase()#>s)
+        );
+    
+        this.error$ = this._store.pipe(
+            select(<#=datalistApiId.ToPascalCase()#>StoreSelectors.select<#=datalistApiId.ToPascalCase()#>Error)
+        );
+    
+        /// Remove Comment for usage
+        // this._store.dispatch(
+            // new <#=datalistApiId.ToPascalCase()#>StoreActions.<#=datalistApiAction.ToPascalCase()#><#=datalistApiId.ToPascalCase()#>()
+        // );
+    }
+<#
+                        }
+                    }
+                break;
+                case "dataget":
+                    if(action.Api != null)
+                    {
+                        string[] datagetApiSplitted = action.Api.Split('.');
+                        string datagetApiId = datagetApiSplitted[0];
+                        string datagetApiAction = datagetApiSplitted[1];
+                        if(dataModel != null)
+                        {
+#>
+    
+    public async on<#= action.Id.ToPascalCase() #>()
+    {
+        this.loading$ = this._store.pipe(
+            select(<#=datagetApiId.ToPascalCase()#>StoreSelectors.get<#=datagetApiId.ToPascalCase()#>sLoadingState)
+        );
+
+        this.<#=dataModel.Id.ToCamelCase()#>$ = this._store.pipe(
+            select(<#=datagetApiId.ToPascalCase()#>StoreSelectors.getCurrent<#=datagetApiId.ToPascalCase()#>)
+            );
+           
+        this.error$ = this._store.pipe(
+            select(<#=datagetApiId.ToPascalCase()#>StoreSelectors.select<#=datagetApiId.ToPascalCase()#>Error)
+        );
+
+        /// Remove Comment for usage
+        // this._store.dispatch(
+            // new <#=datagetApiId.ToPascalCase()#>StoreActions.<#=datagetApiAction.ToPascalCase()#><#=datagetApiId.ToPascalCase()#>(
+            // this.route.snapshot.params.id
+        //));
+            
+    }
+<#
+                        }
+                    }
+                break;
+                case "dataupdate":
+                    if(action.Api != null)
+                    {
+                        string[] dataupdateApiSplitted = action.Api.Split('.');
+                        string dataupdateApiId = dataupdateApiSplitted[0];
+                        string dataupdateApiAction = dataupdateApiSplitted[1];
+                        if(dataModel != null && _constructorParametersObj.AsEnumerable() != null)
+                        {
+#>
+
+    get<#=dataModel.Id.ToPascalCase()#> () {
+        const <#=dataModel.Id.ToCamelCase()#>$: Observable<BaseViewModel> = this._store.select(
+            <#=apiId.ToPascalCase()#>StoreSelectors.getCurrent<#=apiId.ToPascalCase()#>
+        );
+
+        <#=dataModel.Id.ToCamelCase()#>$.subscribe((current<#=dataModel.Id.ToPascalCase()#> : <#=dataModel.Id.ToPascalCase()#><#=_viewModelSuffix#> )=> {
+            if (current<#=dataModel.Id.ToPascalCase()#>) {
+                this.<#=_layout.Title.ToCamelCase()#>Form.patchValue({
+<#
+
+            foreach(var property in _constructorParametersObj.AsEnumerable())
+            {
+#>
+                    <#=property.Id.ToCamelCase()#>: current<#=dataModel.Id.ToPascalCase()#>.<#if(_layout.DataModel.Properties.Count() == 0){#><#=_layout.DataModel.Id.ToCamelCase()#>.<#}#><#=property.Id.ToCamelCase()#>,
+<#
+            }
+#>
+                });
+            }
+        });
+    }
+  
+    public on<#= action.Id.ToPascalCase() #>() {
+        const updated<#=dataModel.Id.ToPascalCase()#> = {
+<#
+   if(_layout.DataModel.Properties.Count() == 0){
+#>
+        <#=_layout.DataModel.Id.ToCamelCase()#> :{
+<#
+      }
+        foreach(var property in _constructorParametersObj.AsEnumerable())
+        {
+#>
+            <#=property.Id.ToCamelCase()#>: this.<#=_layout.Title.ToCamelCase()#>Form.get("<#=property.Id.ToCamelCase()#>").value,
+<#
+        }
+      if(_layout.DataModel.Properties.Count() == 0){
+#>
+        }
+<#
+      }
+#>
+        } as <#=dataModel.Id.ToPascalCase()#><#=_viewModelSuffix#>;
+
+        /// Remove Comment for usage
+        //  this._store.dispatch(new <#=dataupdateApiId.ToPascalCase()#>StoreActions.<#=dataupdateApiAction.ToPascalCase()#><#=dataupdateApiId.ToPascalCase()#>({<#=dataModel.Id.ToCamelCase()#> : updated<#=dataModel.Id.ToPascalCase()#>}));
+    }
+<#
+                        }
+                    }
+                break;
+                case "datacreate":
+                    if(action.Api != null)
+                    {
+                        string[] datacreateApiSplitted = action.Api.Split('.');
+                        string datacreateApiId = datacreateApiSplitted[0];
+                        string datacreateApiAction = datacreateApiSplitted[1];
+                        if(dataModel != null)
+                        {
+#>
+
+    public on<#=action.Id.ToPascalCase() #>(<#=dataModel.Id.ToCamelCase()#>) {
+        /// Remove Comment for usage
+        //  this._store.dispatch(new <#=datacreateApiId.ToPascalCase()#>StoreActions.<#=datacreateApiAction.ToPascalCase()#><#=datacreateApiId.ToPascalCase()#>(<#=dataModel.Id.ToCamelCase()#>));
+    }
+
+<# 
+                        }
+                    }
+                break;
+                case "datadelete":
+                    if(action.Api != null)
+                    {
+                        string[] datadeleteApiSplitted = action.Api.Split('.');
+                        string datadeleteApiId = datadeleteApiSplitted[0];
+                        string datadeleteApiAction = datadeleteApiSplitted[1];
+                        if(dataModel != null)
+                        {
+#>
+
+    public on<#=action.Id.ToPascalCase() #>() {
+        if (confirm("Are You Sure You want to Delete the <#=datadeleteApiId.ToPascalCase()#>?")) {
+            /// Remove Comment for usage
+            // this._store.dispatch(new <#=datadeleteApiId.ToPascalCase()#>StoreActions.<#=datadeleteApiAction.ToPascalCase()#><#=datadeleteApiId.ToPascalCase()#>(<#=dataModel.Id.ToCamelCase()#>.id));
+        }
+    }
+<#
+                        }
+                    }
+                break;
+						
+            }
+        }
+    }
+  if(_layout.Actions.AsEnumerable().Count() > 0 && isList.Count() > 0 )
+        {
+#>
+
+    async methodSelectAlert(<#=dataModel.Id.ToCamelCase()#>) {
+        const alert = await this.alertController.create({
+            buttons: [
+<#
+                    foreach(var action in _layout.Actions.AsEnumerable())
+                    {
+                        if(action.Type.ToLower().Equals("method") || action.Type.ToLower().Equals("datadelete"))
+                        {
+#>
+            {
+                text: '<#=Helper.WordSeperator(action.Id.ToPascalCase())#>',
+                handler: () => {
+                    this.on<#=action.Id.ToPascalCase()#>();
+                }
+            },
+<#
+                        }
+                    }
+#>
+            {
+                text: 'Cancel',
+                role: 'cancel',
+                 handler: () => {
+                    console.log('Confirm Cancel');
+                }
+            }
+            ]
+        });
+    
+        await alert.present();
+    }
+<#
+      }
+    if(isNavigate.Count() > 0)
+    {
+#>
+
+    async openNavigationAction() {
+        const actionSheet = await this.actionSheetController.create({
+          buttons: [
+<#
+    foreach(var action in _layout.Actions.AsEnumerable())
+    {
+        if(action.Type.ToLower().Equals("navigation"))
+        {
+#>
+            {
+                text: "<#=Helper.WordSeperator(action.Id.ToPascalCase())#>",
+                handler: () => {
+                this.on<#=action.Id.ToPascalCase()#>();
+                }
+            },
+<#
+        }
+    }
+#>
+            {
+                text: "Cancel",
+                role: 'cancel',
+                handler: () => {
+                    }
+                }
+            ]
+        });
+        await actionSheet.present();
+    }
+<#
+      }
+#>
+
+}

@@ -1,0 +1,6 @@
+﻿<#@ include file="..\..\Base\Templates\Include.tt" #>
+.button-list {
+    width:200px;
+    margin-top:10px;
+    margin-left:10px;
+}

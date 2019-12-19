@@ -1,0 +1,41 @@
+﻿<#@ include file="..\..\..\Base\Templates\Include.tt" #>
+import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
+import { BaseViewModel } from '../../viewModels/baseViewModel';
+<#
+    if(_api != null){
+        string model= RemoveApiSuffix((_api.Id).ToLower());
+#>
+//import { <#=model.ToPascalCase()#><#=_viewModelSuffix#> } from '../../viewModels/<#=model.ToCamelCase()#><#=_viewModelSuffix#>';
+
+import * as fromRoot from '../root.state';
+
+export interface <#=_api.Id.ToPascalCase()#>State extends EntityState<BaseViewModel> {
+  selected<#=_api.Id.ToPascalCase()#>Id: number | string | null;
+  isLoading: boolean;
+  error: string;
+}
+
+export interface AppState extends fromRoot.AppState {
+  <#=_api.Id.ToCamelCase()#>s: <#=_api.Id.ToPascalCase()#>State;
+}
+
+export const <#=_api.Id.ToCamelCase()#>Adapter: EntityAdapter<BaseViewModel> = createEntityAdapter<BaseViewModel>(
+  {
+   // selectId: (<#=_api.Id.ToCamelCase()#>: BaseViewModel) => <#=_api.Id.ToCamelCase()#>.id,
+   // sortComparer: false
+  }
+);
+
+export const default<#=_api.Id.ToPascalCase()#>: <#=_api.Id.ToPascalCase()#>State = {
+  ids: [],
+  entities: {},
+  selected<#=_api.Id.ToPascalCase()#>Id: null,
+  isLoading: false,
+  error: ""
+};
+
+export const initialState = <#=_api.Id.ToCamelCase()#>Adapter.getInitialState(default<#=_api.Id.ToPascalCase()#>); 
+<#
+	}
+#>
+

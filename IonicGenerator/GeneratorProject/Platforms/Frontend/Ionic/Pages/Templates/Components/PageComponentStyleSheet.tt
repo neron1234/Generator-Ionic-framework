@@ -1,0 +1,13 @@
+﻿<#@ include file="..\..\..\Base\Templates\Include.tt" #>
+<#
+    if (_concern != null && _concern.Id != null && _layout != null && _layout.Id != null)
+    {
+        string layoutToLower = _concern.Id.ToLower() + "-" + _layout.Id.ToLower();
+#>
+<#= layoutToLower #>
+{
+  // TO DO
+}
+<#
+    }
+#>

@@ -1,0 +1,7 @@
+﻿<#@ include file="..\..\Base\Templates\Include.tt" #>
+export interface UserLoginModel {
+    firstname?: string;
+    lastname?: string;
+    username: string;
+    password: string;
+}

@@ -1,0 +1,37 @@
+﻿<#@ include file="..\..\..\Base\Templates\Include.tt" #>
+<#    
+	if(_api != null){
+#>
+import { createFeatureSelector, createSelector } from '@ngrx/store';
+import { <#=_api.Id.ToCamelCase()#>Adapter, <#=_api.Id.ToPascalCase()#>State } from './state';
+
+export const get<#=_api.Id.ToPascalCase()#>State = createFeatureSelector<<#=_api.Id.ToPascalCase()#>State>('<#=_api.Id.ToCamelCase()#>');
+
+export const getAll<#=_api.Id.ToPascalCase()#>s = createSelector(
+  get<#=_api.Id.ToPascalCase()#>State,
+  <#=_api.Id.ToCamelCase()#>Adapter.getSelectors().selectAll
+);
+
+export const get<#=_api.Id.ToPascalCase()#>sLoadingState = createSelector(
+  get<#=_api.Id.ToPascalCase()#>State,
+  (state: <#=_api.Id.ToPascalCase()#>State) => state.isLoading
+);
+
+export const select<#=_api.Id.ToPascalCase()#>Error = createSelector(
+  get<#=_api.Id.ToPascalCase()#>State,
+  (state: <#=_api.Id.ToPascalCase()#>State) => state.error
+);
+
+export const getSelected<#=_api.Id.ToPascalCase()#>Id = createSelector(
+  get<#=_api.Id.ToPascalCase()#>State,
+  (state: <#=_api.Id.ToPascalCase()#>State) => state.selected<#=_api.Id.ToPascalCase()#>Id
+);
+
+export const getCurrent<#=_api.Id.ToPascalCase()#> = createSelector(
+  get<#=_api.Id.ToPascalCase()#>State,
+  getSelected<#=_api.Id.ToPascalCase()#>Id,
+  state => state.entities[state.selected<#=_api.Id.ToPascalCase()#>Id]
+);
+<#
+    }
+#>

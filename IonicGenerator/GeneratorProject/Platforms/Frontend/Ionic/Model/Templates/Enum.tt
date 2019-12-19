@@ -1,0 +1,22 @@
+﻿<#@ include file="..\..\Base\Templates\Include.tt" #>
+<#
+    var model = (EntityInfo)Model;
+#>
+export enum <#=model.Id.ToPascalCase()#><#=_modelsuffix#> {
+<#
+    var counter = 0;
+    foreach(var property in model.Values.AsEnumerable())
+     {
+       if(counter < model.Values.Count -1){
+#>
+    <#=property.Id#>,
+<#  
+        } else {
+#>
+    <#=property.Id#>
+<#
+        }
+            counter++;
+        }
+#>
+}

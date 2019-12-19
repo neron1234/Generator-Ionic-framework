@@ -1,0 +1,29 @@
+﻿<#@ include file="..\..\Base\Templates\Include.tt" #>
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
+@Component({
+  selector: 'app-<#=_concern.Id.ToCamelCase()#>',
+  templateUrl: './<#=_concern.Id.ToCamelCase()#>.page.html',
+  styleUrls: ['./<#=_concern.Id.ToCamelCase()#>.page.scss'],
+})
+export class <#=_concern.Id.ToPascalCase()#>Page implements OnInit {
+
+  constructor( private router: Router) { }
+
+  ngOnInit() {
+  }
+
+<#
+        foreach(var layout in _concern.Layouts)
+        {
+#>
+    To<#=layout.Id.ToPascalCase()#>() {
+        this.router.navigateByUrl('/tabs/<#=_concern.Id.ToLower()#>/<#=layout.Id.ToLower()#>');
+    }
+
+<#
+        }
+#>
+
+}

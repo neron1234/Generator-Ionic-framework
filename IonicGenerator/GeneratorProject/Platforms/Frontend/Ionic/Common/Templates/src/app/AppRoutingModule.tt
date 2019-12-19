@@ -1,0 +1,19 @@
+﻿<#@ include file="..\..\..\..\Base\Templates\Include.tt" #>
+import { NgModule } from '@angular/core';
+import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AuthorizationGuard } from './core/services/authorization.guard';
+
+const routes: Routes = [
+  { path: '', redirectTo: 'tabs', pathMatch: 'full'},
+  { path: 'tabs', loadChildren: './pages/apptabs/app-tabs.module#AppTabsPageModule',
+   // canActivate: [AuthorizationGuard]
+  },
+];
+
+@NgModule({
+  imports: [
+    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
+  ],
+  exports: [RouterModule]
+})
+export class AppRoutingModule { }

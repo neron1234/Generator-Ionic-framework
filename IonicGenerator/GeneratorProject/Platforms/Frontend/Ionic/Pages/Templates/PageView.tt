@@ -1,0 +1,23 @@
+﻿<#@ include file="..\..\Base\Templates\Include.tt" #>
+<#
+    var model = (SmartAppInfo)Model;
+#>
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title><#=_concern.Id.ToPascalCase()#></ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+<#
+        foreach(var layout in _concern.Layouts)
+        {
+#>
+    <ion-button class="button-list" color="secondary" (click)="To<#=layout.Id.ToPascalCase()#>()" class="ion-text-capitalize" ><#=Helper.WordSeperator(layout.Id.ToPascalCase())#></ion-button>
+    <br>
+<#
+        }
+#>
+
+</ion-content>
